@@ -152,6 +152,12 @@ class GSCClient:
                     time.sleep(2 ** attempt)
                     continue
                 return {"url": url, "error": str(e)}
+            except (ConnectionResetError, OSError) as e:
+                if attempt < retries - 1:
+                    time.sleep(2 ** (attempt + 1))
+                    self._service = None  # force reconnect
+                    continue
+                return {"url": url, "error": f"connection_reset: {e}"}
         return {"url": url, "error": "max_retries"}
 
     def inspect_urls_batch(
