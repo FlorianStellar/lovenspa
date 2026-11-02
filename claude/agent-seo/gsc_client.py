@@ -91,6 +91,7 @@ class GSCClient:
         dimensions: list[str] = ("page",),
         data_state: str = "final",
         filters: Optional[list[dict]] = None,
+        aggregate_type: str = "byPage",
     ) -> list[dict]:
         """Pagine automatiquement jusqu'à 25 000 * N lignes."""
         all_rows: list[dict] = []
@@ -105,6 +106,7 @@ class GSCClient:
                 data_state=data_state,
                 start_row=start_row,
                 filters=filters,
+                aggregate_type=aggregate_type,
             )
             all_rows.extend(rows)
             if len(rows) < batch:
