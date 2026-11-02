@@ -9,6 +9,7 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 
 | # | Déployé | Lot | Levier | N URLs | Témoin | Lecture prévue | Verdict |
 |---|---|---|---|---|---|---|---|
+| L6 | 02/11/2026 | 25 fiches 404 (churn) | Status DRAFT/ARCHIVED→ACTIVE + templateSuffix=churn | 25 | 25 fiches non-modifiées de même ancienneté (à figer) | 23/11/2026 | en cours |
 | L5 | 13/10/2026 | collection `/collections/love-room` | Réécriture éditoriale (9 H2, FAQPage 7Q, 47 liens, chiffres oct.) | 1 | `/pages/guide-qu-est-ce-love-room` | 27/10/2026 · **24/11/2026** | ✓ J+14 positif : pos 12.0→9.1, impr 3 692→5 473. Guide recule (8.7→10.5), pas de cannibalisation. Lecture définitive 24/11. |
 | L4 | 28/09/2026 | 35 metas fiches | SEO title + meta description | 35 | 35 témoins figés | 02/11/2026 | ✓ J+35 positif : 0 régression sur top 70 fiches, gain médian −2.5 pos. Lire L4 paire-à-paire après récup liste Shopify. |
 | L3 | 28/09/2026 | 17 fiches lot témoin | Body optimisé (structure + FAQ) | 17 | 16 témoins, 6 groupe B | 26/10/2026 | ⚠ Non conclusif : liste exacte non disponible. Récupérer URLs via Shopify (metafield seo-lot=L3). |
