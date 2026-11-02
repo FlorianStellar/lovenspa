@@ -25,6 +25,7 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 
 - 02/11/2026 : retrait de la langue anglaise volontaire.
 - 02/11/2026 : pas de fusion des articles cannibalisés (massage tantrique, kamasutra, sofa tantra) ; traitement par maillage interne (action C2, niveau A).
+- 02/11/2026 : « love room » → URL cible unique `/collections/love-room` (confirmé). Les autres URL classées sur la requête (bubble-pink, /pages/loveroom, guide) doivent y renvoyer et viser une autre intention.
 - 02/11/2026 : V1 accès écriture GitHub donné ; V4 go noindex `/en/pages/guide-qu-est-ce-love-room` ; V5 go lien churn vers `/collections/love-room`.
 
 ## Constats agent du 02/11/2026
