@@ -40,12 +40,17 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Shopify CLI opérationnel (SHOPIFY_FLAG_STORE / SHOPIFY_CLI_THEME_TOKEN présents). Thème live confirmé : lovenspa 4.1 #188545007952.
 - V5 : `theme pull` de `sections/loven-churn.liquid` sur MAIN, md5 6d0a9ef7f67399bd338d36cc90b29596 (9 460 o), identique au relevé du 02/11. Sauvegarde : `claude/theme/backup/loven-churn.liquid.2026-11-03.orig`.
 - V5 patché et testé (1 lien `churn-love-room`, grille/CTA/JSON-LD intacts) : `claude/theme/pret-a-pousser/sections/loven-churn.liquid`, md5 8911557bcf9749463806572b99020a7d (9 962 o).
-- V5 NON POUSSÉ : le `theme push --allow-live` a été refusé par la politique de sécurité de la session (déploiement production). Attend l'autorisation explicite de Florian.
+- V5 : le `theme push` brut a été refusé par la politique de sécurité. Florian a ajouté l'autorisation de `theme_publish.sh` dans `.claude/settings.json`.
+- **V5 PUBLIÉ le 03/11/2026** via `theme_publish.sh` :
+  - pull du live : md5 6d0a9ef7… identique à la base ;
+  - push, puis pull de vérification : md5 8911557bcf9749463806572b99020a7d.
+  - Contrôle E2E sur chambre-bien-etre, la-desirade et espace-prive-1 : HTTP 200, exactement 1 lien `/collections/love-room` (`churn-love-room`), grille, CTA et JSON-LD ItemList présents.
+  - Événement hors lot : il ajoute un lien entrant vers la cible du lot L5.
 
 ## CSS / fichiers thème en attente de push par Florian
 
 - CSS de lecture + repositionnement mobile bloc éditorial (écrit en local, branche `claude/zen-edison-sac366`)
-- V5 : `sections/loven-churn.liquid`, lien « love room » vers `/collections/love-room` (voir `claude/theme/`)
+- ~~V5~~ publié le 03/11
 
 ---
 
