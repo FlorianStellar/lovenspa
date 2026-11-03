@@ -46,6 +46,15 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
   - push, puis pull de vérification : md5 8911557bcf9749463806572b99020a7d.
   - Contrôle E2E sur chambre-bien-etre, la-desirade et espace-prive-1 : HTTP 200, exactement 1 lien `/collections/love-room` (`churn-love-room`), grille, CTA et JSON-LD ItemList présents.
   - Événement hors lot : il ajoute un lien entrant vers la cible du lot L5.
+- T1, audit complet de l'indexation des fiches (tâche planifiée du 03/11) :
+  - périmètre : les 1 791 produits Shopify. Le chiffre de « 675 restantes » ne correspondait à aucun jeu de données ;
+  - 0 erreur d'API, synthèse validée par le QA ;
+  - fiches actives : 1 203 / 1 235 indexées (97,4 %) ;
+  - 29 fiches actives répondent 200 sans être indexées (dont 16 churn vues en 404 par Google, crawl antérieur au 02/11) ;
+  - 3 fiches actives ont un onlineStoreUrl vide et répondent 404 ;
+  - 2 fiches UNLISTED sont indexées et répondent 200 ;
+  - bubble-pink indexée, crawl du 03/11 (T5 résolu).
+  Fichiers : `claude/audit-indexation-fiches-2026-11-03.csv`, `claude/audit-indexation-anomalies-2026-11-03.tsv`.
 
 ## CSS / fichiers thème en attente de push par Florian
 
