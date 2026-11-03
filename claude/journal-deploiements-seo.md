@@ -18,6 +18,7 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 
 ## Événements hors lots (contaminent les lectures)
 
+- 03/11/2026 10:12 UTC : `bubble-pink` réactivée hors agent (ACTIVE, template standard, réservable à 200 €, vérifié via l'API Shopify). Elle n'est plus une fiche churn : retirée du périmètre de A1/L7 et de E17. C'est l'URL la plus affichée sur « love room » (pos. 9,0). La lecture de L5 et la cible O1 sont à interpréter avec cette réserve.
 - 02/11/2026 16:02 UTC : collection `love-room` modifiée hors agent (titre actuel « Love Rooms en France : toutes nos adresses vérifiées »). Touche l'URL du lot L5 : lecture du 24/11 à interpréter avec cette réserve.
 - Semaine du 28/09/2026 : langue `en` retirée de la boutique (seule `fr` publiée). Segment `/en/` : 47 526 impressions en S39, 785 en S44. Robots.txt vérifié : ne bloque pas `/en/`.
 
@@ -34,6 +35,13 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - V5 : écriture API sur le thème MAIN bloquée par Shopify. Code prêt : `claude/theme/V5-loven-churn-lien-love-room.md`, collage manuel par Florian.
 - Haloscan : API joignable avec la clé de l'environnement (crédits au 02/11 : 9 819 mots-clés, 2 448 site).
 
+## Constats agent du 03/11/2026
+
+- Shopify CLI opérationnel (SHOPIFY_FLAG_STORE / SHOPIFY_CLI_THEME_TOKEN présents). Thème live confirmé : lovenspa 4.1 #188545007952.
+- V5 : `theme pull` de `sections/loven-churn.liquid` sur MAIN, md5 6d0a9ef7f67399bd338d36cc90b29596 (9 460 o), identique au relevé du 02/11. Sauvegarde : `claude/theme/backup/loven-churn.liquid.2026-11-03.orig`.
+- V5 patché et testé (1 lien `churn-love-room`, grille/CTA/JSON-LD intacts) : `claude/theme/pret-a-pousser/sections/loven-churn.liquid`, md5 8911557bcf9749463806572b99020a7d (9 962 o).
+- V5 NON POUSSÉ : le `theme push --allow-live` a été refusé par la politique de sécurité de la session (déploiement production). Attend l'autorisation explicite de Florian.
+
 ## CSS / fichiers thème en attente de push par Florian
 
 - CSS de lecture + repositionnement mobile bloc éditorial (écrit en local, branche `claude/zen-edison-sac366`)
@@ -44,7 +52,12 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 ## Règles du journal
 
 - Décision stratégique (Go, objectif, budget, périmètre, retour arrière sur page clé) : message privé Slack à Florian dès qu'elle apparaît.
-- Fichiers thème : Shopify CLI (Theme Access, variables SHOPIFY_FLAG_STORE / SHOPIFY_CLI_THEME_TOKEN), pull avant push, sauvegarde du fichier d'origine, md5 noté ici.
+- Fichiers du thème : Shopify CLI (Theme Access, variables SHOPIFY_FLAG_STORE / SHOPIFY_CLI_THEME_TOKEN). Toute publication passe par `claude/agent-seo/theme_publish.sh`, jamais par un `theme push` brut. Le script :
+  - fait un pull du live juste avant le push ;
+  - compare au md5 de base du patch ; si le live a changé ailleurs, il ne pousse rien (code 3), copie la version live à côté, et il faut fusionner puis recommencer ;
+  - pousse ;
+  - refait un pull et vérifie le md5.
+  Le fichier d'origine est sauvegardé et les md5 avant/après sont notés ici.
 
 - Avant toute modification de niveau A : inscrire le lot ici, figer la liste témoin, sauvegarder les anciennes valeurs.
 - Lecture à J+21 minimum, page par page et requête par requête, médiane ou paires, jamais position moyenne agrégée.

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash claude/agent-seo/theme_publish.sh:*)"
+    ]
+  }
+}
