@@ -1,4 +1,4 @@
-# Reprise de session — agent SEO Love'nSpa (état au 03/11/2026)
+# Reprise de session — agent SEO Love'nSpa (état au 03/11/2026, fin de session 2)
 
 Doc de pilotage : https://claude.ai/artifact/1RAXLmVgLKQ8XsBwhvY3C4 · Journal : `claude/journal-deploiements-seo.md` · Outils : `claude/agent-seo/`
 
@@ -13,3 +13,9 @@ Doc de pilotage : https://claude.ai/artifact/1RAXLmVgLKQ8XsBwhvY3C4 · Journal :
 - Anglais retiré volontairement ; `/en/` répond en 301 vers FR (V4 sans objet).
 - Pas de fusion des articles cannibalisés (maillage C2).
 - V1 accès Git OK ; V5 go (lien churn vers love-room).
+
+## Fait le 03/11 (session 2)
+- SearchFit SEO : confrontation des 7 skills au plan, puis passage du QA. Ajouté au doc (rev 31) : E17, E18, E21 et les précisions sur E6, E8, V6 et V7. T5 et T6 sont débloqués.
+- Shopify CLI OK. V5 : pull du thème MAIN (md5 inchangé), patch, tests et sauvegarde dans `claude/theme/`. **Push live refusé par la politique de sécurité de la session** : il attend l'autorisation explicite de Florian.
+- Slack #lovenspa-seo (C0CEDJXLQPL) : décisions en attente postées.
+- Étape 4 (tâches planifiées) : en attente de la validation de Florian.
