@@ -18,4 +18,11 @@ Doc de pilotage : https://claude.ai/artifact/1RAXLmVgLKQ8XsBwhvY3C4 · Journal :
 - SearchFit SEO : confrontation des 7 skills au plan, puis passage du QA. Ajouté au doc (rev 31) : E17, E18, E21 et les précisions sur E6, E8, V6 et V7. T5 et T6 sont débloqués.
 - Shopify CLI OK. V5 : pull du thème MAIN (md5 inchangé), patch, tests et sauvegarde dans `claude/theme/`. **Push live refusé par la politique de sécurité de la session** : il attend l'autorisation explicite de Florian.
 - Slack #lovenspa-seo (C0CEDJXLQPL) : décisions en attente postées.
-- Étape 4 (tâches planifiées) : en attente de la validation de Florian.
+- Étape 4 : go de Florian (« tourner en autonomie »). 6 tâches planifiées créées dans cette session, heure de Paris :
+  - veille indexation, chaque jour à 06:23 ;
+  - cycle hebdomadaire, le lundi à 07:47 ;
+  - exécution des lots de niveau A, le mardi à 09:17 ;
+  - revue mensuelle, le 1er du mois à 09:37 ;
+  - revue trimestrielle, le premier lundi du trimestre à 10:17 ;
+  - fin de l'audit d'indexation, une seule fois, le 03/11 à 11:47.
+- Push V5 : refusé une seconde fois après le go d'autonomie. Pour le débloquer, il faut une règle de permission (Bash `npx @shopify/cli@latest theme push`) ou un collage manuel.
