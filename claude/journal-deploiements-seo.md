@@ -52,7 +52,12 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 ## Règles du journal
 
 - Décision stratégique (Go, objectif, budget, périmètre, retour arrière sur page clé) : message privé Slack à Florian dès qu'elle apparaît.
-- Fichiers thème : Shopify CLI (Theme Access, variables SHOPIFY_FLAG_STORE / SHOPIFY_CLI_THEME_TOKEN), pull avant push, sauvegarde du fichier d'origine, md5 noté ici.
+- Fichiers du thème : Shopify CLI (Theme Access, variables SHOPIFY_FLAG_STORE / SHOPIFY_CLI_THEME_TOKEN). Toute publication passe par `claude/agent-seo/theme_publish.sh`, jamais par un `theme push` brut. Le script :
+  - fait un pull du live juste avant le push ;
+  - compare au md5 de base du patch ; si le live a changé ailleurs, il ne pousse rien (code 3), copie la version live à côté, et il faut fusionner puis recommencer ;
+  - pousse ;
+  - refait un pull et vérifie le md5.
+  Le fichier d'origine est sauvegardé et les md5 avant/après sont notés ici.
 
 - Avant toute modification de niveau A : inscrire le lot ici, figer la liste témoin, sauvegarder les anciennes valeurs.
 - Lecture à J+21 minimum, page par page et requête par requête, médiane ou paires, jamais position moyenne agrégée.
