@@ -64,6 +64,17 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Toujours épuisé à 08:45 UTC : la remise à zéro n'est pas à 08:00 UTC (règle exacte non documentée, non vérifiée). Reprise planifiée à 15:30 UTC.
 - Règle ajoutée : pas plus de 1 500 inspections un jour où la veille du lendemain est prévue. Les audits mensuels sont à étaler sur plusieurs jours.
 - Proposition à Florian (à valider) : décaler la veille quotidienne de 06:23 à 09:23.
+- Quota revenu à 15:30 UTC. Inspection terminée : 616 URL, 0 erreur (`claude/veille/veille-2026-11-04.csv`). Aucun écart de canonical.
+- Suivi des 32 fiches actives non indexées le 03/11 :
+  - 11 sont maintenant indexées : 4 qui étaient « 404 », 4 « découvertes », 3 « inconnues » ;
+  - 21 restent non indexées : 13 toujours en 404 pour Google, 4 inconnues, 2 découvertes non indexées (dont 1 vue « découverte » le 03/11 et « inconnue » le 04/11), 1 en noindex, 1 en redirection.
+  - Les 13 en 404 n'ont pas été recrawlées : dernier passage entre le 10/07 et le 31/10, toutes avant la republication du 02/11. Elles répondent 200 depuis (vérifié le 03/11).
+- Fiches modifiées depuis 48 h, hors liste des 32 : aucune anomalie.
+- Collections : 502 / 506 indexées. Les 4 autres :
+  - `tous-les-departements` et `toutes-les-regions` : HTTP 200 avec `noindex, follow` dans le code rendu. Choix probablement voulu dans le thème, à confirmer par Florian.
+  - `smart-proudct-filter-search-test` : collection de test publique (HTTP 200, 26 liens produits, présente dans le sitemap), « Crawled - currently not indexed ». Je propose de la dépublier (Go).
+  - `provence-verte` : HTTP 200, « Crawled - currently not indexed », dernier crawl le 21/04.
+- Aucune page clé touchée, donc pas de message privé Slack.
 
 ## CSS / fichiers thème en attente de push par Florian
 
