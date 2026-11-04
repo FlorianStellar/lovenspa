@@ -56,6 +56,15 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
   - bubble-pink indexée, crawl du 03/11 (T5 résolu).
   Fichiers : `claude/audit-indexation-fiches-2026-11-03.csv`, `claude/audit-indexation-anomalies-2026-11-03.tsv`.
 
+## Veille indexation du 04/11/2026
+
+- Périmètre : 616 URL, soit les 97 fiches actives modifiées depuis 48 h, les 32 fiches actives non indexées le 03/11 et les 506 collections du sitemap (19 fiches sont dans les deux premières listes). Les 481 collections « modifiées » sur 48 h couvrent en pratique presque toutes les collections.
+- Résultat partiel : 119 collections inspectées, toutes « Submitted and indexed », sans écart de canonical.
+- Quota URL Inspection épuisé (HTTP 429) après la 119e URL, à 05:30 UTC. L'audit T1 de la veille en avait consommé 1 791.
+- Toujours épuisé à 08:45 UTC : la remise à zéro n'est pas à 08:00 UTC (règle exacte non documentée, non vérifiée). Reprise planifiée à 15:30 UTC.
+- Règle ajoutée : pas plus de 1 500 inspections un jour où la veille du lendemain est prévue. Les audits mensuels sont à étaler sur plusieurs jours.
+- Proposition à Florian (à valider) : décaler la veille quotidienne de 06:23 à 09:23.
+
 ## CSS / fichiers thème en attente de push par Florian
 
 - CSS de lecture + repositionnement mobile bloc éditorial (écrit en local, branche `claude/zen-edison-sac366`)
