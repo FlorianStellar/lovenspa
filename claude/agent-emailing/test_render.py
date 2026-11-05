@@ -35,7 +35,7 @@ def test_flows_definitions():
         assert f["definition"]["entry_action_id"] in ids
         for a in acts:
             for v in a["links"].values(): assert v is None or v in ids
-            if a["type"] == "send-email": assert a["data"]["status"] == "draft" and a["data"]["message"]["template_id"]
+            if a["type"] == "send-email": assert a["data"]["status"] in ("draft", "live") and a["data"]["message"]["template_id"]
 def test_french_nbsp():
     from render import fr
     assert fr("Une question ?") == "Une question&nbsp;?" and fr("{{ x|default:'a' }}") == "{{ x|default:'a' }}"

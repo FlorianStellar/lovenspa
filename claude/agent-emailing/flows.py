@@ -6,6 +6,7 @@ E = {e["id"]: e for e in EMAILS}
 CLICKED, PLACED_ORDER = "RShN5q", "RWV4qN"
 M_START, M_CONF, M_END, VIEWED = "S8ypgR", "U6Q3wu", "XFFNxs", "TEHFzT"
 SEG4 = "TTygHG"
+STATUS = "live"  # statut des emails dans le flow ; le flow lui-même est activé par PATCH status=live
 
 def email(aid, eid, nxt=None):
     e = E[eid]
@@ -14,7 +15,7 @@ def email(aid, eid, nxt=None):
         "cc_email": None, "bcc_email": None, "subject_line": e["objets"][0], "preview_text": "",
         "template_id": T[eid], "smart_sending_enabled": True, "transactional": False,
         "add_tracking_params": True, "custom_tracking_params": None, "additional_filters": None,
-        "name": f"{e['flow']} · {eid}"}, "status": "draft"}}
+        "name": f"{e['flow']} · {eid}"}, "status": STATUS}}
 
 def delay(aid, value, unit, nxt):
     return {"temporary_id": aid, "type": "time-delay", "links": {"next": nxt},

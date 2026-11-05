@@ -7,6 +7,8 @@ LASTMIN = "https://lovenspa.fr/collections/last-minute"
 FN = "{% if person.first_name %} {{ person.first_name }}{% endif %}"
 LOG_EV = "{{ event.logement_nom|default:'votre love room' }}"
 LOG_PR = "{{ person|lookup:'dernier_logement_nom'|default:'votre love room' }}"
+Q_EV = "« " + LOG_EV + " »"
+Q_PR = "« " + LOG_PR + " »"
 URL_EV = "{{ event.logement_url|default:'https://lovenspa.fr/' }}"
 URL_PR = "{{ person|lookup:'dernier_logement_url'|default:'https://lovenspa.fr/' }}"
 TILES = [("Cabanes et lodges", "https://lovenspa.fr/collections/cabanes",
@@ -35,21 +37,21 @@ EMAILS = [
       tiles=True, cta=("Voir les love rooms", HOME), ps=None),
  # --- Flow 3 : souvenir J+30
  dict(id="f3-e1", flow="Le souvenir et la suite", camp="flow-souvenir", kicker="Un mois déjà",
-      objets=["Et la prochaine, ce sera où ?", f"Un mois après {LOG_EV}", "1 800 love rooms pour la prochaine"],
+      objets=["Et la prochaine, ce sera où ?", "Un mois après votre séjour", "1 800 love rooms pour la prochaine"],
       preheader="D'autres love rooms à découvrir, et une idée pour faire plaisir autour de vous.",
       titre="Et la prochaine, ce sera où ?",
       corps=[f"Bonjour{FN},",
-             f"Il y a un mois, vous étiez à {LOG_EV}.",
+             f"Il y a un mois, vous séjourniez dans la love room {Q_EV}.",
              "Quand l'envie reviendra, plus de 1 800 love rooms vous attendent, toutes avec spa, sauna, jacuzzi ou piscine privatif, jamais partagé."],
       cta=("Choisir la prochaine", HOME),
       ps="Un couple autour de vous aurait besoin d'une pause ? La carte cadeau Love'nSpa va de 100 à 500 €, valable 12 mois.", ps_link=("Offrir une carte cadeau", GIFT)),
  # --- Flow 4 : fenêtre de retour J+90 / J+110
  dict(id="f4-e1", flow="Fenêtre de retour", camp="flow-retour", kicker="Trois mois après",
-      objets=[f"Envie de retourner à {LOG_EV} ?", "Même love room, ou nouvelle ambiance ?", "Votre love room se réserve en 2 clics"],
+      objets=[f"Envie de retrouver {Q_EV} ?", "Même love room, ou nouvelle ambiance ?", "Votre love room se réserve en 2 clics"],
       preheader="La même adresse, ou une autre ambiance : les deux se défendent.",
-      titre=f"Retourner à {LOG_EV} ?",
+      titre=f"Retrouver {Q_EV} ?",
       corps=[f"Bonjour{FN},",
-             f"Trois mois déjà depuis {LOG_EV}. Certains couples reviennent au même endroit, d'autres changent d'ambiance à chaque fois, de Romantique à Pimenté.",
+             f"Trois mois déjà depuis votre séjour dans {Q_EV}. Certains couples reviennent au même endroit, d'autres changent d'ambiance à chaque fois, de Romantique à Pimenté.",
              "Si l'adresse vous a plu, le calendrier est en ligne et la réservation se fait en 2 clics."],
       cta=(f"Revoir {LOG_EV}", URL_EV), ps="Envie d'autre chose ? Toutes nos love rooms sont sur lovenspa.fr.", ps_link=("Changer d'ambiance", HOME)),
  dict(id="f4-e2", flow="Fenêtre de retour", camp="flow-retour", kicker="Le prochain week-end",
@@ -58,33 +60,33 @@ EMAILS = [
       titre="Un week-end précis en tête ?",
       corps=[f"Bonjour{FN},",
              "Plus de la moitié de nos voyageurs arrivent un vendredi ou un samedi. Si vous visez un week-end précis, réserver tôt vous laisse plus de choix de love rooms.",
-             f"Pour retrouver {LOG_EV} ou en découvrir une autre, tout est en ligne."],
+             f"Pour retrouver {Q_EV} ou en découvrir une autre, tout est en ligne."],
       cta=("Choisir mes dates", HOME), ps=None),
  # --- Flow 5 : anniversaire (date_derniere_arrivee, J-21)
  dict(id="f5-e1", flow="Anniversaire du séjour", camp="flow-anniversaire", kicker="Il y a un an",
-      objets=[f"Bientôt un an depuis {LOG_PR}", "Un anniversaire qui n'est dans aucun calendrier", "Dans trois semaines, cela fera un an"],
+      objets=[f"Bientôt un an depuis {Q_PR}", "Un anniversaire qui n'est dans aucun calendrier", "Dans trois semaines, cela fera un an"],
       preheader="Et si vous fêtiez ça au même endroit, ou ailleurs ?",
       titre="Bientôt un an",
       corps=[f"Bonjour{FN},",
-             f"Dans trois semaines, cela fera un an que vous étiez à {LOG_PR}. Un anniversaire de couple qui ne figure dans aucun calendrier, sauf le nôtre.",
+             f"Dans trois semaines, cela fera un an que vous séjourniez dans {Q_PR}. Un anniversaire de couple qui ne figure dans aucun calendrier, sauf le nôtre.",
              "Pour le fêter, retour au même endroit ou nouvelle adresse : à vous de choisir."],
       cta=(f"Revoir {LOG_PR}", URL_PR), ps="Ou offrez une nuit à un autre couple : la carte cadeau Love'nSpa va de 100 à 500 €, valable 12 mois.", ps_link=("Offrir une carte cadeau", GIFT)),
  # --- Flow 6 : abandon de réservation H+1 / J+1
  dict(id="f6-e1", flow="Abandon de réservation", camp="flow-abandon-resa", kicker="Réservation en cours",
-      objets=[f"Votre séjour à {LOG_EV} n'est pas encore réservé", "Il manque une étape à votre réservation", "Le lien reprend vos dates et votre prix"],
+      objets=[f"{Q_EV} : réservation pas finalisée", "Il manque une étape à votre réservation", "Le lien reprend vos dates et votre prix"],
       preheader="Le lien reprend vos dates et votre prix. La love room, elle, reste ouverte aux autres.",
       titre="Il manque une étape",
       corps=[f"Bonjour{FN},",
-             f"Vous avez commencé à réserver {LOG_EV} du {{{{ event.date_arrivee|format_date_string|date:'d/m'|default:'vos dates' }}}} au {{{{ event.date_depart|format_date_string|date:'d/m'|default:'votre départ' }}}}, pour {{{{ event.montant|floatformat:0|default:'le prix affiché' }}}} €.",
+             f"Vous avez commencé à réserver {Q_EV} du {{{{ event.date_arrivee|format_date_string|date:'d/m'|default:'vos dates' }}}} au {{{{ event.date_depart|format_date_string|date:'d/m'|default:'votre départ' }}}}, pour {{{{ event.montant|floatformat:0|default:'le prix affiché' }}}} €.",
              "La réservation n'est pas finalisée : tant qu'elle ne l'est pas, ces dates restent ouvertes aux autres couples. Le lien ci-dessous reprend exactement votre séjour."],
       cta=("Finaliser ma réservation", "{{ event.lien_reservation|default:'https://lovenspa.fr/' }}"),
       ps="Une question avant de réserver ? Répondez simplement à cet email, nous vous lisons."),
  dict(id="f6-e2", flow="Abandon de réservation", camp="flow-abandon-resa", kicker="Une question ?",
-      objets=[f"Une question avant de réserver {LOG_EV} ?", "On vous aide à finaliser ?", "D'autres dates, peut-être ?"],
+      objets=[f"Une question avant de réserver {Q_EV} ?", "On vous aide à finaliser ?", "D'autres dates, peut-être ?"],
       preheader="On vous répond, ou on vous aide à trouver d'autres dates.",
       titre="Une question avant de réserver ?",
       corps=[f"Bonjour{FN},",
-             f"Votre réservation à {LOG_EV} n'a pas été finalisée hier. Si c'est une question de dates, de prix ou d'équipement, répondez à cet email : nous vous répondons.",
+             f"Votre réservation {Q_EV} n'a pas été finalisée hier. Si c'est une question de dates, de prix ou d'équipement, répondez à cet email : nous vous répondons.",
              "Si tout est clair, le lien reprend votre séjour là où vous l'avez laissé."],
       cta=("Reprendre ma réservation", "{{ event.lien_reservation|default:'https://lovenspa.fr/' }}"), ps=None),
  # --- Flow 7 : abandon de navigation H+4 (Viewed Product Shopify)
