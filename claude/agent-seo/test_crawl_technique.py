@@ -66,6 +66,15 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(d, {"h": 0, "a": 1, "b": 1, "c": 2, "d": 3, "e": 4})
 
 
+class TestRetry(unittest.TestCase):
+    def test_retry_after(self):
+        self.assertEqual(ct.retry_after("3", 0), 3.0)
+        self.assertEqual(ct.retry_after("120", 0), 60.0)
+        self.assertEqual(ct.retry_after(None, 0), 5.0)
+        self.assertEqual(ct.retry_after("x", 2), 20.0)
+        self.assertEqual(ct.retry_after(None, 9), 60.0)
+
+
 class TestClassify(unittest.TestCase):
     def base(self, **kw):
         row = {"url": "https://lovenspa.fr/products/a", "status": 200, "in_sitemap": True,

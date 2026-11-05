@@ -192,19 +192,28 @@ def classify(row: dict) -> list[str]:
 
 
 # ------------------------------------------------------------------ fetch ---
+def retry_after(value: str | None, attempt: int) -> float:
+    """Délai avant réessai d'un 429 : Retry-After en secondes si fourni, sinon 5 × 2^attempt (max 60)."""
+    try:
+        return min(float(value), 60.0)
+    except (TypeError, ValueError):
+        return float(min(5 * 2 ** attempt, 60))
+
+
 def fetch(session: requests.Session, url: str) -> dict:
-    for attempt in range(3):
+    for attempt in range(6):
         try:
             r = session.get(url, allow_redirects=False, timeout=30)
-            break
         except requests.RequestException as e:
-            if attempt == 2:
+            if attempt == 5:
                 return {"url": url, "status": 0, "error": str(e)[:120]}
-            time.sleep(2 ** attempt)
+            time.sleep(2 ** min(attempt, 4))
+            continue
+        if r.status_code != 429 or attempt == 5:
+            break
+        time.sleep(retry_after(r.headers.get("Retry-After"), attempt))
     row = {"url": url, "status": r.status_code, "location": r.headers.get("Location", ""),
            "ttfb_ms": int(r.elapsed.total_seconds() * 1000)}
-    if r.status_code == 429:
-        time.sleep(5)
     if r.status_code == 200 and "text/html" in r.headers.get("Content-Type", ""):
         row.update(analyze_html(url, r.text, r.headers))
     return row
