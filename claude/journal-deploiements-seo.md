@@ -41,6 +41,8 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - V5 : `theme pull` de `sections/loven-churn.liquid` sur MAIN, md5 6d0a9ef7f67399bd338d36cc90b29596 (9 460 o), identique au relevé du 02/11. Sauvegarde : `claude/theme/backup/loven-churn.liquid.2026-11-03.orig`.
 - V5 patché et testé (1 lien `churn-love-room`, grille/CTA/JSON-LD intacts) : `claude/theme/pret-a-pousser/sections/loven-churn.liquid`, md5 8911557bcf9749463806572b99020a7d (9 962 o).
 - V5 NON POUSSÉ : le `theme push --allow-live` a été refusé par la politique de sécurité de la session (déploiement production). Attend l'autorisation explicite de Florian.
+- 05/11 (correction) : V5 EST EN LIGNE. Thème MAIN lovenspa 4.1, `sections/loven-churn.liquid` md5 8911557bcf9749463806572b99020a7d (9 962 o, = version patchée), modifié le 03/11 à 10:44 UTC (script `theme_publish.sh`). La ligne précédente n'avait pas été mise à jour.
+- 05/11 : 3 tâches récurrentes du 02/11 désactivées (doublons de la session du 03/11) : veille quotidienne trig_011n41…, compte rendu hebdo trig_01RigK…, audit mensuel trig_01E1sz…. Lectures L6 (23/11) et L5 (24/11) conservées. Veille du 03/11 (trig_019HhJ…) : sa consigne pointe la branche peaceful-cannon-klj2cv ; correction demandée à la session qui la porte.
 
 ## CSS / fichiers thème en attente de push par Florian
 
