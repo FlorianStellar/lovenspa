@@ -103,6 +103,25 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Core Web Vitals non mesurés : quota PageSpeed sans clé épuisé.
 - Indexation réconciliée : référence = audit T1 (97,4 % des fiches actives) ; le bilan à 91,9 % (périmètre partiel) est remplacé.
 
+---
+
+## Audit Semrush Site Audit du 05/11/2026 (snapshot 6ae7f846ed026a1b91c89985, crawl du 02/11, 4 372 pages)
+
+- Score : 46 erreurs, 10 871 avertissements, 10 541 notices. Erreurs = 4xx (10), titres dupliqués (16), contenu dupliqué (2), liens internes cassés (9), meta descriptions dupliquées (9).
+- Détail des URL par erreur, statuts Shopify, IDs et comptes : `claude/audits/semrush-2026-11-05/preuves.json`.
+- **Corrigé (autonome)** : 4xx + liens internes cassés, soit 19 des 46 erreurs. 10 redirections 301 Shopify (`claude/audits/semrush-2026-11-05/redirections.tsv`, IDs UrlRedirect 1010552111440 à 1010552406352).
+  - 8 fiches en DRAFT → collection géographique. Cible choisie là où les tags produit et le texte des articles concordent, sinon la région.
+  - Article Alsace non publié → /collections/alsace. Lien Rochelle « cœur » → handle réel « coeur ».
+  - Réversible : une redirection Shopify ne s'applique qu'en 404 ; si une fiche repasse ACTIVE, son URL et les liens des articles refonctionnent sans intervention. Retour arrière : supprimer les 10 IDs.
+  - Vérif live le 05/11 : 10/10 en 301 directe vers une cible en 200 sans chaîne (`verif_live.txt`).
+- **Non corrigé, décision Florian** :
+  - Doublons produits actifs : la-suite-etoilee / -2, le-boudoir-de-nana / -1, carte-cadeau-lovenspa / carte-cadeaux-love-room. Il faut choisir laquelle garder (l'autre passe en draft + 301).
+  - Doublons collections : cote-d-or (38 produits) / cote-dor (18), val-d-oise (5) / val-doise (6). updatedAt observés entre 02:02 et 02:08 UTC (04-05/11) sur les 4 : source de mise à jour à identifier avant toute fusion.
+  - Page vs article sur le même sujet : week-end-amoureux-bretagne, creer-sa-love-room, sauna-recap / sauna-guide. La règle « pas de fusion » du 02/11 s'applique-t-elle ?
+  - Meta descriptions dupliquées : paris-jadore (2), lessentiel (2), jardin-deden / clair-de-lune hors du temps. Modification on-page à passer en lot A avec témoin.
+  - Pages internes publiques et indexables : brandbook, charte-graphique, guidelines-images, guidelines-instagram. Elles contiennent 6 liens relatifs `Lovenspa_*.html` en 404. Je propose de les dépublier.
+  - « Bloqués » : toutes-les-regions, tous-les-departements (noindex), déjà en attente.
+
 ## Règles du journal
 
 - Décision stratégique (Go, objectif, budget, périmètre, retour arrière sur page clé) : message privé Slack à Florian dès qu'elle apparaît.
