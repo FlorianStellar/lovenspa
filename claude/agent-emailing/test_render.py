@@ -52,3 +52,8 @@ def test_flows_guards():
         assert any(c["conditions"][0].get("group_ids") == ["QSSnkN"] for c in g)
 def test_no_utm_hardcoded():
     for e in EMAILS: assert "utm_" not in render(e)
+def test_temoin_excluded_from_flows_3_to_5_only():
+    from flows import FLOWS, NOT_TEMOIN
+    for f in FLOWS[1:]:
+        has = NOT_TEMOIN in f["definition"]["profile_filter"]["condition_groups"]
+        assert has == any(k in f["name"] for k in ["3.", "4.", "5."]), f["name"]

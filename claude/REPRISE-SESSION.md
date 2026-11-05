@@ -26,3 +26,11 @@ Doc de pilotage : https://claude.ai/artifact/1RAXLmVgLKQ8XsBwhvY3C4 · Journal :
   - revue trimestrielle, le premier lundi du trimestre à 10:17 ;
   - fin de l'audit d'indexation, une seule fois, le 03/11 à 11:47.
 - Push V5 : refusé une seconde fois après le go d'autonomie. Pour le débloquer, il faut une règle de permission (Bash `npx @shopify/cli@latest theme push`) ou un collage manuel.
+
+# Emailing voyageurs LSPA (05/11/2026)
+Doc : https://claude.ai/artifact/LJJy1JXosZoQqYMEWvgALw · Outils : `claude/agent-emailing/` (clé `KLAVIYO_TOKEN`, compte YdW2ER) · niveau d'autonomie N0 : brouillons seulement.
+- Segments : ULt6nv (1 clients), YgFB45 (2 engagés), WpCtcc (3 tièdes), TTygHG (4 à réactiver), X8Wwag (5 à supprimer). Hébergeurs exclus à l'envoi (EXCL_SEGMENTS_AT_SEND).
+- Flows en brouillon : voir `flows_ids.json`. Campagnes : `campaigns_ids.json`. Métriques : S8ypgR, U6Q3wu, XFFNxs (contrat dans `event_schema.py`).
+- Décision de Florian (05/11) : les 2 896 réservants abonnés sont gardés en consentement (marketing_basis=soft_optin, consent_source=reprise_historique). Groupe témoin : 308 sur 3 113 (temoin.py).
+- Tâches planifiées : cycle hebdo le mardi à 10:13 (trig_01Ru4tHdid4cnAnZMfwvuNLM), revue mensuelle le 1er à 11:23 (trig_01A8Xp1aiqQhMwZzWkyD8Eko).
+- Missions 1 à 3 en cours dans Lovable (message umsg_01m6ng1f4pfh5a7120wakfjfba + 2 compléments).
