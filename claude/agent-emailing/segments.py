@@ -47,3 +47,16 @@ def definitions():
         "[Pilotage] 4. À réactiver": _base() + [_g(_member(RESERVANTS, False))] + no_signal(180)
                                      + [_g(_metric(m, "equals", 0, 180)) for m in NEW_SUB],
     }
+
+
+RECEIVED = "WCypYe"
+REACT = [{"property": "Campaign Name", "filter": {"type": "string", "operator": "contains", "value": "Réactivation"}}]
+
+def _received_react(op, val, days):
+    c = _metric(RECEIVED, op, val, days); c["metric_filters"] = REACT; return c
+
+def definition_a_supprimer():
+    """Segment 4 + 2 emails de réactivation reçus en 30 j, aucun depuis 7 j, aucun clic en 30 j."""
+    d = definitions()["[Pilotage] 4. À réactiver"]
+    return d + [_g(_received_react("greater-than-or-equal", 2, 30)), _g(_received_react("equals", 0, 7)),
+                _g(_metric("RShN5q", "equals", 0, 30))]

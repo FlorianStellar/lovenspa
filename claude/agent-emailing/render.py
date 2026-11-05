@@ -16,7 +16,7 @@ def button(label, href):
             f'text-decoration:none;padding:16px 34px;border-radius:999px;">{label}</a></td></tr></table>')
 def tiles(camp):
     cells = "".join(
-        f'<td class="stack stack-pad" width="33%" valign="top" style="padding:0 6px;"><a href="{u}?{U.format(c=camp,k="tuile-"+str(i))}" target="_blank" style="text-decoration:none;">'
+        f'<td class="stack stack-pad" width="33%" valign="top" style="padding:0 6px;"><a href="{u}" target="_blank" style="text-decoration:none;">'
         f'<img src="{img}" alt="{t}" width="170" style="width:100%;height:auto;display:block;border-radius:10px;"/>'
         f'<p class="body" style="margin:10px 0 0 0;{P}font-size:14px;font-weight:700;color:#222222;">{t}</p></a></td>'
         for i, (t, u, img) in enumerate(TILES, 1))
@@ -42,7 +42,7 @@ def render(e):
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FBF6F2;"><tr><td align="center" style="padding:24px 12px;">
 <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#FFFFFF;border:1px solid #EBE5E0;border-radius:14px;overflow:hidden;">
 <tr><td class="px" style="padding:22px 32px;border-bottom:3px solid #E83F4E;"><table role="presentation" width="100%"><tr>
-<td align="left"><a href="{link("https://lovenspa.fr/?"+U,c,"logo")}" target="_blank"><img src="https://host.lovenspa.fr/email/lovenspa-logo.png" alt="Love'nSpa" width="140" style="width:140px;height:auto;"/></a></td>
+<td align="left"><a href="https://lovenspa.fr/" target="_blank"><img src="https://host.lovenspa.fr/email/lovenspa-logo.png" alt="Love'nSpa" width="140" style="width:140px;height:auto;"/></a></td>
 <td align="right" style="{P}font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#E83F4E;">{e["kicker"]}</td></tr></table></td></tr>
 {img}
 <tr><td class="px" style="padding:32px 32px 8px 32px;"><h1 class="h1" style="margin:0 0 18px 0;{P}font-size:34px;line-height:1.15;font-weight:700;color:#222222;">{fr(e["titre"])}</h1>

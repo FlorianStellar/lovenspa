@@ -43,3 +43,12 @@ def test_french_nbsp():
     for e in EMAILS:
         for p in re.findall(r'<(?:p class="body"|h1)[^>]*>(.*?)</(?:p|h1)>', render(e), re.S):
             assert " ?" not in p and " :" not in p, (e["id"], p[:80])
+def test_flows_guards():
+    from flows import FLOWS
+    assert len(FLOWS) == 7
+    for f in FLOWS[1:]:
+        g = f["definition"]["profile_filter"]["condition_groups"]
+        assert g[0]["conditions"][0]["consent"]["consent_status"]["subscription"] == "subscribed"
+        assert any(c["conditions"][0].get("group_ids") == ["QSSnkN"] for c in g)
+def test_no_utm_hardcoded():
+    for e in EMAILS: assert "utm_" not in render(e)
