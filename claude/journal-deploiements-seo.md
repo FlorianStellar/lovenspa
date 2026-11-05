@@ -95,6 +95,14 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 
 ---
 
+## Crawl technique du 05/11/2026
+
+- 2 873 URL du sitemap : 2 837 en 200, 36 articles en 429 (Shopify), 0 en 3xx/4xx/5xx. Données : `claude/audits/tech-2026-11-05/`.
+- Liens internes : 16 cibles en 404, 22 en 301 (liste : `liens_hors_sitemap_statuts.txt`). Pages sources à relever (crawler à compléter).
+- noindex dans le sitemap : tous-les-departements, toutes-les-regions. JSON-LD invalide : /collections/gap. Fiches churn : 0 offre dans le JSON-LD (E17 conforme). hreflang /en/ : aucun (V7 conforme). Robots IA : tous autorisés (E6 conforme).
+- Core Web Vitals non mesurés : quota PageSpeed sans clé épuisé.
+- Indexation réconciliée : référence = audit T1 (97,4 % des fiches actives) ; le bilan à 91,9 % (périmètre partiel) est remplacé.
+
 ## Règles du journal
 
 - Décision stratégique (Go, objectif, budget, périmètre, retour arrière sur page clé) : message privé Slack à Florian dès qu'elle apparaît.

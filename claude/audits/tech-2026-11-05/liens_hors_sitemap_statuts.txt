@@ -1,0 +1,45 @@
+301 https://lovenspa.fr/blogs/magazine/le-fauteuil-tantra-un-guide-complet /blogs/articles/le-fauteuil-tantra-un-guide-complet
+404  /blogs/magazine/https:/lovenspa.fr/blogs/magazine/le-fauteuil-tantra-un-guide-complet
+404  /blogs/magazine/love-room-alsace-spa-privatif-route-des-vins-et-marches-de-noel-feeriques
+200  /blogs/magazine/peut-on-privatiser-un-spa
+301 https://lovenspa.fr/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation /blogs/magazine/raviver-la-flamme-du-couple-guide-complet
+200  /blogs/magazine/tagged/couple
+200  /blogs/magazine/tagged/desir-intimite
+200  /blogs/magazine/tagged/destinations
+200  /blogs/magazine/tagged/occasions
+200  /collections/chambre-jacuzzi-spa-privatif/Equipements%7CSpa
+301 https://lovenspa.fr/collections/chambre-jacuzzi-spa-privatif /collections/jacuzzi-privatif
+301 https://lovenspa.fr/collections/bordeaux /collections/love-room-bordeaux
+301 https://lovenspa.fr/collections/lyon /collections/love-room-lyon
+301 https://lovenspa.fr/collections/normandie /collections/love-room-normandie
+301 https://lovenspa.fr/collections/paris /collections/love-room-paris
+301 https://lovenspa.fr/collections/sauna-privatif /collections/love-room-sauna-privatif
+301 https://lovenspa.fr/collections/sofa-tantrique /collections/love-room-sofa-tantrique
+301 https://lovenspa.fr/collections/secret-room /collections/secret-room-love-room-week-end-amoureux
+301 https://lovenspa.fr/collections/chambre-jacuzzi-spa-privatif /collections/spa-privatif
+301 https://lovenspa.fr/collections/tous-hebergements-avec-spa-privatif /collections/toutes-les-love-rooms
+200  /pages/FAQ
+404  /pages/Lovenspa_AI_Image_Guidelines.html
+404  /pages/Lovenspa_Brand_Book.html
+404  /pages/Lovenspa_Brief_Instagram.html
+404  /pages/Lovenspa_Charte_Graphique.html
+404  /pages/Lovenspa_Charte_Instagram.html
+404  /pages/Lovenspa_Moodboard_Prestataires.html
+301 https://lovenspa.fr/pages/chambre-jacuzzi-privatif-offrir-hors-saison /pages/chambre-jacuzzi-privatif-offrir-hors-saison%E2%80%89
+301 https://lovenspa.fr/pages/chambre-jacuzzi-privatif-preservez-intimite-chambre /pages/chambre-jacuzzi-privatif-preservez-intimite-chambre-!
+301 https://lovenspa.fr/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe /pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe%E2%80%89
+301 https://lovenspa.fr/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel /pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel.
+301 https://lovenspa.fr/pages/guide-la-love-room-secret-room /pages/guide-la-love-room-secret-room%C2%A0
+404  /pages/guide-love-room-rochelle-c%C5%93ur-vieille-ville
+301 https://lovenspa.fr/pages/guide-quel-type-love-room-choisir /pages/guide-quel-type-love-room-choisir%C2%A0
+301 https://lovenspa.fr/pages/guide-une-love-room-paris-ville-amour /pages/guide-une-love-room-paris-ville-amour%C2%A0
+301 https://lovenspa.fr/pages/loveroom /pages/love-room-le-guide-des-hebergements-reserves-aux-couples
+301 https://lovenspa.fr/pages/loveroom /pages/loveroom-recap
+301 https://lovenspa.fr/ /products/abonnement-lovenspa-1an
+404  /products/chalet-trappeur
+404  /products/gourguillon
+404  /products/la-bulle-de-pierre-spa
+404  /products/la-patte-nordic-la-mine-de-buck
+404  /products/les-spas-de-venus
+404  /products/loft-et-jacuzzi-bordeaux
+404  /products/love

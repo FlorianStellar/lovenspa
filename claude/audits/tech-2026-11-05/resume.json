@@ -11,14 +11,14 @@
   "products": 1235
  },
  "statuts": {
-  "200": 2601,
-  "429": 272
+  "200": 2837,
+  "429": 36
  },
  "anomalies": {
-  "plus_de_100_liens": 420,
-  "http_429": 272,
-  "non_atteinte_depuis_accueil": 144,
-  "profondeur_4_plus": 136,
+  "plus_de_100_liens": 440,
+  "non_atteinte_depuis_accueil": 261,
+  "profondeur_4_plus": 193,
+  "http_429": 36,
   "h1_0": 8,
   "h1_2": 3,
   "noindex_dans_sitemap": 2,
@@ -28,16 +28,20 @@
  },
  "profondeur": {
   "0": 1,
-  "": 365,
+  "": 287,
   "1": 372,
-  "4": 107,
+  "4": 139,
+  "5": 44,
+  "3": 140,
+  "6": 8,
   "2": 1879,
-  "3": 116,
-  "5": 33
+  "7": 3
  },
- "liens_vers_hors_sitemap": 36,
+ "liens_vers_hors_sitemap": 45,
  "exemples_hors_sitemap": [
   "https://lovenspa.fr/blogs/articles/le-fauteuil-tantra-un-guide-complet",
+  "https://lovenspa.fr/blogs/magazine/https:/lovenspa.fr/blogs/magazine/le-fauteuil-tantra-un-guide-complet",
+  "https://lovenspa.fr/blogs/magazine/love-room-alsace-spa-privatif-route-des-vins-et-marches-de-noel-feeriques",
   "https://lovenspa.fr/blogs/magazine/peut-on-privatiser-un-spa",
   "https://lovenspa.fr/blogs/magazine/raviver-la-flamme-du-couple-guide-complet",
   "https://lovenspa.fr/blogs/magazine/tagged/couple",
@@ -64,9 +68,7 @@
   "https://lovenspa.fr/pages/Lovenspa_Moodboard_Prestataires.html",
   "https://lovenspa.fr/pages/chambre-jacuzzi-privatif-offrir-hors-saison%E2%80%89",
   "https://lovenspa.fr/pages/chambre-jacuzzi-privatif-preservez-intimite-chambre-!",
-  "https://lovenspa.fr/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe%E2%80%89",
-  "https://lovenspa.fr/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel.",
-  "https://lovenspa.fr/pages/guide-la-love-room-secret-room%C2%A0"
+  "https://lovenspa.fr/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe%E2%80%89"
  ],
  "robots_ia": {
   "GPTBot": "autorisé sur /",
@@ -82,5 +84,5 @@
   "Googlebot": "autorisé sur /"
  },
  "urls_en_dans_sitemap": 0,
- "ttfb_ms_median": 283
+ "ttfb_ms_median": 240
 }
