@@ -76,6 +76,17 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
   - `provence-verte` : HTTP 200, « Crawled - currently not indexed », dernier crawl le 21/04.
 - Aucune page clé touchée, donc pas de message privé Slack.
 
+## Veille indexation du 05/11/2026
+
+- 590 URL, 0 erreur : 63 fiches actives modifiées depuis 48 h, 21 fiches suivies et les 506 collections du sitemap. Aucun écart de canonical. Fichier : `claude/veille/veille-2026-11-05.csv`.
+- Aucune nouvelle anomalie par rapport au 04/11.
+- Fiches suivies : 1 nouvelle indexée, 20 encore non indexées :
+  - 13 en 404 pour Google, toujours sans nouveau crawl ;
+  - 5 inconnues ;
+  - 1 en noindex ;
+  - 1 en redirection.
+- Collections : mêmes 4 anomalies que le 04/11. Décisions en attente.
+
 ## CSS / fichiers thème en attente de push par Florian
 
 - CSS de lecture + repositionnement mobile bloc éditorial (écrit en local, branche `claude/zen-edison-sac366`)
