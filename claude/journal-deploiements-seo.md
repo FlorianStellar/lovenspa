@@ -122,6 +122,22 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
   - Pages internes publiques et indexables : brandbook, charte-graphique, guidelines-images, guidelines-instagram. Elles contiennent 6 liens relatifs `Lovenspa_*.html` en 404. Je propose de les dépublier.
   - « Bloqués » : toutes-les-regions, tous-les-departements (noindex), déjà en attente.
 
+### Suite du 05/11 : points 2 à 5 (go de Florian)
+
+- **5. Dépublication** (Matrixify, job 778069876 : 4 mises à jour, 0 échec) de brandbook, charte-graphique, guidelines-images et guidelines-instagram. Vérifié en live : 4 en 404. Retour arrière : Published=TRUE (IDs dans `preuves.json`).
+- **4. Meta descriptions différenciées** (Matrixify, job 778096614 : 6 mises à jour, 0 échec) sur paris-jadore ×2, lessentiel ×2, jardin-deden et clair-de-lune. Avant : chaque paire servait la meta d'une seule des deux fiches. Après : meta unique, tirée du texte de la fiche (`metas_lot.csv`, avant : `metas_avant.tsv`). Vérifié en live : 6/6 (`verif_metas_live.txt`). Lot on-page sans témoin, sur ordre explicite. Lecture GSC à J+21 (26/11), page par page.
+- **2. Navigation des collections en double** (`menus_collections_doublons.txt`, `liens_entrants_collections_doublons.tsv`) :
+  - menus : cote-dor et cote-d-or sont toutes deux dans « Tous les départements » ; val-doise y figure 2 fois ; val-d-oise n'est dans aucun menu ;
+  - header et footer : aucune des 4 ;
+  - corps des pages (blocs département ou proximité, aucune source trouvée dans nos scripts) : cote-d-or reçoit des liens de 25 pages, cote-dor de 31, val-d-oise de 12, val-doise de 19. Scan de 2 873 URL : 2 855 lues, 18 restées en 429.
+- **3. Audit des paires** (`audit_doublons_gsc.json`, GSC du 04/07/2025 au 02/11/2026, inspection d'URL, similarité de texte Jaccard sur 5 mots) :
+  - les 10 URL sont toutes indexées, avec un canonical Google égal à l'URL ;
+  - cote-d-or : 75 clics / 3 488 impressions ; cote-dor : 159 / 4 181. Les deux se positionnent sur « love room cote d'or » (10,9 contre 6,9). Similarité 0,09, 38 produits contre 18. **Vraie cannibalisation.**
+  - val-d-oise : 155 / 5 478, position 14,9 ; val-doise : 144 / 5 634, position 21,9. Les deux se positionnent sur « love room 95 ». Similarité 0,07. **Vraie cannibalisation.**
+  - Bretagne : la page fait 146 / 26 719, l'article 0 / 64. L'article n'a aucun lien entrant et date de son dernier crawl le 05/09. Similarité 0,002. Seul le titre est en double.
+  - Créer sa love room : l'article fait 63 / 3 455, la page 5 / 94. La page a 2 liens entrants et 2 H1. Similarité 0,033.
+  - Sauna : le guide fait 60 / 12 885, sauna-recap 2 / 355, alors qu'il est lié dans le footer des 2 854 pages scannées. Similarité 0,045, même titre et même H1.
+
 ## Règles du journal
 
 - Décision stratégique (Go, objectif, budget, périmètre, retour arrière sur page clé) : message privé Slack à Florian dès qu'elle apparaît.

@@ -1,0 +1,5 @@
+Lecture Shopify Admin API (menus), 05/11/2026 :
+- Menu « tous-les-departements » : « Côte-d'Or » -> /collections/cote-dor ET « Côte-d’Or » -> /collections/cote-d-or (les 2 liées).
+- Menu « tous-les-departements » : « Val-d'Oise » -> /collections/val-doise ET « Val-d’Oise » -> /collections/val-doise (2 entrées, même cible ; val-d-oise dans aucun menu).
+- Aucun autre menu (main-menu, destinations, footer, régions, villes, départements…) ne contient ces 4 collections.
+- Menu « guides » : « Tout savoir sur le sauna » -> /pages/sauna-recap (rendu dans le footer).
