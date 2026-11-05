@@ -1,0 +1,133 @@
+"""Copy des flows LSPA. Faits utilisés = section Preuves du brief copy-machine/brands/lovenspa.md
++ données mesurées (bookings, 04/11/2026). Variables Klaviyo : event.* = contrat event_schema.py."""
+U = "utm_source=klaviyo&utm_medium=email&utm_campaign={c}&utm_content={k}"
+HOME = "https://lovenspa.fr/?" + U
+GIFT = "https://lovenspa.fr/products/carte-cadeau-lovenspa?" + U
+LASTMIN = "https://lovenspa.fr/collections/last-minute?" + U
+FN = "{% if person.first_name %} {{ person.first_name }}{% endif %}"
+LOG_EV = "{{ event.logement_nom|default:'votre love room' }}"
+LOG_PR = "{{ person|lookup:'dernier_logement_nom'|default:'votre love room' }}"
+URL_EV = "{{ event.logement_url|default:'https://lovenspa.fr/' }}"
+URL_PR = "{{ person|lookup:'dernier_logement_url'|default:'https://lovenspa.fr/' }}"
+TILES = [("Cabanes et lodges", "https://lovenspa.fr/collections/cabanes",
+          "https://cdn.shopify.com/s/files/1/0579/3611/7944/collections/cabanes-ou-lodges-602852.jpg?v=1660505909&width=480&height=360&crop=center&format=pjpg"),
+         ("Chambres avec jacuzzi privatif", "https://lovenspa.fr/collections/chambre-avec-jacuzzi-privatif",
+          "https://cdn.shopify.com/s/files/1/0579/3611/7944/collections/chambre-avec-jacuzzi-privatif-104894.jpg?v=1660462674&width=480&height=360&crop=center&format=pjpg"),
+         ("Locations avec spa privatif", "https://lovenspa.fr/collections/locations-avec-spa-privatifs",
+          "https://cdn.shopify.com/s/files/1/0579/3611/7944/collections/locations-avec-spa-privatifs-8483655.jpg?v=1773135503&width=480&height=360&crop=center&format=pjpg")]
+
+EMAILS = [
+ # --- Flow 9 : réactivation (segment 4)
+ dict(id="f9-e1", flow="Réactivation", camp="flow-reactivation", kicker="On garde le contact ?",
+      objets=["On garde le contact ?", "Toujours partants pour une nuit à deux ?", "Un clic pour rester, sinon on vous laisse"],
+      preheader="Un clic suffit pour continuer à recevoir nos idées d'escapades.",
+      titre="On garde le contact ?",
+      corps=[f"Bonjour{FN},",
+             "Cela fait un moment que nous n'avons pas eu de vos nouvelles. Pas de reproche : nous préférons écrire moins souvent, à des couples que ça intéresse.",
+             "Si nos idées d'escapades à deux vous plaisent toujours, dites-le d'un clic. Sinon, nous arrêterons de vous écrire dans deux semaines."],
+      cta=("Oui, je reste", HOME), ps="Plus de 1 800 love rooms en France et en Belgique, chacune avec son spa, son jacuzzi ou sa piscine, jamais partagé avec d'autres clients."),
+ dict(id="f9-e2", flow="Réactivation", camp="flow-reactivation", kicker="Dernier message",
+      objets=["Notre dernier email (sauf si vous cliquez)", "Avant de se quitter : trois envies à deux", "On arrête ici, ou pas ?"],
+      preheader="Trois idées pour une prochaine nuit à deux, puis on vous laisse tranquilles.",
+      titre="Avant de se quitter",
+      corps=[f"Bonjour{FN},",
+             "C'est le dernier email que vous recevrez de notre part, sauf si vous cliquez sur l'une des idées ci-dessous. Un clic, et vous restez parmi nous."],
+      tiles=True, cta=("Voir les love rooms", HOME), ps=None),
+ # --- Flow 3 : souvenir J+30
+ dict(id="f3-e1", flow="Le souvenir et la suite", camp="flow-souvenir", kicker="Un mois déjà",
+      objets=["Et la prochaine, ce sera où ?", f"Un mois après {LOG_EV}", "Votre prochaine nuit à deux commence ici"],
+      preheader="D'autres love rooms près de chez vous, et une idée pour faire plaisir autour de vous.",
+      titre="Et la prochaine, ce sera où ?",
+      corps=[f"Bonjour{FN},",
+             f"Il y a un mois, vous étiez à {LOG_EV}. Nous espérons que le souvenir est encore bien présent.",
+             "Quand l'envie reviendra, plus de 1 800 love rooms vous attendent, toutes avec spa, jacuzzi ou piscine privatif, jamais partagé."],
+      cta=("Choisir la prochaine", HOME),
+      ps="Un couple autour de vous aurait besoin d'une pause ? La carte cadeau Love'nSpa va de 100 à 500 €, valable 12 mois.", ps_link=("Offrir une carte cadeau", GIFT)),
+ # --- Flow 4 : fenêtre de retour J+90 / J+110
+ dict(id="f4-e1", flow="Fenêtre de retour", camp="flow-retour", kicker="Trois mois après",
+      objets=[f"Envie de retourner à {LOG_EV} ?", "Même love room, ou nouvelle ambiance ?", "Votre love room se réserve en 2 clics"],
+      preheader="La même adresse, ou une autre ambiance : les deux se défendent.",
+      titre=f"Retourner à {LOG_EV} ?",
+      corps=[f"Bonjour{FN},",
+             f"Trois mois déjà depuis {LOG_EV}. Certains couples reviennent au même endroit, d'autres changent d'ambiance à chaque fois, de Romantique à Pimenté.",
+             "Si l'adresse vous a plu, le calendrier est en ligne et la réservation se fait en 2 clics."],
+      cta=(f"Revoir {LOG_EV}", URL_EV), ps="Envie d'autre chose ? Toutes nos love rooms sont sur lovenspa.fr.", ps_link=("Changer d'ambiance", HOME)),
+ dict(id="f4-e2", flow="Fenêtre de retour", camp="flow-retour", kicker="Le prochain week-end",
+      objets=["Le prochain week-end à deux se prépare ici", "Vendredi ou samedi ? Les soirs les plus demandés", "Un week-end précis en tête ?"],
+      preheader="Vendredis et samedis sont les soirs les plus demandés : réserver tôt laisse plus de choix.",
+      titre="Un week-end précis en tête ?",
+      corps=[f"Bonjour{FN},",
+             "Plus de la moitié de nos voyageurs arrivent un vendredi ou un samedi. Si vous visez un week-end précis, réserver tôt vous laisse plus de choix de love rooms.",
+             f"Pour retrouver {LOG_EV} ou en découvrir une autre, tout est en ligne."],
+      cta=("Choisir mes dates", HOME), ps=None),
+ # --- Flow 5 : anniversaire (date_derniere_arrivee, J-21)
+ dict(id="f5-e1", flow="Anniversaire du séjour", camp="flow-anniversaire", kicker="Il y a un an",
+      objets=[f"Il y a un an, vous étiez à {LOG_PR}", "Un anniversaire qui n'est dans aucun calendrier", "Dans trois semaines, cela fera un an"],
+      preheader="Et si vous fêtiez ça au même endroit, ou ailleurs ?",
+      titre="Il y a un an, vous étiez là",
+      corps=[f"Bonjour{FN},",
+             f"Dans trois semaines, cela fera un an que vous étiez à {LOG_PR}. Un anniversaire de couple qui ne figure dans aucun calendrier, sauf le nôtre.",
+             "Pour le fêter, retour au même endroit ou nouvelle adresse : à vous de choisir."],
+      cta=(f"Revoir {LOG_PR}", URL_PR), ps="Ou offrez-le : la carte cadeau Love'nSpa va de 100 à 500 €, valable 12 mois.", ps_link=("Offrir une carte cadeau", GIFT)),
+ # --- Flow 6 : abandon de réservation H+1 / J+1
+ dict(id="f6-e1", flow="Abandon de réservation", camp="flow-abandon-resa", kicker="Réservation en cours",
+      objets=[f"Votre séjour à {LOG_EV} n'est pas encore réservé", "Il manque une étape à votre réservation", "Vos dates sont gardées dans ce lien"],
+      preheader="Le lien reprend vos dates et votre prix. La love room, elle, reste ouverte aux autres.",
+      titre="Il manque une étape",
+      corps=[f"Bonjour{FN},",
+             f"Vous avez commencé à réserver {LOG_EV} du {{{{ event.date_arrivee|format_date_string|date:'d/m' }}}} au {{{{ event.date_depart|format_date_string|date:'d/m' }}}}, pour {{{{ event.montant|floatformat:0 }}}} €.",
+             "La réservation n'est pas finalisée : tant qu'elle ne l'est pas, ces dates restent ouvertes aux autres couples. Le lien ci-dessous reprend exactement votre séjour."],
+      cta=("Finaliser ma réservation", "{{ event.lien_reservation|default:'https://lovenspa.fr/' }}"),
+      ps="Une question avant de réserver ? Répondez simplement à cet email, nous vous lisons."),
+ dict(id="f6-e2", flow="Abandon de réservation", camp="flow-abandon-resa", kicker="Une question ?",
+      objets=[f"Une question avant de réserver {LOG_EV} ?", "On vous aide à finaliser ?", "D'autres dates, peut-être ?"],
+      preheader="On vous répond, ou on vous aide à trouver d'autres dates.",
+      titre="Une question avant de réserver ?",
+      corps=[f"Bonjour{FN},",
+             f"Votre réservation à {LOG_EV} n'a pas été finalisée hier. Si c'est une question de dates, de prix ou d'équipement, répondez à cet email : nous vous répondons.",
+             "Si tout est clair, le lien reprend votre séjour là où vous l'avez laissé."],
+      cta=("Reprendre ma réservation", "{{ event.lien_reservation|default:'https://lovenspa.fr/' }}"), ps=None),
+ # --- Flow 7 : abandon de navigation H+4 (Viewed Product Shopify)
+ dict(id="f7-e1", flow="Abandon de navigation", camp="flow-abandon-nav", kicker="Vous regardiez",
+      objets=["{{ event.ProductName }} vous a tapé dans l'œil ?", "Vous regardiez {{ event.ProductName }}", "Vos dates sont-elles libres ?"],
+      preheader="Le calendrier est sur la fiche : vérifiez vos dates en un coup d'œil.",
+      titre="{{ event.ProductName }}", image="{{ event.ImageURL }}",
+      corps=[f"Bonjour{FN},",
+             "Vous avez regardé cette love room il y a quelques heures. Pour savoir si vos dates sont libres, le calendrier est directement sur la fiche, et la réservation se fait en 2 clics."],
+      cta=("Voir les disponibilités", "{{ event.URL }}"), ps=None),
+ # --- Flow 8 : bienvenue J0 / J+3 / J+7
+ dict(id="f8-e1", flow="Bienvenue", camp="flow-bienvenue", kicker="Bienvenue",
+      objets=["Bienvenue chez Love'nSpa", "Romantique ou Averti ? Commencez par là", "Comment choisir votre love room"],
+      preheader="Comment choisir la love room qui vous ressemble, en une minute.",
+      titre="Bienvenue chez Love'nSpa",
+      corps=[f"Bonjour{FN},",
+             "Merci de nous rejoindre. Pour choisir une love room, une seule question compte : quelle ambiance ce soir-là ? Nos fiches sont classées de Romantique à Averti, en passant par Sensuel, Coquin et Pimenté.",
+             "Ensuite, l'équipement : spa, sauna, hammam ou piscine, toujours privatif, jamais partagé avec d'autres clients."],
+      cta=("Choisir mon ambiance", HOME), ps=None),
+ dict(id="f8-e2", flow="Bienvenue", camp="flow-bienvenue", kicker="Où partir",
+      objets=["134 love rooms dans le Luberon", "Luberon, Calanques ou Mont-Saint-Michel ?", "Où partir à deux ce mois-ci"],
+      preheader="Les destinations où le choix est le plus large.",
+      titre="Où partir à deux ?",
+      corps=[f"Bonjour{FN},",
+             "Quelques destinations où le choix est large : 134 love rooms dans le Luberon, 105 autour des Calanques de Marseille, 101 près de Disneyland Paris, 88 vers le Mont-Saint-Michel."],
+      tiles=True, cta=("Explorer les destinations", HOME), ps=None),
+ dict(id="f8-e3", flow="Bienvenue", camp="flow-bienvenue", kicker="Last Love Minute",
+      objets=["Ce week-end, sans rien prévoir", "Last Love Minute : partir dans la semaine", "Une envie soudaine ? C'est prévu"],
+      preheader="Last Love Minute : les love rooms à réserver pour les jours qui viennent.",
+      titre="Partir sans rien prévoir",
+      corps=[f"Bonjour{FN},",
+             "Plus d'une réservation sur trois chez nous se fait moins d'une semaine avant l'arrivée. Pour ces envies-là, il y a Last Love Minute : les love rooms à réserver pour les jours qui viennent."],
+      cta=("Voir Last Love Minute", LASTMIN), ps="Et pour offrir une nuit à deux : la carte cadeau va de 100 à 500 €, valable 12 mois.", ps_link=("Offrir une carte cadeau", GIFT)),
+]
+
+CAMPAIGNS = [
+ dict(id="c-noel", flow="Campagne Noël carte cadeau", camp="noel-2026-carte-cadeau", kicker="Offrir une nuit",
+      objets=["Le cadeau qui se vit à deux", "Une nuit à deux à offrir, de 100 à 500 €", "Cette année, offrez une love room"],
+      preheader="Carte cadeau valable 12 mois sur les love rooms réservables en ligne.",
+      titre="Offrir une nuit à deux",
+      corps=[f"Bonjour{FN},",
+             "Il y a les cadeaux qu'on range, et ceux qu'on vit. La carte cadeau Love'nSpa offre une nuit à deux dans la love room de leur choix, parmi celles réservables en ligne sur lovenspa.fr.",
+             "De 100 à 500 €, valable 12 mois : ils choisissent la date et l'ambiance, de Romantique à Averti, avec spa, jacuzzi ou piscine privatif, jamais partagé."],
+      cta=("Offrir une carte cadeau", GIFT),
+      ps="Des frais de service de 10 % s'ajoutent au montant de la carte."),
+]
