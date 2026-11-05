@@ -117,3 +117,9 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Lecture à J+21 minimum, page par page et requête par requête, médiane ou paires, jamais position moyenne agrégée.
 - Retour arrière automatique si le lot fait moins bien que son témoin.
 - Seule une lecture contre témoin a le droit de dire « ça marche ».
+
+## 05/11/2026 · Widget V2 · case de consentement marketing (emailing)
+- Fichier : assets/loven-booking.js (thème live #188545007952). Base md5 a201a30d3cc4de78aed70d21dca4ff82, sauvegarde claude/theme/backup/loven-booking.js.2026-11-05.orig.
+- Patch : claude/theme/pret-a-pousser/assets/loven-booking.js (case de refus non cochée à l'étape contact ; corps booking-create : consent_text_version v1-2026-11-05 + marketing_opt_out au lieu de marketing_consent:false codé en dur).
+- Tests : syntaxe node OK ; E2E Playwright (claude/theme/tests/e2e_consentement_v2.js, bubble-pink, booking-create intercepté) : case vide → opt_out false ; case cochée → opt_out true.
+- Push live : refusé par la politique de sécurité de la session, en attente (go de Florian donné dans le chat).

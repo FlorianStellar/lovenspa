@@ -1,0 +1,2106 @@
+/*
+  Love'nSpa — widget de réservation (v2)
+
+  Remplace l'iframe Bookingmood par un composant natif du thème.
+  Contrat d'interface : projet LOVENSPA › claude/widget-reservation-contrats.md
+
+  Structure du fichier
+    1. Utilitaires (dates, argent, HTML)
+    2. Configuration lue depuis le snippet Liquid
+    3. Source de données : endpoint booking-availability, ou mock intégré
+    4. État du widget
+    5. Rendu : carte, calendrier, options, coordonnées
+    6. Réservation : booking-create puis redirection vers le paiement
+    7. Tracking : dataLayer (GTM) + funnel first-party (lovenspa-funnel.js)
+    8. Repli sur l'iframe Bookingmood si l'API ne répond pas
+    9. Initialisation paresseuse (IntersectionObserver)
+
+  Aucun appel direct à gtag, fbq ou klaviyo ici : le widget pousse dans
+  window.dataLayer, GTM décide selon le consentement.
+*/
+
+(function () {
+  'use strict';
+
+  // ------------------------------------------------------------------
+  // 1. Utilitaires
+  // ------------------------------------------------------------------
+
+  var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  var JOURS_COURTS = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'];
+  var JOURS_ABR = ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'];
+
+  function aujourdhui() {
+    var d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+
+  function cle(d) {
+    var m = d.getMonth() + 1, j = d.getDate();
+    return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (j < 10 ? '0' : '') + j;
+  }
+
+  function depuisCle(k) {
+    var p = k.split('-');
+    return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+  }
+
+  // Google Vacation Rentals (et son robot de prix) arrive avec
+  // ?guests=2&start=2027-01-02&end=2027-01-09. On lit, on n'emet rien :
+  // lns_dates_selected reste reserve au clic du voyageur.
+  // Toujours un objet : arr/dep null si le sejour est invalide, guests a 2
+  // sans entier entre 1 et 99. guests n'est pas renvoye a booking-quote :
+  // le parametre n'est documente nulle part dans ce repo.
+  var GUESTS_DEFAUT = 2;
+
+  function dateUrl(s) {
+    if (typeof s !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+    var d = depuisCle(s);
+    if (cle(d) !== s) return null;
+    return d;
+  }
+
+  function lireSejourUrl(search, today) {
+    var brut = search == null ? '' : String(search);
+    if (brut.charAt(0) === '?') brut = brut.slice(1);
+    var params;
+    try { params = new URLSearchParams(brut); }
+    catch (e) { return { arr: null, dep: null, guests: GUESTS_DEFAUT }; }
+    var jour = today instanceof Date && !isNaN(today.getTime())
+      ? new Date(today.getFullYear(), today.getMonth(), today.getDate())
+      : aujourdhui();
+    var arr = dateUrl(params.get('start'));
+    var dep = dateUrl(params.get('end'));
+    if (!arr || !dep || arr < jour || dep <= arr) {
+      arr = null;
+      dep = null;
+    }
+    var g = params.get('guests');
+    var guests = (g != null && /^[1-9]\d?$/.test(g)) ? Number(g) : GUESTS_DEFAUT;
+    return { arr: arr, dep: dep, guests: guests };
+  }
+
+  // {count} comme showOptions. Sans travelersCount (anciens tests), on
+  // garde la chaine fixe « 2 voyageurs ».
+  function libelleVoyageurs(i18n, n) {
+    var lib = i18n || {};
+    var nb = (typeof n === 'number' && n >= 1) ? n : GUESTS_DEFAUT;
+    var modele;
+    if (nb === 1 && lib.traveler) modele = lib.traveler;
+    else if (lib.travelersCount) modele = lib.travelersCount;
+    else modele = lib.travelers || '';
+    if (modele.indexOf('{count}') === -1) return modele;
+    return modele.replace(/\{count\}/g, String(nb));
+  }
+
+  function plusJours(d, n) {
+    var r = new Date(d);
+    r.setDate(r.getDate() + n);
+    return r;
+  }
+
+  function premierDuMois(d) {
+    return new Date(d.getFullYear(), d.getMonth(), 1);
+  }
+
+  function moisSuivant(d, n) {
+    if (n == null) n = 1;
+    return new Date(d.getFullYear(), d.getMonth() + n, 1);
+  }
+
+  function nbNuits(a, b) {
+    return Math.round((b - a) / 86400000);
+  }
+
+  function dateCourte(d) {
+    return JOURS_ABR[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()].slice(0, 4) + '.';
+  }
+
+  function dateNumerique(d) {
+    var j = d.getDate(), m = d.getMonth() + 1;
+    return (j < 10 ? '0' : '') + j + '/' + (m < 10 ? '0' : '') + m + '/' + d.getFullYear();
+  }
+
+  function dateLongue(d) {
+    return d.getDate() + ' ' + MOIS[d.getMonth()];
+  }
+
+  // « lundi 9 novembre » : le voyageur lit une date, il n'a pas à compter.
+  var JOURS_LONGS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+  function dateJour(d) {
+    return JOURS_LONGS[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()];
+  }
+
+  function euros(cents) {
+    var e = Math.round(cents) / 100;
+    var s = e % 1 === 0 ? String(e) : e.toFixed(2).replace('.', ',');
+    return s.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €';
+  }
+
+  function echapper(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function uuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0;
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  }
+
+  function estMobile() {
+    return window.matchMedia('(max-width: 768px)').matches;
+  }
+
+  // Le filtre Liquid `| json` échappe les apostrophes et les esperluettes en
+  // entités HTML (d&#39;arrivée). Elles arrivent telles quelles dans le JSON,
+  // et echapper() les ré-échapperait à l'affichage. On les décode donc à la
+  // lecture de la configuration, une fois pour toutes.
+  function decoderEntites(v) {
+    if (typeof v === 'string') {
+      if (v.indexOf('&') === -1) return v;
+      var zone = decoderEntites._zone || (decoderEntites._zone = document.createElement('textarea'));
+      zone.innerHTML = v;
+      return zone.value;
+    }
+    if (Array.isArray(v)) return v.map(decoderEntites);
+    if (v && typeof v === 'object') {
+      var r = {};
+      for (var k in v) if (Object.prototype.hasOwnProperty.call(v, k)) r[k] = decoderEntites(v[k]);
+      return r;
+    }
+    return v;
+  }
+
+  var ICONES = {
+    star: '<svg viewBox="0 0 24 24" class="lb-ico lb-ico--fill"><polygon points="12 2 15 8.5 22 9.3 17 14 18.5 21 12 17.8 5.5 21 7 14 2 9.3 9 8.5 12 2"/></svg>',
+    prev: '<svg viewBox="0 0 24 24" class="lb-ico"><path d="m15 18-6-6 6-6"/></svg>',
+    next: '<svg viewBox="0 0 24 24" class="lb-ico"><path d="m9 18 6-6-6-6"/></svg>',
+    close: '<svg viewBox="0 0 24 24" class="lb-ico"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24" class="lb-ico"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>',
+    user: '<svg viewBox="0 0 24 24" class="lb-ico"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" class="lb-ico"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    card: '<svg viewBox="0 0 24 24" class="lb-ico"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 15h4"/></svg>',
+    shield: '<svg viewBox="0 0 24 24" class="lb-ico"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>'
+  };
+
+  // ------------------------------------------------------------------
+  // 3. Source de données
+  // ------------------------------------------------------------------
+
+  // Mock déterministe, utilisé tant que booking-availability n'est pas déployé.
+  //
+  // Calé sur la configuration réelle de « Le Lien » relevée dans l'API
+  // Bookingmood le 05/09 (contrat § 1bis) :
+  //   • tarifs hébergeur : 220 € en semaine, 250 € le week-end, 370 € les jours
+  //     spéciaux — ce sont bien des tarifs hébergeur, la commission s'ajoute ;
+  //   • commission « Frais de service » : taxe on-top de 10 %, renvoyée dans
+  //     `taxes[]` et affichée sur sa propre ligne, comme le fait Bookingmood.
+  //     En vrai elle se lit dans products.fee.tax_ids et peut valoir autre
+  //     chose (45 logements à 0 %, 2 à 12,01 %) ;
+  //
+  // Tous les `price_cents` sont donc des TARIFS HÉBERGEUR : la taxe est une
+  // ligne du récapitulatif, pas un supplément noyé dans chaque prix.
+  //   • remise dernière minute : −10 % si l'arrivée est à 4 jours ou moins ET
+  //     tombe un lundi à jeudi. Elle n'est pas dans la grille tarifaire, elle
+  //     est calculée — c'est pour ça que l'endpoint devra la refaire.
+  //
+  // Le tarif dégressif par rang de nuit (250 € la 1re, 235 € la 2e en WE) n'est
+  // pas simulé ici : le calendrier n'affiche qu'un prix de nuit seule, et c'est
+  // booking-quote qui fera foi sur un séjour. Voir contrat § 1ter.
+  //
+  // Indisponibilités pseudo-aléatoires (~35 %).
+  function mockDispos(from, to) {
+    var TAXE_ON_TOP = 0.10;
+    var nights = [];
+    var d = new Date(from);
+    var limiteRemise = plusJours(aujourdhui(), 4);
+    while (d <= to) {
+      var w = d.getDay();
+      var hote = (w === 5 || w === 6) ? 25000 : 22000;
+      var t = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+      var h = (t * 2654435761) % 100;
+      if (h < 0) h += 100;
+      // Restrictions réelles de la remise : advance_days ≤ 4 ET arrivée lun–jeu.
+      var remise = d < limiteRemise && w >= 1 && w <= 4;
+      var apresRemise = Math.round(hote * (remise ? 0.9 : 1));
+      var n = {
+        date: cle(d),
+        price_cents: apresRemise,
+        available: h > 34,
+        check_in_ok: true
+      };
+      if (remise) {
+        n.list_price_cents = hote;
+        n.discount_label = 'Dernière minute';
+      }
+      nights.push(n);
+      d = plusJours(d, 1);
+    }
+    return {
+      currency: 'EUR',
+      stale: false,
+      rules: { min_duration: 1, max_duration: 7, min_advance_days: 0, max_advance_days: 365 },
+      nights: nights,
+      // Les 4 options payantes réelles de « Le Lien », relevées via
+      // product_services → services. Ce sont des cases à cocher : Bookingmood
+      // n'a pas de notion de quantité (type checkbox, pas de max_quantity).
+      // `per_night` vient de fee.price.value[0].period : null = au séjour,
+      // {duration:1} = par nuit (21 options sur 1 000 dans le parc).
+      //
+      // ATTENTION : `price_cents` est un PRIX VOYAGEUR, taxe comprise, comme
+      // pour les nuits. Les options sont incluses dans bookings.subtotal, donc
+      // elles subissent les taxes on-top au même titre que le loyer — un
+      // préservatif à 2 € côté hébergeur se paie 2,20 €. Chaque option porte
+      // ses propres fee.tax_ids, indépendants de ceux du produit : 5 options
+      // du parc ne sont pas taxées, d'où le drapeau `taxable`.
+      taxes: [{ label: 'Frais de service', type: 'on-top', percentage: 10 }],
+      options: [
+        { id: '4f0dc1cf', name: 'Champagne Autréau brut tradition', description: '', price_cents: 3000, taxable: true, per_night: false },
+        { id: '13aaf806', name: 'Soft', description: '', price_cents: 200, taxable: true, per_night: false },
+        { id: 'd8e14787', name: 'Préservatif', description: '', price_cents: 200, taxable: true, per_night: false },
+        { id: '2d943137', name: 'Lubrifiant', description: '', price_cents: 400, taxable: true, per_night: false }
+      ]
+    };
+  }
+
+  function attendre(ms) {
+    return new Promise(function (resolve) { window.setTimeout(resolve, ms); });
+  }
+
+  function lireJson(url) {
+    return fetch(url, { headers: { Accept: 'application/json' } }).then(function (r) {
+      if (!r.ok) throw new Error('http_' + r.status);
+      return r.json();
+    });
+  }
+
+  function creerSource(config, surEchec) {
+    var cache = {};      // clé 'YYYY-MM' → Promise
+    var echecs = 0;
+
+    function charger(from, to) {
+      if (config.mock) {
+        return new Promise(function (resolve) {
+          window.setTimeout(function () { resolve(mockDispos(from, to)); }, 180);
+        });
+      }
+      var url = config.endpoint + '/booking-availability?widget=' + encodeURIComponent(config.widget)
+        + '&from=' + cle(from) + '&to=' + cle(to);
+      return lireJson(url).catch(function () {
+        // 01/10/2026 : un hoquet réseau mobile ne doit pas compter comme une
+        // panne. On rejoue une fois le même appel après 1,5 s ; seul l'échec
+        // de la reprise alimente le compteur qui déclenche le repli iframe.
+        return attendre(1500).then(function () { return lireJson(url); });
+      }).then(function (json) {
+        echecs = 0;
+        return json;
+      }).catch(function (e) {
+        echecs += 1;
+        if (echecs >= 2) surEchec(e, url);
+        throw e;
+      });
+    }
+
+    // Charge une fenêtre de deux mois à partir du 1er du mois demandé.
+    function fenetre(mois) {
+      var k = mois.getFullYear() + '-' + (mois.getMonth() + 1);
+      if (!cache[k]) {
+        var from = premierDuMois(mois);
+        // booking-availability refuse une plage qui commence avant hier
+        // (400 invalid_range). Le 1er du mois courant est donc hors limite
+        // des le 3 du mois — et deux refus de suite faisaient basculer le
+        // widget sur l'iframe. Les nuits passees ne sont de toute facon
+        // jamais affichees : on part au plus tot d'hier.
+        var mini = plusJours(aujourdhui(), -1);
+        if (from < mini) from = mini;
+        var to = plusJours(moisSuivant(mois, 2), -1);
+        cache[k] = charger(from, to).catch(function (e) { delete cache[k]; throw e; });
+      }
+      return cache[k];
+    }
+
+    // Les reponses sont mises en cache par fenetre de trois mois. Quand le
+    // serveur nous apprend que le calendrier est perime — nuit prise entre
+    // temps, heure limite d'arrivee franchie — le cache doit sauter, sinon
+    // « recharger le mois » sert la meme reponse et on repropose la nuit.
+    function invalider() { Object.keys(cache).forEach(function (k) { delete cache[k]; }); }
+
+    return { fenetre: fenetre, invalider: invalider };
+  }
+
+  // Exposé pour les tests (tests/loven-booking-source.test.mjs), sans usage en page.
+  window.__lovenBookingTest = { creerSource: creerSource, lireJson: lireJson, lireSejourUrl: lireSejourUrl, libelleVoyageurs: libelleVoyageurs };
+
+  // ------------------------------------------------------------------
+  // 7. Tracking
+  // ------------------------------------------------------------------
+
+  function creerTracker(config) {
+    var sessionId = null;
+    try { sessionId = window.sessionStorage.getItem('lns_funnel_session'); } catch (e) { /* privé */ }
+
+    var base = {
+      item_id: config.handle,
+      item_name: config.title,
+      bm_widget: config.widget,
+      session_id: sessionId,
+      widget_version: 'v2'
+    };
+
+    // Correspondance dataLayer (GA4) → funnel first-party.
+    var versFunnel = {
+      lns_calendar_open: 'calendar_open',
+      lns_no_availability: 'no_availability',
+      lns_dates_selected: 'date_selected',
+      lns_options_open: 'options_open',
+      add_to_cart: 'option_add',
+      remove_from_cart: 'option_remove',
+      begin_checkout: 'checkout_start',
+      lns_contact_submitted: 'contact_submitted',
+      lns_address_submitted: 'address_submitted',
+      // Un formulaire refuse cote client n'atteint jamais le serveur : sans cet
+      // evenement, un voyageur bloque a la saisie est indistinguable d'un
+      // abandon volontaire.
+      lns_form_error: 'form_error',
+      add_payment_info: 'booking_created',
+      lns_booking_failed: 'booking_failed',
+      // Une demande transmise a l'hote est une reservation creee chez
+      // Bookingmood (mode « request ») : meme evenement de tunnel, avec
+      // payload.mode = 'request' pour la distinguer du paiement immediat.
+      lns_booking_requested: 'booking_created',
+      lns_widget_fallback: 'widget_fallback'
+    };
+
+    function envoyer(nom, params) {
+      params = params || {};
+      var evt = { event: nom };
+      for (var k in base) if (base[k] != null) evt[k] = base[k];
+      for (var p in params) evt[p] = params[p];
+      try {
+        window.dataLayer = window.dataLayer || [];
+        // Réinitialise ecommerce entre deux events GA4, recommandation Google.
+        if (params.ecommerce) window.dataLayer.push({ ecommerce: null });
+        window.dataLayer.push(evt);
+      } catch (e) { /* jamais bloquant */ }
+
+      var type = versFunnel[nom];
+      if (!type) return;
+      var payload = {};
+      for (var q in params) if (q !== 'ecommerce') payload[q] = params[q];
+      var options = { immediat: type === 'checkout_start' || type === 'booking_created' };
+      try {
+        if (window.LNS_FUNNEL && typeof window.LNS_FUNNEL.track === 'function') {
+          window.LNS_FUNNEL.track(type, payload, options);
+        } else {
+          // lovenspa-funnel.js n'est pas encore chargé : il videra la file.
+          window.LNS_FUNNEL_QUEUE = window.LNS_FUNNEL_QUEUE || [];
+          window.LNS_FUNNEL_QUEUE.push([type, payload, options]);
+        }
+      } catch (e) { /* idem */ }
+    }
+
+    // Le meme identifiant de visite que le funnel : c'est lui qui permettra de
+    // relier une reservation a la session qui l'a produite (device, source).
+    return { envoyer: envoyer, sessionId: sessionId };
+  }
+
+  // ------------------------------------------------------------------
+  // Widget
+  // ------------------------------------------------------------------
+
+  function initialiser(racine) {
+    var conteneur = racine.closest('.loven-dates') || racine.parentElement;
+    var scriptConfig = conteneur.querySelector('[data-loven-booking-config]');
+    if (!scriptConfig) return;
+
+    var config;
+    try { config = decoderEntites(JSON.parse(scriptConfig.textContent)); } catch (e) { return; }
+
+    // Surcharges de test. Elles ne peuvent qu'etre demandees explicitement par
+    // l'URL : sans parametre, config reste exactement ce que Liquid a rendu.
+    if (MODE_DONNEES === 'live') config.mock = false;
+    if (MODE_DONNEES === 'mock') config.mock = true;
+    if (API_REF) config.endpoint = 'https://' + API_REF + '.supabase.co/functions/v1';
+    var t = config.i18n || {};
+    // Les libelles edites dans l'admin Shopify arrivent parfois avec des
+    // entites HTML (« d&#39;autres ») : on les decode une fois, echapper()
+    // les re-protege a l'affichage. Sinon le voyageur lit « d&#39;autres ».
+    Object.keys(t).forEach(function (k) {
+      if (typeof t[k] === 'string' && t[k].indexOf('&') !== -1) {
+        t[k] = t[k].replace(/&#39;|&#x27;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+      }
+    });
+    var tracker = creerTracker(config);
+    var TODAY = aujourdhui();
+
+    // ---- 4. État -----------------------------------------------------
+    var S = {
+      arr: null, dep: null,
+      guests: GUESTS_DEFAUT,
+      mois: premierDuMois(TODAY),
+      ouvert: null,            // null | 'calendar' | 'options' | 'contact'
+      annulOuvert: false,      // conditions d'annulation dépliées (lb-trust__more)
+      opts: {},
+      formValeurs: {},         // valeurs du formulaire hebergeur, cle = id du service (form[])
+      coupon: null,            // { code, label, cents } une fois validé
+      couponErreur: null,
+      couponEnCours: false,
+      donnees: null,           // { nights: {date → n}, rules, options, stale }
+      chargement: false,
+      erreur: null,
+      attemptId: uuid(),
+      envoi: false,
+      refuse: false,           // refus Bookingmood ou rappel demande : on ne relance plus le meme corps
+      devis: null,             // réponse de booking-quote pour (dates, options, coupon)
+      devisCle: null,          // URL du dernier devis demandé, pour dédoublonner
+      devisEnCours: false,
+      devisErreur: null,       // 'unavailable' | 'late' | 'indispo' | 'generic'
+      devisHeureLimite: null,  // heure limite d'arrivee renvoyee avec le 409 past_latest_arrival
+      verif: false,            // controle de disponibilite Bookingmood en cours
+      verifCle: null,          // cle de devis deja validee : on ne revalide pas deux fois
+      demande: null,           // logement « sur demande » : demande transmise a l'hote {reference,total_cents}
+      noteJour: null,          // explication de la nuit cliquee (ex. heure limite depassee), effacee au clic suivant
+      etape: 1,                // 1 = identite + contact, 2 = adresse de facturation
+      optOut: false,           // case de refus marketing (exception client L34-5), jamais cochee d'office
+      saisie: {}               // valeurs deja saisies, conservees d'une etape a l'autre
+    };
+
+    var source = creerSource(config, function (err, url) {
+      // En mode preprod, retomber sur l'iframe reviendrait a cacher la panne
+      // qu'on est justement venu observer. On affiche l'erreur brute a la
+      // place : code, message et URL appelee.
+      if (MODE_DONNEES === 'live') {
+        afficherPanneTest(err, url);
+        return;
+      }
+      basculerIframe('api_unavailable');
+    });
+
+    function afficherPanneTest(err, url) {
+      var zone = racine.querySelector('.lb-mock--live') || racine;
+      var bloc = document.createElement('p');
+      bloc.className = 'lb-mock lb-mock--top lb-mock--panne';
+      bloc.textContent = 'Preprod : l\'appel a echoue (' + (err && err.message ? err.message : 'erreur inconnue')
+        + '). URL : ' + (url || config.endpoint + '/booking-availability');
+      if (zone === racine) racine.insertBefore(bloc, racine.firstChild);
+      else zone.parentNode.replaceChild(bloc, zone);
+    }
+
+    // ---- Données -----------------------------------------------------
+    function nuit(d) {
+      return S.donnees && S.donnees.nights[cle(d)] || null;
+    }
+
+    function chargerMois(mois) {
+      S.chargement = true;
+      rendre();
+      return source.fenetre(mois).then(function (json) {
+        if (!S.donnees) S.donnees = { nights: {}, rules: json.rules || {}, options: json.options || [], form: json.form || [], taxes: json.taxes || [], stale: !!json.stale };
+        (json.nights || []).forEach(function (n) { S.donnees.nights[n.date] = n; });
+        if (json.options && json.options.length) S.donnees.options = json.options;
+        if (json.form && json.form.length) S.donnees.form = json.form;
+        if (json.taxes) S.donnees.taxes = json.taxes;
+        S.donnees.rules = json.rules || S.donnees.rules;
+        S.chargement = false;
+        S.erreur = null;
+        rendre();
+        verifierDisponibiliteMois();
+      }).catch(function () {
+        S.chargement = false;
+        S.erreur = 'load';
+        rendre();
+      });
+    }
+
+    var moisSignales = {};
+    function verifierDisponibiliteMois() {
+      if (S.ouvert !== 'calendar') return;
+      var m = S.mois, k = cle(m).slice(0, 7);
+      if (moisSignales[k]) return;
+      var d = new Date(m), fin = moisSuivant(m), libre = false;
+      while (d < fin) {
+        var n = nuit(d);
+        if (n && n.available && d >= TODAY) { libre = true; break; }
+        d = plusJours(d, 1);
+      }
+      moisSignales[k] = true;
+      if (!libre) tracker.envoyer('lns_no_availability', { month_shown: k });
+    }
+
+    // ---- Calculs -----------------------------------------------------
+    function nuits() { return S.arr && S.dep ? nbNuits(S.arr, S.dep) : 0; }
+
+    // ---- Prix affiches : tarif hebergeur partout ------------------------
+    // Decision du 06/09 : le calendrier et les options montrent le tarif
+    // hebergeur, comme Bookingmood, et la commission n'apparait que sur sa
+    // ligne du recapitulatif. booking-availability renvoie le prix voyageur
+    // dans price_cents et, quand il le peut, le tarif hebergeur dans
+    // host_price_cents. On ne prend le tarif hebergeur que si l'on peut
+    // l'afficher juste : une nuit remisee sans host_list_price_cents
+    // reste en prix voyageur plutot que d'afficher un prix faux.
+    function prixNuitAffiche(n) {
+      if (!n) return { cents: 0, avant: null };
+      var remisee = n.list_price_cents != null && n.list_price_cents > n.price_cents;
+      if (n.host_price_cents != null && (!remisee || n.host_list_price_cents != null)) {
+        return { cents: n.host_price_cents, avant: remisee ? n.host_list_price_cents : null };
+      }
+      return { cents: n.price_cents, avant: remisee ? n.list_price_cents : null };
+    }
+
+    // ---- Formulaire hebergeur (form[]) ---------------------------------
+    // Chaque service Bookingmood du logement, hors identite, arrive type dans
+    // json.form (booking-availability). Le serveur fait foi pour le prix et la
+    // validation ; ici on dessine et on collecte (S.formValeurs, cle = id).
+    // Un type inconnu n'est ni rendu ni bloquant : le serveur le refusera en
+    // 422 avec son libelle, et le message le dira.
+    function formulaire() { return (S.donnees && S.donnees.form) || []; }
+    function prixForm(f) { return f.host_price_cents != null ? f.host_price_cents : (f.price_cents || 0); }
+    // Frais obligatoires : ligne fixe, jamais decochable, deja dans le total
+    // serveur. Etape 0 (07/09, factures reelles) : un statement facultatif avec
+    // prix est toujours facture -> frais obligatoire deguise. Le serveur pose
+    // mandatory:true ; a defaut on applique la meme regle ici.
+    function estFrais(f) { return f.mandatory === true || (f.price_cents && (f.required || f.type === 'statement')); }
+    function formFrais() { return formulaire().filter(estFrais); }
+    // Consentements (CGV…) : case obligatoire a l'etape 2, cochee par le voyageur, jamais a sa place.
+    function formConsentements() { return formulaire().filter(function (f) { return f.required && !f.price_cents && f.type === 'checkbox' && !estFrais(f); }); }
+    function formChoix() { return formulaire().filter(function (f) { return f.type === 'multiple-choice' && f.children && f.children.length; }); }
+    function formTextes() { return formulaire().filter(function (f) { return f.type === 'long-text' || f.type === 'short-text'; }); }
+    // Statement sans prix : texte informatif de l'hebergeur.
+    function formNotes() { return formulaire().filter(function (f) { return f.type === 'statement' && !estFrais(f); }); }
+    function choixChoisis() {
+      return formChoix().map(function (f) { return S.formValeurs[f.id]; }).filter(Boolean);
+    }
+    function formManquants() {
+      var m = [];
+      formConsentements().forEach(function (f) { if (S.formValeurs[f.id] !== true) m.push(f); });
+      formChoix().forEach(function (f) { if (f.required && !S.formValeurs[f.id]) m.push(f); });
+      formTextes().forEach(function (f) { if (f.required && !String(S.formValeurs[f.id] || '').trim()) m.push(f); });
+      return m;
+    }
+    function libellesManquants(liste) {
+      return liste.map(function (f) { return f.label || f.name || f.id; }).join(', ');
+    }
+
+    function prixOptionAffiche(o) {
+      return o.host_price_cents != null ? o.host_price_cents : o.price_cents;
+    }
+
+    function lignesNuits() {
+      var l = [], d = new Date(S.arr);
+      while (d < S.dep) {
+        var n = nuit(d);
+        l.push({
+          date: new Date(d),
+          cents: prixNuitAffiche(n).cents,
+          avant: prixNuitAffiche(n).avant,
+          remise: n ? n.discount_label : null
+        });
+        d = plusJours(d, 1);
+      }
+      return l;
+    }
+
+    function totalNuits() {
+      return lignesNuits().reduce(function (s, l) { return s + l.cents; }, 0);
+    }
+
+    // Détail du récapitulatif : nuits au tarif plein, puis chaque remise sur sa
+    // propre ligne, nommée. Une remise silencieuse n'est pas une remise — le
+    // visiteur doit voir ce qu'il gagne et pourquoi. Bookingmood l'enregistre
+    // de la même façon, en ligne de facture « Last Minute ».
+    function detailRecap() {
+      if (S.devis) return recapDepuisDevis();
+      var lignes = lignesNuits(), n = nuits(), rows = [];
+
+      if (lignes.length <= 3) {
+        lignes.forEach(function (l) {
+          rows.push({ label: dateCourte(l.date), cents: l.avant || l.cents });
+        });
+      } else {
+        var brut = lignes.reduce(function (s, l) { return s + (l.avant || l.cents); }, 0);
+        rows.push({ label: n + ' ' + t.nights, cents: brut });
+      }
+
+      // Remises regroupées par libellé : deux nuits remisées font une ligne.
+      var parLibelle = {}, ordre = [];
+      lignes.forEach(function (l) {
+        if (!l.avant || l.avant <= l.cents) return;
+        var k = l.remise || t.discount;
+        if (parLibelle[k] === undefined) { parLibelle[k] = 0; ordre.push(k); }
+        parLibelle[k] += l.avant - l.cents;
+      });
+      ordre.forEach(function (k) {
+        rows.push({ label: k, cents: parLibelle[k], remise: true });
+      });
+
+      optionsChoisies().forEach(function (l) {
+        rows.push({
+          label: l.opt.name + (l.opt.per_night && n > 1 ? ' × ' + n + ' ' + t.nights : ''),
+          cents: l.cents
+        });
+      });
+
+      rows.push({ label: t.touristTax, valeur: t.included });
+
+      // Sous-total puis taxes, comme le récapitulatif Bookingmood. Garder la
+      // même structure évite les écarts d'arrondi et rend la réconciliation
+      // avec bookings.subtotal / bookings.total immédiate.
+      var taxes = lignesTaxes();
+      if (taxes.length) {
+        rows.push({ label: t.subtotal, cents: sousTotal(), sousTotal: true });
+        taxes.forEach(function (tx) { rows.push({ label: tx.label, cents: tx.cents }); });
+      }
+      // Carte cadeau en dernier : elle vient du total TTC, pas du sous-total.
+      if (S.coupon) {
+        rows.push({ label: S.coupon.label || t.coupon, cents: S.coupon.cents, remise: true });
+      }
+      return rows;
+    }
+
+    // Code de réduction : cartes cadeaux et promos, émises côté Bookingmood
+    // comme des coupons (voir issue-gift-card). La validation est faite par le
+    // serveur, jamais ici : le widget n'invente pas de remise.
+    function rendreCoupon() {
+      if (S.coupon) {
+        return '<div class="lb-coupon lb-coupon--ok">'
+          + '<span class="lb-coupon__code">' + echapper(S.coupon.code) + '</span>'
+          + '<button type="button" class="lb-coupon__remove" data-act="coupon-off">' + echapper(t.couponRemove) + '</button>'
+          + '</div>';
+      }
+      return '<div class="lb-coupon">'
+        + '<input type="text" class="lb-coupon__input" data-lb-coupon placeholder="' + echapper(t.couponPlaceholder) + '"'
+        + ' autocomplete="off" autocapitalize="characters" spellcheck="false"'
+        + (S.couponEnCours ? ' disabled' : '') + '>'
+        + '<button type="button" class="lb-coupon__apply" data-act="coupon-on"' + (S.couponEnCours ? ' disabled' : '') + '>'
+        + echapper(S.couponEnCours ? t.couponChecking : t.couponApply) + '</button>'
+        + (S.couponErreur ? '<p class="lb-coupon__error">' + echapper(S.couponErreur) + '</p>' : '')
+        + '</div>';
+    }
+
+    // Motif de refus renvoye par booking-quote -> message au voyageur.
+    function messageCoupon(motif) {
+      switch (motif) {
+        case 'coupon_expired': return t.couponExpired;
+        case 'coupon_used': return t.couponUsed;
+        case 'coupon_not_applicable': return t.couponNotApplicable;
+        case 'coupon_cancelled': return t.couponUnavailable;
+        case 'coupon_not_supported': return t.couponUnavailable;
+        default: return t.couponUnknown;
+      }
+    }
+
+    function appliquerCoupon() {
+      var champ = racine.querySelector('[data-lb-coupon]');
+      var code = champ ? champ.value.trim().toUpperCase() : '';
+      if (!code) return;
+      S.couponErreur = null;
+      S.couponEnCours = true;
+      rendre();
+
+      if (config.mock) {
+        window.setTimeout(function () {
+          S.couponEnCours = false;
+          S.couponErreur = t.couponUnknown;
+          rendre();
+        }, 500);
+        return;
+      }
+
+      // Le devis serveur fait foi : on lui repasse le séjour complet et il
+      // renvoie le coupon validé et son montant.
+      var url = config.endpoint + '/booking-quote?widget=' + encodeURIComponent(config.widget)
+        + '&arrival=' + cle(S.arr) + '&departure=' + cle(S.dep)
+        + '&options=' + encodeURIComponent(optionsChoisies().map(function (l) { return l.opt.id; }).join(','))
+        + '&coupon=' + encodeURIComponent(code);
+      fetch(url, { headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.json().then(function (j) { return { status: r.status, json: j }; }); })
+        .then(function (res) {
+          S.couponEnCours = false;
+          var remise = res.json && res.json.discounts && res.json.discounts.filter(function (d) { return d.coupon; })[0];
+          if (res.status === 200 && remise) {
+            S.coupon = { code: code, label: remise.label, cents: Math.abs(remise.cents) };
+            demanderDevis();
+            tracker.envoyer('lns_coupon_applied', { coupon: code, value: Math.abs(remise.cents) / 100 });
+          } else {
+            // Le serveur dit POURQUOI il refuse : une carte cadeau expiree, deja
+            // utilisee ou momentanement indisponible n'est pas un code inconnu.
+            // Repondre « Code inconnu » a un client qui tient une carte valide
+            // entre les mains, c'est le perdre.
+            var motif = res.json && res.json.coupon_error;
+            S.couponErreur = messageCoupon(motif);
+            tracker.envoyer('lns_coupon_rejected', { coupon: code, reason: motif || 'inconnu' });
+          }
+          rendre();
+        })
+        .catch(function () {
+          S.couponEnCours = false;
+          S.couponErreur = t.errGeneric;
+          rendre();
+        });
+    }
+
+    function rendreRecap() {
+      var h = '<div class="lb-recap">';
+      detailRecap().forEach(function (r) {
+        var valeur;
+        if (r.valeur) valeur = '<span class="lb-recap__free">' + echapper(r.valeur) + '</span>';
+        else if (r.remise) valeur = '<span class="lb-recap__off">− ' + euros(r.cents) + '</span>';
+        else valeur = euros(r.cents);
+        h += '<div class="lb-recap__row' + (r.sousTotal ? ' is-subtotal' : '') + '"><span>'
+          + echapper(r.label) + '</span><span>' + valeur + '</span></div>';
+      });
+      h += '<div class="lb-recap__total"><span>' + echapper(t.totalLabel) + '</span><span>' + euros(total()) + '</span></div>';
+      return h + '</div>';
+    }
+
+    // Une option cochée coûte son prix, multiplié par le nombre de nuits
+    // seulement si elle est facturée par nuit (fee.price.value[0].period).
+    // ---- Devis serveur -------------------------------------------------
+    // Des que les deux dates sont posees, le prix est celui de booking-quote et
+    // de personne d'autre : tarif degressif par rang de nuit, remises, taxes,
+    // coupon — tout est calcule la-bas, arrondi une seule fois. Le widget se
+    // contente d'afficher les lignes et de renvoyer total_cents tel quel dans
+    // expected_total_cents. Le calcul local (totalNuits, lignesTaxes…) ne sert
+    // plus qu'au mock et a l'instant qui precede la reponse.
+    function urlDevis() {
+      // S.guests est affiche seulement. booking-quote ne documente pas guests
+      // (ni adults, ni party) : un parametre inconnu pourrait casser le devis.
+      return config.endpoint + '/booking-quote?widget=' + encodeURIComponent(config.widget)
+        + '&arrival=' + cle(S.arr) + '&departure=' + cle(S.dep)
+        + '&options=' + encodeURIComponent(optionsChoisies().map(function (l) { return l.opt.id; }).concat(choixChoisis()).join(','))
+        + (S.coupon ? '&coupon=' + encodeURIComponent(S.coupon.code) : '');
+    }
+
+    function demanderDevis() {
+      if (config.mock || !S.arr || !S.dep) { S.devis = null; S.devisCle = null; return; }
+      var url = urlDevis();
+      if (url === S.devisCle && (S.devis || S.devisEnCours)) return;
+      S.devisCle = url;
+      S.devisEnCours = true;
+      S.devisErreur = null;
+      rendre();
+      fetch(url, { headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.json().then(function (j) { return { status: r.status, json: j }; }); })
+        .then(function (res) {
+          if (url !== S.devisCle) return;   // une demande plus recente a pris le relais
+          S.devisEnCours = false;
+          if (res.status === 200 && res.json && typeof res.json.total_cents === 'number') {
+            S.devis = res.json;
+            rendre();
+            return;
+          }
+          S.devis = null;
+          var code = res.json && res.json.error;
+          if (code === 'unavailable') {
+            var motifs = (res.json && res.json.reasons) || [];
+            var texte = (res.json && res.json.message) || t.errUnavailable;
+            // Seul le jour de depart est refuse (regle check_out_day, que le
+            // calendrier ne connait pas) : on garde l'arrivee, on retire le
+            // depart et on le dit dans le calendrier. Secret Love Garden,
+            // 25/09/2026 : le widget vidait tout sans explication visible.
+            // Même traitement pour une durée hors limites (min_duration,
+            // max_duration) : l'arrivée reste bonne, seul le départ change.
+            var gardeArrivee = ['check_out_day', 'min_duration', 'max_duration'];
+            if (motifs.length && motifs.every(function (m) { return gardeArrivee.indexOf(m.code) !== -1; })) {
+              var motifMin = motifs.filter(function (m) { return m.code === 'min_duration'; })[0];
+              var nbMin = motifMin ? (parseInt((/(\d+)/.exec(motifMin.message || '') || [])[1], 10) || dureesSejour(S.arr).min) : 0;
+              S.devisErreur = 'unavailable';
+              S.noteJour = (motifMin && messageDureeMin(S.arr, nbMin)) || texte;
+              S.dep = null;
+              if (S.ouvert !== 'calendar') ouvrir('calendar'); else rendre();
+              return;
+            }
+            // Le calendrier etait en retard sur la realite : on retire les
+            // dates, on recharge le mois et on le dit.
+            S.devisErreur = 'unavailable';
+            S.noteJour = texte;
+            S.arr = null; S.dep = null;
+            S.donnees = null;
+            source.invalider();
+            chargerMois(S.mois);
+            return;
+          }
+          if (code === 'dates_unavailable') {
+            // Bookingmood refuse ce sejour (jour d'arrivee interdit, duree
+            // minimale, regle PriceLabs...). Il ne nous donne pas le motif,
+            // alors on reste honnete : on ne l'invente pas. Les dates sont
+            // retirees et le calendrier recharge sans son cache.
+            S.devisErreur = 'indispo';
+            S.arr = null; S.dep = null;
+            S.donnees = null;
+            source.invalider();
+            chargerMois(S.mois);
+            return;
+          }
+          if (code === 'past_latest_arrival') {
+            // La nuit est libre, mais l'heure d'arrivee est passee depuis que
+            // le calendrier a ete charge. On retire les dates, on recharge le
+            // mois (la nuit en sortira fermee) et on explique.
+            S.devisErreur = 'late';
+            S.devisHeureLimite = (res.json && res.json.latest_arrival_time) || null;
+            S.arr = null; S.dep = null;
+            S.donnees = null;
+            source.invalider();
+            chargerMois(S.mois);
+            return;
+          }
+          S.devisErreur = 'generic';
+          rendre();
+        })
+        .catch(function () {
+          if (url !== S.devisCle) return;
+          S.devisEnCours = false;
+          S.devis = null;
+          S.devisErreur = 'generic';
+          rendre();
+        });
+    }
+
+    // Lignes du recapitulatif a partir du devis serveur, dans la structure
+    // Bookingmood : nuits au tarif hebergeur, options, remises, taxe de sejour,
+    // sous-total, frais de service, total. Tolerant aux deux orthographes du
+    // contrat (taxes/fees, rate_cents/cents) pour ne pas casser sur un detail.
+    function recapDepuisDevis() {
+      var d = S.devis, rows = [], n = nuits();
+      var nuitsDevis = d.nights || [];
+      if (nuitsDevis.length <= 3) {
+        nuitsDevis.forEach(function (x) {
+          rows.push({ label: dateCourte(new Date(x.date + 'T00:00:00')), cents: x.rate_cents != null ? x.rate_cents : x.cents });
+        });
+      } else {
+        rows.push({ label: n + ' ' + t.nights, cents: d.host_rent_cents != null ? d.host_rent_cents
+          : nuitsDevis.reduce(function (a, x) { return a + (x.rate_cents != null ? x.rate_cents : x.cents); }, 0) });
+      }
+      (d.options || []).forEach(function (o) {
+        rows.push({ label: o.label || o.name, cents: o.cents });
+      });
+      // Deux natures de remise, deux places dans le recapitulatif :
+      //  - les remises tarifaires portent sur le loyer hebergeur, elles sont
+      //    deja dans host_subtotal_cents et se placent AVANT le sous-total ;
+      //  - la carte cadeau est retranchee du total TTC, frais de service
+      //    compris. Mesure du 08/09/2026 sur 5 reservations reelles (ref.
+      //    269798 : 200 EUR de loyer x 1,10 - 100 EUR de carte = 120 EUR paye).
+      //    L'afficher avant le sous-total ferait croire que les 10 % sont
+      //    calcules sur le montant deja remise : elle passe donc en dernier.
+      var coupons = (d.discounts || []).filter(function (r) { return r.coupon === true; });
+      (d.discounts || []).forEach(function (r) {
+        if (r.coupon === true) return;
+        rows.push({ label: r.label || t.discount, cents: Math.abs(r.cents), remise: true });
+      });
+      // Frais obligatoires integres par le serveur (fees[].mandatory) : une
+      // ligne chacun, montant negatif rendu comme une remise. Le « Taxe de
+      // sejour — Incluse » n'est affiche que s'il n'y a aucun frais : sinon
+      // c'est faux une fois sur deux (20 des 46 frais du parc SONT la taxe).
+      var frais = (d.fees || []).filter(function (f) { return f.mandatory; });
+      frais.forEach(function (f) {
+        // host_cents : le montant hebergeur, coherent avec les nuits et les
+        // options du recap (le sous-total serveur l'inclut deja).
+        var montant = f.host_cents != null ? f.host_cents : f.cents;
+        rows.push({ label: f.label + (f.per_night ? ' (' + n + ' ' + (n > 1 ? t.nights : t.night) + ')' : ''), cents: Math.abs(montant), remise: montant < 0 });
+      });
+      if (!frais.length) rows.push({ label: t.touristTax, valeur: t.included });
+      var taxes = (d.taxes || d.fees || []).filter(function (x) { return !x.mandatory; });
+      if (taxes.length) {
+        rows.push({ label: t.subtotal, cents: d.host_subtotal_cents, sousTotal: true });
+        taxes.forEach(function (tx) {
+          rows.push({ label: tx.label + ' (+' + String(tx.percentage).replace('.', ',') + ' %)', cents: tx.cents });
+        });
+      }
+      coupons.forEach(function (r) {
+        rows.push({ label: r.label || t.coupon, cents: Math.abs(r.cents), remise: true });
+      });
+      return rows;
+    }
+
+    function optionsChoisies() {
+      var r = [], n = nuits() || 1;
+      (S.donnees ? S.donnees.options : []).forEach(function (o) {
+        if (!S.opts[o.id]) return;
+        r.push({ opt: o, cents: prixOptionAffiche(o) * (o.per_night ? n : 1) });
+      });
+      return r;
+    }
+
+    // Sous-total hébergeur : nuitées (remises déduites) + options. La carte
+    // cadeau n'y entre PAS : Bookingmood la déduit du total TTC, après les
+    // frais de service. La soustraire ici réduirait l'assiette taxable et
+    // annoncerait un total plus bas que celui facturé.
+    function sousTotal() {
+      var v = totalNuits() + totalOptions();
+      return v < 0 ? 0 : v;
+    }
+
+    // Taxes « on-top » du logement, calculées sur la SOMME et arrondies une
+    // seule fois — c'est ainsi que Bookingmood calcule, et c'est la seule
+    // façon de tomber au centime près sur son total.
+    function lignesTaxes() {
+      var base = sousTotal();
+      return ((S.donnees && S.donnees.taxes) || []).map(function (tx) {
+        return {
+          label: tx.label + ' (+' + String(tx.percentage).replace('.', ',') + ' %)',
+          cents: Math.round(base * tx.percentage / 100)
+        };
+      });
+    }
+
+    function totalOptions() {
+      return optionsChoisies().reduce(function (s, l) { return s + l.cents; }, 0);
+    }
+
+    // Au branchement de booking-quote : prendre SON total_cents tel quel,
+    // sans le recalculer ici. Cette version locale n'existe que pour le mock.
+    function total() {
+      if (S.devis) return S.devis.total_cents;
+      var v = sousTotal() + lignesTaxes().reduce(function (s, l) { return s + l.cents; }, 0)
+        - (S.coupon ? S.coupon.cents : 0);
+      return v < 0 ? 0 : v;
+    }
+
+    function regles() { return (S.donnees && S.donnees.rules) || {}; }
+
+    // ---- Heure limite d'arrivee ---------------------------------------
+    // Chaque logement declare chez Bookingmood une heure au-dela de laquelle
+    // l'hebergeur n'accueille plus (`latest_arrival_time`, lue dans le fuseau
+    // du logement). Mesure du 11/09/2026 : 6 tentatives d'arrivee le jour
+    // meme, les 2 faites apres l'heure limite refusees par Bookingmood, les 4
+    // faites avant acceptees — dont deux a 37 secondes d'ecart, ce qui exclut
+    // une heure de coupure globale. Le serveur ferme desormais la nuit ; ici
+    // on dit seulement pourquoi, parce que « ces dates sont indisponibles »
+    // serait faux : la chambre est libre, c'est l'accueil qui ne l'est plus.
+
+    // "21:00" -> "21 h", "18:30" -> "18h30" (meme rendu que le serveur).
+    function heureLisible(h) {
+      var v = String(h == null ? '' : h);
+      if (!/^\d{2}:\d{2}/.test(v)) return v;
+      return v.slice(3, 5) === '00' ? String(Number(v.slice(0, 2))) + ' h' : v.slice(0, 5).replace(':', 'h');
+    }
+
+    function messageTropTard(h) {
+      return t.errLateArrival.replace('{hour}', heureLisible(h));
+    }
+
+    // Heure limite si — et seulement si — la nuit du jour est fermee pour
+    // cette raison. Null des que le mois affiche ne contient pas aujourd'hui.
+    function arriveeTropTard() {
+      var n = nuit(TODAY);
+      if (!n || n.unavailable_reason !== 'past_latest_arrival') return null;
+      return regles().latest_arrival_time || null;
+    }
+
+    // Explication a afficher quand on clique une nuit fermee : seulement si
+    // l'API a marque CETTE nuit « past_latest_arrival » (Lovable, 25/09/2026 :
+    // la note globale s'affichait sur toutes les dates, l'hote de Secret Love
+    // Garden a cru le 03/10 fermee). Le texte de l'API prime.
+    function explicationNuit(d) {
+      var n = nuit(d);
+      if (!n || n.unavailable_reason !== 'past_latest_arrival') return null;
+      return n.unavailable_message || messageTropTard(regles().latest_arrival_time);
+    }
+
+    // Durée min / max d'un séjour qui ARRIVE le jour `arr` : c'est la grille de
+    // la nuit d'arrivée qui fait foi (booking-availability renvoie
+    // min_duration / max_duration par nuit). VELVET & LEATHER, 07/10/2026 :
+    // nuit du 07/11 à 2 nuits minimum, le séjour d'une nuit était cliquable
+    // puis refusé par le devis. Repli sur les règles du logement.
+    function dureesSejour(arr) {
+      var n = (arr && nuit(arr)) || {}, r = regles();
+      return {
+        min: Math.max(1, n.min_duration || r.min_duration || 1),
+        max: n.max_duration || r.max_duration || 30
+      };
+    }
+
+    // Le départ `d` est-il possible pour une arrivée `arr` ? Toutes les nuits
+    // du séjour doivent être libres, la durée dans la fourchette de la nuit
+    // d'arrivée, et le jour de départ ne doit pas être fermé aux départs.
+    function departPossibleDepuis(arr, d) {
+      if (!arr || d <= arr) return false;
+      var lim = dureesSejour(arr), nb = nbNuits(arr, d);
+      if (nb < lim.min || nb > lim.max) return false;
+      var c = new Date(arr);
+      while (c < d) {
+        var x = nuit(c);
+        if (!x || !x.available) return false;
+        c = plusJours(c, 1);
+      }
+      var dep = nuit(d);
+      return !(dep && dep.check_out_ok === false);
+    }
+
+    // Existe-t-il au moins un départ possible depuis `arr` ? Sans ce contrôle,
+    // une nuit libre isolée sur une période à 2 nuits minimum restait
+    // cliquable comme arrivée, sans aucun départ ensuite (Elixir, 02/10).
+    // Une nuit hors des données chargées ne bloque pas : le devis tranchera.
+    function aUnDepart(arr) {
+      var lim = dureesSejour(arr), c = new Date(arr);
+      for (var k = 1; k <= Math.min(lim.max, 60); k++) {
+        var x = nuit(c);
+        if (!x) return true;
+        if (!x.available) return false;
+        c = plusJours(c, 1);
+        if (k >= lim.min) {
+          var dep = nuit(c);
+          if (!dep || dep.check_out_ok !== false) return true;
+        }
+      }
+      return false;
+    }
+
+    // Message « durée minimum » pour une arrivée donnée, ou null : il donne
+    // le premier départ possible en toutes lettres.
+    function messageDureeMin(arr, n) {
+      if (!arr || !n || n < 2 || !t.minStay) return null;
+      return t.minStay.replace('{n}', n).replace('{date}', dateJour(plusJours(arr, n)));
+    }
+
+    // Arrivée impossible faute de départ : on dit pourquoi, sans inviter à
+    // « sélectionner 2 nuits » quand c'est justement impossible à cette date.
+    // Vaut pour n'importe quel minimum (2, 3, 4… nuits) : on nomme la
+    // première nuit déjà réservée dans la durée minimum, sinon on dit
+    // simplement qu'aucun départ n'est possible (jours de départ fermés).
+    function messageArriveeBloquee(d, n) {
+      if (!n || n < 2) return null;
+      for (var k = 1; k < n; k++) {
+        var x = nuit(plusJours(d, k));
+        if (x && !x.available) {
+          if (!t.minStayNightBooked) return null;
+          return t.minStayNightBooked.replace('{n}', n).replace('{date}', dateJour(d)).replace('{nuit}', dateJour(plusJours(d, k)));
+        }
+      }
+      return t.minStayNoDeparture ? t.minStayNoDeparture.replace('{n}', n).replace('{date}', dateJour(d)) : null;
+    }
+
+    // Une date est-elle choisissable comme arrivée / départ ?
+    function arriveePossible(d) {
+      var n = nuit(d);
+      return !!(n && n.available && n.check_in_ok !== false && d >= TODAY && aUnDepart(d));
+    }
+
+    function departPossible(d) { return departPossibleDepuis(S.arr, d); }
+
+    // Clic sur un départ trop proche de l'arrivée, alors que les nuits sont
+    // libres : on l'explique au lieu de déplacer l'arrivée sur ce jour.
+    function explicationDepart(d) {
+      if (!S.arr || S.dep || d <= S.arr) return null;
+      var lim = dureesSejour(S.arr);
+      if (nbNuits(S.arr, d) >= lim.min) return null;
+      var c = new Date(S.arr);
+      while (c < d) {
+        var x = nuit(c);
+        if (!x || !x.available) return null;
+        c = plusJours(c, 1);
+      }
+      return messageDureeMin(S.arr, lim.min);
+    }
+
+    // Nuit libre et ouverte aux arrivées, mais sans départ possible : on
+    // explique le minimum plutôt que de griser sans raison.
+    function explicationArrivee(d) {
+      var n = nuit(d);
+      if (!n || !n.available || n.check_in_ok === false || d < TODAY || aUnDepart(d)) return null;
+      return messageArriveeBloquee(d, dureesSejour(d).min);
+    }
+
+    // Devis pas encore la : pas de total local. Sans nuits chargees il
+    // vaudrait 0 €, et Google VR comparerait ce montant au sejour.
+    function devisEnAttente() {
+      return !config.mock && S.devisEnCours && !S.devis;
+    }
+
+    function voyageurs() {
+      return libelleVoyageurs(t, S.guests);
+    }
+
+    // ---- 5. Rendu ----------------------------------------------------
+    function rendre() {
+      var n = nuits(), ok = n > 0;
+      var h = '<div class="lb-card">';
+      if (config.mock) h += '<p class="lb-mock lb-mock--top">' + echapper(t.mockNotice) + '</p>';
+      else if (MODE_DONNEES === 'live') {
+        h += '<p class="lb-mock lb-mock--top lb-mock--live">Mode preprod : donnees reelles'
+          + (API_REF ? ' (' + echapper(API_REF) + ')' : '') + '</p>';
+      }
+
+      // En-tête prix
+      h += '<div class="lb-head"><div>';
+      if (ok && devisEnAttente()) {
+        h += '<div class="lb-price"><span class="lb-price__from">' + echapper(t.quoteLoading) + '</span></div>'
+          + '<div class="lb-price__sub">' + n + ' ' + echapper(n > 1 ? t.nights : t.night) + ' · ' + echapper(voyageurs()) + '</div>';
+      } else if (ok) {
+        h += '<div class="lb-price"><span class="lb-price__amount">' + euros(total()) + '</span>'
+          + '<span class="lb-price__unit">' + echapper(t.total) + '</span></div>'
+          + '<div class="lb-price__sub">' + n + ' ' + echapper(n > 1 ? t.nights : t.night) + ' · ' + echapper(voyageurs()) + '</div>';
+      } else {
+        h += '<div class="lb-price"><span class="lb-price__from">' + echapper(t.from) + '</span>'
+          + '<span class="lb-price__amount">' + euros(config.fromPriceCents) + '</span>'
+          + '<span class="lb-price__unit">' + echapper(t.perNight) + '</span></div>'
+          + '<div class="lb-price__sub">' + echapper(voyageurs()) + '</div>';
+      }
+      h += '</div>';
+      // La note Judge.me reste affichée par le thème dans l'en-tête de la
+      // colonne (loven-product-reviews) : on ne la duplique pas ici.
+      h += '</div>';
+
+      // Bloc dates — le filet foncé, c'est lui qu'on voit en premier
+      var ouvertCal = S.ouvert === 'calendar';
+      h += '<div class="lb-dates' + (ouvertCal ? ' is-open' : '') + '" data-act="calendar">'
+        + '<button type="button" class="lb-dates__cell" data-act="calendar"><span class="lb-dates__label">' + echapper(t.arrival) + '</span>'
+        + '<span class="lb-dates__value' + (S.arr ? '' : ' is-empty') + '">' + (S.arr ? dateNumerique(S.arr) : echapper(t.addDate)) + '</span></button>'
+        + '<button type="button" class="lb-dates__cell" data-act="calendar"><span class="lb-dates__label">' + echapper(t.departure) + '</span>'
+        + '<span class="lb-dates__value' + (S.dep ? '' : ' is-empty') + '">' + (S.dep ? dateNumerique(S.dep) : echapper(t.addDate)) + '</span></button>'
+        + '</div>';
+
+      if (ouvertCal) h += rendreCalendrier();
+
+      // Options : trois visibles, le reste en popin
+      var options = S.donnees ? S.donnees.options : [];
+      var frais = formFrais(), choix = formChoix(), notes = formNotes();
+      if (frais.length) {
+        h += '<div class="lb-options lb-options--fixed"><div class="lb-options__title">' + echapper(t.mandatoryTitle) + '</div><div class="lb-options__list">';
+        frais.forEach(function (f) { h += rendreFrais(f); });
+        h += '</div></div>';
+      }
+      if (options.length || choix.length) {
+        h += '<div class="lb-options"><div class="lb-options__title">' + echapper(t.addToStay) + '</div><div class="lb-options__list">';
+        choix.forEach(function (f) { h += rendreChoix(f); });
+        options.slice(0, 3).forEach(function (o) { h += rendreOption(o, false); });
+        h += '</div>';
+        if (options.length > 3) {
+          h += '<button type="button" class="lb-options__more' + (S.ouvert === 'options' ? ' is-open' : '') + '" data-act="options">'
+            + echapper(t.showOptions).replace('{count}', options.length) + '</button>';
+        }
+        h += '</div>';
+        if (S.ouvert === 'options') h += rendreOptionsPopin(options);
+      }
+      notes.forEach(function (f) { h += rendreNote(f); });
+
+      // Recapitulatif. Pendant le devis, les lignes locales seraient a 0 €.
+      if (ok && !devisEnAttente()) {
+        h += rendreCoupon();
+        h += rendreRecap();
+      }
+
+      // CTA
+      if (ok) {
+        // Le CTA attend le devis serveur : on n'affiche jamais un total que le
+        // serveur n'a pas confirme. En cas d'erreur le bouton reste actif : un
+        // clic redemande le devis (voir demarrerReservation).
+        var attente = !config.mock && (S.devisEnCours || S.verif);
+        h += '<button type="button" class="btn btn--primary btn--full lb-cta" data-act="book"' + (attente ? ' disabled' : '') + '>'
+          + (attente ? echapper(S.verif ? t.verifying : t.quoteLoading) : echapper(t.book) + ' · ' + euros(total())) + '</button>';
+        if (S.devisErreur === 'generic') h += '<p class="lb-error">' + echapper(t.errGeneric) + '</p>';
+      } else {
+        h += '<button type="button" class="btn btn--primary btn--full lb-cta" data-act="calendar">' + echapper(t.seeAvailability) + '</button>'
+          + '<p class="lb-hint">' + echapper(t.priceExactHint) + '</p>';
+      }
+
+      // Heure limite depassee : les dates viennent d'etre retirees, le message
+      // doit donc survivre a l'absence de dates.
+      // Idem pour un refus du devis (« unavailable ») : avant le 25/09/2026 le
+      // message n'etait rendu qu'avec des dates choisies, or le refus les
+      // retire — le voyageur voyait le widget se vider sans un mot.
+      if (S.devisErreur === 'unavailable') h += '<p class="lb-error">' + echapper(S.noteJour || t.errUnavailable) + '</p>';
+      if (S.devisErreur === 'late') h += '<p class="lb-error">' + echapper(messageTropTard(S.devisHeureLimite)) + '</p>';
+      if (S.devisErreur === 'indispo') h += '<p class="lb-error">' + echapper(t.errDatesUnavailable) + '</p>';
+      if (S.erreur === 'load') h += '<p class="lb-error">' + echapper(t.errGeneric) + '</p>';
+
+      // Réassurance sous le CTA. Uniquement des faits vérifiables ; le reste
+      // viendra du métaobjet.
+      h += '<div class="lb-trust">';
+      // Annulation. Deux sources, dans cet ordre :
+      //  1. la date limite calculee, des que les dates sont choisies — c'est
+      //     l'information la plus concrete pour le voyageur ;
+      //  2. a defaut, le texte libre de l'hebergement (metafield
+      //     hebergement.annulation_texte), visible des l'arrivee sur la fiche.
+      // Quand les deux existent, le texte libre devient le sous-titre de la
+      // date : il precise ce que « annulable » veut dire ici.
+      // 01/10/2026 : le délai calculé (cancelDaysLabel) est toujours le titre
+      // ou le sous-titre ; le texte libre de l'hôte est replié derrière
+      // « Voir les conditions » (S.annulOuvert) au lieu d'être concaténé et
+      // tronqué. Sans aucune information, on le dit plutôt que de laisser vide.
+      var annulDetail = '';
+      if (config.cancelText) {
+        annulDetail = '<button type="button" class="lb-trust__more" data-act="cancel-more" aria-expanded="' + (S.annulOuvert ? 'true' : 'false') + '">'
+          + echapper(S.annulOuvert ? t.cancelLess : t.cancelMore) + '</button>'
+          + (S.annulOuvert ? '<p class="lb-trust__detail">' + echapper(config.cancelText) + '</p>' : '');
+      }
+      var annulPosee = false;
+      if (ok && config.cancelDaysBefore != null) {
+        var limite = plusJours(S.arr, -Number(config.cancelDaysBefore));
+        if (limite >= TODAY) {
+          h += ligneTrust(
+            ICONES.calendar,
+            echapper(t.cancelUntil).replace('{date}', dateLongue(limite)),
+            echapper(config.cancelDaysLabel || t.cancelHint) + annulDetail
+          );
+        } else {
+          // Délai déjà dépassé pour ces dates : ne jamais afficher « jusqu'à
+          // 10 jours avant » quand on est à 3 jours de l'arrivée.
+          h += ligneTrust(ICONES.calendar, echapper(t.cancelConditions), echapper(t.cancelPassed) + annulDetail);
+        }
+        annulPosee = true;
+      }
+      if (!annulPosee) {
+        if (config.cancelDaysLabel) {
+          h += ligneTrust(ICONES.calendar, echapper(t.cancelTitle), echapper(config.cancelDaysLabel) + annulDetail);
+        } else if (config.cancelText) {
+          h += ligneTrust(ICONES.calendar, echapper(t.cancelConditions), echapper(resumeAnnulation(config.cancelText)) + annulDetail);
+        } else {
+          h += ligneTrust(ICONES.calendar, echapper(t.cancelUnknownTitle), echapper(t.cancelUnknownHint));
+        }
+      }
+      if (config.staysCount > 0) {
+        h += ligneTrust(ICONES.user, echapper(t.stays).replace('{count}', config.staysCount), echapper(t.certifiedHost));
+      }
+      h += ligneTrust(ICONES.card, echapper(t.klarna), echapper(t.klarnaHint));
+      h += '</div>';
+
+      h += '</div>';
+      if (S.ouvert === 'contact') h += rendreContact();
+      if (S.ouvert && estMobile()) h += '<div class="lb-backdrop" data-act="close"></div>';
+
+      racine.innerHTML = h;
+      racine.classList.toggle('is-open', !!S.ouvert);
+      majBarreSticky();
+      positionnerPopin();
+    }
+
+    // La colonne de droite du thème est un conteneur sticky en overflow: auto,
+    // qui rognerait une popin en position absolute. On la positionne donc en
+    // fixed, ancrée sous le bloc dates (desktop uniquement ; mobile = bottom sheet).
+    function positionnerPopin() {
+      var pop = racine.querySelector('.lb-pop');
+      if (!pop || estMobile()) return;
+      var ancre = pop.classList.contains('lb-pop--calendar')
+        ? racine.querySelector('.lb-dates')
+        : racine.querySelector('.lb-options__more') || racine.querySelector('.lb-dates');
+      var r = ancre.getBoundingClientRect(), rc = racine.getBoundingClientRect();
+      var largeur = Math.min(pop.classList.contains('lb-pop--calendar') ? 700 : rc.width + 16, window.innerWidth - 32);
+      pop.style.position = 'fixed';
+      pop.style.top = Math.round(r.bottom + 8) + 'px';
+      pop.style.right = Math.max(16, Math.round(window.innerWidth - rc.right - 8)) + 'px';
+      pop.style.left = 'auto';
+      pop.style.width = Math.round(largeur) + 'px';
+      pop.style.maxHeight = Math.round(window.innerHeight - r.bottom - 24) + 'px';
+    }
+
+    window.addEventListener('scroll', function () { if (S.ouvert && S.ouvert !== 'contact') positionnerPopin(); }, { passive: true });
+    // Un resize n'est PAS un evenement rare sur telephone : le clavier qui
+    // s'ouvre (Android) et la barre d'URL qui se retracte au scroll (iOS) en
+    // emettent un a chaque fois. Reconstruire la modale a ce moment-la vole le
+    // focus au champ en cours de saisie, referme le clavier et replace le
+    // curseur au debut du champ — le voyageur ne peut plus rien saisir. On ne
+    // reconstruit donc que si la bascule mobile/desktop a reellement eu lieu
+    // (le rendu differe : calendrier 1 ou 2 mois, popin ou bottom sheet).
+    var etaitMobile = estMobile();
+    window.addEventListener('resize', function () {
+      if (!S.ouvert) return;
+      var mobile = estMobile();
+      if (mobile === etaitMobile) { positionnerPopin(); return; }
+      etaitMobile = mobile;
+      var form = racine.querySelector('[data-lb-form]');
+      if (form) lireFormulaire(form);
+      rendre();
+    });
+
+    function ligneRecap(a, b) {
+      return '<div class="lb-recap__row"><span>' + a + '</span><span>' + b + '</span></div>';
+    }
+
+    function ligneTrust(ico, titre, sous) {
+      return '<div class="lb-trust__item">' + ico + '<div><div class="lb-trust__title">' + titre + '</div>'
+        + (sous ? '<div class="lb-trust__sub">' + sous + '</div>' : '') + '</div></div>';
+    }
+
+    // Première phrase du texte libre, 140 caractères maximum, pour la ligne
+    // de réassurance quand l'hôte n'a pas renseigné de délai chiffré.
+    function resumeAnnulation(texte) {
+      var t1 = String(texte || '').trim();
+      var m = t1.match(/^[^.!?]{1,140}[.!?]/);
+      if (m) return m[0];
+      return t1.length > 140 ? t1.slice(0, 137).replace(/\s+\S*$/, '') + '…' : t1;
+    }
+
+    function rendreOption(o, complet) {
+      var coche = !!S.opts[o.id];
+      var prix = euros(prixOptionAffiche(o)) + (o.per_night ? ' ' + t.perNight : '');
+      return '<label class="lb-opt' + (coche ? ' is-on' : '') + '">'
+        + '<span class="lb-opt__box' + (coche ? ' is-on' : '') + '" aria-hidden="true"></span>'
+        + '<input type="checkbox" class="lb-opt__input" data-act="opt" data-id="' + echapper(o.id) + '"' + (coche ? ' checked' : '') + '>'
+        + '<span class="lb-opt__txt"><span class="lb-opt__name">' + echapper(o.name) + '</span>'
+        + (complet && o.description ? '<span class="lb-opt__desc">' + echapper(o.description) + '</span>' : '') + '</span>'
+        + '<span class="lb-opt__price">' + prix + '</span>'
+        + '</label>';
+    }
+
+    function rendreFrais(f) {
+      return '<div class="lb-opt lb-opt--fixed"><span class="lb-opt__txt"><span class="lb-opt__name">' + echapper(f.label) + '</span>'
+        + (f.description ? '<span class="lb-opt__desc">' + echapper(f.description) + '</span>' : '') + '</span>'
+        + '<span class="lb-opt__price">' + (f.price_cents < 0 ? '\u2212 ' : '') + euros(Math.abs(prixForm(f))) + (f.per_night ? ' ' + echapper(t.perNight) : '') + '</span></div>';
+    }
+
+    function rendreChoix(f) {
+      var v = S.formValeurs[f.id];
+      var h = '<fieldset class="lb-choice"><legend class="lb-choice__legend">' + echapper(f.label) + (f.required ? '<span class="lb-req">*</span>' : '') + '</legend>';
+      f.children.forEach(function (c) {
+        var on = v === c.id, prix = prixForm(c);
+        h += '<label class="lb-opt lb-opt--radio' + (on ? ' is-on' : '') + '">'
+          + '<span class="lb-opt__box lb-opt__box--radio' + (on ? ' is-on' : '') + '" aria-hidden="true"></span>'
+          + '<input type="radio" class="lb-opt__input" name="lb-choice-' + echapper(f.id) + '" data-act="choice" data-id="' + echapper(f.id) + '" data-child="' + echapper(c.id) + '"' + (on ? ' checked' : '') + '>'
+          + '<span class="lb-opt__txt"><span class="lb-opt__name">' + echapper(c.label) + '</span></span>'
+          + (prix ? '<span class="lb-opt__price">' + euros(prix) + (c.per_night ? ' ' + echapper(t.perNight) : '') + '</span>' : '')
+          + '</label>';
+      });
+      return h + '</fieldset>';
+    }
+
+    function rendreNote(f) {
+      return '<p class="lb-note">' + echapper(f.label)
+        + (f.price_cents ? ' \u2014 ' + euros(prixForm(f)) + (f.per_night ? ' ' + echapper(t.perNight) : '') : '') + '</p>';
+    }
+
+    function rendreOptionsPopin(options) {
+      var h = '<div class="lb-pop lb-pop--options" role="dialog" aria-label="' + echapper(t.optionsTitle) + '">'
+        + '<div class="lb-pop__head"><div><div class="lb-pop__title">' + echapper(t.optionsTitle).replace('{count}', options.length) + '</div>'
+        + '<div class="lb-pop__hint">' + echapper(t.optionsHint) + '</div></div>'
+        + '<button type="button" class="lb-pop__close" data-act="close" aria-label="' + echapper(t.close) + '">' + ICONES.close + '</button></div>'
+        + '<div class="lb-options__list lb-options__list--full">';
+      options.forEach(function (o) { h += rendreOption(o, true); });
+      var choisies = optionsChoisies();
+      h += '</div><div class="lb-pop__foot"><span>' + (choisies.length ? choisies.length + ' · ' + euros(totalOptions()) : '') + '</span>'
+        + '<button type="button" class="lb-link" data-act="close">' + echapper(t.close) + '</button></div></div>';
+      return h;
+    }
+
+    function rendreCalendrier() {
+      var nbMois = estMobile() ? 1 : 2;
+      var h = '<div class="lb-pop lb-pop--calendar" role="dialog" aria-label="' + echapper(t.chooseDates) + '">'
+        + '<div class="lb-pop__head"><div><div class="lb-pop__title">' + echapper(t.chooseDates) + '</div>'
+        + '<div class="lb-pop__hint">' + echapper(config.mock ? t.mockRates : (S.arr && !S.dep ? t.selectDeparture : t.priceUnderDate)) + '</div></div>'
+        + '<div class="lb-nav"><button type="button" class="lb-nav__btn" data-act="prev"' + (S.mois <= premierDuMois(TODAY) ? ' disabled' : '') + ' aria-label="' + echapper(t.prevMonth) + '">' + ICONES.prev + '</button>'
+        + '<button type="button" class="lb-nav__btn" data-act="next" aria-label="' + echapper(t.nextMonth) + '">' + ICONES.next + '</button></div></div>';
+      if (S.noteJour) h += '<p class="lb-note lb-pop__note">' + echapper(S.noteJour) + '</p>';
+      h += '<div class="lb-months lb-months--' + nbMois + '">';
+      for (var i = 0; i < nbMois; i++) h += rendreMois(moisSuivant(S.mois, i));
+      h += '</div>';
+      if (S.chargement) h += '<div class="lb-loading" aria-hidden="true"></div>';
+      h += '<div class="lb-pop__foot"><div class="lb-legend">'
+        + '<span><i class="lb-dot lb-dot--free"></i>' + echapper(t.available) + '</span>'
+        + '<span><i class="lb-dot lb-dot--sel"></i>' + echapper(t.yourDates) + '</span>'
+        + '<span><i class="lb-dot lb-dot--busy"></i>' + echapper(t.booked) + '</span></div>'
+        + '<button type="button" class="lb-link" data-act="clear">' + echapper(S.arr ? t.clearDates : t.close) + '</button></div></div>';
+      return h;
+    }
+
+    function rendreMois(m) {
+      var y = m.getFullYear(), mo = m.getMonth();
+      var premier = new Date(y, mo, 1), dernier = new Date(y, mo + 1, 0);
+      var decal = (premier.getDay() + 6) % 7;
+      var h = '<div class="lb-month"><div class="lb-month__name">' + MOIS[mo] + ' ' + y + '</div><div class="lb-dow">';
+      JOURS_COURTS.forEach(function (j) { h += '<span>' + j + '</span>'; });
+      h += '</div><div class="lb-grid">';
+      for (var e = 0; e < decal; e++) h += '<span class="lb-day lb-day--empty"></span>';
+      for (var j = 1; j <= dernier.getDate(); j++) {
+        var d = new Date(y, mo, j), n = nuit(d), tm = d.getTime();
+        var choisirDepart = S.arr && !S.dep;
+        var cliquable = choisirDepart ? (departPossible(d) || arriveePossible(d)) : arriveePossible(d);
+        var estSel = (S.arr && tm === S.arr.getTime()) || (S.dep && tm === S.dep.getTime());
+        var dans = S.arr && S.dep && tm > S.arr.getTime() && tm < S.dep.getTime();
+        var libre = n && n.available && d >= TODAY;
+        var explique = !cliquable && !!(explicationNuit(d) || (!S.arr || S.dep ? explicationArrivee(d) : null));
+        var cls = 'lb-day' + (estSel ? ' is-sel' : '') + (dans ? ' is-in' : '') + (!libre ? ' is-busy' : '') + (explique ? ' is-late' : '');
+        h += '<button type="button" class="' + cls + '" data-act="day" data-t="' + tm + '"' + (cliquable ? '' : (explique ? ' aria-disabled="true"' : ' disabled')) + '>'
+          + '<b>' + j + '</b><i' + (config.mock ? ' class="is-mock"' : '') + '>'
+          + (libre && n
+              ? (prixNuitAffiche(n).avant
+                  ? '<s>' + euros(prixNuitAffiche(n).avant).replace(' €', '') + '</s> '
+                  : '') + euros(prixNuitAffiche(n).cents).replace(' €', '&nbsp;€')
+              : '&nbsp;')
+          + '</i></button>';
+      }
+      return h + '</div></div>';
+    }
+
+    function rendreContact() {
+      var n = nuits();
+      var h = '<div class="lb-modal-overlay" data-act="close-contact"><div class="lb-modal" role="dialog" aria-modal="true" aria-labelledby="lb-modal-title">'
+        + '<button type="button" class="lb-modal__close" data-act="close-contact" aria-label="' + echapper(t.close) + '">' + ICONES.close + '</button>'
+        + '<div class="lb-modal__grid"><div class="lb-modal__main">'
+        + '<h3 id="lb-modal-title" class="lb-modal__title">' + echapper(t.oneMoreStep) + '</h3>'
+        + '<p class="lb-modal__lede">' + echapper(t.contactLede) + '</p>'
+        + '<form class="lb-form" data-lb-form data-etape="' + S.etape + '" novalidate>';
+      if (S.demande) return rendreDemandeTransmise();
+      var v = S.saisie;
+      function champ(id, nom, libelle, attrs, aide) {
+        return '<label class="lb-form__label" for="' + id + '">' + echapper(libelle) + '<span class="lb-req">*</span></label>'
+          + '<input class="lb-form__input" id="' + id + '" name="' + nom + '" ' + attrs + ' value="' + echapper(v[nom] || '') + '" required>'
+          + (aide ? '<p class="lb-form__help">' + echapper(aide) + '</p>' : '');
+      }
+      if (S.etape === 1) {
+        h += '<div class="lb-form__row"><div>' + champ('lb-first', 'first_name', t.firstName, 'type="text" autocomplete="given-name"')
+          + '</div><div>' + champ('lb-last', 'last_name', t.lastName, 'type="text" autocomplete="family-name"') + '</div></div>'
+          + champ('lb-email', 'email', t.email, 'type="email" autocomplete="email" inputmode="email"', t.emailHelp)
+          + champ('lb-phone', 'phone', t.phone, 'type="tel" autocomplete="tel" inputmode="tel"', t.phoneHelp);
+        formTextes().forEach(function (f) {
+          var val = echapper(S.formValeurs[f.id] || ''), id = 'lb-form-' + f.id;
+          h += '<label class="lb-form__label" for="' + id + '">' + echapper(f.label) + (f.required ? '<span class="lb-req">*</span>' : '') + '</label>'
+            + (f.type === 'long-text'
+              ? '<textarea class="lb-form__input lb-form__input--area" id="' + id + '" name="form:' + echapper(f.id) + '" rows="3"' + (f.required ? ' required' : '') + '>' + val + '</textarea>'
+              : '<input class="lb-form__input" id="' + id + '" name="form:' + echapper(f.id) + '" type="text" value="' + val + '"' + (f.required ? ' required' : '') + '>');
+        });
+        // Consentement marketing (v1-2026-11-05) : information + case de REFUS non cochee, facultative.
+        h += '<div class="lb-marketing" data-consent-version="v1-2026-11-05">'
+          + '<p class="lb-form__help">Vous recevrez nos idées d’escapades et offres Love’nSpa par email. Désinscription en un clic à tout moment.</p>'
+          + '<label class="lb-opt lb-consent' + (S.optOut ? ' is-on' : '') + '">'
+          + '<span class="lb-opt__box' + (S.optOut ? ' is-on' : '') + '" aria-hidden="true"></span>'
+          + '<input type="checkbox" class="lb-opt__input" id="lb-marketing-optout" data-lb-optout' + (S.optOut ? ' checked' : '') + '>'
+          + '<span class="lb-opt__txt"><span class="lb-opt__name">Je ne souhaite pas recevoir les idées d’escapades Love’nSpa par email</span></span></label></div>';
+        h += '<p class="lb-form__error" data-lb-error hidden></p>'
+          + '<button type="submit" class="btn btn--primary btn--full lb-cta" data-lb-submit>' + echapper(t.continueBtn) + '</button>'
+          + '<p class="lb-form__help lb-form__help--center">' + echapper(t.addressNext) + '</p>';
+      } else {
+        h += '<p class="lb-form__step">' + echapper(t.billingTitle) + '</p>'
+          + champ('lb-street', 'street', t.street, 'type="text" autocomplete="street-address"')
+          + '<div class="lb-form__row lb-form__row--zip"><div>' + champ('lb-zip', 'zip', t.zip, 'type="text" autocomplete="postal-code" inputmode="numeric"')
+          + '</div><div>' + champ('lb-city', 'city', t.city, 'type="text" autocomplete="address-level2"') + '</div></div>'
+          + champ('lb-country', 'country', t.country, 'type="text" autocomplete="country-name"');
+        var consentements = formConsentements();
+        if (consentements.length) {
+          h += '<div class="lb-consents">';
+          consentements.forEach(function (f) {
+            var on = S.formValeurs[f.id] === true;
+            h += '<label class="lb-opt lb-consent' + (on ? ' is-on' : '') + '">'
+              + '<span class="lb-opt__box' + (on ? ' is-on' : '') + '" aria-hidden="true"></span>'
+              + '<input type="checkbox" class="lb-opt__input" name="form:' + echapper(f.id) + '" data-lb-consent' + (on ? ' checked' : '') + '>'
+              + '<span class="lb-opt__txt"><span class="lb-opt__name">' + echapper(f.label) + '</span>'
+              + (f.description ? '<span class="lb-opt__desc">' + echapper(f.description) + '</span>' : '') + '</span></label>';
+          });
+          h += '</div>';
+        }
+        var bloque = S.refuse || consentements.some(function (f) { return S.formValeurs[f.id] !== true; });
+        h += '<p class="lb-form__error" data-lb-error hidden></p>'
+          + '<button type="submit" class="btn btn--primary btn--full lb-cta" data-lb-submit' + (S.envoi || bloque ? ' disabled' : '') + '>'
+          + (S.envoi ? echapper(t.redirecting) : echapper(t.pay) + ' ' + euros(total())) + '</button>'
+          + '<button type="button" class="lb-form__back" data-act="contact-back">' + echapper(t.back) + '</button>';
+      }
+      h += '<div class="lb-trust__item lb-trust__item--secure">' + ICONES.shield + '<div class="lb-trust__sub">' + echapper(t.secure) + '</div></div>'
+        + '</form></div>'
+        + '<div class="lb-modal__side"><div class="lb-modal__stay">' + dateCourte(S.arr) + ' → ' + dateCourte(S.dep) + '</div>'
+        + '<div class="lb-modal__place">' + echapper(config.title) + ' · ' + echapper(voyageurs()) + '</div>';
+      h += rendreRecap();
+      h += '</div></div></div></div>'; // side, grid, modal, overlay
+      return h;
+    }
+
+    // Logement « sur demande » : la reservation existe chez Bookingmood mais
+    // l'hote doit l'accepter avant qu'un lien de paiement existe. On remplace
+    // le formulaire par un ecran de confirmation : rien n'est debite, les
+    // dates ne sont pas encore bloquees. C'est l'ecran final : pas de page
+    // externe, et aucune relance possible (une seconde demande = un doublon).
+    function rendreDemandeTransmise() {
+      var d = S.demande;
+      var corps = t.requestBody.replace('{dates}', dateCourte(S.arr) + ' → ' + dateCourte(S.dep));
+      return '<div class="lb-modal-overlay" data-act="close-contact"><div class="lb-modal lb-modal--sent" role="dialog" aria-modal="true" aria-labelledby="lb-modal-title">'
+        + '<button type="button" class="lb-modal__close" data-act="close-contact" aria-label="' + echapper(t.close) + '">' + ICONES.close + '</button>'
+        + '<div class="lb-sent">'
+        + '<div class="lb-sent__icon" aria-hidden="true">' + ICONES.shield + '</div>'
+        + '<h3 id="lb-modal-title" class="lb-modal__title">' + echapper(t.requestTitle) + '</h3>'
+        + '<p class="lb-sent__body">' + echapper(corps) + '</p>'
+        + '<p class="lb-sent__meta">' + echapper(t.requestAmount) + ' ' + euros(d.total_cents)
+        + (d.reference ? ' · ' + echapper(t.requestRef) + ' ' + echapper(d.reference) : '') + '</p>'
+        + '<button type="button" class="btn btn--primary btn--full lb-cta" data-act="close-contact">' + echapper(t.close) + '</button>'
+        + '</div></div></div>';
+    }
+
+    // Barre sticky mobile : on réutilise celle du thème.
+    function majBarreSticky() {
+      var from = document.querySelector('.loven-sticky-bar__from');
+      var period = document.querySelector('.loven-sticky-bar__period');
+      if (!from) return;
+      var n = nuits();
+      if (n > 0 && devisEnAttente()) {
+        from.textContent = t.quoteLoading || '';
+        if (period) period.textContent = n + ' ' + (n > 1 ? t.nights : t.night);
+      } else if (n > 0) {
+        from.textContent = euros(total());
+        if (period) period.textContent = n + ' ' + (n > 1 ? t.nights : t.night) + ' · ' + t.total;
+      } else {
+        from.textContent = t.from + ' ' + euros(config.fromPriceCents);
+        if (period) period.textContent = t.perNight;
+      }
+    }
+
+    // ---- Interactions ------------------------------------------------
+    function ouvrir(quoi) {
+      S.ouvert = quoi;
+      if (quoi === 'calendar') {
+        tracker.envoyer('lns_calendar_open', { month_shown: cle(S.mois).slice(0, 7) });
+        if (!S.donnees) chargerMois(S.mois); else { rendre(); verifierDisponibiliteMois(); }
+      } else if (quoi === 'options') {
+        tracker.envoyer('lns_options_open');
+        rendre();
+      } else {
+        rendre();
+      }
+      if (quoi && estMobile()) document.body.classList.add('lb-lock');
+    }
+
+    function fermer() {
+      S.ouvert = null;
+      document.body.classList.remove('lb-lock');
+      rendre();
+    }
+
+    function choisirJour(d) {
+      S.refuse = false;
+      S.demande = null;
+      S.noteJour = null;
+      var explication = explicationNuit(d) || explicationArrivee(d);
+      if (explication && !arriveePossible(d) && !(S.arr && !S.dep && departPossible(d))) { S.noteJour = explication; rendre(); return; }
+      var tropCourt = explicationDepart(d);
+      if (tropCourt) { S.noteJour = tropCourt; rendre(); return; }
+      if (S.devisErreur === 'late') { S.devisErreur = null; S.devisHeureLimite = null; }
+      if (S.devisErreur === 'indispo') S.devisErreur = null;
+      if (!S.arr || S.dep || d <= S.arr) {
+        if (!arriveePossible(d)) return;
+        S.arr = d; S.dep = null;
+        S.noteJour = messageDureeMin(d, dureesSejour(d).min);
+        rendre();
+        return;
+      }
+      if (!departPossible(d)) {
+        if (arriveePossible(d)) { S.arr = d; S.dep = null; S.noteJour = messageDureeMin(d, dureesSejour(d).min); rendre(); }
+        return;
+      }
+      S.dep = d;
+      S.devis = null; S.devisErreur = null;
+      demanderDevis();
+      var n = nuits();
+      tracker.envoyer('lns_dates_selected', {
+        arrival: cle(S.arr), departure: cle(S.dep), nights: n,
+        price_per_night: totalNuits() / n / 100, value: total() / 100, currency: 'EUR',
+        lead_time_days: nbNuits(TODAY, S.arr), weekday_arrival: S.arr.getDay()
+      });
+      fermer();
+    }
+
+    function choisirChoix(id, enfant) {
+      if (S.formValeurs[id] === enfant) return;
+      S.formValeurs[id] = enfant;
+      demanderDevis();
+      rendre();
+    }
+
+    function basculerOption(id) {
+      var o = (S.donnees.options || []).filter(function (x) { return x.id === id; })[0];
+      if (!o) return;
+      var coche = !S.opts[o.id];
+      S.opts[o.id] = coche;
+      demanderDevis();
+      var n = nuits() || 1;
+      var montant = prixOptionAffiche(o) * (o.per_night ? n : 1) / 100;
+      tracker.envoyer(coche ? 'add_to_cart' : 'remove_from_cart', {
+        currency: 'EUR', value: montant,
+        ecommerce: { items: [{ item_id: 'opt_' + o.id, item_name: o.name, price: montant, quantity: 1 }] }
+      });
+      rendre();
+    }
+
+    function itemsGA4() {
+      var items = [{ item_id: config.handle, item_name: config.title, item_category: config.region, item_category2: String(config.spicyness || ''), price: totalNuits() / 100 / nuits(), quantity: nuits() }];
+      optionsChoisies().forEach(function (l) {
+        items.push({ item_id: 'opt_' + l.opt.id, item_name: l.opt.name, price: prixOptionAffiche(l.opt) / 100, quantity: l.qty });
+      });
+      return items;
+    }
+
+    function demarrerReservation() {
+      if (!nuits()) return;
+      if (!config.mock && !S.devis) { demanderDevis(); return; }
+      // Bookingmood a le dernier mot sur la disponibilite : calendrier de prix,
+      // PriceLabs, jours d'arrivee interdits. Rien de tout cela n'est deductible
+      // de notre cache (reponse de leur support, 14/09/2026), d'ou ce controle.
+      //
+      // Il est pose ICI et pas dans demanderDevis : mesure serveur, il coute
+      // 680 ms en mediane et jusqu'a 2,8 s. A chaque changement de dates il
+      // ralentirait tout le monde ; au clic il ne coute qu'une fois, a celui
+      // qui a decide d'acheter, et il reste avant le formulaire — le voyageur
+      // l'apprend donc toujours avant de saisir quoi que ce soit.
+      if (!config.mock && S.verifCle !== S.devisCle) { verifierPuisOuvrir(); return; }
+      ouvrirFormulaire();
+    }
+
+    function ouvrirFormulaire() {
+      tracker.envoyer('begin_checkout', {
+        currency: 'EUR', value: total() / 100,
+        coupon: S.coupon ? S.coupon.code : undefined,
+        ecommerce: { items: itemsGA4() }
+      });
+      S.etape = 1;
+      ouvrir('contact');
+      window.setTimeout(function () {
+        var inp = racine.querySelector('#lb-first');
+        if (inp) inp.focus();
+      }, 50);
+    }
+
+    function verifierPuisOuvrir() {
+      var cle = S.devisCle;
+      S.verif = true;
+      S.devisErreur = null;
+      rendre();
+      function laisserPasser(devis) {
+        S.verif = false;
+        // Une verification qui echoue ne doit JAMAIS bloquer une vente :
+        // booking-create refait le controle, c'est le dernier filet.
+        if (devis) S.devis = devis;
+        S.verifCle = cle;
+        ouvrirFormulaire();
+      }
+      fetch(urlDevis() + '&validate=1', { headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.json().then(function (j) { return { status: r.status, json: j }; }); })
+        .then(function (res) {
+          if (cle !== S.devisCle) { S.verif = false; rendre(); return; }
+          if (res.status === 409 && res.json && res.json.error === 'dates_unavailable') {
+            S.verif = false;
+            S.devisErreur = 'indispo';
+            S.arr = null; S.dep = null;
+            S.donnees = null;
+            source.invalider();
+            chargerMois(S.mois);
+            return;
+          }
+          laisserPasser(res.status === 200 && res.json && typeof res.json.total_cents === 'number' ? res.json : null);
+        })
+        .catch(function () { laisserPasser(null); });
+    }
+
+    // ---- 6. Réservation -------------------------------------------------
+    function lireFormulaire(form) {
+      Array.prototype.forEach.call(form.querySelectorAll('input[name], textarea[name]'), function (i) {
+        if (i.name.indexOf('form:') === 0) {
+          S.formValeurs[i.name.slice(5)] = i.type === 'checkbox' ? !!i.checked : (i.value || '').trim();
+        } else {
+          S.saisie[i.name] = (i.value || '').trim();
+        }
+      });
+    }
+
+    function soumettre(form) {
+      lireFormulaire(form);
+      var v = S.saisie;
+      var err = form.querySelector('[data-lb-error]');
+      function erreur(msg, champ) {
+        err.textContent = msg;
+        err.hidden = false;
+        // On envoie le nom du champ, jamais ce que le voyageur a saisi.
+        tracker.envoyer('lns_form_error', { step: S.etape, field: champ || 'inconnu' });
+      }
+
+      if (S.etape === 1) {
+        if ((v.first_name || '').length < 2 || (v.last_name || '').length < 2) return erreur(t.errInvalidName, 'name');
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email || '')) return erreur(t.errInvalidEmail, 'email');
+        if ((v.phone || '').replace(/\D/g, '').length < 9) return erreur(t.errInvalidPhone, 'phone');
+        // Coordonnees acquises : c'est ici que la relance devient possible,
+        // avant meme l'adresse. L'evenement part maintenant, pas au paiement.
+        tracker.envoyer('lns_contact_submitted', { has_coupon: !!S.coupon });
+        S.etape = 2;
+        if (!v.country) S.saisie.country = t.defaultCountry;
+        rendre();
+        window.setTimeout(function () { var i = racine.querySelector('#lb-street'); if (i) i.focus(); }, 50);
+        return;
+      }
+
+      if ((v.street || '').length < 4 || (v.zip || '').length < 4 || (v.city || '').length < 2 || (v.country || '').length < 2) return erreur(t.errInvalidAddress, 'address');
+      var manquants = formManquants();
+      if (manquants.length) return erreur(t.errMissing.replace('{fields}', libellesManquants(manquants)), 'form:' + manquants.map(function (f) { return f.type; }).join(','));
+      err.hidden = true;
+
+      var prenom = v.first_name, nom = v.last_name, email = v.email, phone = v.phone;
+      tracker.envoyer('lns_address_submitted', {});
+      S.envoi = true;
+      rendre();
+
+      var corps = {
+        attempt_id: S.attemptId,
+        session_id: tracker.sessionId || null,
+        widget: config.widget,
+        arrival: cle(S.arr), departure: cle(S.dep),
+        options: optionsChoisies().map(function (l) { return l.opt.id; }).concat(choixChoisis()),
+        form_values: S.formValeurs,
+        coupon: S.coupon ? S.coupon.code : null,
+        first_name: prenom, last_name: nom,
+        address: { street: v.street, zip: v.zip, city: v.city, country: v.country },
+        email: email, phone: phone, locale: 'fr-FR',
+        expected_total_cents: total(),
+        consent_text_version: 'v1-2026-11-05',
+        marketing_opt_out: S.optOut === true,
+        // Attribution publicitaire de la visite (fbclid, utm_*, fbc/fbp),
+        // memorisee par lovenspa-funnel.js a la premiere page. null hors campagne.
+        attribution: (window.LNS_FUNNEL && typeof window.LNS_FUNNEL.attribution === 'function') ? window.LNS_FUNNEL.attribution() : null
+      };
+
+      if (config.mock) {
+        window.setTimeout(function () {
+          S.envoi = false;
+          rendre();
+          var e2 = racine.querySelector('[data-lb-error]');
+          if (e2) { e2.textContent = t.mockNotice; e2.hidden = false; }
+        }, 700);
+        return;
+      }
+
+      fetch(config.endpoint + '/booking-create', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(corps)
+      }).then(function (r) {
+        return r.json().then(function (json) { return { status: r.status, json: json }; });
+      }).then(function (res) {
+        var json = res.json || {};
+        var ok = res.status >= 200 && res.status < 300;
+        // On redirige des qu'un lien de paiement existe, quel que soit le
+        // code. Le serveur repond 201 a la creation et 200 quand il renvoie
+        // une reservation deja creee (protection anti-double-clic). En
+        // n'acceptant que 201, on affichait une erreur a des voyageurs dont
+        // la reservation existait : mesure du 18/09/2026, 68 voyageurs
+        // perdus en 12 jours, et des doublons quand ils reessayaient apres
+        // l'expiration de la fenetre d'une heure.
+        if (ok && json.payment_url) {
+          tracker.envoyer('add_payment_info', { currency: 'EUR', value: total() / 100, payment_type: 'bookingmood', attempt_id: S.attemptId, ecommerce: { items: itemsGA4() } });
+          window.location.href = json.payment_url;
+          return;
+        }
+        S.envoi = false;
+        // Logement « sur demande » (interaction = request chez Bookingmood) :
+        // l'hote doit accepter avant qu'un lien de paiement existe. Ce n'est
+        // pas une erreur, c'est le mode du logement — 28 des 38 succes sans
+        // lien des 12 derniers jours. On le dit tel quel, et on bloque la
+        // relance : une seconde demande serait un doublon.
+        if (ok && json.awaiting_host_approval === true) {
+          var idTentative = json.attempt_id || S.attemptId;
+          tracker.envoyer('lns_booking_requested', { mode: 'request', attempt_id: idTentative, currency: 'EUR', value: total() / 100, ecommerce: { items: itemsGA4() } });
+          S.refuse = true;
+          S.demande = { reference: json.reference || '', total_cents: typeof json.total_cents === 'number' ? json.total_cents : total() };
+          rendre();
+          return;
+        }
+        // Reservation creee mais sans lien de paiement : le code HTTP est un
+        // succes, le voyageur ne peut pourtant pas payer. On le distingue de
+        // tout le reste, et surtout on bloque la relance : reessayer creerait
+        // une seconde reservation reelle.
+        var code = json.error || (ok ? 'payment_unavailable' : 'http_' + res.status);
+        // Le journal porte le code ET ce que le serveur a repondu : « http_200 »
+        // seul ne disait pas laquelle des branches avait repondu.
+        tracker.envoyer('lns_booking_failed', {
+          error_code: code, attempt_id: S.attemptId,
+          http_status: res.status, server_error: json.error || null,
+          server_attempt_id: json.attempt_id || null,
+          duplicate: json.duplicate === true, has_payment_url: !!json.payment_url
+        });
+        if (code === 'payment_unavailable') {
+          S.refuse = true;
+          rendre();
+          afficherErreurContact(t.errPaymentUnavailable);
+        } else if (code === 'price_changed' && json.total_cents != null) {
+          rendre();
+          afficherErreurContact(t.errPriceChanged.replace('{total}', euros(json.total_cents)));
+        } else if (code === 'invalid' && json.fields && json.fields.length) {
+          rendre();
+          afficherErreurContact(t.errMissing.replace('{fields}', libellesManquants(json.fields)));
+        } else if (code === 'unavailable') {
+          S.dep = null; S.arr = null;
+          fermer();
+          ouvrir('calendar');
+          S.donnees = null;
+          chargerMois(S.mois);
+        } else if (code === 'booking_refused' || code === 'callback_required') {
+          // Bookingmood a dit non, ou le serveur a deja vu ce refus deux fois.
+          // Dans les deux cas le serveur garde les coordonnees et alerte
+          // l'equipe : « Reessayez dans un instant » serait un mensonge, et
+          // c'est exactement ce qui a fait boucler une cliente sept fois le
+          // 08/09/2026. On desactive le bouton jusqu'a un changement de dates.
+          S.refuse = true;
+          rendre();
+          // Depuis le 29/09/2026 le serveur explique le vrai blocage (ex. tarif
+          // calcule != tarif enregistre chez le logement) : son message prime
+          // sur nos libelles generiques, sinon le voyageur lit « probleme
+          // persistant » sans savoir quoi faire.
+          afficherErreurContact((typeof json.message === 'string' && json.message.trim()) ? json.message : (code === 'callback_required' ? t.errCallback : t.errRefused));
+        } else {
+          // Code inconnu du widget (ex. total_mismatch) : le serveur explique
+          // mieux qu'un « Un probleme est survenu » — 27 sessions perdues
+          // du 19 au 29/09 sur ce seul cas.
+          rendre();
+          afficherErreurContact((typeof json.message === 'string' && json.message.trim()) ? json.message : t.errGeneric);
+        }
+      }).catch(function () {
+        S.envoi = false;
+        tracker.envoyer('lns_booking_failed', { error_code: 'network', attempt_id: S.attemptId });
+        rendre();
+        afficherErreurContact(t.errGeneric);
+      });
+    }
+
+    function afficherErreurContact(msg, succes) {
+      var e = racine.querySelector('[data-lb-error]');
+      if (e) e.classList.toggle('lb-form__error--ok', !!succes);
+      if (e) { e.textContent = msg; e.hidden = false; }
+    }
+
+    // ---- 8. Repli iframe ----------------------------------------------
+    var replie = false;
+    function basculerIframe(raison) {
+      if (replie) return;
+      replie = true;
+      // 'mock' n'est pas un incident mais un garde-fou volontaire : le compter
+      // comme un repli fausserait le taux d'echec du widget.
+      if (raison !== 'mock') tracker.envoyer('lns_widget_fallback', { reason: raison });
+      var tpl = conteneur.querySelector('[data-loven-booking-fallback]');
+      if (!tpl) return;
+      var frag = tpl.content.cloneNode(true);
+      racine.replaceWith(frag);
+      conteneur.classList.remove('loven-dates--v2');
+      var iframe = conteneur.querySelector('iframe[data-src]');
+      if (iframe && !iframe.src) iframe.src = iframe.getAttribute('data-src');
+    }
+
+    // ---- Délégation d'événements --------------------------------------
+    racine.addEventListener('click', function (ev) {
+      var el = ev.target.closest('[data-act]');
+      if (!el || !racine.contains(el)) return;
+      var a = el.getAttribute('data-act');
+      if (a === 'close-contact' && el !== ev.target && !el.classList.contains('lb-modal__close')) return; // clic dans la modale
+      switch (a) {
+        case 'calendar': if (S.ouvert !== 'calendar') ouvrir('calendar'); break;
+        case 'options': ouvrir('options'); break;
+        case 'cancel-more': S.annulOuvert = !S.annulOuvert; rendre(); break;
+        case 'close': case 'close-contact': fermer(); break;
+        case 'contact-back': lireFormulaire(racine.querySelector('[data-lb-form]')); S.etape = 1; rendre(); break;
+        case 'prev': S.mois = moisSuivant(S.mois, -1); rendre(); if (!nuit(S.mois)) chargerMois(S.mois); else verifierDisponibiliteMois(); break;
+        case 'next': S.mois = moisSuivant(S.mois, 1); rendre(); if (!nuit(moisSuivant(S.mois, estMobile() ? 0 : 1))) chargerMois(S.mois); else verifierDisponibiliteMois(); break;
+        case 'clear': S.refuse = false; S.demande = null; S.arr = null; S.dep = null; S.devis = null; S.devisCle = null; S.devisErreur = null; if (el.textContent.trim() === t.close) fermer(); else rendre(); break;
+        case 'day': choisirJour(new Date(Number(el.getAttribute('data-t')))); break;
+        case 'opt': basculerOption(el.getAttribute('data-id')); return;
+        case 'choice': choisirChoix(el.getAttribute('data-id'), el.getAttribute('data-child')); return;
+        case 'coupon-on': appliquerCoupon(); return;
+        case 'coupon-off': S.coupon = null; S.couponErreur = null; demanderDevis(); rendre(); return;
+        case 'book': demarrerReservation(); break;
+      }
+    });
+
+    racine.addEventListener('change', function (ev) {
+      if (ev.target.hasAttribute('data-lb-optout')) {
+        S.optOut = ev.target.checked;
+        var lab = ev.target.closest('.lb-consent');
+        lab.classList.toggle('is-on', S.optOut);
+        lab.querySelector('.lb-opt__box').classList.toggle('is-on', S.optOut);
+        return;
+      }
+      if (!ev.target.hasAttribute('data-lb-consent')) return;
+      var form = ev.target.closest('[data-lb-form]');
+      lireFormulaire(form);
+      ev.target.closest('.lb-consent').classList.toggle('is-on', ev.target.checked);
+      ev.target.closest('.lb-consent').querySelector('.lb-opt__box').classList.toggle('is-on', ev.target.checked);
+      var btn = form.querySelector('[data-lb-submit]');
+      if (btn) btn.disabled = S.envoi || S.refuse || formConsentements().some(function (f) { return S.formValeurs[f.id] !== true; });
+    });
+
+    racine.addEventListener('submit', function (ev) {
+      var form = ev.target.closest('[data-lb-form]');
+      if (!form) return;
+      ev.preventDefault();
+      // S.refuse : la touche Entree contourne un bouton desactive, pas ce garde.
+      if (!S.envoi && !S.refuse) soumettre(form);
+    });
+
+    racine.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter' && ev.target.hasAttribute('data-lb-coupon')) {
+        ev.preventDefault();
+        appliquerCoupon();
+      }
+    });
+
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' && S.ouvert) fermer();
+    });
+
+    // Fermer le calendrier / la popin options au clic en dehors (desktop).
+    // composedPath() plutôt que racine.contains() : après un re-rendu, la cible
+    // du clic n'est plus dans le DOM, mais le chemin de l'événement, lui, est figé.
+    document.addEventListener('click', function (ev) {
+      if (!S.ouvert || S.ouvert === 'contact' || estMobile()) return;
+      var chemin = ev.composedPath ? ev.composedPath() : [];
+      if (chemin.indexOf(racine) === -1 && !racine.contains(ev.target)) fermer();
+    });
+
+    // ---- Garde-fou demonstration ---------------------------------------
+    // Le mock sert a developper l'interface avant que booking-availability
+    // existe. Ses tarifs et ses options sont ceux du Lien : les afficher sur
+    // une autre fiche, c'est mentir au visiteur sur le prix. Tant que
+    // config.mock est vrai, le widget ne s'affiche donc que sur une page
+    // ouverte en ?lns_widget=v2 ; partout ailleurs on rend l'iframe
+    // Bookingmood, qui est fausse mais juste.
+    // A retirer le jour ou config.mock passe a false.
+    if (config.mock && !APERCU) {
+      basculerIframe('mock');
+      return;
+    }
+
+    // ---- Premier rendu -------------------------------------------------
+    // view_item n'est plus émis ici : il l'est côté Liquid par
+    // snippets/datalayer-view-item.liquid, sur TOUTES les fiches
+    // d'hébergement. Le garder ici le dupliquerait sur les fiches en v2 et le
+    // laisserait absent sur celles restées en iframe — soit exactement
+    // l'inverse de ce qu'on cherche à mesurer.
+    // Dates et voyageurs de l'URL, poses avant le premier chargement de mois
+    // pour que la fenetre parte du mois d'arrivee (pas du mois courant).
+    // Calendrier ouvert sur desktop seulement : sur mobile, ouvrir()
+    // ajouterait lb-lock et bloquerait le scroll de toute la fiche.
+    // Pas d'appel a choisirJour : pas d'evenement lns_dates_selected.
+    var sejourUrl = { arr: null, dep: null, guests: GUESTS_DEFAUT };
+    try { sejourUrl = lireSejourUrl(window.location.search || '', TODAY); } catch (e) { /* pas d'URL */ }
+    S.guests = sejourUrl.guests;
+    if (sejourUrl.arr && sejourUrl.dep) {
+      S.arr = sejourUrl.arr;
+      S.dep = sejourUrl.dep;
+      S.mois = premierDuMois(S.arr);
+      if (!estMobile()) S.ouvert = 'calendar';
+      if (!config.mock) S.devisEnCours = true;
+    }
+
+    rendre();
+    // Precharge la fenetre du mois affiche (arrivee si l'URL est valide).
+    // Deux mois : le sejour qui deborde sur le mois suivant est couvert.
+    // Au-dela, le devis serveur porte le prix ; le calendrier montre
+    // au moins le debut de l'intervalle.
+    chargerMois(S.mois);
+    if (S.arr && S.dep && !config.mock) demanderDevis();
+
+    // Point d'entree unique pour le banc de tests (.tests/). On expose l'etat
+    // et les fonctions de decision — jamais de comportement supplementaire :
+    // rien ici n'est appele par le widget lui-meme.
+    window.LovenBooking = window.LovenBooking || [];
+    window.LovenBooking.push({
+      state: S,
+      config: config,
+      test: {
+        euros: euros, nbNuits: nbNuits, cle: cle, nuits: nuits,
+        estFrais: estFrais, formFrais: formFrais, formConsentements: formConsentements,
+        formChoix: formChoix, formTextes: formTextes, formNotes: formNotes,
+        formManquants: formManquants, prixForm: prixForm,
+        prixNuitAffiche: prixNuitAffiche, prixOptionAffiche: prixOptionAffiche,
+        recapDepuisDevis: recapDepuisDevis, urlDevis: urlDevis, messageCoupon: messageCoupon,
+        lireSejourUrl: lireSejourUrl, libelleVoyageurs: libelleVoyageurs,
+        demarrerReservation: demarrerReservation,
+        heureLisible: heureLisible, messageTropTard: messageTropTard, arriveeTropTard: arriveeTropTard, explicationNuit: explicationNuit,
+        choisirJour: choisirJour,
+        arriveePossible: arriveePossible, departPossible: departPossible, dureesSejour: dureesSejour,
+        total: total
+      }
+    });
+  }
+
+  // ------------------------------------------------------------------
+  // 9. Initialisation paresseuse : uniquement l'instance visible
+  //    (le thème en rend une pour desktop et une pour mobile).
+  // ------------------------------------------------------------------
+  // Mode aperçu : ?lns_widget=v2 sur n'importe quelle fiche remplace l'iframe
+  // par le widget sans toucher au métafield hebergement.widget_v2. Sert aux tests
+  // avant la bascule ; à retirer quand le flag est généralisé.
+  // ------------------------------------------------------------------
+  // Mode test — comment essayer le widget sans toucher au theme
+  // ------------------------------------------------------------------
+  // Trois parametres d'URL, memorises pour la duree de l'onglet (sessionStorage)
+  // pour qu'ils survivent a la navigation interne :
+  //
+  //   ?lns_widget=v2      monte le widget a la place de l'iframe, sur
+  //                       n'importe quelle fiche, sans metafield.
+  //   ?lns_data=live      force les vraies donnees : le widget appelle
+  //                       booking-availability au lieu du mock. C'est le mode
+  //                       preprod. Implique lns_widget=v2.
+  //   ?lns_data=mock      force le mock, meme apres la bascule.
+  //   ?lns_api=<ref>      pointe vers un autre projet Supabase (20 lettres
+  //                       minuscules, format d'un project ref). Sert a taper
+  //                       une preprod plutot que la production.
+  //   ?lns_test=off       oublie tout et revient au comportement normal.
+  //
+  // Rien de tout cela n'est accessible a un visiteur ordinaire, et rien n'est
+  // persistant au-dela de l'onglet : un lien partage par erreur n'a aucun effet
+  // durable. Le bandeau en haut du widget dit toujours dans quel mode on est.
+  var APERCU = false;
+  var MODE_DONNEES = null;   // null | 'live' | 'mock'
+  var API_REF = null;
+
+  function lireModeTest() {
+    var params;
+    try { params = new URLSearchParams(window.location.search); } catch (e) { return; }
+
+    var memoire = {};
+    try { memoire = JSON.parse(window.sessionStorage.getItem('lns_test') || '{}'); } catch (e) { memoire = {}; }
+
+    if (params.get('lns_test') === 'off') {
+      try { window.sessionStorage.removeItem('lns_test'); } catch (e) {}
+      return;
+    }
+
+    if (params.get('lns_widget') === 'v2') memoire.widget = true;
+
+    var donnees = params.get('lns_data');
+    if (donnees === 'live' || donnees === 'mock') memoire.data = donnees;
+
+    var ref = params.get('lns_api');
+    // Un project ref Supabase, et rien d'autre : on ne laisse pas une URL
+    // arbitraire entrer dans un fetch depuis un parametre d'URL.
+    if (ref && /^[a-z]{20}$/.test(ref)) memoire.api = ref;
+
+    if (memoire.data === 'live') memoire.widget = true;
+
+    if (memoire.widget || memoire.data || memoire.api) {
+      try { window.sessionStorage.setItem('lns_test', JSON.stringify(memoire)); } catch (e) {}
+    }
+
+    APERCU = !!memoire.widget;
+    MODE_DONNEES = memoire.data || null;
+    API_REF = memoire.api || null;
+  }
+
+  function activerApercu() {
+    lireModeTest();
+    if (!APERCU) return;
+    document.querySelectorAll('template[data-loven-booking-preview]').forEach(function (tpl) {
+      var ancien = tpl.previousElementSibling;
+      if (!ancien || !ancien.classList.contains('loven-dates')) return;
+      ancien.replaceWith(tpl.content.cloneNode(true));
+      tpl.remove();
+    });
+    document.body.classList.add('loven-booking-preview');
+  }
+
+  function demarrer() {
+    activerApercu();
+    var racines = document.querySelectorAll('[data-loven-booking]');
+    if (!racines.length) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      racines.forEach(function (r) { if (r.offsetParent !== null) initialiser(r); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        obs.unobserve(e.target);
+        if (!e.target.hasAttribute('data-loven-booking-init')) {
+          e.target.setAttribute('data-loven-booking-init', '1');
+          initialiser(e.target);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    racines.forEach(function (r) { obs.observe(r); });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', demarrer);
+  else demarrer();
+})();
