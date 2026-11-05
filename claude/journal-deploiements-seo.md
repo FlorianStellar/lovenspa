@@ -133,10 +133,15 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - **3. Audit des paires** (`audit_doublons_gsc.json`, GSC du 04/07/2025 au 02/11/2026, inspection d'URL, similarité de texte Jaccard sur 5 mots) :
   - les 10 URL sont toutes indexées, avec un canonical Google égal à l'URL ;
   - cote-d-or : 75 clics / 3 488 impressions ; cote-dor : 159 / 4 181. Les deux se positionnent sur « love room cote d'or » (10,9 contre 6,9). Similarité 0,09, 38 produits contre 18. **Vraie cannibalisation.**
-  - val-d-oise : 155 / 5 478, position 14,9 ; val-doise : 144 / 5 634, position 21,9. Les deux se positionnent sur « love room 95 ». Similarité 0,07. **Vraie cannibalisation.**
-  - Bretagne : la page fait 146 / 26 719, l'article 0 / 64. L'article n'a aucun lien entrant et date de son dernier crawl le 05/09. Similarité 0,002. Seul le titre est en double.
-  - Créer sa love room : l'article fait 63 / 3 455, la page 5 / 94. La page a 2 liens entrants et 2 H1. Similarité 0,033.
-  - Sauna : le guide fait 60 / 12 885, sauna-recap 2 / 355, alors qu'il est lié dans le footer des 2 854 pages scannées. Similarité 0,045, même titre et même H1.
+  - val-d-oise : 155 / 5 478 ; val-doise : 144 / 5 634. Les deux se positionnent sur « love room 95 » (12,3 contre 13,1). Similarité 0,07. **Vraie cannibalisation.**
+  - Bretagne : la page fait 146 / 26 719, l'article 0 / 64, avec un dernier crawl Google le 05/09. Liens entrants de l'article non mesurés (HTTP 429 dans le crawl du 05/11) ; la page en a 7. Similarité 0,002 : seul le titre est en double.
+  - Créer sa love room : l'article fait 63 / 3 455, la page 5 / 94. L'article a 0 lien entrant et n'est pas atteignable depuis l'accueil ; la page a 2 liens entrants et 2 H1. Similarité 0,033.
+  - Sauna : le guide fait 60 / 12 885, sauna-recap 2 / 355, alors que sauna-recap est lié dans le footer de 2 854 des 2 855 pages scannées. Similarité 0,045, même titre et même H1.
+  - Liens entrants des pages et articles : `claude/audits/tech-2026-11-05/crawl.csv` (colonne inbound_internal).
+- **Conclusion du point 3** :
+  - Collections : vraie cannibalisation, sur les mêmes requêtes, avec un maillage partagé entre les deux URL. Il faut fusionner sur une seule URL. Deux préalables : identifier la source des blocs de liens générés et des mises à jour de 02:00, puis réunir les produits avant la 301.
+  - Pages contre articles : ce ne sont pas des doublons de contenu (similarité ≤ 0,045). Le seul doublon est le titre (et le H1 pour sauna). Dans chaque paire, une URL prend le trafic : 146 contre 0, 63 contre 5, 60 contre 2. Il ne faut donc pas fusionner : il faut différencier le titre et le H1 de l'URL qui ne reçoit pas de trafic (article Bretagne, page Créer, sauna-recap) et relier l'article Créer, qui n'a aucun lien entrant.
+  - Exécution à valider par Florian : lot A avec témoin.
 
 ## Règles du journal
 
