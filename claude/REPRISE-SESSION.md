@@ -36,3 +36,4 @@ Doc : https://claude.ai/artifact/LJJy1JXosZoQqYMEWvgALw · Outils : `claude/agen
 - Tâches planifiées : cycle hebdo le mardi à 10:13 (trig_01Ru4tHdid4cnAnZMfwvuNLM), revue mensuelle le 1er à 11:23 (trig_01A8Xp1aiqQhMwZzWkyD8Eko).
 - Missions 1 à 3 en cours dans Lovable (message umsg_01m6ng1f4pfh5a7120wakfjfba + 2 compléments).
 - 05/11 : 7 flows actifs. Programmé : réactivation e1 le 06/11 à 10:00 (throttle 10 %/h), Noël le 15/11 à 09:00, réactivation e2 le 20/11 à 10:00. Garde-fou le 06/11 à 13:00 (trig_01VcpPV1RuXqpqVQR3REeCuu).
+- 06/11 : garde-fou déclenché sur la réactivation e1 (désinscriptions 0,58 % > 0,3 % ; 3 892 destinataires, 0 plainte) → envoi annulé. Go de Florian : relance « vague 1 bis » le 07/11 à 10:00 (hors segment TYhhWc des déjà servis), seuils réactivation (désinscriptions 1,5 %, plaintes 0,1 %, rebonds 5 %), e2 reportée au 21/11. Garde-fou le 07/11 à 13:00. NB : l'API Klaviyo exprime son heure courante en heure de New York.
