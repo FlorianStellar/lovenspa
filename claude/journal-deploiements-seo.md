@@ -87,6 +87,13 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
   - 1 en redirection.
 - Collections : mêmes 4 anomalies que le 04/11. Décisions en attente.
 
+## Veille indexation du 06/11/2026
+
+- 608 URL, 0 erreur (`veille.py`) : 83 fiches actives modifiées depuis 48 h, les 20 fiches suivies et les 506 collections. Aucun écart de canonical. Fichier : `claude/veille/veille-2026-11-06.csv`.
+- Fiches suivies : aucun changement depuis le 05/11. 13 en 404 pour Google, 5 inconnues, 1 noindex, 1 redirection.
+- Nouvelle anomalie : `le-1888-maison-romantique-avec-balneo-en-sologne` est « URL is unknown to Google ». La fiche a été créée le 04/11 et publiée le 05/11 à 18:49 UTC ; elle répond 200. Je l'ajoute au suivi.
+- Collections : les mêmes 4 anomalies, toujours en attente de décision.
+
 ## CSS / fichiers thème en attente de push par Florian
 
 - CSS de lecture + repositionnement mobile bloc éditorial (écrit en local, branche `claude/zen-edison-sac366`)
