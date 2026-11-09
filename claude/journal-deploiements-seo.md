@@ -106,6 +106,12 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Fiches suivies : 3 de plus sont indexées (une « inconnue », une « découverte », la fiche en redirection). Il reste 16 fiches non indexées : 12 en 404 depuis le premier relevé, 3 inconnues, 1 noindex.
 - Collections : les 4 mêmes anomalies que lors des veilles précédentes.
 
+## Veille indexation du 09/11/2026
+
+- 559 URL inspectées, 0 erreur : 37 fiches modifiées depuis 48 h, 16 fiches suivies, collections. Aucune nouvelle anomalie, aucun écart de canonical. Fichier : `claude/veille/veille-2026-11-09.csv`.
+- Fiches suivies : 1 fiche de plus indexée (elle était en 404). Il en reste 15 non indexées : 11 en 404, 3 inconnues, 1 noindex.
+- Collections : les 4 mêmes anomalies.
+
 ## CSS / fichiers thème en attente de push par Florian
 
 - CSS de lecture + repositionnement mobile bloc éditorial (écrit en local, branche `claude/zen-edison-sac366`)
