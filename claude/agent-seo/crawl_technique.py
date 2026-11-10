@@ -157,6 +157,18 @@ def click_depth(graph: dict[str, set[str]], start: str) -> dict[str, int]:
     return depth
 
 
+def link_issue_rows(graph: dict[str, set[str]], statuses: dict[str, tuple[int, str]]) -> list[dict]:
+    """Une ligne par lien interne (source → cible) dont la cible ne répond pas 200.
+    statuses : cible → (code HTTP, Location). Triée par cible puis source."""
+    rows = []
+    for src, targets in graph.items():
+        for t in targets:
+            code, loc = statuses.get(t, (200, ""))
+            if code != 200:
+                rows.append({"source": src, "cible": t, "statut": code, "redirige_vers": loc})
+    return sorted(rows, key=lambda r: (r["cible"], r["source"]))
+
+
 def classify(row: dict) -> list[str]:
     """Anomalies techniques d'une URL crawlée."""
     a = []
@@ -284,6 +296,20 @@ def main(out_dir: str, workers: int = 6) -> None:
     }
     (out / "resume.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1), encoding="utf-8")
     (out / "liens_hors_sitemap.txt").write_text("\n".join(discovered_out), encoding="utf-8")
+
+    # Statut des cibles de liens : URL crawlées + cibles hors sitemap (relevées une à une).
+    statuses = {r["url"]: (r["status"], r.get("location", "")) for r in rows}
+    with ThreadPoolExecutor(2) as ex:
+        for r in ex.map(lambda u: fetch(s, u), discovered_out):
+            statuses[r["url"]] = (r["status"], r.get("location", ""))
+    issues = link_issue_rows(graph, statuses)
+    with open(out / "liens_casses.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=["source", "cible", "statut", "redirige_vers"])
+        w.writeheader()
+        w.writerows(issues)
+    summary["liens_internes_en_erreur"] = dict(Counter(str(i["statut"]) for i in issues))
+    summary["cibles_en_erreur"] = len({i["cible"] for i in issues})
+    (out / "resume.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=1))
 
 

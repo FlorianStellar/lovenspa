@@ -66,6 +66,19 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(d, {"h": 0, "a": 1, "b": 1, "c": 2, "d": 3, "e": 4})
 
 
+class TestLinkIssues(unittest.TestCase):
+    def test_rows(self):
+        g = {"h": {"a", "x"}, "a": {"x", "y"}, "y": set()}
+        st = {"a": (200, ""), "x": (404, ""), "y": (301, "/z")}
+        rows = ct.link_issue_rows(g, st)
+        self.assertEqual([(r["source"], r["cible"], r["statut"]) for r in rows],
+                         [("a", "x", 404), ("h", "x", 404), ("a", "y", 301)])
+        self.assertEqual(rows[2]["redirige_vers"], "/z")
+
+    def test_unknown_target_is_ok(self):
+        self.assertEqual(ct.link_issue_rows({"h": {"q"}}, {}), [])
+
+
 class TestRetry(unittest.TestCase):
     def test_retry_after(self):
         self.assertEqual(ct.retry_after("3", 0), 3.0)
