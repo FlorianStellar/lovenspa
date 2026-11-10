@@ -21,6 +21,16 @@ def tiles(camp):
         f'<p class="body" style="margin:10px 0 0 0;{P}font-size:14px;font-weight:700;color:#222222;">{t}</p></a></td>'
         for i, (t, u, img) in enumerate(TILES, 1))
     return f'<tr><td class="px" style="padding:0 26px 24px 26px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>{cells}</tr></table></td></tr>'
+def rooms(e):
+    cells = []
+    for i, r in enumerate(e["rooms"]):
+        cells.append(f'<td class="stack stack-pad" width="50%" valign="top" style="padding:0 8px 18px 8px;"><a href="{r["url"]}" target="_blank" style="text-decoration:none;">'
+            f'<img src="{r["image"]}" alt="{r["titre"]}" width="260" style="width:100%;height:auto;display:block;border-radius:10px;"/>'
+            f'<p class="body" style="margin:10px 0 2px 0;{P}font-size:15px;font-weight:700;color:#222222;">{r["titre"]}</p>'
+            f'<p class="body" style="margin:0;{P}font-size:13px;color:#6c6c6c;">{r["ville"]} · {r["nuits"]}</p>'
+            f'<p class="body" style="margin:4px 0 0 0;{P}font-size:14px;font-weight:700;color:#E83F4E;">{r["prix"]}&nbsp;€ la nuit</p></a></td>')
+    rows = "".join("<tr>" + "".join(cells[i:i+2]) + "</tr>" for i in range(0, len(cells), 2))
+    return f'<tr><td class="px" style="padding:0 24px 8px 24px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">{rows}</table></td></tr>'
 def render(e):
     c = e["camp"]
     body = "".join(f'<p class="body" style="margin:0 0 16px 0;{P}font-size:16px;line-height:1.6;color:#444444;">{fr(p)}</p>' for p in e["corps"])
@@ -46,8 +56,9 @@ def render(e):
 <td align="right" style="{P}font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#E83F4E;">{e["kicker"]}</td></tr></table></td></tr>
 {img}
 <tr><td class="px" style="padding:32px 32px 8px 32px;"><h1 class="h1" style="margin:0 0 18px 0;{P}font-size:34px;line-height:1.15;font-weight:700;color:#222222;">{fr(e["titre"])}</h1>
-{body}<div class="cta">{button(e["cta"][0], link(e["cta"][1], c, "cta"))}</div></td></tr>
+{body}{"" if e.get("rooms") else '<div class="cta">' + button(e["cta"][0], link(e["cta"][1], c, "cta")) + '</div>'}</td></tr>
 {tiles(c) if e.get("tiles") else ""}
+{rooms(e) + '<tr><td class="px cta" style="padding:0 32px 24px 32px;">' + button(e["cta"][0], link(e["cta"][1], c, "cta")) + '</td></tr>' if e.get("rooms") else ""}
 {ps}
 <tr><td class="px" style="padding:22px 32px;background:#FBF6F2;border-top:1px solid #EBE5E0;"><p style="margin:0;{P}font-size:12px;line-height:1.6;color:#6c6c6c;text-align:center;">
 Love'nSpa · love rooms avec spa privatif en France et en Belgique<br>
