@@ -9,7 +9,7 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 
 | # | Déployé | Lot | Levier | N URLs | Témoin | Lecture prévue | Verdict |
 |---|---|---|---|---|---|---|---|
-| L8 | 10/11/2026 | 10 pages à CTR anormal (8 articles, 2 pages) | SEO title + meta description (`global.title_tag` / `description_tag`) | 10 | 5 articles figés (`claude/lots/L8.md`) | 02/12/2026 | en cours |
+| L8 | 10/11/2026 | 10 pages à CTR anormal (8 articles, 2 pages) | SEO title + meta description (`global.title_tag` / `description_tag`). Écriture v1 à 08:19 UTC. v2 à 10:17 UTC après QA : 9 titles raccourcis (suffixe thème compris, ≤ 60 car.), promesse « définition » retirée de love hôtel. | 10 | 5 articles figés (`claude/lots/L8.md`) | J+21 compté à partir du 11/11 → lecture le 05/12/2026 | en cours. Fellation (521 mots) et levrette (407 mots) sont des contenus minces : réserve pour la lecture. |
 | L6 | 02/11/2026 | 25 fiches 404 (churn) | Status DRAFT/ARCHIVED/UNLISTED→ACTIVE + templateSuffix=produit-churn (corrigé le jour même : premier passage en `churn`, suffixe inexistant dans le thème lovenspa 4.1, fiches servies quelques heures sur le template produit standard) | 25 | Sans témoin : action de récupération 404→200, suivi non causal (impressions et clics des 25 URL à J+21 vs 90 j avant) | 23/11/2026 | en cours. Rendu non vérifié : lovenspa.fr bloqué par le réseau de l'environnement. |
 | L5 | 13/10/2026 | collection `/collections/love-room` | Réécriture éditoriale (9 H2, FAQPage 7Q, 47 liens, chiffres oct.) | 1 | `/pages/guide-qu-est-ce-love-room` | 27/10/2026 · **24/11/2026** | ⚠ Lu à J+27 le 09/11, non conclusif. Sur 21 j avant / 21 j après : lot clics ×2,40, position de 11,8 à 9,0 ; témoin clics ×3,00, position de 8,2 à 10,2. Témoin d'une seule page, faible volume. Contaminé par 3 événements (02/11 et 03/11 ×2). Décision Go en attente. |
 | L4 | 28/09/2026 | 35 metas fiches | SEO title + meta description | 35 | 35 témoins figés | 02/11/2026 | ⚠ Verdict du 02/11 retiré le 09/11 : il reposait sur une médiane agrégée, sans paires. Non lisible tant que les listes du lot et du témoin ne sont pas retrouvées. |
@@ -119,7 +119,7 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - KPI 28 j : 128 287 clics (+5,4 %), 3 025 639 impressions (+4,1 %). « love room » au niveau requête : 4 051 clics, position 4,7.
 - Erreur corrigée : une somme faite au niveau requête × page comptait deux fois les impressions de « love room ». Les chiffres sont maintenant pris au niveau requête.
 - Lectures : L5 non conclusif ; verdict de L4 retiré ; L1, L2, L3 non lisibles.
-- Lot proposé : L8, 10 URL, témoin figé de 6 URL (`claude/lots/L8.md`). L7 reporté, faute de la liste L6.
+- Lot proposé : L8, 10 URL, témoin figé de 5 URL après retrait de la page Halloween le 10/11 (`claude/lots/L8.md`). L7 reporté, faute de la liste L6.
 - Règle : toute liste de lot et de témoin est enregistrée dans `claude/lots/` avant déploiement.
 - Go en attente : univers cible (option A ou B) et décision sur L5.
 
