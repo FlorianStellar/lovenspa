@@ -2,7 +2,7 @@ import json
 from hebdo import libelle_nuits, prix_min, construire
 from render import render
 def test_libelle(): assert libelle_nuits({"2026-11-14": 1, "2026-11-13": 1}) == "Libre vendredi 13 et samedi 14"
-def test_prix_min(): assert prix_min({"a": 31900, "b": 25850}) == 258
+def test_prix_min_exact(): assert prix_min({"a": 31900, "b": 25850}) == "258,50" and prix_min({"a": 31900}) == "319" and prix_min({"a": 13932}) == "139,32"
 def test_construire_et_rendu(tmp_path):
     p = tmp_path / "d.json"
     p.write_text(json.dumps({"dates": ["2026-11-13", "2026-11-14"], "choix": [

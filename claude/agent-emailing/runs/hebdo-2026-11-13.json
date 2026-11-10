@@ -5,8 +5,8 @@
  "kicker": "Ce week-end",
  "objets": [
   "Ce week-end, encore libre : 6 love rooms",
-  "Vendredi ou samedi : 6 love rooms disponibles",
-  "Une envie pour ce week-end ?"
+  "Vendredi ou samedi : 6 love rooms avec une nuit libre",
+  "Bubble Pink, L’obscure et 4 autres ce week-end"
  ],
  "preheader": "Bubble Pink à Paris, L’obscure à Lyon et 4 autres, libres ce week-end.",
  "titre": "Ce week-end, encore libre",
@@ -18,55 +18,55 @@
   {
    "titre": "Bubble Pink",
    "ville": "Paris",
-   "image": "http://lovenspa.fr/cdn/shop/files/bubble-pink-appartement-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-544366.jpg?v=1728251034&width=480",
+   "image": "https://lovenspa.fr/cdn/shop/files/bubble-pink-appartement-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-544366.jpg?v=1728251034&width=480",
    "url": "https://lovenspa.fr/products/bubble-pink",
    "nuits": "Libre vendredi 13 et samedi 14",
-   "prix": 319
+   "prix": "319"
   },
   {
    "titre": "L’obscure",
    "ville": "Lyon",
-   "image": "http://lovenspa.fr/cdn/shop/files/lobscure-appartement-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-9727888.png?v=1772490225&width=480",
+   "image": "https://lovenspa.fr/cdn/shop/files/lobscure-appartement-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-9727888.png?v=1772490225&width=480",
    "url": "https://lovenspa.fr/products/l-obscure",
    "nuits": "Libre samedi 14",
-   "prix": 258
+   "prix": "258,50"
   },
   {
    "titre": "Love-Room, Gîte 4 étoiles, 50 Nuances Romantiques",
    "ville": "Nantes",
-   "image": "http://lovenspa.fr/cdn/shop/files/love-room-gite-4-etoiles-50-nuances-romantiques-gite-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-7495983.jpg?v=1766133976&width=480",
+   "image": "https://lovenspa.fr/cdn/shop/files/love-room-gite-4-etoiles-50-nuances-romantiques-gite-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-7495983.jpg?v=1766133976&width=480",
    "url": "https://lovenspa.fr/products/love-room-gite-4-etoiles-50-nuances-romantiques",
    "nuits": "Libre vendredi 13",
-   "prix": 242
+   "prix": "242"
   },
   {
    "titre": "Love Sparadise - Le Secret",
    "ville": "Beautheil-Saints",
-   "image": "http://lovenspa.fr/cdn/shop/products/lovesparadise-le-secret-gite-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-615368.jpg?v=1702553322&width=480",
+   "image": "https://lovenspa.fr/cdn/shop/products/lovesparadise-le-secret-gite-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-615368.jpg?v=1702553322&width=480",
    "url": "https://lovenspa.fr/products/lovesparadise-le-secret",
    "nuits": "Libre samedi 14",
-   "prix": 242
+   "prix": "242"
   },
   {
    "titre": "La Cave Secrète",
    "ville": "Tours",
-   "image": "http://lovenspa.fr/cdn/shop/files/la-cave-secrete-loft-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-985517.jpg?v=1727754013&width=480",
+   "image": "https://lovenspa.fr/cdn/shop/files/la-cave-secrete-loft-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-985517.jpg?v=1727754013&width=480",
    "url": "https://lovenspa.fr/products/la-roche-du-secret",
    "nuits": "Libre vendredi 13",
-   "prix": 139
+   "prix": "139,32"
   },
   {
    "titre": "Le relais du Clos",
    "ville": "Paris",
-   "image": "http://lovenspa.fr/cdn/shop/files/le-relais-du-clos-gite-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-8219083.jpg?v=1759424646&width=480",
+   "image": "https://lovenspa.fr/cdn/shop/files/le-relais-du-clos-gite-lovenspa-weekend-en-amoureux-love-rooms-avec-spa-ou-jacuzzi-privatif-8219083.jpg?v=1759424646&width=480",
    "url": "https://lovenspa.fr/products/le-relais-du-clos",
    "nuits": "Libre vendredi 13",
-   "prix": 185
+   "prix": "185,90"
   }
  ],
  "cta": [
   "Voir toutes les dispos",
   "https://lovenspa.fr/collections/last-minute"
  ],
- "ps": "Disponibilités et prix relevés le mardi 10 novembre à 10 h. Une nuit peut être réservée par un autre couple d'ici votre visite."
+ "ps": "Disponibilités et prix relevés le mardi 10 novembre à 10 h 22. Une nuit peut être réservée par un autre couple d'ici votre visite."
 }

@@ -8,16 +8,22 @@ def libelle_nuits(libres):
     return "Libre " + " et ".join(js)
 
 def prix_min(libres):
-    return min(libres.values()) // 100
+    """Prix exact payé par le voyageur (price_cents), jamais arrondi vers le bas."""
+    return f"{min(libres.values()) / 100:.2f}".replace(".", ",").removesuffix(",00")
 
-def construire(releve_path, releve_txt):
+def construire(releve_path, releve_txt=None):
     d = json.load(open(releve_path))
+    if releve_txt is None:
+        import zoneinfo
+        t = datetime.datetime.fromisoformat(d["releve"]).astimezone(zoneinfo.ZoneInfo("Europe/Paris"))
+        jours = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
+        releve_txt = f"{jours[t.weekday()]} {t.day} novembre à {t.hour} h {t.minute:02d}"
     ch = d["choix"]
     rooms = [{"titre": c["titre"], "ville": c["ville"].strip(), "image": (c["image"] or "") + ("&" if "?" in (c["image"] or "") else "?") + "width=480",
               "url": f"https://lovenspa.fr/products/{c['handle']}", "nuits": libelle_nuits(c["libres"]), "prix": prix_min(c["libres"])} for c in ch]
     j1, j2 = [datetime.date.fromisoformat(x) for x in d["dates"]]
     return dict(id=f"hebdo-{d['dates'][0]}", flow="Ce week-end, encore libre", camp=f"weekend-{d['dates'][0]}", kicker="Ce week-end",
-        objets=[f"Ce week-end, encore libre : {len(rooms)} love rooms", f"Vendredi ou samedi : {len(rooms)} love rooms disponibles", "Une envie pour ce week-end ?"],
+        objets=[f"Ce week-end, encore libre : {len(rooms)} love rooms", f"Vendredi ou samedi : {len(rooms)} love rooms avec une nuit libre", f"{rooms[0]['titre']}, {rooms[1]['titre']} et {len(rooms)-2} autres ce week-end"],
         preheader=f"{rooms[0]['titre']} à {rooms[0]['ville']}, {rooms[1]['titre']} à {rooms[1]['ville']} et {len(rooms)-2} autres, libres ce week-end.",
         titre="Ce week-end, encore libre",
         corps=[f"Bonjour{FN},",

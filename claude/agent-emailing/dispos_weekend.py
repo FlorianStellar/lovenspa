@@ -12,7 +12,7 @@ def fiche(handle):
     img = re.search(r'<meta property="og:image" content="([^"]+)"', s)
     titre = re.search(r'<meta property="og:title" content="([^"]+)"', s)
     return (json.loads(m.group(1))["widget"] if m else None,
-            img.group(1) if img else None, html.unescape(titre.group(1)) if titre else handle)
+            img.group(1).replace("http://", "https://", 1) if img else None, html.unescape(titre.group(1)) if titre else handle)
 
 def nuits_libres(widget, dates):
     d = json.loads(get(f"{ENDPOINT}?widget={widget}&from={dates[0]}&to={dates[-1]}"))
