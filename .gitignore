@@ -3,3 +3,9 @@ __pycache__/
 *.pyo
 .env
 *.csv
+
+# Exports du site : seuls pages.csv, export.json et audit/ sont versionnés (diff hebdo)
+claude/exports/*/brut/
+claude/exports/*/liens.csv
+claude/exports/*/collection_produits.csv
+claude/exports/*/redirections.csv

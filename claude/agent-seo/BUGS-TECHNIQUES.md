@@ -1,7 +1,7 @@
 # Agent de correction des bugs techniques SEO : règles d'autonomie
 
 Mandat : Florian, le 10/11/2026 (« sois autonome sur la résolution des bugs techniques »).
-Détection : `crawl_technique.py` (sitemap complet, sources des liens) + veilles d'indexation du journal.
+Détection : export plat du site (`site_export.py`, API Admin Shopify, remplace Matrixify) audité hors ligne (`site_audit.py`), crawl `crawl_technique.py` pour ce que génère le thème (1er mercredi du mois), veilles d'indexation du journal.
 Branche : `claude/zen-edison-sac366`. Journal : `claude/journal-deploiements-seo.md`, section « Bugs techniques ».
 
 ## Corrigé sans demander (Auto), puis rapporté
@@ -26,8 +26,10 @@ Plafond par passage : 30 objets Shopify modifiés et 3 fichiers de thème. Le su
 ## Déroulé de chaque passage
 
 1. `git pull`, `pip install -q -r claude/agent-seo/requirements.txt`.
-2. `python3 claude/agent-seo/crawl_technique.py claude/audits/tech-AAAA-MM-JJ --workers 3`.
-3. Comparer au crawl précédent : nouveaux bugs, bugs résolus, régressions.
+2. `python3 claude/agent-seo/site_export.py claude/exports/site-AAAA-MM-JJ` (quelques minutes, jeton SHOPIFY_API_TOKEN, lecture seule), puis `python3 claude/agent-seo/site_audit.py claude/exports/site-AAAA-MM-JJ --precedent <export précédent>`. Entrée principale : `audit/liens_a_corriger.csv` (source, cible, verdict, URL finale).
+   Premier mercredi du mois : en plus, `python3 claude/agent-seo/crawl_technique.py claude/audits/tech-AAAA-MM-JJ --workers 3` (H1, JSON-LD, canonical, noindex générés par le thème).
+3. Comparer au passage précédent (`audit/diff.csv`, `resume.json`) : nouveaux bugs, bugs résolus, régressions, modifications faites hors agent.
+   Avant de corriger un lien, vérifier en direct le statut de sa cible : l'export dit ce que Shopify contient, le direct dit ce que le visiteur reçoit.
 4. Pour chaque bug Auto : inscrire au journal avant modification (objet, ancienne valeur sauvegardée dans `claude/audits/tech-AAAA-MM-JJ/avant/`), corriger, revérifier l'URL en direct.
 5. Agent QA indépendant : chaque correction respecte ce document, aucune régression.
 6. Journal, commit (`git add -f` pour les CSV), push. Section « SEO technique » du doc de pilotage mise à jour.

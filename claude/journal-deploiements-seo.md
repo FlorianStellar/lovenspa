@@ -145,6 +145,16 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Core Web Vitals non mesurés : quota PageSpeed sans clé épuisé.
 - Indexation réconciliée : référence = audit T1 (97,4 % des fiches actives) ; le bilan à 91,9 % (périmètre partiel) est remplacé.
 
+## Export plat du site, 10/11/2026 (remplace Matrixify)
+
+- Outils : `claude/agent-seo/site_export.py` (bulk operations de l'API Admin Shopify, lecture seule) et `site_audit.py` (audit hors ligne en 0,4 s). 21 tests.
+- Export : 3 524 objets (1 801 produits, 508 collections, 777 pages, 438 articles), 16 763 liens (16 215 éditoriaux, 548 de menus), 44 445 appartenances produit-collection, 8 413 redirections, 20 menus. Données : `claude/exports/site-2026-11-10/`.
+- Publiés : 1 237 fiches, 505 collections, 764 pages, 367 articles.
+- Liens à corriger : 205 liens vers 43 cibles. 183 passent par une redirection (dont 55 vers `/collections/love-room-sauna-privatif` et 43 vers un article du magazine renommé), 17 pointent vers une page non publiée et 5 vers une URL introuvable.
+- Sans aucun lien entrant (éditorial, menu ou grille) : 29 collections, 20 pages et 175 articles. Pour les articles, les listes du blog générées par le thème ne sont pas comptées.
+- Constat : les 7 fiches supprimées vues en 404 le 05/11 redirigent maintenant en 301 (redirections ajoutées entre-temps).
+- Matrixify : licence en plan Demo (10 objets par export) ; rien n'est acheté.
+
 ## Règles du journal
 
 - Décision stratégique (Go, objectif, budget, périmètre, retour arrière sur page clé) : message privé Slack à Florian dès qu'elle apparaît.
