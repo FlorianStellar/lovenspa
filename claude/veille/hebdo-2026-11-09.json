@@ -1,0 +1,1350 @@
+{
+ "periode": [
+  "2026-10-10",
+  "2026-11-06"
+ ],
+ "periode_prev": [
+  "2026-09-12",
+  "2026-10-09"
+ ],
+ "global": {
+  "clicks": 128287,
+  "impressions": 3025639,
+  "ctr": 4.24,
+  "clicks_prev": 121702,
+  "impressions_prev": 2907118,
+  "ctr_prev": 4.19,
+  "clicks_delta_pct": 5.4,
+  "impressions_delta_pct": 4.1,
+  "requetes": 23992,
+  "requetes_prev": 24513,
+  "urls": 4470,
+  "urls_prev": 5510
+ },
+ "segments": {
+  "home": {
+   "clicks": 6499,
+   "impressions": 179832,
+   "urls": 4,
+   "clicks_prev": 6578,
+   "clicks_delta_pct": -1.2,
+   "impr_delta_pct": -16.7
+  },
+  "collection": {
+   "clicks": 71960,
+   "impressions": 1068780,
+   "urls": 856,
+   "clicks_prev": 62655,
+   "clicks_delta_pct": 14.9,
+   "impr_delta_pct": 11.6
+  },
+  "blog": {
+   "clicks": 30810,
+   "impressions": 1069353,
+   "urls": 381,
+   "clicks_prev": 31531,
+   "clicks_delta_pct": -2.3,
+   "impr_delta_pct": 14.2
+  },
+  "fiche": {
+   "clicks": 15272,
+   "impressions": 395135,
+   "urls": 1736,
+   "clicks_prev": 13374,
+   "clicks_delta_pct": 14.2,
+   "impr_delta_pct": 10.3
+  },
+  "page": {
+   "clicks": 3612,
+   "impressions": 305524,
+   "urls": 680,
+   "clicks_prev": 3975,
+   "clicks_delta_pct": -9.1,
+   "impr_delta_pct": 5.8
+  },
+  "en": {
+   "clicks": 125,
+   "impressions": 6708,
+   "urls": 807,
+   "clicks_prev": 3578,
+   "clicks_delta_pct": -96.5,
+   "impr_delta_pct": -95.5
+  },
+  "autre": {
+   "clicks": 9,
+   "impressions": 307,
+   "urls": 6,
+   "clicks_prev": 11,
+   "clicks_delta_pct": -18.2,
+   "impr_delta_pct": 124.1
+  }
+ },
+ "courbe_ctr": {
+  "1": 0.2807,
+  "2": 0.1419,
+  "3": 0.1312,
+  "4": 0.0929,
+  "5": 0.0834,
+  "6": 0.0425,
+  "7": 0.0417,
+  "8": 0.038,
+  "9": 0.0346,
+  "10": 0.0405,
+  "11": 0.047,
+  "12": 0.0286,
+  "13": 0.04,
+  "14": 0.0353,
+  "15": 0.0321,
+  "16": 0.0286,
+  "17": 0.0208,
+  "18": 0.0219,
+  "19": 0.019,
+  "20": 0.0105
+ },
+ "det_cannibalisation": [
+  {
+   "query": "massage tantrique",
+   "impressions": 24504,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/massage-tantrique-couple-positions-guide",
+     "share": 0.6,
+     "position": 8.7
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/massage-tantrique-nbsp-guide-complet-pour-eveiller-l-energie-et-le-plaisir-en-couple",
+     "share": 0.39,
+     "position": 8.4
+    }
+   ]
+  },
+  {
+   "query": "position kamasutra",
+   "impressions": 14828,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/noms-positions-kamasutra-lexique",
+     "share": 0.6,
+     "position": 6.1
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/kamasutra-guide-complet-positions",
+     "share": 0.4,
+     "position": 7.2
+    }
+   ]
+  },
+  {
+   "query": "loveroom",
+   "impressions": 6696,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/pages/loveroom",
+     "share": 0.24,
+     "position": 8.4
+    },
+    {
+     "page": "https://lovenspa.fr/",
+     "share": 0.21,
+     "position": 5.7
+    }
+   ]
+  },
+  {
+   "query": "love room lille",
+   "impressions": 3251,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/lille",
+     "share": 0.69,
+     "position": 1.6
+    },
+    {
+     "page": "https://lovenspa.fr/products/private-room-40",
+     "share": 0.2,
+     "position": 15.7
+    }
+   ]
+  },
+  {
+   "query": "fauteuil tantrique",
+   "impressions": 3179,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/le-fauteuil-tantra-un-guide-complet",
+     "share": 0.4,
+     "position": 2.4
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/le-guide-complet-du-sofa-tantra-redecouvrez-votre-sensualite-et-votre-energie-interieure",
+     "share": 0.36,
+     "position": 4.6
+    }
+   ]
+  },
+  {
+   "query": "kamasutra position",
+   "impressions": 3166,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/noms-positions-kamasutra-lexique",
+     "share": 0.63,
+     "position": 4.3
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/kamasutra-guide-complet-positions",
+     "share": 0.37,
+     "position": 7.1
+    }
+   ]
+  },
+  {
+   "query": "love room montpellier",
+   "impressions": 2653,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/montpellier",
+     "share": 0.66,
+     "position": 2.2
+    },
+    {
+     "page": "https://lovenspa.fr/products/la-sxcape-room",
+     "share": 0.28,
+     "position": 7.9
+    }
+   ]
+  },
+  {
+   "query": "lova-home.fr",
+   "impressions": 2316,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/love-room",
+     "share": 0.37,
+     "position": 7.6
+    },
+    {
+     "page": "https://lovenspa.fr/collections/frontpage",
+     "share": 0.34,
+     "position": 8.7
+    },
+    {
+     "page": "https://lovenspa.fr/",
+     "share": 0.29,
+     "position": 8.4
+    }
+   ]
+  },
+  {
+   "query": "secret room",
+   "impressions": 2198,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/secret-room",
+     "share": 0.26,
+     "position": 3.8
+    },
+    {
+     "page": "https://lovenspa.fr/pages/secret-room-decouvrez-mysteres-piece-secrete",
+     "share": 0.24,
+     "position": 7.3
+    }
+   ]
+  },
+  {
+   "query": "massage tantra",
+   "impressions": 2190,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/massage-tantrique-nbsp-guide-complet-pour-eveiller-l-energie-et-le-plaisir-en-couple",
+     "share": 0.64,
+     "position": 7.8
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/massage-tantrique-couple-positions-guide",
+     "share": 0.35,
+     "position": 9.4
+    }
+   ]
+  },
+  {
+   "query": "love room bretagne lovenspa",
+   "impressions": 1997,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/bretagne",
+     "share": 0.22,
+     "position": 1.0
+    },
+    {
+     "page": "https://lovenspa.fr/pages/guide-une-love-room-bretagne-profiter-mer",
+     "share": 0.22,
+     "position": 2.6
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/love-room-bretagne-15-pepites-avec-jacuzzi-privatif-entre-terre-et-mer",
+     "share": 0.21,
+     "position": 2.8
+    },
+    {
+     "page": "https://lovenspa.fr/pages/guide-week-end-amoureux-bretagne",
+     "share": 0.21,
+     "position": 5.2
+    }
+   ]
+  },
+  {
+   "query": "sofa tantrique",
+   "impressions": 1902,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/le-fauteuil-tantra-un-guide-complet",
+     "share": 0.34,
+     "position": 2.3
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/le-guide-complet-du-sofa-tantra-redecouvrez-votre-sensualite-et-votre-energie-interieure",
+     "share": 0.32,
+     "position": 4.8
+    }
+   ]
+  },
+  {
+   "query": "fauteuil tantra ikea",
+   "impressions": 1845,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/le-fauteuil-tantra-un-guide-complet",
+     "share": 0.38,
+     "position": 6.5
+    },
+    {
+     "page": "https://lovenspa.fr/pages/sofa-tantra-top-modeles-recommandes-debutants",
+     "share": 0.38,
+     "position": 1.8
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/positions-fauteuil-tantra-guide-utilisation",
+     "share": 0.21,
+     "position": 10.2
+    }
+   ]
+  },
+  {
+   "query": "love room alsace",
+   "impressions": 1827,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/bas-rhin",
+     "share": 0.61,
+     "position": 3.7
+    },
+    {
+     "page": "https://lovenspa.fr/collections/grand-est",
+     "share": 0.25,
+     "position": 6.5
+    }
+   ]
+  },
+  {
+   "query": "fauteuil tantra utilisation",
+   "impressions": 1425,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/le-fauteuil-tantra-un-guide-complet",
+     "share": 0.44,
+     "position": 1.7
+    },
+    {
+     "page": "https://lovenspa.fr/pages/sofa-tantra-integrer-canape-routine-intime",
+     "share": 0.39,
+     "position": 9.4
+    }
+   ]
+  },
+  {
+   "query": "love ro",
+   "impressions": 1419,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/",
+     "share": 0.23,
+     "position": 2.1
+    },
+    {
+     "page": "https://lovenspa.fr/collections/love-room",
+     "share": 0.22,
+     "position": 1.9
+    }
+   ]
+  },
+  {
+   "query": "love room aix en provence",
+   "impressions": 1296,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/aix-en-provence",
+     "share": 0.57,
+     "position": 3.9
+    },
+    {
+     "page": "https://lovenspa.fr/products/secrets-daix-1",
+     "share": 0.39,
+     "position": 8.1
+    }
+   ]
+  },
+  {
+   "query": "love room valence",
+   "impressions": 1279,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/valence",
+     "share": 0.62,
+     "position": 4.1
+    },
+    {
+     "page": "https://lovenspa.fr/products/lincontournable-love-room",
+     "share": 0.31,
+     "position": 12.9
+    }
+   ]
+  },
+  {
+   "query": "love room valenciennes",
+   "impressions": 1099,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/valenciennes",
+     "share": 0.64,
+     "position": 6.5
+    },
+    {
+     "page": "https://lovenspa.fr/products/loveroom-valencienne",
+     "share": 0.27,
+     "position": 26.9
+    }
+   ]
+  },
+  {
+   "query": "love room colmar",
+   "impressions": 1055,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/colmar",
+     "share": 0.53,
+     "position": 2.9
+    },
+    {
+     "page": "https://lovenspa.fr/products/villa-9-colmar",
+     "share": 0.23,
+     "position": 12.8
+    }
+   ]
+  },
+  {
+   "query": "massage amoureux",
+   "impressions": 1016,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/le-guide-ultime-du-massage-sensuel-pour-couples",
+     "share": 0.75,
+     "position": 8.3
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/massage-en-couple-le-guide-pour-soffrir-un-vrai-moment-a-deux",
+     "share": 0.24,
+     "position": 7.5
+    }
+   ]
+  },
+  {
+   "query": "live room",
+   "impressions": 1009,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/",
+     "share": 0.41,
+     "position": 2.5
+    },
+    {
+     "page": "https://lovenspa.fr/collections/paris",
+     "share": 0.27,
+     "position": 2.1
+    }
+   ]
+  },
+  {
+   "query": "love room le mans",
+   "impressions": 899,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/le-mans",
+     "share": 0.72,
+     "position": 2.8
+    },
+    {
+     "page": "https://lovenspa.fr/products/lovappart",
+     "share": 0.21,
+     "position": 11.1
+    }
+   ]
+  },
+  {
+   "query": "love room rhone alpes",
+   "impressions": 899,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/auvergne-rhone-alpes",
+     "share": 0.37,
+     "position": 3.0
+    },
+    {
+     "page": "https://lovenspa.fr/products/l-obscure",
+     "share": 0.31,
+     "position": 2.3
+    }
+   ]
+  },
+  {
+   "query": "love room orleans",
+   "impressions": 874,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/orleans",
+     "share": 0.69,
+     "position": 2.8
+    },
+    {
+     "page": "https://lovenspa.fr/products/emois-toi",
+     "share": 0.23,
+     "position": 10.6
+    }
+   ]
+  },
+  {
+   "query": "week-end insolite en amoureux",
+   "impressions": 839,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/pages/guide-week-end-amoureux-nuit-insolite-occitanie",
+     "share": 0.26,
+     "position": 10.4
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/nuit-insolite-en-amoureux-le-guide-complet",
+     "share": 0.2,
+     "position": 22.4
+    }
+   ]
+  },
+  {
+   "query": "position kama sutra",
+   "impressions": 822,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/kamasutra-guide-complet-positions",
+     "share": 0.72,
+     "position": 7.8
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/noms-positions-kamasutra-lexique",
+     "share": 0.28,
+     "position": 7.0
+    }
+   ]
+  },
+  {
+   "query": "massage erotique",
+   "impressions": 822,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/massage-tantrique-nbsp-guide-complet-pour-eveiller-l-energie-et-le-plaisir-en-couple",
+     "share": 0.53,
+     "position": 25.4
+    },
+    {
+     "page": "https://lovenspa.fr/blogs/magazine/pour-votre-corps-tentez-un-massage-erotique-ou-tantrique",
+     "share": 0.26,
+     "position": 43.9
+    }
+   ]
+  },
+  {
+   "query": "love room pays basque",
+   "impressions": 816,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/collections/pays-basque",
+     "share": 0.43,
+     "position": 6.2
+    },
+    {
+     "page": "https://lovenspa.fr/collections/saint-jean-de-luz",
+     "share": 0.42,
+     "position": 2.1
+    }
+   ]
+  },
+  {
+   "query": "love room france",
+   "impressions": 813,
+   "pages": [
+    {
+     "page": "https://lovenspa.fr/",
+     "share": 0.36,
+     "position": 3.1
+    },
+    {
+     "page": "https://lovenspa.fr/products/chuttt-love-room-framboise-1",
+     "share": 0.25,
+     "position": 10.1
+    }
+   ]
+  }
+ ],
+ "det_quick_wins": [
+  {
+   "query": "love room",
+   "impressions": 44531,
+   "clicks": 4051,
+   "position": 4.7
+  },
+  {
+   "query": "dayuse",
+   "impressions": 33275,
+   "clicks": 81,
+   "position": 6.2
+  },
+  {
+   "query": "kamasutra",
+   "impressions": 32675,
+   "clicks": 1578,
+   "position": 8.7
+  },
+  {
+   "query": "massage tantrique",
+   "impressions": 23872,
+   "clicks": 332,
+   "position": 8.3
+  },
+  {
+   "query": "week end en amoureux",
+   "impressions": 17071,
+   "clicks": 467,
+   "position": 7.3
+  },
+  {
+   "query": "position kamasutra",
+   "impressions": 14378,
+   "clicks": 964,
+   "position": 6.4
+  },
+  {
+   "query": "felation",
+   "impressions": 12788,
+   "clicks": 131,
+   "position": 7.7
+  },
+  {
+   "query": "fantasme",
+   "impressions": 12536,
+   "clicks": 64,
+   "position": 6.8
+  },
+  {
+   "query": "love hotel",
+   "impressions": 9246,
+   "clicks": 86,
+   "position": 6.3
+  },
+  {
+   "query": "massage tantrique définition",
+   "impressions": 8832,
+   "clicks": 56,
+   "position": 7.3
+  },
+  {
+   "query": "week end amoureux",
+   "impressions": 8409,
+   "clicks": 254,
+   "position": 7.2
+  },
+  {
+   "query": "levrette",
+   "impressions": 8065,
+   "clicks": 24,
+   "position": 8.4
+  },
+  {
+   "query": "day use",
+   "impressions": 7516,
+   "clicks": 31,
+   "position": 6.4
+  },
+  {
+   "query": "chocolat aphrodisiaque",
+   "impressions": 7449,
+   "clicks": 97,
+   "position": 8.3
+  },
+  {
+   "query": "weekend amoureux",
+   "impressions": 5673,
+   "clicks": 155,
+   "position": 7.9
+  },
+  {
+   "query": "love room autour de moi",
+   "impressions": 5627,
+   "clicks": 539,
+   "position": 4.4
+  },
+  {
+   "query": "loveroom",
+   "impressions": 5441,
+   "clicks": 354,
+   "position": 7.3
+  },
+  {
+   "query": "spa privatif",
+   "impressions": 5400,
+   "clicks": 200,
+   "position": 8.1
+  },
+  {
+   "query": "week-end en amoureux tout compris",
+   "impressions": 5376,
+   "clicks": 141,
+   "position": 7.4
+  },
+  {
+   "query": "weekend en amoureux",
+   "impressions": 4905,
+   "clicks": 150,
+   "position": 7.8
+  },
+  {
+   "query": "kama sutra",
+   "impressions": 4844,
+   "clicks": 421,
+   "position": 5.7
+  },
+  {
+   "query": "position sexuelle",
+   "impressions": 4690,
+   "clicks": 223,
+   "position": 6.2
+  },
+  {
+   "query": "sauna",
+   "impressions": 4335,
+   "clicks": 5,
+   "position": 12.4
+  },
+  {
+   "query": "sexto",
+   "impressions": 4224,
+   "clicks": 208,
+   "position": 4.5
+  },
+  {
+   "query": "fellation",
+   "impressions": 4198,
+   "clicks": 71,
+   "position": 13.9
+  },
+  {
+   "query": "dirty talk",
+   "impressions": 3913,
+   "clicks": 74,
+   "position": 7.6
+  },
+  {
+   "query": "caresse",
+   "impressions": 3910,
+   "clicks": 4,
+   "position": 4.4
+  },
+  {
+   "query": "love room lyon",
+   "impressions": 3629,
+   "clicks": 445,
+   "position": 4.3
+  },
+  {
+   "query": "love room bretagne",
+   "impressions": 3553,
+   "clicks": 299,
+   "position": 5.4
+  },
+  {
+   "query": "tantra",
+   "impressions": 3534,
+   "clicks": 15,
+   "position": 7.9
+  },
+  {
+   "query": "chambre avec jacuzzi privatif",
+   "impressions": 3389,
+   "clicks": 158,
+   "position": 8.9
+  },
+  {
+   "query": "les 5 langages de l'amour",
+   "impressions": 3290,
+   "clicks": 6,
+   "position": 9.7
+  },
+  {
+   "query": "massage sensuel",
+   "impressions": 3182,
+   "clicks": 27,
+   "position": 8.4
+  },
+  {
+   "query": "nuit insolite en amoureux",
+   "impressions": 3081,
+   "clicks": 53,
+   "position": 12.2
+  },
+  {
+   "query": "love room normandie",
+   "impressions": 3055,
+   "clicks": 413,
+   "position": 6.8
+  },
+  {
+   "query": "kamasutra position",
+   "impressions": 3026,
+   "clicks": 327,
+   "position": 5.0
+  },
+  {
+   "query": "tantrique",
+   "impressions": 2782,
+   "clicks": 16,
+   "position": 7.3
+  },
+  {
+   "query": "love room toulouse",
+   "impressions": 2590,
+   "clicks": 111,
+   "position": 5.9
+  },
+  {
+   "query": "love room lille",
+   "impressions": 2527,
+   "clicks": 451,
+   "position": 7.7
+  },
+  {
+   "query": "lova-home.fr",
+   "impressions": 2316,
+   "clicks": 0,
+   "position": 8.2
+  }
+ ],
+ "det_ctr_anormal": [
+  {
+   "query": "dayuse",
+   "impressions": 33275,
+   "clicks": 81,
+   "position": 6.2,
+   "ctr_pct": 0.24,
+   "ctr_attendu_pct": 4.25,
+   "clics_manquants": 1333
+  },
+  {
+   "query": "massage tantrique",
+   "impressions": 23872,
+   "clicks": 332,
+   "position": 8.3,
+   "ctr_pct": 1.39,
+   "ctr_attendu_pct": 3.8,
+   "clics_manquants": 575
+  },
+  {
+   "query": "fantasme",
+   "impressions": 12536,
+   "clicks": 64,
+   "position": 6.8,
+   "ctr_pct": 0.51,
+   "ctr_attendu_pct": 4.25,
+   "clics_manquants": 469
+  },
+  {
+   "query": "felation",
+   "impressions": 12788,
+   "clicks": 131,
+   "position": 7.7,
+   "ctr_pct": 1.02,
+   "ctr_attendu_pct": 4.17,
+   "clics_manquants": 402
+  },
+  {
+   "query": "caresse",
+   "impressions": 3910,
+   "clicks": 4,
+   "position": 4.4,
+   "ctr_pct": 0.1,
+   "ctr_attendu_pct": 9.29,
+   "clics_manquants": 359
+  },
+  {
+   "query": "massage tantrique définition",
+   "impressions": 8832,
+   "clicks": 56,
+   "position": 7.3,
+   "ctr_pct": 0.63,
+   "ctr_attendu_pct": 4.17,
+   "clics_manquants": 312
+  },
+  {
+   "query": "love hotel",
+   "impressions": 9246,
+   "clicks": 86,
+   "position": 6.3,
+   "ctr_pct": 0.93,
+   "ctr_attendu_pct": 4.25,
+   "clics_manquants": 307
+  },
+  {
+   "query": "day use",
+   "impressions": 7516,
+   "clicks": 31,
+   "position": 6.4,
+   "ctr_pct": 0.41,
+   "ctr_attendu_pct": 4.25,
+   "clics_manquants": 288
+  },
+  {
+   "query": "levrette",
+   "impressions": 8065,
+   "clicks": 24,
+   "position": 8.4,
+   "ctr_pct": 0.3,
+   "ctr_attendu_pct": 3.8,
+   "clics_manquants": 282
+  },
+  {
+   "query": "chocolat aphrodisiaque",
+   "impressions": 7449,
+   "clicks": 97,
+   "position": 8.3,
+   "ctr_pct": 1.3,
+   "ctr_attendu_pct": 3.8,
+   "clics_manquants": 186
+  },
+  {
+   "query": "caresses",
+   "impressions": 1433,
+   "clicks": 12,
+   "position": 3.6,
+   "ctr_pct": 0.84,
+   "ctr_attendu_pct": 13.12,
+   "clics_manquants": 176
+  },
+  {
+   "query": "tantra",
+   "impressions": 3534,
+   "clicks": 15,
+   "position": 7.9,
+   "ctr_pct": 0.42,
+   "ctr_attendu_pct": 4.17,
+   "clics_manquants": 132
+  },
+  {
+   "query": "saint valentin 2027",
+   "impressions": 1663,
+   "clicks": 8,
+   "position": 5.3,
+   "ctr_pct": 0.48,
+   "ctr_attendu_pct": 8.34,
+   "clics_manquants": 131
+  },
+  {
+   "query": "bubble pink",
+   "impressions": 1461,
+   "clicks": 5,
+   "position": 5.4,
+   "ctr_pct": 0.34,
+   "ctr_attendu_pct": 8.34,
+   "clics_manquants": 117
+  },
+  {
+   "query": "les 5 langages de l'amour",
+   "impressions": 3290,
+   "clicks": 6,
+   "position": 9.7,
+   "ctr_pct": 0.18,
+   "ctr_attendu_pct": 3.46,
+   "clics_manquants": 108
+  },
+  {
+   "query": "spa maubeuge",
+   "impressions": 1189,
+   "clicks": 4,
+   "position": 4.6,
+   "ctr_pct": 0.34,
+   "ctr_attendu_pct": 9.29,
+   "clics_manquants": 106
+  },
+  {
+   "query": "tantrique",
+   "impressions": 2782,
+   "clicks": 16,
+   "position": 7.3,
+   "ctr_pct": 0.58,
+   "ctr_attendu_pct": 4.17,
+   "clics_manquants": 100
+  },
+  {
+   "query": "massage sensuel",
+   "impressions": 3182,
+   "clicks": 27,
+   "position": 8.4,
+   "ctr_pct": 0.85,
+   "ctr_attendu_pct": 3.8,
+   "clics_manquants": 94
+  },
+  {
+   "query": "dirty talk",
+   "impressions": 3913,
+   "clicks": 74,
+   "position": 7.6,
+   "ctr_pct": 1.89,
+   "ctr_attendu_pct": 4.17,
+   "clics_manquants": 89
+  },
+  {
+   "query": "lova-home.fr",
+   "impressions": 2316,
+   "clicks": 0,
+   "position": 8.2,
+   "ctr_pct": 0.0,
+   "ctr_attendu_pct": 3.8,
+   "clics_manquants": 88
+  },
+  {
+   "query": "jeux de couple",
+   "impressions": 1218,
+   "clicks": 40,
+   "position": 5.1,
+   "ctr_pct": 3.28,
+   "ctr_attendu_pct": 8.34,
+   "clics_manquants": 62
+  },
+  {
+   "query": "day use hotel",
+   "impressions": 1219,
+   "clicks": 4,
+   "position": 7.6,
+   "ctr_pct": 0.33,
+   "ctr_attendu_pct": 4.17,
+   "clics_manquants": 47
+  },
+  {
+   "query": "belinda sans tabou",
+   "impressions": 1405,
+   "clicks": 2,
+   "position": 9.2,
+   "ctr_pct": 0.14,
+   "ctr_attendu_pct": 3.46,
+   "clics_manquants": 47
+  },
+  {
+   "query": "massage tantra",
+   "impressions": 2104,
+   "clicks": 38,
+   "position": 8.1,
+   "ctr_pct": 1.81,
+   "ctr_attendu_pct": 3.8,
+   "clics_manquants": 42
+  },
+  {
+   "query": "demande en mariage",
+   "impressions": 1219,
+   "clicks": 8,
+   "position": 8.8,
+   "ctr_pct": 0.66,
+   "ctr_attendu_pct": 3.8,
+   "clics_manquants": 38
+  },
+  {
+   "query": "deguisement halloween couple",
+   "impressions": 1102,
+   "clicks": 0,
+   "position": 9.4,
+   "ctr_pct": 0.0,
+   "ctr_attendu_pct": 3.46,
+   "clics_manquants": 38
+  },
+  {
+   "query": "intimiste",
+   "impressions": 1070,
+   "clicks": 0,
+   "position": 9.8,
+   "ctr_pct": 0.0,
+   "ctr_attendu_pct": 3.46,
+   "clics_manquants": 37
+  },
+  {
+   "query": "massage sexy",
+   "impressions": 1391,
+   "clicks": 19,
+   "position": 9.8,
+   "ctr_pct": 1.37,
+   "ctr_attendu_pct": 3.46,
+   "clics_manquants": 29
+  }
+ ],
+ "det_declin": [
+  {
+   "page": "https://lovenspa.fr/blogs/magazine/kamasutra-guide-complet-positions",
+   "clicks_prev": 6124,
+   "clicks": 3902,
+   "delta_pct": -36.3
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/100-sms-chauds-tu-me-manques",
+   "clicks_prev": 1123,
+   "clicks": 3,
+   "delta_pct": -99.7
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/positions-sexuelles-debutants",
+   "clicks_prev": 581,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/blogs/magazine/position-de-la-brouette-guide",
+   "clicks_prev": 618,
+   "clicks": 213,
+   "delta_pct": -65.5
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/noms-positions-kamasutra-lexique",
+   "clicks_prev": 341,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/pages/loveroom",
+   "clicks_prev": 364,
+   "clicks": 99,
+   "delta_pct": -72.8
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/meilleures-positions-sexuelles",
+   "clicks_prev": 247,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/blogs/magazine/love-room-bretagne-15-pepites-avec-jacuzzi-privatif-entre-terre-et-mer",
+   "clicks_prev": 204,
+   "clicks": 25,
+   "delta_pct": -87.7
+  },
+  {
+   "page": "https://lovenspa.fr/collections/toulouse",
+   "clicks_prev": 559,
+   "clicks": 384,
+   "delta_pct": -31.3
+  },
+  {
+   "page": "https://lovenspa.fr/blogs/magazine/10-idees-de-jeux-de-role-a-faire-en-couple-pour-pimenter-votre-relation",
+   "clicks_prev": 559,
+   "clicks": 439,
+   "delta_pct": -21.5
+  },
+  {
+   "page": "https://lovenspa.fr/pages/guide-les-villes-romantiques-france-week-end-amoureux",
+   "clicks_prev": 355,
+   "clicks": 246,
+   "delta_pct": -30.7
+  },
+  {
+   "page": "http://lovenspa.fr/",
+   "clicks_prev": 397,
+   "clicks": 301,
+   "delta_pct": -24.2
+  },
+  {
+   "page": "https://lovenspa.fr/collections/auvergne-rhone-alpes",
+   "clicks_prev": 415,
+   "clicks": 321,
+   "delta_pct": -22.7
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/positions-fauteuil-tantra-guide-utilisation",
+   "clicks_prev": 91,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/collections/saint-quentin",
+   "clicks_prev": 378,
+   "clicks": 290,
+   "delta_pct": -23.3
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/positions-fauteuil-tantra-guide",
+   "clicks_prev": 78,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/kamasutra-guide-complet-positions",
+   "clicks_prev": 70,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/10-scenarios-coquins-a-vivre-dans-une-love-room",
+   "clicks_prev": 61,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/products/luxury-love-room-tentation",
+   "clicks_prev": 179,
+   "clicks": 119,
+   "delta_pct": -33.5
+  },
+  {
+   "page": "https://lovenspa.fr/blogs/magazine/day-use-cest-quoi",
+   "clicks_prev": 243,
+   "clicks": 191,
+   "delta_pct": -21.4
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/10-idees-de-jeux-de-role-a-faire-en-couple-pour-pimenter-votre-relation",
+   "clicks_prev": 52,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/pages/love-room-le-guide-des-hebergements-reserves-aux-couples",
+   "clicks_prev": 51,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/blogs/magazine/chambre-rouge-salle-de-jeux-de-50-nuances-de-grey-osez-la-passion-debridee-le-temps-d-une-nuit",
+   "clicks_prev": 134,
+   "clicks": 88,
+   "delta_pct": -34.3
+  },
+  {
+   "page": "https://lovenspa.fr/blogs/magazine/10-idees-de-week-end-en-amoureux-en-belgique",
+   "clicks_prev": 182,
+   "clicks": 139,
+   "delta_pct": -23.6
+  },
+  {
+   "page": "https://lovenspa.fr/collections/pyrenees-atlantiques",
+   "clicks_prev": 167,
+   "clicks": 124,
+   "delta_pct": -25.7
+  },
+  {
+   "page": "https://lovenspa.fr/en",
+   "clicks_prev": 43,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/le-dirty-talk-un-guide-complet-pour-maitriser-lart-du-langage-erotique",
+   "clicks_prev": 42,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/pages/sofa-tantra-meilleures-positions-sexuelles-pratiques",
+   "clicks_prev": 85,
+   "clicks": 44,
+   "delta_pct": -48.2
+  },
+  {
+   "page": "https://lovenspa.fr/products/lincontournable-love-room",
+   "clicks_prev": 175,
+   "clicks": 138,
+   "delta_pct": -21.1
+  },
+  {
+   "page": "https://lovenspa.fr/pages/guide-la-love-room-piscine-privative",
+   "clicks_prev": 120,
+   "clicks": 83,
+   "delta_pct": -30.8
+  },
+  {
+   "page": "https://lovenspa.fr/en/collections/paris",
+   "clicks_prev": 36,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/collections/vaucluse",
+   "clicks_prev": 134,
+   "clicks": 100,
+   "delta_pct": -25.4
+  },
+  {
+   "page": "https://lovenspa.fr/collections/lot-et-garonne",
+   "clicks_prev": 137,
+   "clicks": 104,
+   "delta_pct": -24.1
+  },
+  {
+   "page": "https://lovenspa.fr/blogs/magazine/les-20-meilleures-love-rooms-a-moins-d-une-heure-de-paris-pour-une-echappee-romantique",
+   "clicks_prev": 50,
+   "clicks": 17,
+   "delta_pct": -66.0
+  },
+  {
+   "page": "https://lovenspa.fr/products/lov-asion",
+   "clicks_prev": 41,
+   "clicks": 8,
+   "delta_pct": -80.5
+  },
+  {
+   "page": "https://lovenspa.fr/en/blogs/magazine/meilleures-positions-au-lit",
+   "clicks_prev": 30,
+   "clicks": 0,
+   "delta_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/collections/territoire-de-belfort",
+   "clicks_prev": 51,
+   "clicks": 23,
+   "delta_pct": -54.9
+  },
+  {
+   "page": "https://lovenspa.fr/pages/guide-une-love-room-bretagne-profiter-mer",
+   "clicks_prev": 71,
+   "clicks": 44,
+   "delta_pct": -38.0
+  },
+  {
+   "page": "https://lovenspa.fr/blogs/magazine/nuit-troglodyte-avec-jacuzzi-le-sejour-insolite-et-romantique-qui-fait-chavirer-les-coeurs",
+   "clicks_prev": 120,
+   "clicks": 94,
+   "delta_pct": -21.7
+  },
+  {
+   "page": "https://lovenspa.fr/collections/fougeres",
+   "clicks_prev": 106,
+   "clicks": 80,
+   "delta_pct": -24.5
+  }
+ ],
+ "nb": {
+  "cannibalisation": 255,
+  "quick_wins": 204,
+  "ctr_anormal": 28,
+  "declin": 91
+ }
+}

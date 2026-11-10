@@ -9,9 +9,10 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 
 | # | Déployé | Lot | Levier | N URLs | Témoin | Lecture prévue | Verdict |
 |---|---|---|---|---|---|---|---|
+| L8 | 10/11/2026 | 10 pages à CTR anormal (8 articles, 2 pages) | SEO title + meta description (`global.title_tag` / `description_tag`) | 10 | 5 articles figés (`claude/lots/L8.md`) | 02/12/2026 | en cours |
 | L6 | 02/11/2026 | 25 fiches 404 (churn) | Status DRAFT/ARCHIVED/UNLISTED→ACTIVE + templateSuffix=produit-churn (corrigé le jour même : premier passage en `churn`, suffixe inexistant dans le thème lovenspa 4.1, fiches servies quelques heures sur le template produit standard) | 25 | Sans témoin : action de récupération 404→200, suivi non causal (impressions et clics des 25 URL à J+21 vs 90 j avant) | 23/11/2026 | en cours. Rendu non vérifié : lovenspa.fr bloqué par le réseau de l'environnement. |
-| L5 | 13/10/2026 | collection `/collections/love-room` | Réécriture éditoriale (9 H2, FAQPage 7Q, 47 liens, chiffres oct.) | 1 | `/pages/guide-qu-est-ce-love-room` | 27/10/2026 · **24/11/2026** | ✓ J+14 positif : pos 12.0→9.1, impr 3 692→5 473. Guide recule (8.7→10.5), pas de cannibalisation. Lecture définitive 24/11. |
-| L4 | 28/09/2026 | 35 metas fiches | SEO title + meta description | 35 | 35 témoins figés | 02/11/2026 | ✓ J+35 positif : 0 régression sur top 70 fiches, gain médian −2.5 pos. Lire L4 paire-à-paire après récup liste Shopify. |
+| L5 | 13/10/2026 | collection `/collections/love-room` | Réécriture éditoriale (9 H2, FAQPage 7Q, 47 liens, chiffres oct.) | 1 | `/pages/guide-qu-est-ce-love-room` | 27/10/2026 · **24/11/2026** | ⚠ Lu à J+27 le 09/11, non conclusif. Sur 21 j avant / 21 j après : lot clics ×2,40, position de 11,8 à 9,0 ; témoin clics ×3,00, position de 8,2 à 10,2. Témoin d'une seule page, faible volume. Contaminé par 3 événements (02/11 et 03/11 ×2). Décision Go en attente. |
+| L4 | 28/09/2026 | 35 metas fiches | SEO title + meta description | 35 | 35 témoins figés | 02/11/2026 | ⚠ Verdict du 02/11 retiré le 09/11 : il reposait sur une médiane agrégée, sans paires. Non lisible tant que les listes du lot et du témoin ne sont pas retrouvées. |
 | L3 | 28/09/2026 | 17 fiches lot témoin | Body optimisé (structure + FAQ) | 17 | 16 témoins, 6 groupe B | 26/10/2026 | ⚠ Non conclusif : liste exacte non disponible. Récupérer URLs via Shopify (metafield seo-lot=L3). |
 | L2 | 28/09/2026 | JSON-LD ItemList | Données structurées collections | 1 | n/a | 27/10/2026 | EN RETARD |
 | L1 | 28/09/2026 | Robots + pagination | robots.txt réécrit ; 24/page + éditorial p.1 | n/a | n/a | — | déployé |
@@ -87,6 +88,47 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
   - 1 en redirection.
 - Collections : mêmes 4 anomalies que le 04/11. Décisions en attente.
 - 05/11 : 3 tâches récurrentes du 02/11 désactivées (doublons de la session du 03/11) : veille quotidienne trig_011n41…, compte rendu hebdo trig_01RigK…, audit mensuel trig_01E1sz…. Lectures L6 (23/11) et L5 (24/11) conservées. Veille du 03/11 (trig_019HhJ…) : sa consigne pointe la branche peaceful-cannon-klj2cv ; les 6 tâches de la session du 03/11 pointent peaceful-cannon : fusionnée dans zen-edison le 05/11, bascule des prompts à valider par Florian dans cette session.
+
+## Veille indexation du 06/11/2026
+
+- 608 URL, 0 erreur (`veille.py`) : 83 fiches actives modifiées depuis 48 h, les 20 fiches suivies et les 506 collections. Aucun écart de canonical. Fichier : `claude/veille/veille-2026-11-06.csv`.
+- Fiches suivies : aucun changement depuis le 05/11. 13 en 404 pour Google, 5 inconnues, 1 noindex, 1 redirection.
+- Nouvelle anomalie : `le-1888-maison-romantique-avec-balneo-en-sologne` est « URL is unknown to Google ». La fiche a été créée le 04/11 et publiée le 05/11 à 18:49 UTC ; elle répond 200. Je l'ajoute au suivi.
+- Collections : les mêmes 4 anomalies, toujours en attente de décision.
+
+## Veille indexation du 07/11/2026
+
+- 600 URL inspectées, 0 erreur : 75 fiches modifiées depuis 48 h, 21 fiches suivies, collections. Aucune nouvelle anomalie, aucun écart de canonical. Fichier : `claude/veille/veille-2026-11-07.csv`.
+- Fiches suivies (21) : 2 sont maintenant indexées (1 qui était en 404, 1 qui était inconnue) et 1 est passée de « inconnue » à « découverte ». Il en reste 19 non indexées : 12 en 404, 4 inconnues, 1 découverte, 1 noindex, 1 redirection.
+- Collections : les 4 mêmes anomalies que les jours précédents.
+
+## Veille indexation du 08/11/2026
+
+- 573 URL inspectées, 0 erreur : 49 fiches modifiées depuis 48 h, 19 fiches suivies et les collections. Aucune nouvelle anomalie, aucun écart de canonical. Fichier : `claude/veille/veille-2026-11-08.csv`.
+- Fiches suivies : 3 de plus sont indexées (une « inconnue », une « découverte », la fiche en redirection). Il reste 16 fiches non indexées : 12 en 404 depuis le premier relevé, 3 inconnues, 1 noindex.
+- Collections : les 4 mêmes anomalies que lors des veilles précédentes.
+
+## Veille indexation du 09/11/2026
+
+- 559 URL inspectées, 0 erreur : 37 fiches modifiées depuis 48 h, 16 fiches suivies, collections. Aucune nouvelle anomalie, aucun écart de canonical. Fichier : `claude/veille/veille-2026-11-09.csv`.
+- Fiches suivies : 1 fiche de plus indexée (elle était en 404). Il en reste 15 non indexées : 11 en 404, 3 inconnues, 1 noindex.
+- Collections : les 4 mêmes anomalies.
+
+## Cycle hebdo du 09/11/2026
+
+- Compte rendu ajouté au doc et corrigé après QA. Données : `claude/veille/hebdo-2026-11-09.json`.
+- KPI 28 j : 128 287 clics (+5,4 %), 3 025 639 impressions (+4,1 %). « love room » au niveau requête : 4 051 clics, position 4,7.
+- Erreur corrigée : une somme faite au niveau requête × page comptait deux fois les impressions de « love room ». Les chiffres sont maintenant pris au niveau requête.
+- Lectures : L5 non conclusif ; verdict de L4 retiré ; L1, L2, L3 non lisibles.
+- Lot proposé : L8, 10 URL, témoin figé de 6 URL (`claude/lots/L8.md`). L7 reporté, faute de la liste L6.
+- Règle : toute liste de lot et de témoin est enregistrée dans `claude/lots/` avant déploiement.
+- Go en attente : univers cible (option A ou B) et décision sur L5.
+
+## Veille indexation du 10/11/2026
+
+- 584 URL, 0 erreur : 63 fiches modifiées depuis 48 h, 15 fiches suivies, les collections. Aucune nouvelle anomalie, aucun écart de canonical. Fichier : `claude/veille/veille-2026-11-10.csv`.
+- Fiches suivies : aucun changement. Toujours 15 fiches non indexées : 11 en 404, 3 inconnues de Google, 1 en noindex.
+- Collections : les 4 mêmes anomalies.
 
 ## CSS / fichiers thème en attente de push par Florian
 
