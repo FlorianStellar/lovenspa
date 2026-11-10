@@ -135,6 +135,16 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - peaceful-cannon fusionnée dans `claude/zen-edison-sac366` (merge 4b19e5c). Les 5 tâches récurrentes de la session SEO du 03/11 (veille, hebdo, exécution, mensuelle, trimestrielle) pointent maintenant sur zen-edison.
 - Le cycle du lundi utilise l'export plat maison (`site_export.py` et `site_audit.py`), qui remplace Matrixify.
 
+## Décisions de Florian du 10/11/2026
+
+- Univers cible : option A, soit tout le site hors marque et hors /en/, haut de tunnel compris. Nouvelle action G2 : stratégie de conversion du trafic blog vers la réservation.
+- L5 : réécriture gardée. Relecture au 30/11 contre un témoin élargi à plusieurs collections ville.
+- Fiches en 404 et fiches non listées indexées : en attente.
+- `tous-les-departements` et `toutes-les-regions` : noindex voulu (contenu mince). Clos.
+- E1 BigQuery et E7 Bing Webmaster Tools : go.
+  - Côté agent, l'usage du compte de service GSC pour lire et configurer le projet GCP a été refusé par la politique de sécurité de la session.
+  - Configuration à faire par Florian dans les consoles (étapes envoyées dans la conversation).
+
 ## CSS / fichiers thème en attente de push par Florian
 
 - CSS de lecture + repositionnement mobile bloc éditorial (écrit en local, branche `claude/zen-edison-sac366`)
