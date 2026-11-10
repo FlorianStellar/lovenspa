@@ -130,6 +130,11 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Fiches suivies : aucun changement. Toujours 15 fiches non indexées : 11 en 404, 3 inconnues de Google, 1 en noindex.
 - Collections : les 4 mêmes anomalies.
 
+## 10/11/2026 : bascule des tâches sur zen-edison (go de Florian)
+
+- peaceful-cannon fusionnée dans `claude/zen-edison-sac366` (merge 4b19e5c). Les 5 tâches récurrentes de la session SEO du 03/11 (veille, hebdo, exécution, mensuelle, trimestrielle) pointent maintenant sur zen-edison.
+- Le cycle du lundi utilise l'export plat maison (`site_export.py` et `site_audit.py`), qui remplace Matrixify.
+
 ## CSS / fichiers thème en attente de push par Florian
 
 - CSS de lecture + repositionnement mobile bloc éditorial (écrit en local, branche `claude/zen-edison-sac366`)
