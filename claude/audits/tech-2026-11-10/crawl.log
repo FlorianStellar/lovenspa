@@ -1,1 +1,95 @@
 2876 URL à crawler
+{
+ "date": "2026-11-10",
+ "urls_crawlees": 2876,
+ "urls_sitemap": 2876,
+ "par_type": {
+  "accueil": 1,
+  "agents.md": 1,
+  "blogs": 368,
+  "collections": 506,
+  "pages": 763,
+  "products": 1237
+ },
+ "statuts": {
+  "200": 2840,
+  "429": 36
+ },
+ "anomalies": {
+  "plus_de_100_liens": 437,
+  "non_atteinte_depuis_accueil": 254,
+  "profondeur_4_plus": 183,
+  "http_429": 36,
+  "h1_0": 8,
+  "h1_2": 3,
+  "noindex_dans_sitemap": 2,
+  "canonical_absent": 1,
+  "h1_None": 1,
+  "jsonld_invalide": 1
+ },
+ "profondeur": {
+  "0": 1,
+  "": 281,
+  "1": 376,
+  "4": 129,
+  "5": 47,
+  "3": 150,
+  "6": 8,
+  "2": 1881,
+  "7": 3
+ },
+ "liens_vers_hors_sitemap": 37,
+ "exemples_hors_sitemap": [
+  "https://lovenspa.fr/blogs/articles/le-fauteuil-tantra-un-guide-complet",
+  "https://lovenspa.fr/blogs/magazine/https:/lovenspa.fr/blogs/magazine/le-fauteuil-tantra-un-guide-complet",
+  "https://lovenspa.fr/blogs/magazine/raviver-la-flamme-du-couple-guide-complet",
+  "https://lovenspa.fr/blogs/magazine/tagged/couple",
+  "https://lovenspa.fr/blogs/magazine/tagged/desir-intimite",
+  "https://lovenspa.fr/blogs/magazine/tagged/destinations",
+  "https://lovenspa.fr/blogs/magazine/tagged/occasions",
+  "https://lovenspa.fr/collections/chambre-jacuzzi-spa-privatif/Equipements%7CSpa",
+  "https://lovenspa.fr/collections/jacuzzi-privatif",
+  "https://lovenspa.fr/collections/love-room-bordeaux",
+  "https://lovenspa.fr/collections/love-room-lyon",
+  "https://lovenspa.fr/collections/love-room-normandie",
+  "https://lovenspa.fr/collections/love-room-paris",
+  "https://lovenspa.fr/collections/love-room-sauna-privatif",
+  "https://lovenspa.fr/collections/love-room-sofa-tantrique",
+  "https://lovenspa.fr/collections/secret-room-love-room-week-end-amoureux",
+  "https://lovenspa.fr/collections/spa-privatif",
+  "https://lovenspa.fr/collections/toutes-les-love-rooms",
+  "https://lovenspa.fr/pages/FAQ",
+  "https://lovenspa.fr/pages/chambre-jacuzzi-privatif-offrir-hors-saison%E2%80%89",
+  "https://lovenspa.fr/pages/chambre-jacuzzi-privatif-preservez-intimite-chambre-!",
+  "https://lovenspa.fr/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe%E2%80%89",
+  "https://lovenspa.fr/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel.",
+  "https://lovenspa.fr/pages/guide-la-love-room-secret-room%C2%A0",
+  "https://lovenspa.fr/pages/guide-love-room-rochelle-c%C5%93ur-vieille-ville",
+  "https://lovenspa.fr/pages/guide-quel-type-love-room-choisir%C2%A0",
+  "https://lovenspa.fr/pages/guide-une-love-room-paris-ville-amour%C2%A0",
+  "https://lovenspa.fr/pages/love-room-le-guide-des-hebergements-reserves-aux-couples",
+  "https://lovenspa.fr/pages/loveroom-recap",
+  "https://lovenspa.fr/products/abonnement-lovenspa-1an"
+ ],
+ "robots_ia": {
+  "GPTBot": "autorisé sur /",
+  "OAI-SearchBot": "autorisé sur /",
+  "ChatGPT-User": "autorisé sur /",
+  "ClaudeBot": "autorisé sur /",
+  "Claude-SearchBot": "autorisé sur /",
+  "Claude-User": "autorisé sur /",
+  "PerplexityBot": "autorisé sur /",
+  "Perplexity-User": "autorisé sur /",
+  "Google-Extended": "autorisé sur /",
+  "Bingbot": "autorisé sur /",
+  "Googlebot": "autorisé sur /"
+ },
+ "urls_en_dans_sitemap": 0,
+ "ttfb_ms_median": 283,
+ "liens_internes_en_erreur": {
+  "301": 5832,
+  "429": 27,
+  "404": 1
+ },
+ "cibles_en_erreur": 46
+}

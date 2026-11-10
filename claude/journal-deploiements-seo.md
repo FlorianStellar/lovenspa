@@ -160,6 +160,12 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Constat : les 7 fiches supprimées vues en 404 le 05/11 redirigent maintenant en 301 (redirections ajoutées entre-temps).
 - Matrixify : licence en plan Demo (10 objets par export) ; rien n'est acheté.
 
+## Crawl de validation du 10/11/2026
+
+- 2 876 URL : 2 840 en 200, 36 en 429. Sources des liens cassés relevées (`claude/audits/tech-2026-11-10/liens_casses.csv`) : 31 cibles en 301 ou 404.
+- Priorité : 2 liens de menu présents sur les 2 839 pages crawlées mènent à des redirections (`/pages/loveroom-recap` et `/pages/love-room-le-guide-des-hebergements-reserves-aux-couples`, toutes deux vers `/pages/loveroom`). Traitement : agent du mercredi (menus ajoutés au niveau Auto).
+- Concordance avec l'export plat : les cibles du crawl se retrouvent dans `liens_a_corriger.csv` ; l'export donne en plus la source exacte (menu ou body).
+
 ## Règles du journal
 
 - Décision stratégique (Go, objectif, budget, périmètre, retour arrière sur page clé) : message privé Slack à Florian dès qu'elle apparaît.

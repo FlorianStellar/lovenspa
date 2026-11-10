@@ -9,6 +9,7 @@ Branche : `claude/zen-edison-sac366`. Journal : `claude/journal-deploiements-seo
 | Bug | Correction | Garde-fous |
 | --- | --- | --- |
 | Lien interne vers une 301 (`liens_casses.csv`, statut 301) | Remplacer l'URL par sa cible finale dans le body_html source | La cible finale répond 200 (vérifié) |
+| Lien de menu vers une 301 ou une 404 (lignes `menu:` de `liens_a_corriger.csv`) | Mettre à jour l'URL de l'élément de menu (menuUpdate), en commençant par les liens présents sur tout le site | Menu relu avant et après ; titre et ordre des éléments inchangés |
 | Lien interne vers une 404 | Remplacer par la page 200 la plus proche : fiche churn existante, sinon collection ville, sinon département. Aucune cible sûre : retirer le lien, garder le texte | Cible vérifiée en 200 ; jamais une fiche active d'un autre hébergeur à la place d'une fiche supprimée |
 | URL 404 avec impressions GSC (90 j) ou liens internes | Redirection 301 Shopify (urlRedirectCreate) vers la même cible que ci-dessus | Jamais sur une URL qui répond 200 ; jamais de chaîne (la cible n'est pas elle-même redirigée) |
 | JSON-LD invalide dans un body_html | Corriger la syntaxe seulement, sans changer le contenu | JSON parseable après correction |
