@@ -122,6 +122,12 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Règle : toute liste de lot et de témoin est enregistrée dans `claude/lots/` avant déploiement.
 - Go en attente : univers cible (option A ou B) et décision sur L5.
 
+## Veille indexation du 10/11/2026
+
+- 584 URL, 0 erreur : 63 fiches modifiées depuis 48 h, 15 fiches suivies, les collections. Aucune nouvelle anomalie, aucun écart de canonical. Fichier : `claude/veille/veille-2026-11-10.csv`.
+- Fiches suivies : aucun changement. Toujours 15 fiches non indexées : 11 en 404, 3 inconnues de Google, 1 en noindex.
+- Collections : les 4 mêmes anomalies.
+
 ## CSS / fichiers thème en attente de push par Florian
 
 - CSS de lecture + repositionnement mobile bloc éditorial (écrit en local, branche `claude/zen-edison-sac366`)
