@@ -1,0 +1,66 @@
+{
+ "statut": "PRET",
+ "controle": {
+  "statut": "A_REVOIR",
+  "caracteres": 533,
+  "premiere_ligne": 69,
+  "hashtags": [
+   "#lovenspa",
+   "#spaprivatif",
+   "#loveroom",
+   "#weekendamoureux",
+   "#petitprix"
+  ],
+  "appels": [
+   "enregistrer"
+  ],
+  "resultats": [
+   {
+    "code": "AUTRE_MONTANT",
+    "niveau": "avertissement",
+    "message": "montant 150 € cité hors prix du logement : vérifier sa source"
+   },
+   {
+    "code": "AUTRE_MONTANT",
+    "niveau": "avertissement",
+    "message": "montant 150 € cité hors prix du logement : vérifier sa source"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …us les 150 € :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …o, Perpignan :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …Hotel, Liège :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …agne, Rennes :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …int-Affrique :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …a, Marseille :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …aint Etienne :"
+   }
+  ]
+ },
+ "bloquants": []
+}

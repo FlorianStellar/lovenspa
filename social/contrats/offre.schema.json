@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Offre",
+  "description": "S3 -> S4, S5, S6 : ce qu'un contenu peut citer d'un produit de la boutique. Jamais de coordonnées de partenaire.",
+  "type": "object",
+  "required": [
+    "handle",
+    "nom",
+    "equipements",
+    "equipements_non_citables",
+    "prix_a_partir_de",
+    "url",
+    "actif"
+  ],
+  "properties": {
+    "handle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nom": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ville": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ville_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "equipements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "equipements_non_citables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prix_a_partir_de": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "unite_prix": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "devise": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "on_aime": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ambiance": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "ambiance_libelle": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https?://"
+    },
+    "actif": {
+      "type": "boolean"
+    },
+    "medias": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": true,
+  "not": {
+    "anyOf": [
+      {
+        "required": [
+          "email"
+        ]
+      },
+      {
+        "required": [
+          "telephone"
+        ]
+      },
+      {
+        "required": [
+          "adresse"
+        ]
+      },
+      {
+        "required": [
+          "iban"
+        ]
+      }
+    ]
+  },
+  "$id": "offre.schema.json"
+}

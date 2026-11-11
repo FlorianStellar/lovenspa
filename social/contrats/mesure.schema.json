@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mesure",
+  "description": "S8 -> S1, S2, S4 : indicateurs d'une publication (aucun chiffre estimé : absent = null).",
+  "type": "object",
+  "required": [
+    "id",
+    "plateforme",
+    "format",
+    "insights"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "plateforme": {
+      "type": "string",
+      "enum": [
+        "instagram",
+        "tiktok",
+        "pinterest"
+      ]
+    },
+    "format": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "insights": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "number",
+          "null"
+        ]
+      }
+    },
+    "multiple": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "partages_portee": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "enregistrements_portee": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "abonnements_portee": {
+      "type": [
+        "number",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true,
+  "$id": "mesure.schema.json"
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Publication",
+  "description": "S7 -> S8 : une publication effectuée.",
+  "type": "object",
+  "required": [
+    "cle",
+    "date",
+    "plateforme",
+    "moteur",
+    "media_id",
+    "permalink",
+    "publie_le"
+  ],
+  "properties": {
+    "cle": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "plateforme": {
+      "type": "string",
+      "enum": [
+        "instagram",
+        "tiktok",
+        "pinterest"
+      ]
+    },
+    "moteur": {
+      "type": "string"
+    },
+    "format": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "handle": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "media_id": {
+      "type": "string"
+    },
+    "permalink": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "publie_le": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true,
+  "$id": "publication.schema.json"
+}

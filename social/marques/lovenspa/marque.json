@@ -1,0 +1,29 @@
+{
+  "id": "lovenspa",
+  "nom": "Love'nSpa",
+  "langue": "fr",
+  "site": "https://www.lovenspa.fr",
+  "mention_site": "lovenspa.fr",
+  "boutique": {
+    "type": "shopify",
+    "domaine_env": "SHOPIFY_FLAG_STORE",
+    "domaine_defaut": "lovenspa.myshopify.com",
+    "jeton_env": "SHOPIFY_API_TOKEN",
+    "api_version": "2025-10"
+  },
+  "comptes": {
+    "instagram": {"username": "lovenspa.fr", "jeton_env": ["META_INSIGHT_API_KEY", "IG_ACCESS_TOKEN"]}
+  },
+  "kit": {
+    "source": "skill brand-lovenspa (charte graphique Love'nSpa)",
+    "couleurs": {"accent": "#E83F4E", "encre": "#222222", "fond": "#FBF6F2", "blanc": "#FFFFFF", "secondaire": "#6C6C6C"},
+    "polices": {"titre": "Poppins-Bold.ttf", "texte": "Poppins-Regular.ttf", "accent": "Poppins-SemiBold.ttf"},
+    "dossier_polices": "polices",
+    "regle_accent": "L'accent ne dépasse pas 7 à 10 % de la surface : filets, boutons, prix ; jamais en aplat."
+  },
+  "ton": {
+    "registre": "vouvoiement",
+    "style": "romantique et sensuel, jamais explicite",
+    "skills": ["copy-machine", "brand-lovenspa"]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type_offre": "logement",
+  "unite_prix": "la nuit",
+  "unite_prix_source": "Pages produit lovenspa.fr : « À partir de X € / nuit » (relevé du 11/11/2026)",
+  "statut_actif": "status:active",
+  "tag_equipements": "Equipements",
+  "champs": {
+    "ville": {"metafield": "accentuate.ville"},
+    "region": {"metafield": "accentuate.region", "repli_tag": "region"},
+    "ville_reference": {"tag": "ville"},
+    "on_aime": {"metafield": "accentuate.on_aime"},
+    "ambiance": {"metafield": "custom.spicy_level", "type": "int"}
+  },
+  "ambiances": {"1": "Romantique", "2": "Sensuel", "3": "Coquin", "4": "Pimenté", "5": "Averti"},
+  "ambiances_source": "Libellés lus sur les pages produit pour chaque valeur de custom.spicy_level (11/11/2026)"
+}

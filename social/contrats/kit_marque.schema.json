@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KitMarque",
+  "description": "Humain -> S5, S6 : identité de la marque.",
+  "type": "object",
+  "required": [
+    "id",
+    "nom",
+    "langue",
+    "site",
+    "boutique",
+    "comptes",
+    "kit",
+    "ton"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "site": {
+      "type": "string",
+      "pattern": "^https?://"
+    },
+    "kit": {
+      "type": "object",
+      "required": [
+        "couleurs",
+        "polices",
+        "dossier_polices"
+      ]
+    },
+    "ton": {
+      "type": "object",
+      "required": [
+        "registre",
+        "style"
+      ]
+    }
+  },
+  "additionalProperties": true,
+  "$id": "kit_marque.schema.json"
+}

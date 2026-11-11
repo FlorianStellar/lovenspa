@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Strategie",
+  "description": "S1 -> S4, S8 : stratégie validée d'une marque pour une plateforme.",
+  "type": "object",
+  "required": [
+    "plateforme",
+    "objectifs_31_05_2027",
+    "semaine",
+    "heure_publication",
+    "rotation_logement_jours",
+    "ambiances_autorisees",
+    "regions_poids",
+    "equipements_phares",
+    "selections",
+    "couple",
+    "temps_forts",
+    "utm",
+    "liens"
+  ],
+  "properties": {
+    "plateforme": {
+      "type": "string",
+      "enum": [
+        "instagram",
+        "tiktok",
+        "pinterest"
+      ]
+    },
+    "semaine": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "jour",
+          "moteur",
+          "format"
+        ]
+      }
+    },
+    "heure_publication": {
+      "type": "string",
+      "pattern": "^\\d{2}:\\d{2}$"
+    },
+    "ambiances_autorisees": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "temps_forts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "debut",
+          "fin",
+          "theme"
+        ]
+      }
+    },
+    "utm": {
+      "type": "string"
+    },
+    "liens": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true,
+  "$id": "strategie.schema.json"
+}

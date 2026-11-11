@@ -1,0 +1,31 @@
+{
+ "statut": "PRET",
+ "controle": {
+  "statut": "A_REVOIR",
+  "caracteres": 384,
+  "premiere_ligne": 89,
+  "hashtags": [
+   "#lovenspa",
+   "#loveroomparis",
+   "#spaprivatif",
+   "#piscineprivee",
+   "#weekendamoureux"
+  ],
+  "appels": [
+   "commentaire"
+  ],
+  "resultats": [
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : … plein Paris :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "« » sans espace insécable à l'intérieur"
+   }
+  ]
+ },
+ "bloquants": []
+}

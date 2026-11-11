@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FicheFormat",
+  "description": "S2 -> S4, S5, S6 : un format documenté et sourcé.",
+  "type": "object",
+  "required": [
+    "id",
+    "nom",
+    "plateforme",
+    "objectif",
+    "structure",
+    "preuve",
+    "sources"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "nom": {
+      "type": "string"
+    },
+    "plateforme": {
+      "type": "string",
+      "enum": [
+        "instagram",
+        "tiktok",
+        "pinterest"
+      ]
+    },
+    "objectif": {
+      "type": "string",
+      "enum": [
+        "portee",
+        "enregistrement",
+        "partage",
+        "conversion",
+        "abonnes"
+      ]
+    },
+    "structure": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "preuve": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": true,
+  "$id": "fiche_format.schema.json"
+}

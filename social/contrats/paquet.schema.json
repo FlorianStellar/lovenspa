@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Paquet",
+  "description": "S5 -> S6, S7 : textes et médias d'une case.",
+  "type": "object",
+  "required": [
+    "case",
+    "legende",
+    "medias"
+  ],
+  "properties": {
+    "case": {
+      "$ref": "case.schema.json"
+    },
+    "legende": {
+      "type": "string",
+      "minLength": 1
+    },
+    "medias": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$id": "paquet.schema.json"
+}
