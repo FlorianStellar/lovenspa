@@ -43,7 +43,7 @@ python3 -m social.s4_planification.planifier --marque <id> --plateforme <p> [--s
 - Ne produit ni angle, ni formule d'accroche, ni brief vidéo, ni déclinaison, ni étiquette « contenu IA ».
 - Ne gère que les statuts `A_PRODUIRE` et `BLOQUE` (contrat `case`) et les moteurs `lieu`, `selection`, `concours`, `couple`.
 - Une seule heure pour toutes les cases ; pas de stories.
-- Le texte de l'alerte de concours cite `data/partenaires.json` ; le fichier lu est `social/donnees/<id>/<p>/partenaires.json`.
+- Alerte de concours : corrigée le 11/11/2026, elle cite `donnees/<marque>/<plateforme>/partenaires.json` ; l’offre du partenaire passe désormais les critères d’éligibilité (hors rotation).
 
 ## Exemple (lovenspa), semaine du 16/11/2026
 
