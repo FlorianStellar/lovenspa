@@ -38,3 +38,10 @@ Doc : https://claude.ai/artifact/LJJy1JXosZoQqYMEWvgALw · Outils : `claude/agen
 - 05/11 : 7 flows actifs. Programmé : réactivation e1 le 06/11 à 10:00 (throttle 10 %/h), Noël le 15/11 à 09:00, réactivation e2 le 20/11 à 10:00. Garde-fou le 06/11 à 13:00 (trig_01VcpPV1RuXqpqVQR3REeCuu).
 - 06/11 : garde-fou déclenché sur la réactivation e1 (désinscriptions 0,58 % > 0,3 % ; 3 892 destinataires, 0 plainte) → envoi annulé. Go de Florian : relance « vague 1 bis » le 07/11 à 10:00 (hors segment TYhhWc des déjà servis), seuils réactivation (désinscriptions 1,5 %, plaintes 0,1 %, rebonds 5 %), e2 reportée au 21/11. Garde-fou le 07/11 à 13:00. NB : l'API Klaviyo exprime son heure courante en heure de New York.
 - 07/11 : vague 1 bis terminée (9 081 destinataires, 3 plaintes, 0,36 % de désinscriptions). Total email 1 : 12 980 destinataires, 267 cliqueurs. E2 programmée le 21/11.
+
+# Instagram @lovenspa.fr (11/11/2026)
+Skill : `.claude/skills/lovenspa-instagram/SKILL.md` · Outils : `claude/agent-instagram/` · Journal : `claude/agent-instagram/journal.md`
+- Base : reels-tiktok-fr @a2281b6 (MIT), audit complet. Seuls detecter.py, lexique.json, score_hook.py, minutage.py et hooks.json sont repris (vendor/, corrections marquées [lovenspa]). humaniser.py n'est pas repris : il casse la typographie française.
+- Contrôle maison `controle.py` : accroche ≤ 125, un seul appel à l'action, logement Shopify nommé, prix exact, équipements non citables (BDSM, etc.), hashtags, tics maison, répétition. État de départ : 12/12 légendes publiques REFUSE.
+- Logements : `logements.py` (Admin API Shopify, lecture seule, sans coordonnées des partenaires).
+- Connexion permanente : jeton d'utilisateur système Meta, en secret réseau pour graph.facebook.com (à saisir par Florian). Test : `python3 ig_client.py --check`.

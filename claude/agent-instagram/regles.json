@@ -1,0 +1,83 @@
+{
+  "note": "Règles maison de la skill lovenspa-instagram. Modifiables. Les chiffres viennent d'Instagram (limite de 5 hashtags depuis le 18/12/2025, coupe du fil vers 125 caractères).",
+  "legende": {
+    "max_visible": 125,
+    "max_caracteres": 2200,
+    "cible_caracteres": [
+      300,
+      700
+    ],
+    "max_hashtags": 5,
+    "hashtag_marque": "#lovenspa"
+  },
+  "equipements_exclus_instagram": [
+    "BDSM",
+    "Croix de Saint André",
+    "Barre de Pole Dance",
+    "Sofa tantrique",
+    "TV adulte",
+    "Secret Room",
+    "Balancoire"
+  ],
+  "equipements_sans_interet": [
+    "ancv",
+    "wifi",
+    "Serviettes",
+    "Non fumeur",
+    "Carte Cadeau",
+    "Machine à café",
+    "Télévision",
+    "Musique",
+    "Vidéo"
+  ],
+  "appels_a_l_action": [
+    "lien en bio",
+    "commente",
+    "commentez",
+    "enregistre",
+    "enregistrez",
+    "partage ce post",
+    "partagez ce post",
+    "réserve",
+    "réservez",
+    "dm",
+    "message privé",
+    "écris-nous",
+    "écrivez-nous",
+    "tague",
+    "taguez",
+    "identifie",
+    "identifiez",
+    "envoie-le",
+    "envoyez-le",
+    "envoie ce post",
+    "envoyez ce post",
+    "envoie-lui",
+    "envoyez-lui"
+  ],
+  "tics_maison": [
+    "quotidien",
+    "parenthèse",
+    "complicité",
+    "ralentir",
+    "lumière tamisée",
+    "douceur",
+    "essentiel",
+    "hors du temps",
+    "retrouver ce qui",
+    "le plaisir d'être deux",
+    "le plaisir d’être deux"
+  ],
+  "ouvertures_interdites": [
+    "Parfois",
+    "Il y a des",
+    "Il suffit parfois",
+    "Imaginez"
+  ],
+  "conclusions_interdites": [
+    "Parce que",
+    "Car "
+  ],
+  "fenetre_repetition": 12,
+  "seuil_repetition": 0.5
+}
