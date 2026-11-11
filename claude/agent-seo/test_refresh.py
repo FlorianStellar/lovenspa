@@ -36,6 +36,19 @@ class T(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             r.gelees("/nexiste/pas.md")
 
+    def test_publiees(self):
+        import tempfile, os
+        with tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False) as f:
+            f.write("type,url,publie\npage,/pages/a,True\npage,/pages/b,False\n")
+        try:
+            self.assertEqual(r.publiees(f.name), {"/pages/a"})
+        finally:
+            os.unlink(f.name)
+
+    def test_meme_fichier_refuse(self):
+        with self.assertRaises(SystemExit):
+            r.main(["x", __file__, __file__, "/tmp/o.json"])
+
     def test_chemin(self):
         self.assertEqual(r.chemin("https://lovenspa.fr/pages/x"), "/pages/x")
 

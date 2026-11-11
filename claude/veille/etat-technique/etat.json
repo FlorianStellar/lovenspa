@@ -575,11 +575,13 @@
  ],
  "sitemaps": {
   "https://lovenspa.fr/sitemap.xml": {
-   "soumises": 4939,
+   "soumises": 2875,
+   "images": 2064,
    "erreurs": 0
   },
   "https://www.lovenspa.fr/sitemap.xml": {
-   "soumises": 4939,
+   "soumises": 2875,
+   "images": 2064,
    "erreurs": 0
   }
  },

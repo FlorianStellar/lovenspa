@@ -1,6 +1,7 @@
 """Candidats au rafraîchissement de contenu (détecteur déclin, filtré saisonnalité).
 
-Usage : python refresh.py <hebdo_courant.json> <hebdo_semaine_precedente.json> <sortie.json>
+Usage : python refresh.py <hebdo_courant.json> <hebdo_semaine_precedente.json> <sortie.json> [pages.csv]
+pages.csv (export plat) : seules les URL publiées y figurant restent candidates (exclut non publiées, redirigées, 404).
 Candidat = page en déclin (det_declin, ≤ -20 % sur 28 j) deux semaines de suite
 ET en baisse d'au moins 20 % sur la même fenêtre de 28 j un an plus tôt (année N-1, GSC final),
 hors /en/ (exclu de l'univers cible, décision du 10/11) et hors URL gelées.
@@ -39,6 +40,12 @@ def an_moins_un(periode):
     return f(periode[0]), f(periode[1])
 
 
+def publiees(pages_csv):
+    import csv
+    with open(pages_csv, encoding="utf-8") as f:
+        return {r["url"] for r in csv.DictReader(f) if r.get("publie") == "True"}
+
+
 def apparier(cands):
     """Répartit les candidats en lot / témoin équilibrés : tri par clics N-1 décroissants, alternance."""
     tri = sorted(cands, key=lambda d: -d["clicks_prev"])
@@ -58,19 +65,28 @@ def filtrer_yoy(cands, clics_n1: dict):
 
 def main(argv):
     from gsc_client import GSCClient
-    cur, prev = json.load(open(argv[1])), json.load(open(argv[2]))
+    if Path(argv[1]).resolve() == Path(argv[2]).resolve():
+        raise SystemExit("hebdo courant et précédent identiques : persistance non mesurable")
+    with open(argv[1]) as f1, open(argv[2]) as f2:
+        cur, prev = json.load(f1), json.load(f2)
     cands = persistants(cur, prev, gelees())
+    exclues_pub = []
+    if len(argv) > 4:
+        pub = publiees(argv[4])
+        exclues_pub = [d["page"] for d in cands if chemin(d["page"]) not in pub]
+        cands = [d for d in cands if chemin(d["page"]) in pub]
     s, e = an_moins_un(cur["periode"])
     rows = GSCClient().search_analytics_all(s, e, dimensions=["page"]) if cands else []
     n1 = {r["keys"][0]: r["clicks"] for r in rows}
     retenus = filtrer_yoy(cands, n1)
     lot, temoin = apparier(retenus)
     res = {"periode": cur["periode"], "periode_n1": [s, e], "persistants": len(cands),
-           "sans_historique_n1": sum(1 for d in cands if not n1.get(d["page"])),
+           "non_publiees_exclues": exclues_pub,
+           "sans_historique_n1": [d["page"] for d in cands if not n1.get(d["page"])],
            "candidats": retenus, "lot_propose": lot, "temoin_propose": temoin}
     with open(argv[3], "w") as f:
         json.dump(res, f, ensure_ascii=False, indent=1)
-    print(f"déclin persistant : {len(cands)} (dont {res['sans_historique_n1']} sans N-1) ; "
+    print(f"déclin persistant : {len(cands)} (dont {len(res['sans_historique_n1'])} sans N-1, écartés), {len(exclues_pub)} non publiées exclues ; "
           f"candidats : {len(retenus)} ; lot {len(lot)} / témoin {len(temoin)}")
     for c in retenus:
         print(" ", c["page"], c["delta_pct"], "% 28j ;", c["yoy_pct"], "% N-1")

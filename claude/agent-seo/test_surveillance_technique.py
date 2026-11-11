@@ -99,11 +99,11 @@ class T(unittest.TestCase):
                     return {"theme": {"files": {"nodes": [{"filename": "layout/theme.liquid", "checksumMd5": "a"}], "pageInfo": {"hasNextPage": True, "endCursor": "c"}}}}
                 return {"theme": {"files": {"nodes": [{"filename": "assets/x.css", "checksumMd5": "b"}], "pageInfo": {"hasNextPage": False, "endCursor": None}}}}
         class G:
-            def list_sitemaps(self): return [{"path": "sm", "errors": "0", "contents": [{"submitted": "10"}, {"submitted": "5"}]}]
+            def list_sitemaps(self): return [{"path": "sm", "errors": "0", "contents": [{"type": "web", "submitted": "10"}, {"type": "image", "submitted": "5"}]}]
         cur, cont = s.collecter(A(), G(), lambda u: "User-agent: *\nDisallow: /cart", ["p"], lambda u: (HEAD, {}, 200))
         self.assertEqual(cur["html"]["p"]["ld_json"], 1)
         self.assertEqual(len(cur["fichiers"]), 2)
-        self.assertEqual(cur["sitemaps"]["sm"], {"soumises": 15, "erreurs": 0})
+        self.assertEqual(cur["sitemaps"]["sm"], {"soumises": 10, "images": 5, "erreurs": 0})
         self.assertIn("layout/theme.liquid", cont)
 
 

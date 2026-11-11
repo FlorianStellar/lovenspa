@@ -145,7 +145,8 @@ def collecter(admin, gsc, http_get, pages=(), page_get=None):
     for i in range(0, len(sens), 50):
         for n in admin.gql(Q_BODY, {"id": t["id"], "f": sens[i:i + 50]})["theme"]["files"]["nodes"]:
             contenus[n["filename"]] = (n.get("body") or {}).get("content", "")
-    sitemaps = {s["path"]: {"soumises": sum(int(c.get("submitted", 0)) for c in s.get("contents", [])),
+    sitemaps = {s["path"]: {"soumises": sum(int(c.get("submitted", 0)) for c in s.get("contents", []) if c.get("type") == "web"),
+                            "images": sum(int(c.get("submitted", 0)) for c in s.get("contents", []) if c.get("type") == "image"),
                             "erreurs": int(s.get("errors", 0))} for s in gsc.list_sitemaps()}
     rob = http_get("https://lovenspa.fr/robots.txt")
     html = {}
