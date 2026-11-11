@@ -38,3 +38,10 @@ Doc : https://claude.ai/artifact/LJJy1JXosZoQqYMEWvgALw · Outils : `claude/agen
 - 05/11 : 7 flows actifs. Programmé : réactivation e1 le 06/11 à 10:00 (throttle 10 %/h), Noël le 15/11 à 09:00, réactivation e2 le 20/11 à 10:00. Garde-fou le 06/11 à 13:00 (trig_01VcpPV1RuXqpqVQR3REeCuu).
 - 06/11 : garde-fou déclenché sur la réactivation e1 (désinscriptions 0,58 % > 0,3 % ; 3 892 destinataires, 0 plainte) → envoi annulé. Go de Florian : relance « vague 1 bis » le 07/11 à 10:00 (hors segment TYhhWc des déjà servis), seuils réactivation (désinscriptions 1,5 %, plaintes 0,1 %, rebonds 5 %), e2 reportée au 21/11. Garde-fou le 07/11 à 13:00. NB : l'API Klaviyo exprime son heure courante en heure de New York.
 - 07/11 : vague 1 bis terminée (9 081 destinataires, 3 plaintes, 0,36 % de désinscriptions). Total email 1 : 12 980 destinataires, 267 cliqueurs. E2 programmée le 21/11.
+
+## Mise à jour 11/11/2026
+- Branche de travail : claude/zen-edison-sac366 (peaceful-cannon fusionnée ; toutes les tâches planifiées y pointent). Toujours `git pull --rebase` avant push : d'autres sessions y poussent.
+- E1 : export GSC → BigQuery configuré sur le projet deep-rainfall-514310-j9 (dataset searchconsole, UE). Contrôle des tables le 13/11 10:13 UTC.
+- E7 : Bing opérationnel (claude/agent-seo/bing.py, clé BING_API_KEY), intégré au cycle hebdo du lundi.
+- Prochaines échéances : 16/11 cycle hebdo (1er Bing, cadrage G2 conversion blog → réservation) ; 23/11 lecture L6 ; 30/11 relecture L5 ; 05/12 lecture L8.
+- Détails : claude/journal-deploiements-seo.md.
