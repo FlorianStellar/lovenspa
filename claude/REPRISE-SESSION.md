@@ -44,4 +44,4 @@ Skill : `.claude/skills/lovenspa-instagram/SKILL.md` · Outils : `claude/agent-i
 - Base : reels-tiktok-fr @a2281b6 (MIT), audit complet. Seuls detecter.py, lexique.json, score_hook.py, minutage.py et hooks.json sont repris (vendor/, corrections marquées [lovenspa]). humaniser.py n'est pas repris : il casse la typographie française.
 - Contrôle maison `controle.py` : accroche ≤ 125, un seul appel à l'action, logement Shopify nommé, prix exact, équipements non citables (BDSM, etc.), hashtags, tics maison, répétition. État de départ : 12/12 légendes publiques REFUSE.
 - Logements : `logements.py` (Admin API Shopify, lecture seule, sans coordonnées des partenaires).
-- Connexion permanente : jeton d'utilisateur système Meta, en secret réseau pour graph.facebook.com (à saisir par Florian). Test : `python3 ig_client.py --check`.
+- Connexion permanente : jeton d'utilisateur système Meta (claude-insights) dans la variable d'environnement META_INSIGHT_API_KEY (11/11). Test : `python3 ig_client.py --check`. Premier audit : voir journal.md.

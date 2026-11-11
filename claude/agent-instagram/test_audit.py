@@ -28,6 +28,10 @@ class TestBasics(unittest.TestCase):
         p["insights"]["views"] = "n/a"
         self.assertIsNone(audit.metric(p, "views"))
 
+    def test_zero_views_with_reach_is_unmeasured(self):
+        self.assertIsNone(audit.metric(post(1, views=0, reach=100), "views"))
+        self.assertEqual(audit.metric(post(1, views=0, reach=0), "views"), 0)
+
     def test_median_skips_missing(self):
         ps = [post(1, views=100), post(2, views=300), post(3)]
         self.assertEqual(audit.median_of(ps, "views"), 200)

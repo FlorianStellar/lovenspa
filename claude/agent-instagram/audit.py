@@ -19,8 +19,15 @@ import sys
 
 
 def metric(post, name):
-    v = (post.get("insights") or {}).get(name)
-    return v if isinstance(v, (int, float)) else None
+    ins = post.get("insights") or {}
+    v = ins.get(name)
+    if not isinstance(v, (int, float)):
+        return None
+    # Vues = 0 avec une portée > 0 est impossible (chaque compte touché a vu le post) :
+    # la métrique « views » n'était pas mesurée à l'époque (posts antérieurs à 2025). Non mesuré, pas zéro.
+    if name == "views" and v == 0 and (ins.get("reach") or 0) > 0:
+        return None
+    return v
 
 
 def fmt(post):

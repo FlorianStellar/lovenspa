@@ -69,7 +69,7 @@ class IGClient:
         self.version = version if version is not None else os.environ.get("IG_GRAPH_VERSION", "")
         self.user_id = user_id or os.environ.get("IG_USER_ID")
         self.s = session or requests.Session()
-        token = os.environ.get("IG_ACCESS_TOKEN")
+        token = os.environ.get("META_INSIGHT_API_KEY") or os.environ.get("IG_ACCESS_TOKEN")
         # Sans jeton local, le proxy remplace cette valeur par le secret enregistré.
         self.s.headers.update({"Authorization": f"Bearer {token or 'proxy-injected'}"})
         self.pause = pause
