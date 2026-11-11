@@ -21,7 +21,7 @@ Statut : avertissement (`A_REVOIR` dans `check`). Le verdict reste `PRET` si au
 | --- | --- |
 | S6-03 | Supprimer les caractères invisibles : U+200B, U+200C, U+200E, U+200F, U+2060, U+FEFF, U+00AD, U+180E, U+061C, U+2063 et la plage U+E0000 à U+E007F. Garder U+200D (liant sans chasse) à l’intérieur d’une séquence emoji. Ne jamais toucher U+00A0 ni U+202F. |
 | S6-04 | Tiret cadratin (—) dans une légende ou une réponse : avertissement `TIRET_LONG`, sans remplacement automatique. Reformuler (virgule, deux-points, ou deux phrases). Le demi-cadratin (–) d’un intervalle reste (« 14 h – 18 h »). |
-| S6-22 | Emojis : un au plus ; jamais 🚀 🔥 💡 ✨ 🎯 ; jamais en puce ; jamais en premier caractère d’un commentaire. Majuscules : un mot au plus dans une légende. |
+| S6-22 | Emojis : au plus `max_emojis_legende` de `marques/<id>/regles.json` (exemple Love’nSpa : 1) ; jamais 🚀 🔥 💡 ✨ 🎯 ; jamais en puce ; jamais en premier caractère d’un commentaire. Majuscules : un mot au plus dans une légende. |
 | — | Apostrophe typographique ’ conservée (ne pas la convertir en ’). |
 | — | Points de suspension en un seul caractère … conservés. |
 | — | Point médian · et flèche → conservés s’ils sont voulus. |

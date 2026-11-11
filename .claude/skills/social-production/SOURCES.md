@@ -1,6 +1,6 @@
 # Sources de la skill social-production
 
-Matière : `social/compilation/s5-production.md` (compilée le 2026-11-11, lecture seule ; 68 éléments retenus S5-01 à S5-68), `social/compilation/accroches-fr.json` (63 formules, référencées sans recopie), code existant `social/s5_production/produire.py` et `visuels.py`, contrats `social/contrats/case.schema.json` et `paquet.schema.json`, kit `social/marques/lovenspa/marque.json` (exemple). Aucun script tiers n'a été copié dans cette skill : les règles sont reformulées en français.
+Matière : `social/compilation/s5-production.md` (compilée le 2026-11-11, lecture seule ; 83 éléments retenus S5-01 à S5-83, dont S5-69 à S5-83 ajoutés le même jour depuis marketingskills et copy-machine), `social/compilation/accroches-fr.json` (63 formules, référencées sans recopie), code existant `social/s5_production/produire.py` et `visuels.py`, contrats `social/contrats/case.schema.json` et `paquet.schema.json`, kit `social/marques/lovenspa/marque.json` (exemple). Aucun script tiers n'a été copié dans cette skill : les règles sont reformulées en français.
 
 ## Dépôts et services
 
@@ -12,6 +12,7 @@ Matière : `social/compilation/s5-production.md` (compilée le 2026-11-11, lectu
 | KW | `knowledge-work-plugins@877a617:` | Apache-2.0 | à relever dans le fichier LICENSE du dépôt |
 | CM | `copy-machine` (skill interne synchronisée, sans commit) | interne | Stellar Projects |
 | LNS | `lovenspa:social/` (code et règles maison) | interne | Stellar Projects |
+| MS | `coreyhaines31_marketingskills@9d6d7ce:skills/` | MIT | Corey Haines, 2025 |
 | FL | catalogue Flora, `flora_discover_skills`, lu le 2026-11-11 (aucune version publiée) | service tiers, conditions du service | Flora |
 
 ## Provenance par élément
@@ -21,7 +22,7 @@ Colonne « Modifications » : tous les éléments tiers sont reformulés et trad
 | ID | Source (dépôt@commit:chemin) | Licence | Modifications |
 |---|---|---|---|
 | S5-01 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md | MIT | reformulé, traduit en français |
-| S5-02 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/legende.py (`PLATEFORMES`) ; lovenspa:social/marques/lovenspa/regles.json (`legende.cible_caracteres`) | MIT, interne | reformulé, traduit en français |
+| S5-02 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/legende.py (`PLATEFORMES`) ; lovenspa:social/marques/lovenspa/regles.json (`legende.cible_caracteres`) | MIT, interne | reformulé, traduit en français ; valeurs de plateforme retirées le 11/11/2026 : renvoi à `regles-plateformes.md` de social-veille (décision du chef de projet) |
 | S5-03 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/legende.py (`ASKS`) ; lovenspa:social/marques/lovenspa/regles.json (`appels_a_l_action`) | MIT, interne | reformulé, traduit en français |
 | S5-04 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md ; lovenspa:social/s5_production/produire.py (note « lien UTM à mettre en bio ») | MIT, interne | reformulé, traduit en français |
 | S5-05 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-video/SKILL.md (« Les mots-clés sur TikTok ») | MIT | reformulé, traduit en français |
@@ -30,7 +31,7 @@ Colonne « Modifications » : tous les éléments tiers sont reformulés et trad
 | S5-08 | instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md | MIT | reformulé, traduit en français |
 | S5-09 | Melvynx_video-agent-skills@f454292:skills/studio-script/references/humanize.md ; Melvynx_video-agent-skills@f454292:skills/studio-script/references/ai-tells.md ; copy-machine:references/compliance-fr.md ; lovenspa:social/marques/lovenspa/regles.json (`tics_maison`, `ouvertures_interdites`, `conclusions_interdites`) | MIT, interne | reformulé, traduit en français |
 | S5-10 | knowledge-work-plugins@877a617:small-business/skills/social-content-engine/reference/shopify-assets.md ; copy-machine:SKILL.md (règle 1) ; copy-machine:references/compliance-fr.md ; instagram-agent-skill@d03c56b:skills/ig-reel/SKILL.md (« Never fabricate ») | MIT, Apache-2.0, interne | reformulé, traduit en français ; modifié et traduit en français par Stellar Projects, 2026 |
-| S5-11 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md ; copy-machine:references/compliance-fr.md | MIT, interne | reformulé, traduit en français |
+| S5-11 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md ; copy-machine:references/compliance-fr.md | MIT, interne | reformulé ; plafond « 4 pour 100 caractères » remplacé le 11/11/2026 par le champ `max_emojis_legende` de `regles.json` (décision du chef de projet) |
 | S5-12 | copy-machine:brands/lovenspa.md ; copy-machine:references/compliance-fr.md | interne | repris du code ou des règles maison |
 | S5-13 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md | MIT | reformulé, traduit en français |
 | S5-14 | instagram-agent-skill@d03c56b:skills/ig-reel/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-video/SKILL.md | MIT | reformulé, traduit en français |
@@ -88,6 +89,21 @@ Colonne « Modifications » : tous les éléments tiers sont reformulés et trad
 | S5-66 | Flora:flora-motion-compositor | service tiers | reformulé, traduit en français |
 | S5-67 | Flora:flora-video-editor | service tiers | reformulé, traduit en français |
 | S5-68 | Flora:flora-image-resize (citée dans « Do not use when the original pixels must survive ») | service tiers | reformulé, traduit en français |
+| S5-69 | coreyhaines31_marketingskills@9d6d7ce:skills/copywriting/SKILL.md (« Diagnose the Situation First ») ; coreyhaines31_marketingskills@9d6d7ce:skills/copy-editing/references/checklist.md (« Pick the Edit Mode ») | MIT | reformulé, traduit en français |
+| S5-70 | coreyhaines31_marketingskills@9d6d7ce:skills/copywriting/SKILL.md (« The three-question gate ») ; copy-machine:SKILL.md (règle 3) ; copy-machine:references/diagnostic.md (USP) | MIT, interne | reformulé, traduit en français |
+| S5-71 | coreyhaines31_marketingskills@9d6d7ce:skills/copywriting/SKILL.md (« Ration the punch », « Keep these rare ») ; coreyhaines31_marketingskills@9d6d7ce:skills/social/SKILL.md (« No AI Tells ») | MIT | reformulé, traduit en français |
+| S5-72 | coreyhaines31_marketingskills@9d6d7ce:skills/social/SKILL.md (« No AI Tells », « Social-specific tells ») ; coreyhaines31_marketingskills@9d6d7ce:skills/copywriting/references/ai-tells.md (motifs 2, 3, 5 ; « Second-Generation Tells ») | MIT | reformulé, traduit en français ; exemples français écrits pour ce projet |
+| S5-73 | coreyhaines31_marketingskills@9d6d7ce:skills/copywriting/references/ai-tells.md (« Rewrite Rules ») ; coreyhaines31_marketingskills@9d6d7ce:skills/copy-editing/SKILL.md (« Replace with the fact ») | MIT | reformulé, traduit en français |
+| S5-74 | coreyhaines31_marketingskills@9d6d7ce:skills/copywriting/references/ai-tells.md (« Build a Writer », « Rules that override the persona ») | MIT | reformulé, traduit en français |
+| S5-75 | coreyhaines31_marketingskills@9d6d7ce:skills/copywriting/SKILL.md (« Claims Must Be Supportable — and Declines Must Name Their Unlock ») ; copy-machine:brands/lovenspa.md (Preuves, Interdits) | MIT, interne | reformulé, traduit en français |
+| S5-76 | coreyhaines31_marketingskills@9d6d7ce:skills/copywriting/references/ai-tells.md (« The Self-Check ») | MIT | reformulé, adapté aux mots français |
+| S5-77 | copy-machine:references/diagnostic.md ; copy-machine:SKILL.md (étape 1) | interne | repris et resserré pour une fiche de production |
+| S5-78 | coreyhaines31_marketingskills@9d6d7ce:skills/ad-creative/references/hook-system.md (« A Hook Is Three Components ») ; coreyhaines31_marketingskills@9d6d7ce:skills/social/SKILL.md (« The 3-Second Rule ») | MIT | reformulé, adapté au mode sans voix |
+| S5-79 | coreyhaines31_marketingskills@9d6d7ce:skills/ad-creative/references/hook-system.md (« The On-Ramp Rule ») | MIT | reformulé, traduit en français |
+| S5-80 | coreyhaines31_marketingskills@9d6d7ce:skills/social/references/carousel-frameworks.md (Frameworks A et E, « Production Checklist ») | MIT | reformulé ; architectures B et D écartées |
+| S5-81 | coreyhaines31_marketingskills@9d6d7ce:skills/social/references/carousel-frameworks.md (« Platform Notes ») | MIT | reformulé, traduit en français |
+| S5-82 | copy-machine:references/canon.md (Bly, Hopkins) ; coreyhaines31_marketingskills@9d6d7ce:skills/copy-editing/SKILL.md (Sweep 3) | interne, MIT | reformulé, exemple Love'nSpa écrit pour ce projet |
+| S5-83 | coreyhaines31_marketingskills@9d6d7ce:skills/ad-creative/SKILL.md (« Test Hypotheses That Can Lose ») ; copy-machine:SKILL.md (étape 6) ; copy-machine:references/canon.md (Mesure) | MIT, interne | reformulé ; seuils de décision chiffrés de copy-machine non repris (relèvent de S8) |
 
 Autres éléments de la skill :
 
@@ -96,17 +112,20 @@ Autres éléments de la skill :
 | Déroulé par format, gabarits de `contenu.json` | `social/s5_production/produire.py` (docstring et `fabriquer`) ; exemples `social/donnees/lovenspa/instagram/production/*/contenu.json` | décrits fidèlement ; gabarit de story proposé, non lu par le code |
 | Règles du concours (accord du partenaire, règlement court) | `social/s4_planification/planifier.py` (`plan_week`) ; skill `lovenspa-instagram` (section « Cycle hebdomadaire ») | reformulées ; aspects juridiques non sourcés |
 | Limites connues (zone sûre, tailles de texte) | `s5-production.md` sections 2.7 et 5 ; `social/s5_production/visuels.py` (`reel_frame`, `slide_lodging`, `slide_text`, `slide_cover`) | relevé du code, aucune modification du code |
-| Spécifications de plateforme | `s5-production.md` section 3 | toutes marquées « à vérifier dans la documentation officielle » ; aucune source officielle lue |
+| Spécifications de plateforme | `s5-production.md` section 3 ; décision du chef de projet du 11/11/2026 | valeurs de source retirées de `references/specs-plateformes.md` ; seule référence : `regles-plateformes.md` de social-veille (S2) ; seules restent les valeurs de travail et les constantes du code |
+| Propriété de `regles.json` | décision du chef de projet du 11/11/2026 ; `s5-production.md` section 5 | S1 (`social-strategie`) propriétaire ; toute modification est une proposition écrite validée par un humain |
+| Renvois à la conformité française et aux contrôles `AMBIANCE`, `EXPLICITE` | skill `social-controle`, `references/conformite-fr.md` et `SKILL.md` | renvois seulement, aucune règle dupliquée |
 | Arbitrages | `s5-production.md` section 5 | appliqués tels que proposés |
 | Étapes d'accord humain retirées | `s5-production.md` section 6 | remplacées par la charte d'autonomie et le contrôle S6 |
 | Outils d'appoint (`score_hook.py`, `minutage.py`, `detecter.py`) | `social/s6_controle/vendor/` (repris de `Explo38_reels-tiktok-fr@a2281b6`, MIT, voir `vendor/README.md` et `LICENSE-reels-tiktok-fr`) | appelés, non copiés |
 
 ## Licences
 
-- **MIT** (IG, RT, MV) : réutiliser des règles reformulées est libre. Toute copie de code ou d'une portion substantielle doit garder l'avis de copyright et le texte de la licence MIT. Mention de reprise : « d'après <dépôt>@<commit>, licence MIT, © <titulaire> ».
+- **MIT** (IG, RT, MV, MS) : réutiliser des règles reformulées est libre. Toute copie de code ou d'une portion substantielle doit garder l'avis de copyright et le texte de la licence MIT. Mention de reprise : « d'après <dépôt>@<commit>, licence MIT, © <titulaire> ».
 - **Apache-2.0** (KW) : éléments S5-10, S5-29, S5-41, S5-60, S5-61, et formats de déclinaison de `specs-plateformes.md`. Mention : « modifié et traduit en français par Stellar Projects, 2026 ». Garder le texte de la licence Apache-2.0 et tout fichier NOTICE du dépôt en cas de redistribution ; aucune marque de l'auteur n'est utilisée.
 - **Polices Poppins** (kit Love'nSpa, exemple) : SIL Open Font License (OFL), fichier `social/marques/lovenspa/polices/OFL.txt`.
 - **Flora** : service tiers soumis à ses conditions ; aucun contenu de ses skills n'est copié, seuls leurs usages sont décrits.
+- **MIT** (MS) : « Copyright (c) 2025 Corey Haines ». Mention de reprise : « d'après coreyhaines31_marketingskills@9d6d7ce, licence MIT, © Corey Haines ». Les fichiers `copywriting/SKILL.md`, `copywriting/references/ai-tells.md` et `copy-editing/references/checklist.md` citent eux-mêmes des skills de `skills-marketing-library` (MIT).
 - **Interne** (CM, LNS) : Stellar Projects.
 
 ## Dépendances

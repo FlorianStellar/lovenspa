@@ -1,6 +1,6 @@
 # Lexique FR des tics d’écriture IA (S6-01, S6-02)
 
-Lexique compilé le 11/11/2026 : 193 entrées (149 reprises de `lexique.json`, origine « L » ; 44 adaptées de `slop.json`, origine « S »). Provenance et licences : `../SOURCES.md`.
+Lexique compilé le 11/11/2026 : 203 entrées (149 reprises de `lexique.json`, origine « L » ; 44 adaptées de `slop.json`, origine « S » ; 10 reprises de `copy-machine`, origine « C »). Provenance et licences : `../SOURCES.md`.
 
 Mode d’emploi :
 
@@ -10,7 +10,7 @@ Mode d’emploi :
 - « (à relire) » = remplacement discutable : garder la détection, ne jamais appliquer le remplacement sans relecture.
 - Recherche insensible à la casse et aux apostrophes (’ et ’ équivalents), en mot entier.
 - Les formes au « tu » restent détectées (C-08) ; la production suit le registre de `marques/<id>/marque.json` (`ton.registre`).
-- Le lexique est à la marque (S6-24) : un mot que la marque emploie vraiment en est retiré par une exception datée et motivée dans `marques/<id>/regles.json` (champ cible, à outiller).
+- Le lexique est à la marque (S6-24) : le retrait d’un mot que la marque emploie vraiment est proposé par écrit à S1 (skill `social-strategie`), propriétaire de `marques/<id>/regles.json`, avec date et raison ; il s’applique après validation humaine (C-18).
 - Doublons avec les règles maison : « essentiel » reste traité par `tics_maison` (seuil de répétition) ; seule l’expression « il est essentiel de » est gardée ici (C-11). « Imaginez » est traité par `ouvertures_interdites` et n’est compté qu’une fois (C-10).
 
 ## A.1 Entrées reprises de lexique.json (« L »), 149 entrées
@@ -250,7 +250,24 @@ Entre crochets : l’entrée anglaise d’origine. Traduction de ce projet.
 | 192 | la suite, vous la connaissez | (suppr.) | S [the rest is history] |
 | 193 | faites-moi confiance, ne passez pas à côté | (suppr.) | S [trust me on this one, don’t sleep on this] |
 
-## B. Tics de structure à signaler (20 motifs, S6-02)
+## A.3 Entrées reprises de copy-machine (« C »), 10 entrées
+
+Source : `copy-machine:references/compliance-fr.md` (« Tics IA à bannir ») et `copy-machine:scripts/copy_lint.py` (`AI_TICS`). Déjà présentes et non dupliquées : plongez, sublimer, véritable, incontournable, révolutionnaire, en somme, il est important de noter, que vous soyez (motif 17).
+
+| N° | Tic | Remplacement proposé | Origine |
+| --- | --- | --- | --- |
+| 194 | dans un monde où | (suppr.) | C |
+| 195 | découvrez l’univers | (suppr.), dire ce qu’on voit | C |
+| 196 | n’attendez plus | (suppr.) | C |
+| 197 | plongez au cœur | regardez | C |
+| 198 | au cœur de | (à relire : légitime pour un lieu, « au cœur du Luberon ») | C |
+| 199 | bien plus qu’un, bien plus qu’une | (suppr.), dire le fait | C |
+| 200 | une expérience unique | dire ce qui est unique | C |
+| 201 | un voyage | (à relire : légitime au sens propre) | C |
+| 202 | élevez, élever votre | (suppr.), dire le fait | C |
+| 203 | notamment | (à relire : « notably » a été écarté de slop.json comme mot courant) | C |
+
+## B. Tics de structure à signaler (31 motifs, S6-02, S6-35)
 
 Le code ne réécrit pas ces motifs. Il les signale (`STRUCTURE`, code cible à outiller) ; le modèle réécrit phrase par phrase en gardant le sens.
 
@@ -262,7 +279,7 @@ Le code ne réécrit pas ces motifs. Il les signale (`STRUCTURE`, code cible à 
 | 4 | Question rhétorique seule sur sa ligne (« Le résultat ? ») | Répondre directement. |
 | 5 | « Voici ce que j’ai appris » | Donner la leçon sans l’annoncer. |
 | 6 | Triade « X, Y et Z. » | Deux éléments ou quatre. |
-| 7 | Emoji 🚀 🔥 💡 ✨ 🎯 | Un emoji au plus, pas l’un de ceux-là (S6-22). |
+| 7 | Emoji 🚀 🔥 💡 ✨ 🎯 | Au plus `max_emojis_legende` de `regles.json` (exemple Love’nSpa : 1), jamais l’un de ceux-là (S6-22). |
 | 8 | Mur de hashtags (au-delà de `legende.max_hashtags` de `regles.json`) | Rester sous le plafond, hashtag de marque compris. Seuil aligné sur `max_hashtags` (C-06). |
 | 9 | Le modèle parle de lui (« en tant qu’IA ») | Supprimer la phrase. |
 | 10 | Ouverture de conclusion (« En résumé ») | Pas de paragraphe de conclusion. |
@@ -276,6 +293,17 @@ Le code ne réécrit pas ces motifs. Il les signale (`STRUCTURE`, code cible à 
 | 18 | Ouverture « Imaginez… » | Montrer la scène. Doublon de `ouvertures_interdites` : compter une fois (C-10). |
 | 19 | Longueur de phrase uniforme (variation sous 0,35 sur 4 phrases ou plus) | Couper une phrase, en laisser une autre courir. |
 | 20 | Puces de longueur uniforme (3 puces ou plus, écart type sous 1,6 mot) | Varier ou passer en phrases. |
+| 21 | Liste de négations (« Pas de X, pas de Y, pas de Z ») | Dire ce qui se passe ; une seule absence réelle, dite une fois. |
+| 22 | Ajouts qui traînent après la virgule (« …, sans X, sans Y » ; « …, garantissant que… ») | Finir la phrase sur l’affirmation ; un fait nouveau a droit à sa phrase. |
+| 23 | Deux-points de révélation (« Le meilleur : … ») | Phrase normale. |
+| 24 | Poème d’une phrase par ligne sur tout le texte | Des paragraphes ; couper là où une personne marquerait une pause. |
+| 25 | Phrase-sagesse que personne ne contesterait | Le fait précis qu’elle évoque, ou rien. |
+| 26 | Chute « citable » en dernière ligne (« Parce que vous le méritez. ») | Finir sur un fait, l’offre ou la demande. |
+| 27 | Le texte se commente lui-même (« Voici pourquoi c’est important. ») | Supprimer ; ajouter un détail si le point en a besoin. |
+| 28 | Sujet abstrait (« la plateforme permet… ») | Le couple, ou la personne, fait l’action. |
+| 29 | Fausse étendue (« de X à Y » sans vraie étendue) | Nommer ce qui est vraiment couvert. |
+| 30 | Esquive de « est » et « a » (« se pose comme », « s’impose comme », « dispose de ») | « est », « a », ou le verbe exact. |
+| 31 | Cycle de synonymes pour une même chose (« lieu », « adresse », « écrin », « cocon ») | Choisir le mot du client et le répéter. |
 
 ## Non repris
 

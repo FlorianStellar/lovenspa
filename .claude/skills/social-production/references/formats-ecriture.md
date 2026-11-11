@@ -26,13 +26,13 @@ Rôle (S5-01, règle déterministe qui remplace le choix humain) :
 Gabarit (S5-02) :
 
 ```
-Ligne 1 : 125 caractères max (90 si le post part aussi sur TikTok). Ni salutation, ni hashtag, ni emoji en premier.
+Ligne 1 : longueur max = zone visible de regles-plateformes.md (S2) ; à défaut, legende.max_visible de regles.json. Ni salutation, ni hashtag, ni emoji en premier.
 
 Corps : 2 à 6 paragraphes courts séparés par une ligne vide.
 
 Une seule demande.
 
-#marque #sujet #sujet (5 au plus, dernière ligne)
+#marque #sujet #sujet (max_hashtags de regles.json au plus, dernière ligne)
 ```
 
 Longueur cible : `regles.json` > `legende` (exemple Love'nSpa : 300 à 700 caractères).
@@ -41,14 +41,14 @@ Règles :
 - S5-03 : une seule demande, dans une seule catégorie (lien en bio, commentaire, enregistrement, partage, message). Deux demandes = échec du contrôle.
 - S5-04 : aucun lien dans la légende ; lien UTM en bio ou en message, noté dans le paquet.
 - S5-05 : 2 à 3 expressions de recherche en phrase naturelle, pas en hashtag (exemple : « love room avec spa privatif près de Disneyland Paris »). Sur TikTok, l'expression est aussi affichée sur un carton.
-- S5-06 : 5 hashtags au plus, dont celui de la marque, comme étiquettes de sujet. Interdits : `#fyp`, `#pourtoi`, `#viral`, `#explore`, `#foryou`, `#trending`, `#reels`, `#love`, `#instagood` et toute étiquette de remplissage.
+- S5-06 : `max_hashtags` de `regles.json` au plus (exemple Love'nSpa : 5), dont celui de la marque, comme étiquettes de sujet. Interdits : `#fyp`, `#pourtoi`, `#viral`, `#explore`, `#foryou`, `#trending`, `#reels`, `#love`, `#instagood` et toute étiquette de remplissage.
 - S5-07 : demande de commentaire = un mot sans espace, sans emoji, sans accent si possible, en capitales, au registre du kit (exemple Love'nSpa : « Commentez SPA »). Le même mot est affiché dans la vidéo.
 - S5-08 : texte alternatif sur la couverture d'un carrousel et chaque photo seule : la vraie photo (pièce, équipement, lumière), sans prix ni promesse.
 - S5-09 : passe d'humanisation (section 6).
 - S5-10 : aucun fait inventé ; prix, équipements, ville et nom relus dans la boutique au moment de produire ; pas de « était / maintenant » sans prix de référence réel ; `{{à remplir}}` bloque.
-- S5-11 : emojis comme ponctuation, 4 pour 100 caractères au plus, jamais en puce ni en série ; pas de tiret cadratin.
+- S5-11 : emojis comme ponctuation, jamais en puce ni en série, au plus `max_emojis_legende` de `regles.json` (exemple Love'nSpa : 1) ; même champ que le contrôle S6 ; pas de tiret cadratin.
 - S5-12 : ton du kit. Exemple Love'nSpa : vouvoiement, complice, sensuel, élégant, suggestif jamais explicite, couple au centre ; interdits : alcool mis en avant, « N°1 » sans justificatif, promesse de disponibilité d'une date, urgence ou rareté fictive.
-- S5-13 : premier commentaire écrit à part s'il y a un complément ; 150 caractères au plus s'il part sur TikTok ; signalé dans le journal.
+- S5-13 : premier commentaire écrit à part s'il y a un complément ; longueur dans la limite de `regles-plateformes.md` (S2) ; signalé dans le journal.
 
 Typographie française : insécable avant « : ; ! ? », à l'intérieur des « » ; guillemets français. Le contrôle S6 le signale (`TYPO`).
 
@@ -165,4 +165,64 @@ Appliquer à toute légende, tout carton, tout script.
 
 ## 8. Skills de copie
 
-Appeler les skills listées dans `marque.json` > `ton.skills` (exemple Love'nSpa : `copy-machine` pour l'écriture et l'audit de copy, `brand-lovenspa` pour la charte graphique). `copy-machine` n'a pas de format social : utiliser ses règles de marque et de conformité, et les gabarits de ce fichier pour la forme. En cas de conflit, la compilation tranche : vouvoiement selon le kit, emojis S5-11, hashtags S5-06.
+Appeler les skills listées dans `marque.json` > `ton.skills` (exemple Love'nSpa : `copy-machine` pour l'écriture et l'audit de copy, `brand-lovenspa` pour la charte graphique). `copy-machine` n'a pas de format social : utiliser ses règles de marque et de conformité, et les gabarits de ce fichier pour la forme. En cas de conflit, la compilation tranche : vouvoiement selon le kit, emojis `max_emojis_legende`, hashtags `max_hashtags`, règles de plateforme `regles-plateformes.md` de social-veille. Les règles de conformité de `copy-machine` (allégations, urgence, avis, prix barré) sont reprises dans `social-controle`, `references/conformite-fr.md` ; ses éléments d'écriture et de relecture, en section 9 ci-dessous.
+
+## 9. Relecture avant S6 (S5-69 à S5-83)
+
+Sources : `coreyhaines31_marketingskills@9d6d7ce` et `copy-machine` (provenance : `../SOURCES.md`).
+
+Diagnostic du texte reçu (S5-69) :
+
+| Cas | Ce qu'on a | Ce qu'on fait |
+|---|---|---|
+| A | Brief vide ou texte générique | Construire depuis les faits de l'offre ; liberté sur l'angle, jamais sur les faits |
+| B | Brouillon avec une vraie voix | Restaurer : garder l'angle et le vocabulaire, corriger l'accroche enterrée, les lignes vagues, les tics |
+| C | Retour de S6 sur une ligne | Changer cette ligne et le minimum autour ; rendre le reste tel quel |
+
+Filtre de chaque ligne (S5-70) : se représente-t-elle ? se prouve-t-elle vraie ou fausse ? un concurrent pourrait-il l'écrire telle quelle ? Trois réponses justes : garder. Deux : reprendre la faible. Une ou zéro : réécrire depuis l'offre, ou `{{à remplir}}`.
+
+Effets (S5-71) : une ou deux tournures fortes par publication ; un fragment et une liste de trois au plus.
+
+Tics en plus de la section 6 (S5-72) :
+
+| Tic | Exemple | Correction |
+|---|---|---|
+| Poème d'une phrase par ligne | tout le post en lignes d'une phrase | des paragraphes |
+| Appât de fin | « D'accord ? », « Relisez bien » | finir sur le fait ou la demande |
+| Fausse confidence | « Honnêtement, on hésitait… » sans histoire réelle | retirer |
+| Liste de négations | « Pas de X, pas de Y, pas de Z » | dire ce qui se passe ; une absence réelle, une fois |
+| Ajouts qui traînent | « …, sans X, sans Y » | finir la phrase sur l'affirmation |
+| Deux-points de révélation | « Le meilleur : … » | phrase normale |
+| Phrase-sagesse, chute citable | « Parce que vous le méritez. » | finir sur un fait, l'offre ou la demande |
+
+Corrections (S5-73, S5-74) : revenir au fait (équipement, ville, prix, moment), jamais au synonyme ; varier les corrections d'un post à l'autre ; garder le registre élégant du kit ; aucune expérience vécue inventée.
+
+Affirmation refusée (S5-75) : noter dans la fiche l'affirmation, la raison, l'alternative sourcée et la preuve qui la débloquerait.
+
+Auto-contrôle (S5-76) :
+1. Chercher « pas », « n'est pas », « sans », « ? », « : » et « — » dans l'accroche, la ligne 1 et les cartons.
+2. Relire chaque phrase de plus de 20 mots.
+3. Compter fragments et listes de trois.
+4. Lire à voix haute.
+5. Test du concurrent sur l'accroche.
+6. Relire la dernière ligne.
+
+Diagnostic en cinq lignes, dans la fiche, avant un Reel lieu ou une sélection (S5-77) :
+
+```
+Conscience : <1 à 5> (source)
+Sophistication : <1 à 5> (source)
+Désir dominant : <un seul>
+Conversation en cours : « <mots du public> » (source)
+Avantage propre : <fait> (preuve)
+```
+
+Ligne sans source : `[HYPOTHÈSE]`, dans la fiche seulement. Offre cadeau : « vous » désigne l'acheteur.
+
+Accroche (S5-78, S5-79) : l'image, le carton et la ligne 1 se complètent sans se recopier ; la suite (secondes 3 à 15, diapo 2) prolonge la promesse.
+
+Carrousel (S5-80, S5-81) : architecture choisie avant d'écrire (liste au compte exact, ou démonstration : résultat puis étapes) ; nombre annoncé exactement livré ; une seule maquette intérieure ; légende = seconde accroche, pas la copie de la diapo 1.
+
+Bénéfice (S5-82) : chaque équipement dit ce qu'il permet au couple, avec un fait de l'offre (« spa privatif » : « le spa est à vous pour la soirée »).
+
+Variante (S5-83) : une seule variable ; hypothèse écrite (indicateur, témoin, sens attendu), lue par S8.
