@@ -23,6 +23,8 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 # Dimensions Instagram (à déplacer dans les règles de plateforme de S2 au jalon J3)
 CAROUSEL, REEL = (1080, 1350), (1080, 1920)
+ZONE_SURE_BAS = 1440  # bas du texte dans un Reel (compilation S5)
+TAILLE_TEXTE_MIN = 32  # px, lisibilité mobile (compilation S5)
 
 # Kit courant : défini par appliquer_kit(marque) avant tout rendu.
 KIT = {}
@@ -103,7 +105,7 @@ def slide_cover(photo, title, subtitle, counter=None):
     d.rectangle((80, 910, 200, 918), fill=ROSE)
     text_block(im, [(title, font("Bold", 64)), (subtitle, font("Regular", 34))], 80, 950, 920)
     if counter:
-        d.text((960, 1270), counter, font=font("SemiBold", 28), fill=INK, anchor="ra")
+        d.text((960, 1270), counter, font=font("SemiBold", 32), fill=INK, anchor="ra")
     return im
 
 
@@ -120,8 +122,8 @@ def slide_lodging(photo, nom, lieu, prix, equipements, counter):
     y = text_block(im, [(nom, font("Bold", 52))], 80, 945, 920)
     d.text((80, y), lieu, font=font("Regular", 32), fill=INK)
     d.text((80, y + 50), f"dès {prix:g} € " + KIT["unite_prix"].replace(" ", "\u00a0"), font=font("SemiBold", 34), fill=ROSE)
-    d.text((80, y + 100), " · ".join(equipements[:3]), font=font("Regular", 28), fill=GRIS)
-    d.text((1000, 1290), counter, font=font("SemiBold", 26), fill=INK, anchor="ra")
+    d.text((80, y + 100), " · ".join(equipements[:3]), font=font("Regular", 32), fill=GRIS)
+    d.text((1000, 1290), counter, font=font("SemiBold", 32), fill=INK, anchor="ra")
     return im
 
 
@@ -137,7 +139,7 @@ def slide_text(title, body, counter=None, cta=False):
     y = text_block(im, [(title, font("Bold", 68))], 80, 250, 920, color)
     text_block(im, [(body, font("Regular", 38))], 80, y + 30, 920, color, gap=14)
     if counter:
-        d.text((1000, 1290), counter, font=font("SemiBold", 26), fill=color, anchor="ra")
+        d.text((1000, 1290), counter, font=font("SemiBold", 32), fill=color, anchor="ra")
     return im
 
 
@@ -148,7 +150,8 @@ def reel_frame(photo, line, first=False):
         fnt = font("Bold", 64 if first else 54)
         lines = wrap(d, line, fnt, 900)
         h = len(lines) * (fnt.size + 14) + 60
-        y0 = 260 if first else 1920 - 420 - h
+        # Zone sûre verticale : texte entre y=250 et y=1440 (compilation S5, à vérifier dans la documentation officielle)
+        y0 = 260 if first else ZONE_SURE_BAS - h
         d.rounded_rectangle((60, y0, 1020, y0 + h), radius=28, fill=(255, 255, 255))
         y = y0 + 30
         for ln in lines:

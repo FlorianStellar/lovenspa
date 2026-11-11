@@ -56,6 +56,18 @@ class TestImaging(unittest.TestCase):
         self.assertTrue(any(s["codec_type"] == "audio" for s in info["streams"]))
         self.assertAlmostEqual(float(info["format"]["duration"]), 2.0, delta=0.2)
 
+    def test_reel_text_inside_safe_zone(self):
+        im = visuels.reel_frame(Image.new("RGB", (1024, 756), (0, 0, 0)), "Texte de fin assez long pour deux lignes")
+        # sous la zone sûre, plus aucun pixel blanc du cartouche de texte
+        bas = im.crop((60, visuels.ZONE_SURE_BAS + 2, 1020, 1920))
+        self.assertNotIn((255, 255, 255), [p for p in bas.getdata()][::50])
+
+    def test_min_text_size_in_code(self):
+        import re
+        src = open(visuels.__file__, encoding="utf-8").read()
+        tailles = [int(x) for x in re.findall(r'font\("\w+", (\d+)\)', src)]
+        self.assertTrue(tailles and min(tailles) >= visuels.TAILLE_TEXTE_MIN, tailles)
+
     def test_save_slides(self):
         with tempfile.TemporaryDirectory() as d:
             paths = visuels.save_slides([PHOTO, PHOTO], d, "x")
@@ -64,7 +76,8 @@ class TestImaging(unittest.TestCase):
 
 FICHE = {"handle": "le-nid", "nom": "Le Nid - Spa", "ville": "Vannes", "ville_reference": None, "region": "Bretagne",
          "prix_a_partir_de": 150.0, "equipements": ["Spa", "Sauna"], "equipements_non_citables": [],
-         "url": "https://www.lovenspa.fr/products/le-nid"}
+         "url": "https://www.lovenspa.fr/products/le-nid", "actif": True}
+BASE = {"date": "2026-11-16", "heure": "18:30", "plateforme": "instagram", "statut": "A_PRODUIRE"}
 CAPTION = ("Spa et sauna à Vannes : Le Nid, dès 150 € la nuit.\n\nUn gîte pour deux, le spa rien qu'à vous et le sauna "
            "qui chauffe pendant le dîner. Vous arrivez quand vous voulez, vous repartez sans vous presser, et la soirée "
            "vous appartient du début à la fin.\n\nEnregistrez ce post pour votre prochain week-end.\n\n#lovenspa #vannes")
@@ -85,29 +98,29 @@ class TestProduire(unittest.TestCase):
                 return {**paquet, **verdict}
 
     def test_lieu_ready(self):
-        p = self.run_case({"case": {"moteur": "lieu", "plateforme": "instagram", "format": "REELS", "offres": [FICHE]}, "legende": CAPTION,
+        p = self.run_case({"case": {**BASE, "moteur": "lieu", "format": "REELS", "offres": [FICHE]}, "legende": CAPTION,
                            "reel_lignes": ["a", "b", "c"]})
         self.assertEqual(p["statut"], "PRET", p["bloquants"])
 
     def test_wrong_price_refused(self):
-        p = self.run_case({"case": {"moteur": "lieu", "plateforme": "instagram", "format": "REELS", "offres": [FICHE]},
+        p = self.run_case({"case": {**BASE, "moteur": "lieu", "format": "REELS", "offres": [FICHE]},
                            "legende": CAPTION.replace("150", "99"), "reel_lignes": ["a", "b", "c"]})
         self.assertEqual(p["statut"], "REFUSE")
 
     def test_selection_slide_count(self):
-        p = self.run_case({"case": {"moteur": "selection", "format": "CAROUSEL", "offres": [FICHE]},
+        p = self.run_case({"case": {**BASE, "moteur": "selection", "format": "CAROUSEL", "offres": [FICHE]},
                            "legende": CAPTION, "couverture": {"titre": "T", "sous_titre": "S"},
                            "fin": {"titre": "F", "texte": "x"}})
         self.assertEqual(len(p["medias"]), 3)
 
     def test_couple_needs_no_lodging(self):
-        p = self.run_case({"case": {"moteur": "couple", "format": "CAROUSEL", "offres": []},
+        p = self.run_case({"case": {**BASE, "moteur": "couple", "format": "CAROUSEL", "offres": []},
                            "legende": CAPTION, "couple": {"titre": "T", "diapos": [{"titre": "a", "texte": "b"}], "cta": "c"}})
         self.assertEqual(p["statut"], "PRET", p["bloquants"])
 
     def test_too_many_slides(self):
         with self.assertRaises(RuntimeError):
-            self.run_case({"case": {"moteur": "couple", "format": "CAROUSEL", "offres": []}, "legende": CAPTION,
+            self.run_case({"case": {**BASE, "moteur": "couple", "format": "CAROUSEL", "offres": []}, "legende": CAPTION,
                            "couple": {"titre": "T", "diapos": [{"titre": "a", "texte": "b"}] * 9, "cta": "c"}})
 
 
