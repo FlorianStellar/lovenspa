@@ -45,3 +45,6 @@ Skill : `.claude/skills/lovenspa-instagram/SKILL.md` · Outils : `claude/agent-i
 - Contrôle maison `controle.py` : accroche ≤ 125, un seul appel à l'action, logement Shopify nommé, prix exact, équipements non citables (BDSM, etc.), hashtags, tics maison, répétition. État de départ : 12/12 légendes publiques REFUSE.
 - Logements : `logements.py` (Admin API Shopify, lecture seule, sans coordonnées des partenaires).
 - Connexion permanente : jeton d'utilisateur système Meta (claude-insights) dans la variable d'environnement META_INSIGHT_API_KEY (11/11). Test : `python3 ig_client.py --check`. Premier audit : voir journal.md.
+- 11/11 (suite) : stratégie validée (doc https://claude.ai/artifact/2kWuAKDD13LwfSTDqDUY5v), agent autonome : planifier.py, produire.py, visuels.py, publier.py, strategie.json.
+  Tâches planifiées (heure de Paris) : plan et production le vendredi 10:13 (trig_01MGRCHs2CHwY7LUyoSuUYrm), mesure le lundi 09:41 (trig_0185Ym33FqDPuAaU3j8NEKj4).
+  Publication bloquée : ajouter instagram_content_publish au jeton (utilisateur système claude-insights), mettre IG_PUBLICATION_ACTIVE=1, puis créer la tâche quotidienne `publier.py --dues --go`.
