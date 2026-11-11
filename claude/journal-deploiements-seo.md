@@ -278,4 +278,5 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Clé BING_API_KEY ajoutée par Florian dans l'environnement LOVENSPA SEO (chargée au prochain démarrage de session ; absente de la session en cours, test API = InvalidApiKey).
 - Collecteur claude/agent-seo/bing.py (+ test_bing.py, 6 tests OK) : GetUserSites, GetQueryStats, GetPageStats, GetRankAndTrafficStats → queries.csv, pages.csv, trafic.csv.
 - Intégré au cycle hebdo du lundi (trig_017RtycothGksfALbMLFJg3s) ; non bloquant si la clé manque.
+- Test réel 11/11 (session neuve) : clé OK (32 car.), lovenspa.fr présent ; 486 jours depuis le 11/07/2025, 36 988 clics, 788 510 impressions, 4 576 requêtes uniques, 3 625 lignes pages. Top clics : love room 4 117, kamasutra 1 211, love n spa 837.
 - Archive API de secours (alternative à E1) abandonnée : export BigQuery configuré.
