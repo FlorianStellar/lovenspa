@@ -21,3 +21,10 @@ Source : data/snapshot-2026-11-11.json ; audits data/audit-2026-11-11*.md.
 - Reels hors concours (18) : médiane 1 290 vues, multiple 0,85, temps de visionnage moyen médian 3,8 s.
 - Cadence 12/10 → 08/11 : 0,5 Reel, 0,5 carrousel et 1 image par semaine (cible 3 Reels).
 - Portée du compte sur 30 jours : 1 777 comptes non abonnés, 1 277 abonnés.
+
+## 11/11/2026 : stratégie (changement d'approche demandé par Florian)
+Stratégie déduite de la marque et du benchmark, non des posts passés : doc « Stratégie Instagram Love'nSpa 2026-2027 » (https://claude.ai/artifact/2kWuAKDD13LwfSTDqDUY5v), en attente de validation.
+- Benchmark Business Discovery : data/benchmark-2026-11-11.md (37 comptes, 50 derniers posts, likes + commentaires).
+- Abonnés (API) : 35-44 ans 36,7 %, 25-34 ans 27,9 %, 45-54 ans 20,6 % ; femmes 55,1 % ; France 89,8 %, Ukraine 3,5 %, Belgique 2,2 %.
+- Commandes Shopify par mois : pic en décembre (136 en 2024, 174 en 2025), creux en août (23, 46).
+- Heures de connexion des abonnés : non fournies par l'API pour ce compte.
