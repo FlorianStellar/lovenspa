@@ -273,3 +273,9 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - API BigQuery activée. Exception projet à la contrainte iam.allowedPolicyMemberDomains (allowAll, ce projet seulement ; le reste de l'org reste restreint). florian@lovenspa.fr : orgpolicy.policyAdmin au niveau org.
 - Rôles : search-console-data-export@system → bigquery.jobUser + dataEditor ; lovenspa-seo-agent → bigquery.dataViewer + jobUser (4/4 après ~propagation).
 - Export GSC configuré par Florian le 11/11 (searchconsole, UE). Contrôle des tables programmé le 13/11 à 10:13 UTC (trig_01KZg7muD4wVDzuuReULoH3b).
+
+## E7 — Bing Webmaster Tools (11/11/2026)
+- Clé BING_API_KEY ajoutée par Florian dans l'environnement LOVENSPA SEO (chargée au prochain démarrage de session ; absente de la session en cours, test API = InvalidApiKey).
+- Collecteur claude/agent-seo/bing.py (+ test_bing.py, 6 tests OK) : GetUserSites, GetQueryStats, GetPageStats, GetRankAndTrafficStats → queries.csv, pages.csv, trafic.csv.
+- Intégré au cycle hebdo du lundi (trig_017RtycothGksfALbMLFJg3s) ; non bloquant si la clé manque.
+- Archive API de secours (alternative à E1) abandonnée : export BigQuery configuré.
