@@ -239,7 +239,7 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Menus : `cocons` (« Guide des love rooms », Page/118577529168 non publiée → Page/152267325776 `/pages/loveroom` ; « Guide du week-end en amoureux » → `/pages/loveroom`) et `guides` (« Guide de la Love Room » → `/pages/loveroom`). Titres, ordre et nombre d'éléments inchangés. Supprime les 2 liens redirigés présents sur toutes les pages.
 - 28 pages et articles, 47 liens remplacés par leur URL finale (8 au premier lancement, interrompu par une erreur de type sur articleUpdate, puis 39 à la relance idempotente). Vérifié par l'API et en direct sur 3 pages (0 lien redirigé).
 - QA indépendant : conforme (diff limité aux href, 21 URL finales en 200, plafond 30/30, aucune action Go). Remarque : le libellé « Guide du week-end en amoureux » du menu cocons pointe vers le guide des love rooms (cible de la 301 existante) ; libellé à revoir (Go, contenu).
-- Reste : 110 liens redirigés dans 110 pages publiées (passages suivants), 8 liens exclus à arbitrer (Go), faux positif `/collections/luxe` à expliquer.
+- Reste : 110 liens redirigés dans 110 pages publiées (passages suivants), 8 liens exclus à arbitrer (Go), faux positif `/collections/luxe` : la boutique sert une collection « Love Room de Luxe » (id 654218821968, HTTP 200, canonical propre), mais l'API Admin ne connaît ni cet id ni le handle `luxe`. Cause non établie (suppression récente avec cache, ou ressource hors API) ; à revérifier au prochain passage, aucune action.
 
 ## Règles du journal
 
