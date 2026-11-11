@@ -1,0 +1,40 @@
+{
+ "fenetre": [
+  "2026-11-02",
+  "2026-11-08"
+ ],
+ "base": [
+  "2026-10-05",
+  "2026-11-01"
+ ],
+ "pages_cles": 40,
+ "site": {
+  "clics": 33178,
+  "clics_base": 32045.5,
+  "var_clics": 3.5,
+  "impr": 828908,
+  "impr_base": 731174.0,
+  "var_impr": 13.4,
+  "pos": 11.2,
+  "pos_base": 11.0,
+  "motifs": []
+ },
+ "alertes": [
+  {
+   "page": "https://lovenspa.fr/collections/marseille",
+   "clics": 132,
+   "clics_base": 118.0,
+   "var_clics": 11.9,
+   "impr": 2506,
+   "impr_base": 2165.0,
+   "var_impr": 15.8,
+   "pos": 13.6,
+   "pos_base": 10.0,
+   "motifs": [
+    "position"
+   ]
+  }
+ ],
+ "alerte_site": false,
+ "lignes_gsc": 89207
+}

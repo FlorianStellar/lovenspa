@@ -1,0 +1,18 @@
+{
+ "theme": "lovenspa 4.1",
+ "fichiers": 470,
+ "sensibles": 12,
+ "robots_regles": 100,
+ "sitemaps": {
+  "https://lovenspa.fr/sitemap.xml": {
+   "soumises": 4939,
+   "erreurs": 0
+  },
+  "https://www.lovenspa.fr/sitemap.xml": {
+   "soumises": 4939,
+   "erreurs": 0
+  }
+ },
+ "alertes": [],
+ "infos": []
+}
