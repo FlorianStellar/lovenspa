@@ -234,6 +234,13 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Menus : `cocons` (2 éléments) et `guides` (1 élément) vers `/pages/loveroom` (200 vérifié).
 - Exclus, à arbitrer : 7 liens vers des fiches supprimées redirigées vers une collection régionale (ancre au nom de l'hébergement), 1 lien vers l'abonnement redirigé vers l'accueil (page je-souhaite-quitter-lovenspa). `/collections/luxe` : « introuvable » dans l'export mais 200 en direct, faux positif à expliquer.
 
+## Bugs techniques, passage du 11/11/2026 : résultat
+
+- Menus : `cocons` (« Guide des love rooms », Page/118577529168 non publiée → Page/152267325776 `/pages/loveroom` ; « Guide du week-end en amoureux » → `/pages/loveroom`) et `guides` (« Guide de la Love Room » → `/pages/loveroom`). Titres, ordre et nombre d'éléments inchangés. Supprime les 2 liens redirigés présents sur toutes les pages.
+- 28 pages et articles, 47 liens remplacés par leur URL finale (8 au premier lancement, interrompu par une erreur de type sur articleUpdate, puis 39 à la relance idempotente). Vérifié par l'API et en direct sur 3 pages (0 lien redirigé).
+- QA indépendant : conforme (diff limité aux href, 21 URL finales en 200, plafond 30/30, aucune action Go). Remarque : le libellé « Guide du week-end en amoureux » du menu cocons pointe vers le guide des love rooms (cible de la 301 existante) ; libellé à revoir (Go, contenu).
+- Reste : 118 liens redirigés dans 113 pages publiées (passages suivants), 8 liens exclus à arbitrer (Go), faux positif `/collections/luxe` à expliquer.
+
 ## Règles du journal
 
 - Décision stratégique (Go, objectif, budget, périmètre, retour arrière sur page clé) : message privé Slack à Florian dès qu'elle apparaît.

@@ -1,0 +1,206 @@
+source,cible,ancre,emplacement,verdict,vers
+/collections/nuit-insolite,/collections/luxe,suites franchement spectaculaires,body,introuvable,
+/pages/je-souhaite-quitter-lovenspa,/products/abonnement-lovenspa-1an,"Finalement, je reste",body,redirection,/
+/pages/guide-a-occasions-organiser-week-end-amoureux,/collections/love-room-paris,love rooms à Paris,body,redirection,/collections/paris
+/pages/guide-a-occasions-organiser-week-end-amoureux,/collections/love-room-lyon,suites romantiques à Lyon,body,redirection,/collections/lyon
+/pages/guide-a-occasions-organiser-week-end-amoureux,/collections/love-room-bordeaux,love rooms à Bordeaux,body,redirection,/collections/bordeaux
+/pages/guide-a-occasions-organiser-week-end-amoureux,/collections/love-room-normandie,hébergements en Normandie,body,redirection,/collections/normandie
+/pages/guide-comment-choisir-love-room,/pages/guide-quel-type-love-room-choisir ,choisir le type de love room,body,redirection,/pages/guide-quel-type-love-room-choisir
+/pages/guide-quels-criteres-choix-love-room,/pages/guide-quel-type-love-room-choisir ,Quel type de love room choisir ?,body,redirection,/pages/guide-quel-type-love-room-choisir
+/pages/guide-pourquoi-choisir-love-room-pres-chez-soi,/pages/guide-quel-type-love-room-choisir ,Quel type de love room choisir ?,body,redirection,/pages/guide-quel-type-love-room-choisir
+/pages/guide-quel-type-love-room-choisir,/pages/guide-la-love-room-secret-room ,love room avec une secret room,body,redirection,/pages/guide-la-love-room-secret-room
+/pages/guide-la-love-room-jacuzzi-privatif,/pages/guide-quel-type-love-room-choisir ,love rooms,body,redirection,/pages/guide-quel-type-love-room-choisir
+/pages/guide-la-love-room-jacuzzi-privatif,/pages/guide-la-love-room-secret-room ,La love room avec une secret room,body,redirection,/pages/guide-la-love-room-secret-room
+/pages/guide-la-love-room-spa-privatif,/pages/guide-quel-type-love-room-choisir ,love room,body,redirection,/pages/guide-quel-type-love-room-choisir
+/pages/guide-la-love-room-spa-privatif,/pages/guide-la-love-room-secret-room ,La love room avec une secret room,body,redirection,/pages/guide-la-love-room-secret-room
+/pages/guide-la-love-room-sauna,/pages/guide-quel-type-love-room-choisir ,love room,body,redirection,/pages/guide-quel-type-love-room-choisir
+/pages/guide-la-love-room-sauna,/pages/guide-la-love-room-secret-room ,La love room avec une secret room,body,redirection,/pages/guide-la-love-room-secret-room
+/pages/guide-la-love-room-secret-room,/pages/guide-quel-type-love-room-choisir ,love room,body,redirection,/pages/guide-quel-type-love-room-choisir
+/pages/guide-la-love-room-piscine-privative,/pages/guide-quel-type-love-room-choisir ,love room,body,redirection,/pages/guide-quel-type-love-room-choisir
+/pages/guide-la-love-room-piscine-privative,/pages/guide-la-love-room-secret-room ,La love room avec une secret room,body,redirection,/pages/guide-la-love-room-secret-room
+/pages/guide-les-villes-romantiques-sejour-love-room,/pages/guide-une-love-room-paris-ville-amour ,séjour romantique en love room,body,redirection,/pages/guide-une-love-room-paris-ville-amour
+/pages/guide-love-room-valencienne-ses-tresors-caches,/pages/guide-une-love-room-paris-ville-amour ,"Une love room à Paris, la ville de l’amour",body,redirection,/pages/guide-une-love-room-paris-ville-amour
+/pages/guide-love-room-valencienne-ses-tresors-caches,/pages/guide-love-room-rochelle-cœur-vieille-ville,Love room à La Rochelle au cœur de la vieille ville,body,redirection,/pages/guide-love-room-rochelle-coeur-vieille-ville
+/pages/guide-une-love-room-metz-flaner-long-remparts,/pages/guide-une-love-room-paris-ville-amour ,"Une love room à Paris, la ville de l’amour",body,redirection,/pages/guide-une-love-room-paris-ville-amour
+/pages/guide-une-love-room-marseille-decouvrir-calanques,/pages/guide-une-love-room-paris-ville-amour ,"Une love room à Paris, la ville de l’amour",body,redirection,/pages/guide-une-love-room-paris-ville-amour
+/pages/guide-une-love-room-nice-patrimoine-historique,/pages/guide-une-love-room-paris-ville-amour ,"Une love room à Paris, la ville de l’amour",body,redirection,/pages/guide-une-love-room-paris-ville-amour
+/pages/guide-love-room-rochelle-coeur-vieille-ville,/pages/guide-une-love-room-paris-ville-amour ,"Une love room à Paris, la ville de l’amour",body,redirection,/pages/guide-une-love-room-paris-ville-amour
+/pages/love-room-le-guide-des-hebergements-reserves-aux-couples,/collections/jacuzzi-privatif,jacuzzi privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/love-room-le-guide-des-hebergements-reserves-aux-couples,/collections/spa-privatif,spa privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/love-room-le-guide-des-hebergements-reserves-aux-couples,/products/carte-cadeau,carte cadeau Love'nSpa,body,introuvable,
+/pages/love-room-le-guide-des-hebergements-reserves-aux-couples,/collections/jacuzzi-privatif,jacuzzi privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/love-room-le-guide-des-hebergements-reserves-aux-couples,/collections/spa-privatif,spa privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/love-room-le-guide-des-hebergements-reserves-aux-couples,/products/carte-cadeau,carte cadeau Love'nSpa,body,introuvable,
+/pages/services-supplementaires-rechercher-reservation-cabane-arbres-jacuzzi,/collections/toutes-les-love-rooms,cabane dans les arbres avec jacuzzi,body,redirection,/collections/love-room
+/pages/precautions-prendre-reservation-cabane-arbres-jacuzzi,/collections/toutes-les-love-rooms,cabane dans les arbres avec jacuzzi,body,redirection,/collections/love-room
+/pages/ateliers-activites-plein-air-proposes-alentours-cabane-arbres-jacuzzi,/collections/toutes-les-love-rooms,cabane dans les arbres avec jacuzzi,body,redirection,/collections/love-room
+/pages/avantages-escapade-amoureux-cabane-arbres-jacuzzi-rapport-hotel-ordinaire,/collections/toutes-les-love-rooms,jacuzzi,body,redirection,/collections/love-room
+/pages/idees-celebrer-anniversaire-cabane-arbres-jacuzzi,/collections/toutes-les-love-rooms,cabane dans les arbres avec jacuzzi,body,redirection,/collections/love-room
+/pages/reserver-cabane-arbres-jacuzzi-faire-demande-mariage,/collections/toutes-les-love-rooms,cabane dans les arbres avec jacuzzi,body,redirection,/collections/love-room
+/pages/criteres-prendre-compte-reservation-chambre-spa-privatif-lune-miel,/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel.,Les erreurs à éviter lors du choix d'une chambre avec spa privatif pour une lune de miel.,body,redirection,/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel
+/pages/comment-optimiser-budget-lune-miel-chambre-spa-privatif,/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel.,Les erreurs à éviter lors du choix d'une chambre avec spa privatif pour une lune de miel.,body,redirection,/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel
+/pages/chambre-avec-jacuzzi-privatif-recap,/pages/chambre-jacuzzi-privatif-offrir-hors-saison ,Que peut offrir une chambre avec jacuzzi privatif en dehors de la haute saison ?,body,redirection,/pages/chambre-jacuzzi-privatif-offrir-hors-saison
+/pages/chambre-avec-jacuzzi-privatif-recap,/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe ,Les services exclusifs offerts avec les chambres avec jacuzzi privé ultra-luxueux ?,body,redirection,/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe
+/pages/chambre-jacuzzi-privatif-avantages-sejour,/pages/chambre-jacuzzi-privatif-preservez-intimite-chambre-!,jacuzzi privatif,body,redirection,/pages/chambre-jacuzzi-privatif-preservez-intimite-chambre
+/pages/chambre-jacuzzi-privatif-influence-saison-experience,/pages/chambre-jacuzzi-privatif-offrir-hors-saison ,Que peut offrir une chambre avec jacuzzi privatif en dehors de la haute saison ?,body,redirection,/pages/chambre-jacuzzi-privatif-offrir-hors-saison
+/pages/chambre-jacuzzi-privatif-varient-tarifs-selon-saison,/pages/chambre-jacuzzi-privatif-offrir-hors-saison ,Que peut offrir une chambre avec jacuzzi privatif en dehors de la haute saison ?,body,redirection,/pages/chambre-jacuzzi-privatif-offrir-hors-saison
+/pages/chambre-jacuzzi-privatif-avantages-hiver,/pages/chambre-jacuzzi-privatif-offrir-hors-saison ,Que peut offrir une chambre avec jacuzzi privatif en dehors de la haute saison ?,body,redirection,/pages/chambre-jacuzzi-privatif-offrir-hors-saison
+/pages/chambre-jacuzzi-privatif-criteres-experience-luxe,/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe ,Les services exclusifs offerts avec les chambres avec jacuzzi privé ultra-luxueux ?,body,redirection,/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe
+/pages/chambre-jacuzzi-privatif-equipements-plus-luxe,/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe ,Les services exclusifs offerts avec les chambres avec jacuzzi privé ultra-luxueux ?,body,redirection,/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe
+/pages/secret-room-tarifs-varient-selon-localisation,/collections/secret-room-love-room-week-end-amoureux,secret rooms,body,redirection,/collections/secret-room
+/pages/secret-room-options-location-heure-disponibles,/collections/secret-room-love-room-week-end-amoureux,secret rooms,body,redirection,/collections/secret-room
+/pages/secret-room-services-personnalises-ajouter,/collections/secret-room-love-room-week-end-amoureux,secret room,body,redirection,/collections/secret-room
+/pages/secret-room-creer-surprise-amoureuse-unique,/collections/secret-room-love-room-week-end-amoureux,chambre secrète,body,redirection,/collections/secret-room
+/pages/sofa-tantra-recap,/blogs/articles/le-fauteuil-tantra-un-guide-complet,fauteuil tantra,body,redirection,/blogs/magazine/le-fauteuil-tantra-un-guide-complet
+/pages/sofa-tantra-recap,/blogs/articles/le-fauteuil-tantra-un-guide-complet,Le fauteuil tantra : un guide complet,body,redirection,/blogs/magazine/le-fauteuil-tantra-un-guide-complet
+/pages/sauna-guide-choisir-utiliser-sauna,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-comment-choisir-bon-modele-besoins,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-differents-types-disponibles,/collections/love-room-sauna-privatif,saunas,body,redirection,/collections/sauna-privatif
+/pages/sauna-comment-savoir,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-vapeur-bienfaits-conseils-choix,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-criteres-choisir-selon-espace-disponible,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-couts-installation-fonctionnement-expliques,/collections/love-room-sauna-privatif,saunas,body,redirection,/collections/sauna-privatif
+/pages/sauna-decouvrez-bienfaits-utilisation-reguliere,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-benefique-recuperation-sportive,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-ameliorer-performance-sportive,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-bienfaits-elimination-toxines-apres-sport,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-effets-reduction-inflammation-guerison,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-integrer-sauna-routine-recuperation-sportive,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-combiner-sauna-cryotherapie-recuperation-sportive,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-decouvrez-bienfaits-systeme-immunitaire,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-decouvrez-bienfaits-peau-sante,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-effets-sante-cardiovasculaire-bienfaits,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-comment-aider-perdre-poids,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-utiliser-detoxifier-corps,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-soulager-douleurs-articulaires-musculaires,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-bienfaits-douleurs-articulaires,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-bienfaits-relaxation-musculaire-detente,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-arthrite-recommande-soulager-douleurs,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-types-efficaces-douleurs-articulaires,/collections/love-room-sauna-privatif,saunas,body,redirection,/collections/sauna-privatif
+/pages/sauna-conseils-utilisation-optimale,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-combien-temps-profiter-bienfaits,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-precautions-prendre-avant-profiter,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-asthme-benefices-conditions-respiratoires,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-effets-tension-arterielle-expliques,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-faut-prendre-douche-froide-apres,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-grossesse-danger-sante,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-meilleurs-moments-journee-profiter,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-benefique-avant-aller-travailler,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-profiter-nuit,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-benefique-aller-apres-midi,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-hiver-benefique-recommande,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-ete-conseille,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-option-chauffage-choisir-bois-electrique,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-pourquoi-opter-chauffage-electrique,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-fonctionnement-saunas-electriques-explique,/collections/love-room-sauna-privatif,saunas électriques,body,redirection,/collections/sauna-privatif
+/pages/sauna-cout-installation-systeme-chauffage,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-chauffage-plus-ecologique,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-preparer-corps-avant-seance,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-alimentation-adopter-avant-seance,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-boissons-choisir-bonne-hydratation,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-faut-eviter-repas-lourds-avant-seance,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-rituels-hygiene-effectuer-avant-seance,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-benefique-faire-sport-avant,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-routines-soins-relaxation-apres-seance,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-cosmetiques-utiliser-apres-seance,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-comment-rehydrater-efficacement-apres-seance,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-meilleures-techniques-massage-detente,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-meditation-respiration-maximiser-bienfaits,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-adapter-alimentation-optimiser-recuperation,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/sauna-etirements-detendre-muscles,/collections/love-room-sauna-privatif,sauna,body,redirection,/collections/sauna-privatif
+/pages/loveroom,/collections/jacuzzi-privatif,jacuzzi privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/loveroom,/collections/spa-privatif,spa privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/loveroom,/collections/jacuzzi-privatif,jacuzzi privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/loveroom,/collections/spa-privatif,spa privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/copie-de-le-guide-de-la-chambre-avec-jacuzzi-privatif-test,/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel.,Les erreurs à éviter lors du choix d'une chambre avec spa privatif pour une lune de miel.,body,redirection,/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel
+/pages/kit-sextoy-lelo-couple,/collections/love-room-sofa-tantrique,Love rooms avec sofa tantrique,body,redirection,/collections/sofa-tantrique
+/pages/kit-sextoy-lelo-couple,/collections/love-room-paris,Love rooms à Paris,body,redirection,/collections/paris
+/pages/guide-impact-love-rooms-relations-intimes,/collections/jacuzzi-privatif,Jacuzzi privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/guide-impact-love-rooms-relations-intimes,/collections/spa-privatif,Spa privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/guide-love-rooms-tendance-marche-hotelier,/collections/jacuzzi-privatif,Jacuzzi privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/guide-love-rooms-tendance-marche-hotelier,/collections/spa-privatif,Spa privatif,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/guide-atouts-love-room-escapade-couple,/collections/jacuzzi-privatif,Love rooms avec jacuzzi privé,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/guide-atouts-love-room-escapade-couple,/collections/spa-privatif,Love rooms avec spa privé,body,redirection,/collections/chambre-jacuzzi-spa-privatif
+/pages/brandbook,/pages/brandbook,Brand Book,body,non_publiee,
+/pages/brandbook,/pages/charte-graphique,Charte graphique,body,non_publiee,
+/pages/brandbook,/pages/guidelines-instagram,Charte Instagram,body,non_publiee,
+/pages/brandbook,/pages/guidelines-images,Moodboard prestataires,body,non_publiee,
+/pages/guidelines-instagram,/pages/brandbook,Brand Book,body,non_publiee,
+/pages/guidelines-instagram,/pages/charte-graphique,Charte graphique,body,non_publiee,
+/pages/guidelines-instagram,/pages/guidelines-instagram,Charte Instagram,body,non_publiee,
+/pages/guidelines-instagram,/pages/guidelines-images,Moodboard prestataires,body,non_publiee,
+/pages/guidelines-images,/pages/brandbook,Brand Book,body,non_publiee,
+/pages/guidelines-images,/pages/charte-graphique,Charte graphique,body,non_publiee,
+/pages/guidelines-images,/pages/guidelines-instagram,Charte Instagram,body,non_publiee,
+/pages/guidelines-images,/pages/guidelines-images,Moodboard prestataires,body,non_publiee,
+/pages/charte-graphique,/pages/brandbook,Brand Book,body,non_publiee,
+/pages/charte-graphique,/pages/charte-graphique,Charte graphique,body,non_publiee,
+/pages/charte-graphique,/pages/guidelines-instagram,Charte Instagram,body,non_publiee,
+/pages/charte-graphique,/pages/guidelines-images,Moodboard prestataires,body,non_publiee,
+/blogs/magazine/a-propos-de-lovenspa,/blogs/articles/sejour-securise-avec-la-prise-de-cautions.html,réserver votre séjour au meilleur tarif,body,introuvable,
+/blogs/magazine/10-idees-de-week-end-en-amoureux-en-pays-de-la-loire,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,entretenir la complicité de votre couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/10-idees-de-week-end-en-amoureux-en-auvergne-rhone-alpes,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,faire durer l'amour au quotidien,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/10-idees-de-week-end-en-amoureux-en-occitanie,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la passion dans votre couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/pourquoi-aller-dans-une-love-room-en-belgique,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,réenchanter la vie à deux,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/les-meilleures-destinations-de-love-rooms-en-france-pour-2025,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver le lien amoureux,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/les-20-meilleures-love-rooms-a-moins-d-une-heure-de-paris-pour-une-echappee-romantique,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,entretenir la flamme au quotidien,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/les-meilleures-love-rooms-a-moins-d-une-heure-de-lyon-pour-une-escapade-romantique,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,redonner de l'élan à votre couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/les-meilleures-loverooms-pres-de-marseille-pour-un-sejour-romantique-inoubliable,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,nourrir la complicité amoureuse,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/les-meilleures-loverooms-a-moins-dune-heure-de-montpellier-pour-un-sejour-romantique,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,réveiller votre relation amoureuse,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun,/products/la-bulle-de-pierre-spa,La Bulle de Pierre,body,redirection,/collections/auvergne-rhone-alpes
+/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun,/products/les-spas-de-venus,Les Spas de Vénus,body,redirection,/collections/isere
+/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun,/products/chalet-trappeur,Chalet Trappeur,body,redirection,/collections/auvergne-rhone-alpes
+/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun,/products/la-patte-nordic-la-mine-de-buck,La Mine de Buck,body,redirection,/collections/haute-savoie
+/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun,/products/love,Love Suite Love,body,redirection,/collections/auvergne-rhone-alpes
+/blogs/magazine/love-room-les-25-questions-les-plus-posees-et-toutes-les-reponses,/products/abonnement-lovenspa-1an,Référencer votre hébergement sur Love'nSpa,body,redirection,/
+/blogs/magazine/love-room-lyon-chambres-avec-jacuzzi-privatif-pour-un-week-end-en-amoureux,/products/gourguillon,suites du Gourguillon,body,redirection,/collections/lyon
+/blogs/magazine/love-room-lyon-chambres-avec-jacuzzi-privatif-pour-un-week-end-en-amoureux,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-toulouse-les-meilleures-suites-romantiques-avec-jacuzzi-privatif,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-toulouse-les-meilleures-suites-romantiques-avec-jacuzzi-privatif,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,rituels qui ravivent l'intimité,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-bordeaux-les-meilleures-chambres-avec-jacuzzi-privatif-en-gironde,/products/loft-et-jacuzzi-bordeaux,Loft et Jacuzzi Bordeaux,body,redirection,/collections/bordeaux
+/blogs/magazine/love-room-bordeaux-les-meilleures-chambres-avec-jacuzzi-privatif-en-gironde,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/100-questions-hot-couple-oui-non,/blogs/magazine/100-gages-droles-coquins-couples,100 gages drôles et coquins pour couples,body,non_publiee,
+/blogs/magazine/love-room-le-de-france-20-p-pites-avec-jacuzzi-privatif-pr-s-de-paris,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-bretagne-15-pepites-avec-jacuzzi-privatif-entre-terre-et-mer,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,retrouver la complicité à deux,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/nuit-insolite-en-amoureux-face-aux-falaises-normandes,/normandie,Normandie,body,redirection,/collections/normandie
+/blogs/magazine/nuit-insolite-en-amoureux-face-aux-falaises-normandes,/mentions-legales,Mentions légales,body,redirection,/pages/mentions-legales
+/blogs/magazine/love-room-baie-de-somme-spa-romantique-nature-cote-dopale,/nord,Nord,body,redirection,/collections/nord
+/blogs/magazine/love-room-bassin-arcachon-vignobles-bordeaux-guide-nuit-romantique-nouvelle-aquitaine,/nouvelle-aquitaine,Nouvelle-Aquitaine,body,redirection,/collections/nouvelle-aquitaine
+/blogs/magazine/love-room-bassin-arcachon-vignobles-bordeaux-guide-nuit-romantique-nouvelle-aquitaine,/nouvelle-aquitaine,Château Troplong-Mondot,body,redirection,/collections/nouvelle-aquitaine
+/blogs/magazine/love-room-bassin-arcachon-vignobles-bordeaux-guide-nuit-romantique-nouvelle-aquitaine,/nouvelle-aquitaine,Château Léoville-Poyferré,body,redirection,/collections/nouvelle-aquitaine
+/blogs/magazine/love-room-bassin-arcachon-vignobles-bordeaux-guide-nuit-romantique-nouvelle-aquitaine,/nouvelle-aquitaine,Nouvelle-Aquitaine générale,body,redirection,/collections/nouvelle-aquitaine
+/blogs/magazine/love-room-bassin-arcachon-vignobles-bordeaux-guide-nuit-romantique-nouvelle-aquitaine,/nouvelle-aquitaine,Nouvelle-Aquitaine,body,redirection,/collections/nouvelle-aquitaine
+/blogs/magazine/love-room-bourgogne-vignobles-cabane-spa-jura-lexperience-romantique-complete,/mentions-legales,Mentions légales,body,redirection,/pages/mentions-legales
+/blogs/magazine/5-langages-de-l-amour-test-interpretations,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,notre guide complet pour raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/casser-la-routine-du-couple-12-rituels,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,notre guide complet pour raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/lassitude-couple-7-signes-cliniques,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,notre guide complet pour raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/sms-pour-raviver-la-flamme-30-exemples,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,notre guide complet pour raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/demande-en-mariage-originale-50-idees-par-contexte,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/demande-en-mariage-surprise-sans-stress-8-scenarios,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,guide complet pour raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/demande-en-mariage-facon-disney-10-idees-sans-le-parc,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,guide complet pour raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/demande-en-mariage-a-la-maison-15-scenarios-cosy,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,guide complet pour raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/comment-raviver-la-flamme-durablement,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple : le guide complet,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-paris-comment-bien-choisir,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/baby-clash-couple-proteger-lien-apres-bebe,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,guide complet pour raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/les-preliminaires-comprendre-le-desir-et-les-reinventer-a-deux,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/dead-bedroom-comment-sortir-du-desert-sexuel-dans-le-couple,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/noel-en-amoureux-idees-menu-a-deux-et-escapades-dhiver-en-france,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,guide pour raviver la flamme,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/separation-du-couple-apres-bebe-ce-que-disent-vraiment-les-chiffres,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/idee-saint-valentin-soiree-cadeaux-et-week-end-en-amoureux,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,guide pour raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/charge-mentale-du-couple-apres-bebe-la-partager-pour-se-retrouver,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,guide pour raviver la flamme,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-saint-valentin-bien-la-choisir-pour-le-14-fevrier,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-nantes-suites-avec-jacuzzi-privatif-pour-une-nuit-a-deux,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-marseille-suites-avec-jacuzzi-privatif-de-la-corniche-aux-calanques,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-strasbourg-suites-avec-spa-privatif-de-la-petite-france-a-la-route-des-vins,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-strasbourg-suites-avec-spa-privatif-de-la-petite-france-a-la-route-des-vins,/blogs/magazine/love-room-alsace-spa-privatif-route-des-vins-et-marches-de-noel-feeriques,love room en Alsace,body,redirection,/collections/alsace
+/blogs/magazine/love-room-rennes-suites-avec-jacuzzi-privatif-du-centre-historique-a-broceliande,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-lille-suites-avec-jacuzzi-privatif-du-vieux-lille-a-la-campagne-flamande,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-nice-suites-avec-jacuzzi-privatif-du-vieux-nice-aux-villages-perches,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/love-room-angers-suites-avec-jacuzzi-privatif-des-bords-de-loire-aux-troglodytes,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/therapie-de-couple-quand-consulter-comment-ca-se-passe-ce-quon-peut-en-attendre,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/mots-damour-le-guide-pour-dire-et-ecrire-ce-quon-ressent-sans-cliches,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+/blogs/magazine/styles-dattachement-en-couple-comprendre-les-4-profils-et-ce-quils-changent-a-deux,/blogs/magazine/raviver-la-flamme-du-couple-guide-complet,raviver la flamme du couple,body,redirection,/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+menu:destinations,/collections/luxe,Luxe,menu,introuvable,
+menu:cocons,/pages/love-room-le-guide-des-hebergements-reserves-aux-couples,Guide des love rooms,menu,redirection,/pages/loveroom
+menu:cocons,/pages/love-room-le-guide-des-hebergements-reserves-aux-couples,Guide du week-end en amoureux,menu,redirection,/pages/loveroom
+menu:guides,/pages/loveroom-recap,Guide de la Love Room,menu,redirection,/pages/loveroom

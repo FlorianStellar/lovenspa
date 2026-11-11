@@ -1,0 +1,25 @@
+{
+ "id": "gid://shopify/Menu/229551669584",
+ "handle": "cocons",
+ "title": "Cocons",
+ "items": [
+  {
+   "id": "gid://shopify/MenuItem/537777799504",
+   "title": "Guide des love rooms",
+   "type": "PAGE",
+   "url": "/pages/love-room-le-guide-des-hebergements-reserves-aux-couples",
+   "resourceId": "gid://shopify/Page/118577529168",
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/537777832272",
+   "title": "Guide du week-end en amoureux",
+   "type": "HTTP",
+   "url": "https://lovenspa.fr/pages/love-room-le-guide-des-hebergements-reserves-aux-couples",
+   "resourceId": null,
+   "tags": [],
+   "items": []
+  }
+ ]
+}

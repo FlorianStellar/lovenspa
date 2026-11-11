@@ -1,0 +1,124 @@
+{
+ "id": "gid://shopify/Menu/234738975056",
+ "handle": "guides",
+ "title": "Guides",
+ "items": [
+  {
+   "id": "gid://shopify/MenuItem/722414797136",
+   "title": "Tous nos guides",
+   "type": "PAGE",
+   "url": "/pages/guides-week-end-amoureux-love-room",
+   "resourceId": "gid://shopify/Page/152309727568",
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/722340413776",
+   "title": "Guide de la Love Room",
+   "type": "HTTP",
+   "url": "/pages/loveroom-recap",
+   "resourceId": null,
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/551380713808",
+   "title": "Guide pour bien choisir une love room",
+   "type": "PAGE",
+   "url": "/pages/guide-comment-choisir-love-room",
+   "resourceId": "gid://shopify/Page/118491677008",
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/551380779344",
+   "title": "Guide des cabanes avec spa ou jacuzzi privatif",
+   "type": "PAGE",
+   "url": "/pages/guide-cabane-arbres-jaccuzi-recap",
+   "resourceId": "gid://shopify/Page/123025850704",
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/551380812112",
+   "title": "Guides des chambres avec spa ou jacuzzi privatif",
+   "type": "PAGE",
+   "url": "/pages/guide-chambre-jacuzzi-privatif-recap",
+   "resourceId": "gid://shopify/Page/123025949008",
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/598860431696",
+   "title": "Guides de la location avec spa ou jacuzzi privatif",
+   "type": "HTTP",
+   "url": "https://lovenspa.fr/pages/chambre-avec-jacuzzi-privatif-recap",
+   "resourceId": null,
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/601060737360",
+   "title": "Tout savoir sur le sauna",
+   "type": "HTTP",
+   "url": "https://lovenspa.fr/pages/sauna-recap",
+   "resourceId": null,
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/601060770128",
+   "title": "Guide complet de la secret room",
+   "type": "HTTP",
+   "url": "https://lovenspa.fr/pages/secret-room-recap",
+   "resourceId": null,
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/601060802896",
+   "title": "Tout savoir sur le sofa tantra",
+   "type": "HTTP",
+   "url": "https://lovenspa.fr/pages/sofa-tantra-recap",
+   "resourceId": null,
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/650278568272",
+   "title": "Guide de la location en Day Use",
+   "type": "PAGE",
+   "url": "/pages/day-use-recap",
+   "resourceId": "gid://shopify/Page/148398440784",
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/650278601040",
+   "title": "Guide de la location en love hotel",
+   "type": "PAGE",
+   "url": "/pages/love-hotel-recap",
+   "resourceId": "gid://shopify/Page/148396376400",
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/650278633808",
+   "title": "Guide pour une nuit insolite",
+   "type": "PAGE",
+   "url": "/pages/nuit-insolite-recap",
+   "resourceId": "gid://shopify/Page/148348633424",
+   "tags": [],
+   "items": []
+  },
+  {
+   "id": "gid://shopify/MenuItem/722340446544",
+   "title": "Guide pour une nuit insolite en amoureux",
+   "type": "HTTP",
+   "url": "/pages/nuit-insolite-en-amoureux-recap",
+   "resourceId": null,
+   "tags": [],
+   "items": []
+  }
+ ]
+}

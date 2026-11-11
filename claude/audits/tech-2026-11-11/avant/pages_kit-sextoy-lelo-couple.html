@@ -1,0 +1,706 @@
+<p><meta name="viewport" content="width=device-width, initial-scale=1"> </p>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
+:root{--noir:#0c0b09;--n2:#141210;--n3:#1e1b16;--or:#c9a96e;--orc:#e8d4a8;--ord:#a07c45;--blanc:#fff;--t2:rgba(255,255,255,.78);--t3:rgba(255,255,255,.52);--b:rgba(201,169,110,.15);--ease:cubic-bezier(.25,.46,.45,.94);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--noir);color:var(--blanc);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;}
+.c{max-width:1100px;margin:0 auto;padding:0 40px;}
+.cs{max-width:760px;margin:0 auto;padding:0 40px;}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:16px;}
+.promo{background:var(--or);color:#000;text-align:center;padding:11px 16px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.04em;position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:center;gap:10px 14px;flex-wrap:wrap;line-height:1.35;}
+.promo-msg{text-transform:uppercase;letter-spacing:.06em;}
+.promo-msg strong{font-weight:800;font-size:13px;}
+.promo-code{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;letter-spacing:.18em;background:rgba(0,0,0,.14);color:#000;padding:6px 14px;border-radius:2px;text-transform:none;}
+.promo .copy-code{font:inherit;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:#0c0b09;color:var(--orc);border:none;padding:8px 16px;cursor:pointer;transition:background .25s,color .25s,transform .2s;}
+.promo .copy-code:hover{background:#1a1814;color:#fff;}
+.promo .copy-code:active{transform:scale(.98);}
+.promo .copy-code.copied{background:#1a6b3a;color:#fff;}
+.promo-dot{opacity:.45;font-weight:400;}
+.promo a{color:#000;text-decoration:underline;font-weight:800;text-transform:uppercase;font-size:11px;letter-spacing:.08em;}
+.hero-offer{margin:-8px auto 36px;max-width:580px;font-size:14px;font-weight:400;color:rgba(255,255,255,.92);line-height:1.65;}
+.hero-offer-badge{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--or);border:1px solid rgba(201,169,110,.5);padding:5px 11px;margin:0 10px 8px 0;vertical-align:middle;}
+.hero-offer strong{color:var(--orc);font-weight:600;letter-spacing:.12em;font-size:15px;}
+.offer-pill{margin-top:14px;font-size:12px;color:var(--t2);line-height:1.55;max-width:420px;}
+.offer-pill strong{color:var(--orc);font-weight:600;letter-spacing:.1em;}
+.cf-codebox{margin:0 auto 28px;max-width:440px;padding:22px 24px;border:1px solid var(--b);background:rgba(201,169,110,.06);}
+.cf-code-lbl{display:block;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-bottom:12px;}
+.cf-code-row{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.cf-code{font-family:'DM Sans',sans-serif;font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:.2em;color:var(--orc);background:var(--n2);padding:10px 20px;border:1px solid var(--b);}
+.cf-code-note{display:block;font-size:13px;color:var(--t2);line-height:1.55;}
+.cf-code-note strong{color:var(--orc);}
+.sbar-code{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--or);white-space:nowrap;padding:0 8px;}
+.sbar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(10,9,7,.97);border-top:1px solid var(--b);backdrop-filter:blur(16px);transform:translateY(100%);transition:transform .4s var(--ease);padding:16px 20px;}
+.sbar.on{transform:translateY(0);}
+.sbar-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.sbar-products{display:flex;gap:8px;flex-wrap:wrap;}
+.sbar-item{display:flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid var(--b);text-decoration:none;transition:border-color .25s,background .25s;}
+.sbar-item:hover{border-color:var(--or);background:rgba(201,169,110,.08);}
+.sbar-name{font-size:17px;font-weight:500;color:#fff;}
+.sbar-arr{font-size:14px;color:var(--t3);}
+.button{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:all .3s var(--ease);cursor:pointer;border:none;white-space:nowrap;}
+.button-p{background:var(--or);color:#000;}
+.button-p:hover{background:var(--orc);transform:translateY(-2px);}
+.button-g{background:transparent;color:var(--or);border:1px solid rgba(201,169,110,.35);}
+.button-g:hover{border-color:var(--or);background:rgba(201,169,110,.08);}
+button.button-g{font-family:inherit;cursor:pointer;}
+.arr{transition:transform .3s var(--ease);}
+.button-p:hover .arr{transform:translateX(4px);}
+.hero{position:relative;min-height:60vh;display:flex;align-items:center;overflow:hidden;}
+.hbg{position:absolute;inset:0;background:url('https://assets.lelo.com/dx/2025-03/Hero_block_desktop_1920x840px_TIANI_DUO_3.webp') center 25%/cover;transform:scale(1.05);transition:transform 10s ease;filter:brightness(.4) saturate(.7);}
+.hero:hover .hbg{transform:scale(1.0);}
+.hov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,9,7,.2) 0%,rgba(10,9,7,.55) 40%,rgba(10,9,7,.88) 100%);}
+.hcnt{position:relative;z-index:1;padding:80px 0;width:100%;text-align:center;}
+.heye{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:28px;}
+.heye::before,.heye::after{content:'';width:52px;height:1px;background:var(--ord);}
+.hclaim{font-size:clamp(18px,2vw,24px);font-style:italic;color:var(--orc);margin-bottom:20px;line-height:1.5;max-width:600px;margin-left:auto;margin-right:auto;}
+.htitle{font-size:clamp(52px,8.5vw,100px);font-weight:300;line-height:.93;letter-spacing:-.025em;margin-bottom:28px;}
+.htitle em{font-style:italic;color:var(--orc);display:block;}
+.hsub{font-size:16px;font-weight:300;color:rgba(255,255,255,.88);max-width:520px;line-height:1.85;margin-bottom:40px;margin-left:auto;margin-right:auto;}
+.hctas{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;}
+.hscroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1;opacity:.4;}
+.hscroll span{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);}
+.hscroll::after{content:'';width:1px;height:44px;background:linear-gradient(to bottom,var(--ord),transparent);animation:sp 2.2s ease-in-out infinite;}
+@keyframes sp{0%,100%{opacity:.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(.6);}}
+.gar-strip{background:var(--n2);border:1px solid var(--b);display:grid;grid-template-columns:repeat(5,1fr);}
+.gi{padding:28px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;border-right:1px solid var(--b);transition:background .3s var(--ease);}
+.gi:last-child{border-right:none;}
+.gi:hover{background:var(--n3);}
+.gi img,.gi svg{width:44px;height:44px;filter:brightness(0) invert(1);opacity:.7;transition:opacity .3s,transform .3s var(--ease);}
+.gi svg{fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.gi:hover img,.gi:hover svg{opacity:1;transform:scale(1.08);}
+.gi-n{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;}
+.gi-d{font-size:11px;color:var(--t2);line-height:1.5;}
+.sh{margin-bottom:52px;}
+.sh h2{font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.08;letter-spacing:-.01em;}
+.sh h2 em{font-style:italic;color:var(--orc);}
+.sh-lead{margin-top:18px;font-size:16px;color:var(--t2);max-width:560px;line-height:1.85;}
+.guide{padding:0;}
+.gmos{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:280px 280px;gap:4px;margin-bottom:4px;}
+.gmi{overflow:hidden;background:var(--n2);}
+.gmi img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.65);transition:transform .7s var(--ease),filter .5s;}
+.gmi:hover img{transform:scale(1.05);filter:brightness(.78);}
+.gmi-main{grid-row:1/3;}
+.gcards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--b);border:1px solid var(--b);}
+.gc{background:var(--n2);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background .3s var(--ease);}
+.gc:hover{background:var(--n3);}
+.gc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);}
+.gc:hover::after{transform:scaleX(1);}
+.gc-sit{font-size:14px;font-weight:400;color:#fff;line-height:1.65;margin-bottom:16px;}
+.gc-foot{border-top:1px solid var(--b);padding-top:12px;margin-top:auto;display:flex;align-items:center;justify-content:space-between;}
+.gc-pname{font-size:20px;font-weight:500;color:var(--orc);margin-bottom:10px;}
+.gc-img{height:180px;overflow:hidden;flex-shrink:0;}
+.gc-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.72);transition:transform .6s var(--ease),filter .4s;}
+.gc:hover .gc-img img{transform:scale(1.05);filter:brightness(.84);}
+.gc-body{padding:20px 20px 18px;}
+.gc-tag{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);}
+.gc-link{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--or);text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap .3s,color .3s;}
+.gc-link::before{content:'';width:14px;height:1px;background:currentColor;transition:width .3s var(--ease);}
+.gc:hover .gc-link::before{width:22px;}
+.gc-link:hover{color:var(--orc);}
+.products{padding:80px 0 100px;}
+.pb{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:2px;padding:20px 0;}
+.pb-flip{direction:rtl;}
+.pb-flip>*{direction:ltr;}
+.pbw{overflow:hidden;background:var(--n2);}
+.pb-duo{display:grid;grid-template-columns:1fr 1fr;gap:3px;height:100%;min-height:520px;}
+.pb-duo-item{overflow:hidden;position:relative;}
+.pb-duo-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.75);transition:transform .65s var(--ease),filter .4s;}
+.pb:hover .pb-duo-item img{transform:scale(1.04);filter:brightness(.84);}
+.pb-badge{position:absolute;top:20px;right:20px;padding:7px 16px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--or);color:#000;z-index:2;}
+.pb-badge-f{background:var(--orc);}
+.pbc{background:var(--n2);padding:60px 56px;display:flex;flex-direction:column;justify-content:center;}
+.pb-type{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:10px;}
+.pb-name{font-size:clamp(36px,3.5vw,48px);font-weight:300;line-height:1;letter-spacing:-.01em;margin-bottom:6px;}
+.pb-tag{font-size:19px;font-style:italic;color:var(--orc);margin-bottom:26px;}
+.pb-copy{font-size:15px;font-weight:300;color:#fff;line-height:1.85;margin-bottom:24px;}
+.pb-key{display:flex;align-items:center;gap:16px;padding:18px 0;border-top:1px solid var(--b);border-bottom:1px solid var(--b);margin-bottom:26px;}
+.pb-kn{font-size:38px;font-weight:300;color:var(--or);line-height:1;white-space:nowrap;}
+.pb-kl{font-size:13px;color:var(--t2);line-height:1.45;}
+.pb-icons{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px;}
+.pb-ii{display:flex;align-items:center;gap:8px;}
+.pb-ii img{width:26px;height:26px;filter:brightness(0) invert(1);opacity:.7;}
+.pb-ii span{font-size:12px;font-weight:400;letter-spacing:.05em;text-transform:uppercase;color:var(--t2);white-space:nowrap;}
+.pb-foot{display:flex;flex-direction:column;align-items:flex-start;gap:16px;}
+.compare{padding:0 0 100px;}
+.cmp{width:100%;border-collapse:collapse;border:1px solid var(--b);}
+.cmp thead tr{background:var(--noir);}
+.cmp th{padding:18px 16px;text-align:left;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);background:var(--noir);border-bottom:1px solid var(--b);}
+.cmp th.pc{font-size:17px;letter-spacing:.03em;text-transform:none;font-weight:400;color:var(--orc);}
+.cmp td{padding:15px 16px;font-size:13px;color:#fff;background:var(--noir);border-bottom:1px solid rgba(201,169,110,.08);}
+.cmp tr:last-child td{border-bottom:none;}
+.cmp tbody tr:hover td{background:rgba(201,169,110,.03);}
+.cmp td.cr{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--t2);}
+.v{color:var(--or);font-size:15px;}.x{color:var(--t3);}.hl{color:var(--orc);font-weight:600;}
+.ctx{padding:0 0 100px;}
+.ctx-in{background:var(--n3);border:1px solid var(--b);position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:360px;}
+.ctx-in::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--or),transparent);}
+.ctx-img{overflow:hidden;}
+.ctx-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.55);display:block;}
+.ctx-txt{padding:52px 48px;display:flex;flex-direction:column;justify-content:center;}
+.ctx-q{font-size:clamp(20px,2.4vw,27px);font-weight:300;line-height:1.55;color:#fff;margin-bottom:20px;}
+.ctx-body{font-size:15px;color:var(--t2);line-height:1.85;margin-bottom:32px;}
+.ctx-links{display:flex;flex-direction:column;gap:10px;}
+.ctx-link{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--or);text-decoration:none;transition:color .3s,gap .3s;}
+.ctx-link::before{content:'';width:20px;height:1px;background:currentColor;flex-shrink:0;}
+.ctx-link:hover{color:var(--orc);gap:14px;}
+.faq{padding:0 0 100px;}
+.faq-l{list-style:none;border-top:1px solid var(--b);}
+.fi{border-bottom:1px solid var(--b);}
+.fq{width:100%;background:none;border:none;color:#fff;font-size:22px;font-weight:400;text-align:left;padding:28px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;transition:color .3s;letter-spacing:-.01em;line-height:1.3;}
+.fq:hover{color:var(--orc);}
+.fi-ic{width:24px;height:24px;flex-shrink:0;border:1px solid rgba(201,169,110,.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--or);transition:transform .35s var(--ease),background .25s;}
+.fi.open .fi-ic{transform:rotate(45deg);background:rgba(201,169,110,.12);}
+.fa{font-size:15px;color:var(--t2);line-height:1.85;max-height:0;overflow:hidden;transition:max-height .4s var(--ease),padding .3s;padding:0;}
+.fi.open .fa{max-height:520px;padding:0 0 28px;}
+.cf{padding:0 0 120px;text-align:center;}
+.cf-t{font-size:clamp(32px,4vw,52px);font-weight:300;letter-spacing:-.01em;margin-bottom:20px;line-height:1.12;}
+.cf-t em{font-style:italic;color:var(--orc);}
+.cf-s{font-size:15px;color:var(--t2);margin-bottom:44px;}
+.cf-quad{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:44px;}
+.cfl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);text-decoration:none;transition:color .3s;}
+.cfl:hover{color:var(--or);}
+.cfd{color:var(--b);}
+.reviews{padding:80px 0 100px;}
+.rv-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:20px;cursor:grab;}
+.rv-track:active{cursor:grabbing;}
+.rv-track::-webkit-scrollbar{height:3px;}
+.rv-track::-webkit-scrollbar-thumb{background:var(--b);border-radius:2px;}
+.rv-card{flex:0 0 calc(33.33% - 9px);min-width:260px;background:var(--n2);border:1px solid var(--b);padding:28px 24px;display:flex;flex-direction:column;gap:14px;scroll-snap-align:start;transition:border-color .3s var(--ease);}
+.rv-card:hover{border-color:rgba(201,169,110,.4);}
+.rv-prod{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--or);}
+.rv-stars{color:var(--or);font-size:13px;letter-spacing:2px;}
+.rv-body{font-size:19px;font-weight:300;line-height:1.58;color:#fff;flex:1;position:relative;padding-top:12px;}
+.rv-body::before{content:'\201C';font-size:56px;line-height:0;position:absolute;top:0;left:-4px;color:var(--ord);}
+.rv-attr{font-size:11px;color:var(--t3);letter-spacing:.04em;border-top:1px solid var(--b);padding-top:12px;margin-top:auto;line-height:1.5;}
+.rv-attr strong{color:var(--t2);font-weight:500;}
+.sep{display:flex;align-items:center;gap:28px;padding:60px 0;}
+.sep::before,.sep::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,169,110,.14),transparent);}
+.sep-t{font-size:12px;letter-spacing:.28em;color:var(--ord);}
+@media(max-width:1000px){.gcards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:900px){.gar-strip{grid-template-columns:repeat(3,1fr);}.gi:nth-child(n+4){border-top:1px solid var(--b);}.pb,.ctx-in{grid-template-columns:1fr;}.pb-flip{direction:ltr;}.ctx-img{height:260px;}.ctx-txt,.pbc{padding:36px 28px;}.cmp-outer{overflow-x:auto;-webkit-overflow-scrolling:touch;}.cmp{min-width:600px;}.sbar{padding:10px 12px;}.sbar-in{flex-wrap:nowrap;}.sbar-products{flex:1;flex-wrap:nowrap;gap:4px;}.sbar-item{flex:1;flex-direction:column;align-items:center;padding:8px 4px;}.sbar-name{font-size:13px;}.sbar-in>.button{display:none;}.pb-duo{min-height:300px;}}
+@media(max-width:600px){.c,.cs{padding:0 16px;}.htitle{font-size:clamp(38px,12vw,52px);}.gcards{grid-template-columns:1fr;}.pb-name{font-size:32px;}.pb-duo{grid-template-columns:1fr;}.pb-duo-item:last-child{display:none;}.sbar{display:none;}}
+</style>
+<div class="promo">
+<span class="promo-msg"><strong>−20%</strong> sur lelo.com — code</span> <span class="promo-code" aria-hidden="true">LOVENSPA20</span> <button type="button" class="copy-code" data-copy-code="LOVENSPA20" aria-label="Copier le code promo LOVENSPA20">Copier le code</button> <span class="promo-dot" aria-hidden="true">·</span> <a href="#produits">Voir la sélection →</a>
+</div>
+<div id="sbar" class="sbar">
+<div class="sbar-in">
+<span class="sbar-code">LOVENSPA20 · −20%</span>
+<div class="sbar-products">
+<a rel="nofollow" class="sbar-item" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1877" target="_blank"><span class="sbar-name">SONA™ 2 Travel</span><span class="sbar-arr">→</span></a> <a rel="nofollow" class="sbar-item" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1370" target="_blank"><span class="sbar-name">SORAYA Wave™</span><span class="sbar-arr">→</span></a> <a rel="nofollow" class="sbar-item" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1982" target="_blank"><span class="sbar-name">TIANI™ Twist</span><span class="sbar-arr">→</span></a> <a rel="nofollow" class="sbar-item" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1969" target="_blank"><span class="sbar-name">SWITCH™</span><span class="sbar-arr">→</span></a>
+</div>
+<a style="padding: 12px 28px; font-size: 11px;" class="button button-p" href="#produits">Voir la sélection <span class="arr">→</span></a>
+</div>
+</div>
+<section class="hero">
+<div class="hbg"><br></div>
+<div class="hov"><br></div>
+<div class="c hcnt">
+<div class="heye"><span class="lbl">Sélection lovenspa × LELO</span></div>
+<p class="hclaim">Les meilleures nuits ne finissent pas à l'hôtel.</p>
+<h1 class="htitle">Quatre façons<br>de prolonger<br><em>la nuit.</em>
+</h1>
+<p class="hsub">Les sextoys LELO choisis par les spécialistes des love rooms. Waterproof, silencieux, certifiés ISO 3533. Pour le jacuzzi de votre prochaine escapade et tous les soirs d'après.</p>
+<p class="hero-offer"><span class="hero-offer-badge">Offre partenaire</span> <strong>−20%</strong> sur tout le site lelo.com avec le code <strong>LOVENSPA20</strong> à saisir au panier avant paiement.</p>
+<div class="hctas">
+<a class="button button-p" href="#produits">Voir la sélection <span class="arr">→</span></a> <button type="button" class="button button-g copy-code" data-copy-code="LOVENSPA20" style="border:1px solid rgba(201,169,110,.35);">Copier LOVENSPA20</button> <a class="button button-g" href="#guide">Quel produit pour vous ?</a>
+</div>
+</div>
+<div class="hscroll"><span>Découvrir</span></div>
+</section>
+<section class="gar">
+<div class="c">
+<div class="gar-strip">
+<div class="gi">
+<img alt="ISO 3533" src="https://assets.lelo.com/dx/2025-04/FEATURE_ISO_3533_80x80px_3.svg">
+<div class="gi-n">ISO 3533</div>
+<div class="gi-d">Norme internationale de sécurité</div>
+</div>
+<div class="gi">
+<img alt="Body-safe" src="https://assets.lelo.com/dx/2023-01/FEATURE_BODY_SAFE_80x80px_0.svg">
+<div class="gi-n">Body-safe</div>
+<div class="gi-d">Silicone médical, sans BPA</div>
+</div>
+<div class="gi">
+<img alt="Waterproof" src="https://assets.lelo.com/dx/2022-04/FEATURE_100__waterproof_80x80.svg">
+<div class="gi-n">Waterproof</div>
+<div class="gi-d">Bain, douche et jacuzzi</div>
+</div>
+<div class="gi">
+<img alt="Best-seller" src="https://assets.lelo.com/dx/2023-01/FEATURE_GLOBAL_BESTSELLER_80x80px_0.svg">
+<div class="gi-n">Best-seller mondial</div>
+<div class="gi-d">25M produits dans 160 pays</div>
+</div>
+<div class="gi">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 80 80"><rect rx="2" height="34" width="52" y="26" x="14"></rect><line y2="34" x2="66" y1="34" x1="14"></line><line y2="46" x2="54" y1="46" x1="26"></line><line y2="53" x2="44" y1="53" x1="26"></line></svg>
+<div class="gi-n">Livraison discrète</div>
+<div class="gi-d">Colis neutre, sans mention du contenu</div>
+</div>
+</div>
+</div>
+</section>
+<section id="guide" class="guide">
+<div class="c">
+<div class="sh">
+<span class="lbl">Trouver le vôtre</span>
+<h2>Quel produit<br><em>pour vous ?</em>
+</h2>
+<p class="sh-lead">Quatre produits, quatre sensations distinctes. Choisissez celui qui correspond à ce que vous cherchez vraiment.</p>
+</div>
+<div class="gcards">
+<div class="gc">
+<div class="gc-img"><img loading="lazy" alt="SONA 2 Travel" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_SONA2_TRAVEL_1031_RET_AdobeRGB_-_Grande_1267dcf0-3e5f-4248-9221-a806c28fb017.jpg?v=1777560092"></div>
+<div class="gc-body">
+<div class="gc-pname">SONA™ 2 Travel</div>
+<p class="gc-sit">Le stimulateur sonique compact. Idéal en déplacement et dans le jacuzzi. Une sensation que les vibrations classiques ne peuvent pas reproduire.</p>
+<div class="gc-foot">
+<span class="gc-tag">Sensation inédite</span><a class="gc-link" href="#sona2travel">Voir</a>
+</div>
+</div>
+</div>
+<div class="gc">
+<div class="gc-img"><img loading="lazy" alt="SORAYA Wave" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/SorayaWave_9_1000x1000_-_Grande_390b2604-d874-464e-9b9f-5af03c32bc72.jpg?v=1777560489"></div>
+<div class="gc-body">
+<div class="gc-pname">SORAYA Wave™</div>
+<p class="gc-sit">Le rabbit nouvelle génération. La technologie WaveMotion imite un mouvement interne naturel. Double stimulation G-spot et clitoris simultanément.</p>
+<div class="gc-foot">
+<span class="gc-tag">Double plaisir</span><a class="gc-link" href="#sorayawave">Voir</a>
+</div>
+</div>
+</div>
+<div class="gc">
+<div class="gc-img"><img loading="lazy" alt="TIANI Twist" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_TIANI_Twist_Mood_Images_Mammi311_-_Grande_ae47d3c8-4ce6-49fe-b6dc-fde6ddd00158.jpg?v=1777560530"></div>
+<div class="gc-body">
+<div class="gc-pname">TIANI™ Twist</div>
+<p class="gc-sit">Le vibromasseur couple porté pendant le rapport. La télécommande SenseMotion™ permet au partenaire de contrôler l'intensité d'un geste du poignet.</p>
+<div class="gc-foot">
+<span class="gc-tag">Pour vivre à deux</span><a class="gc-link" href="#tianitwist">Voir</a>
+</div>
+</div>
+</div>
+<div class="gc">
+<div class="gc-img"><img loading="lazy" alt="LELO SWITCH" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_Switch_LELO3011_R1_-_Grande_a2be9954-5086-459c-bb2b-4eb9f7114107.jpg?v=1777560354"></div>
+<div class="gc-body">
+<div class="gc-pname">LELO SWITCH™</div>
+<p class="gc-sit">Le stimulateur double action. Deux modes de stimulation dans un seul produit. Pour explorer toutes les sensations sans compromis.</p>
+<div class="gc-foot">
+<span class="gc-tag">Innovation</span><a class="gc-link" href="#leloswitch">Voir</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="gmos">
+<div class="gmi gmi-main"><img loading="lazy" alt="TIANI Twist couple" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/HR_LELO_FILM_GIGI_2_3107_02_V2_-_Grande_9a199716-0499-4dcb-8f95-d2a1640268a9.jpg?v=1777560924"></div>
+<div class="gmi"><img loading="lazy" alt="SONA 2 Travel" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_TIANI_Twist_Mood_Images_Mammi0096_-_Grande_88ec36c4-b1f3-44ef-b33a-a38c7412a728.jpg?v=1777560768"></div>
+<div class="gmi"><img loading="lazy" alt="SORAYA Wave" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_Switch_LELO0686c_R1_-_Grande_4f3ff216-78e1-4484-8d05-bf9c60853429.jpg?v=1777560841"></div>
+</div>
+</section>
+<div class="c">
+<div class="sep"><span class="sep-t">* * *</span></div>
+</div>
+<section id="produits" class="products">
+<div class="c">
+<div class="sh">
+<span class="lbl">Notre sélection</span>
+<h2>Les 4 produits<br><em>recommandés</em>
+</h2>
+</div>
+</div>
+<div id="sona2travel" class="pb">
+<div class="pbw">
+<div class="pb-duo">
+<div class="pb-duo-item"><img loading="lazy" alt="SONA 2 Travel packshot" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_SONA2Travel_ProductShot_Purple_Back_2000.png?v=1777561881"></div>
+<div class="pb-duo-item">
+<img loading="lazy" alt="SONA 2 Travel lifestyle" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_SONA2_TRAVEL_1031_RET_AdobeRGB_-_Grande_1267dcf0-3e5f-4248-9221-a806c28fb017.jpg?v=1777560092">
+<div class="pb-badge">Compact ★</div>
+</div>
+</div>
+</div>
+<div class="pbc">
+<div class="pb-type">Stimulateur sonique compact</div>
+<h2 class="pb-name">SONA™ 2 Travel</h2>
+<div class="pb-tag">Partout avec vous</div>
+<p class="pb-copy">Le SONA™ 2 Travel est la version compacte du best-seller SONA™ 2. Il utilise la technologie SenSonic™ : des ondes soniques qui stimulent le clitoris en profondeur sans contact direct. Une sensation qu'aucun vibromasseur classique ne peut reproduire. Format voyage, verrou de transport intégré, 12 modes. Il tient dans un sac à main. Il s'utilise dans le jacuzzi de votre love room.</p>
+<div class="pb-key">
+<div class="pb-kn">12</div>
+<div class="pb-kl">modes de plaisir<br>du murmure à la pulsation</div>
+</div>
+<div class="pb-icons">
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-04/FEATURE_8_settings_80x80.svg"><span>12 réglages</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-04/FEATURE_100__waterproof_80x80.svg"><span>Waterproof</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-04/FEATURE_extra_soft_silicone_80x80.svg"><span>Silicone</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-04/FEATURE_long_lasting_charge_80x80.svg"><span>USB</span>
+</div>
+</div>
+<div class="pb-foot">
+<a rel="nofollow" class="button button-p" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1877" target="_blank">Voir le produit <span class="arr">→</span></a>
+<p class="offer-pill">−20% sur lelo.com : entrez <strong>LOVENSPA20</strong> dans le champ code promo au panier.</p>
+</div>
+</div>
+</div>
+<div id="sorayawave" style="margin-top: 2px;" class="pb pb-flip">
+<div class="pbw">
+<div class="pb-duo">
+<div class="pb-duo-item"><img loading="lazy" alt="SORAYA Wave packshot" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_SorayaWave_ProductRender_DEEPROSE_Angle3_-_Grande_dcd57ed2-9869-410e-9b49-a034a7fdfc77.jpg?v=1777561484"></div>
+<div class="pb-duo-item">
+<img loading="lazy" alt="SORAYA Wave lifestyle" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/SorayaWave_9_1000x1000_-_Grande_390b2604-d874-464e-9b9f-5af03c32bc72.jpg?v=1777560489">
+<div class="pb-badge">Coup de coeur ★</div>
+</div>
+</div>
+</div>
+<div class="pbc">
+<div class="pb-type">Vibromasseur rabbit</div>
+<h2 class="pb-name">SORAYA Wave™</h2>
+<div class="pb-tag">Le mouvement qui change tout</div>
+<p class="pb-copy">Le SORAYA Wave™ introduit la technologie WaveMotion : l'embout interne se courbe de façon rythmique, imitant le mouvement naturel de la stimulation du point G. Pendant ce temps, l'embout externe vibre sur le clitoris. Les deux stimulations se combinent en temps réel. C'est le rabbit qui a réinventé le rabbit.</p>
+<div class="pb-key">
+<div class="pb-kn">2</div>
+<div class="pb-kl">stimulations simultanées<br>G-spot + clitoris</div>
+</div>
+<div class="pb-icons">
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2023-01/FEATURE_10_SETTINGS_80x80px_0.svg"><span>12 modes</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2023-01/FEATURE_100__WATERPROOF_80x80px_0.svg"><span>Waterproof</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2023-01/FEATURE_BODY_SAFE_80x80px_0.svg"><span>Body-safe</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2023-01/FEATURE_GLOBAL_BESTSELLER_80x80px_0.svg"><span>Best-seller</span>
+</div>
+</div>
+<div class="pb-foot">
+<a rel="nofollow" class="button button-p" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1370" target="_blank">Voir le produit <span class="arr">→</span></a>
+<p class="offer-pill">−20% sur lelo.com : entrez <strong>LOVENSPA20</strong> dans le champ code promo au panier.</p>
+</div>
+</div>
+</div>
+<div id="tianitwist" style="margin-top: 2px;" class="pb">
+<div class="pbw">
+<div class="pb-duo">
+<div class="pb-duo-item"><img loading="lazy" alt="TIANI Twist packshot" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_TIANItwist_ProductRenders_Lavender_Angle4_-_Grande_fead651d-e3f6-41db-b759-99ee46195f94.png?v=1777561149"></div>
+<div class="pb-duo-item">
+<img loading="lazy" alt="TIANI Twist lifestyle" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_TIANI_Twist_Mood_Images_Mammi311_-_Grande_ae47d3c8-4ce6-49fe-b6dc-fde6ddd00158.jpg?v=1777560530">
+<div class="pb-badge pb-badge-f">Nouveau ★</div>
+</div>
+</div>
+</div>
+<div class="pbc">
+<div class="pb-type">Vibromasseur couple</div>
+<h2 class="pb-name">TIANI™ Twist</h2>
+<div class="pb-tag">Le lien intime réinventé</div>
+<p class="pb-copy">Le TIANI™ Twist est conçu pour être porté pendant le rapport. Vous le portez. Deux moteurs vibrent simultanément. La télécommande SenseMotion™ permet au partenaire d'augmenter l'intensité d'un simple geste du poignet. Il devient acteur de votre plaisir. La nouvelle génération de la famille TIANI, repensée pour encore plus de confort et de liberté de mouvement.</p>
+<div class="pb-key">
+<div class="pb-kn">2</div>
+<div class="pb-kl">moteurs simultanés<br>votre plaisir + le sien</div>
+</div>
+<div class="pb-icons">
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-05/FEATURE_8_settings_80x80-05_0.svg"><span>8 modes</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-05/FEATURE_100__WATERPROOF_80x80px_2.svg"><span>Waterproof</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-05/FEATURE_EXTRA-SOFT_SILICONE_80x80px_2.svg"><span>Silicone</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-05/Copy%20of%20Copy%20of%20FEATURE_long_lasting_charge_80x80.svg"><span>USB</span>
+</div>
+</div>
+<div class="pb-foot">
+<a rel="nofollow" class="button button-p" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1982" target="_blank">Voir le produit <span class="arr">→</span></a>
+<p class="offer-pill">−20% sur lelo.com : entrez <strong>LOVENSPA20</strong> dans le champ code promo au panier.</p>
+</div>
+</div>
+</div>
+<div id="leloswitch" style="margin-top: 2px;" class="pb pb-flip">
+<div class="pbw">
+<div class="pb-duo">
+<div class="pb-duo-item"><img loading="lazy" alt="LELO SWITCH packshot" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_Switch_ProductOnWhite_Lilac_Transparent_2000.png?v=1777561198"></div>
+<div class="pb-duo-item">
+<img loading="lazy" alt="LELO SWITCH lifestyle" src="https://cdn.shopify.com/s/files/1/0579/3611/7944/files/LELO_Switch_LELO3011_R1_-_Grande_a2be9954-5086-459c-bb2b-4eb9f7114107.jpg?v=1777560354">
+<div class="pb-badge">Nouveau</div>
+</div>
+</div>
+</div>
+<div class="pbc">
+<div class="pb-type">Stimulateur double action</div>
+<h2 class="pb-name">LELO SWITCH™</h2>
+<div class="pb-tag">Deux sensations, un seul produit</div>
+<p class="pb-copy">Le LELO SWITCH™ est conçu pour offrir deux modes de stimulation distincts dans un seul produit. Un design pensé pour s'adapter à vos envies du moment, en solo ou à deux. Compact, waterproof, en silicone body-safe certifié ISO 3533. La nouvelle référence pour celles et ceux qui ne veulent pas choisir.</p>
+<div class="pb-key">
+<div class="pb-kn">2</div>
+<div class="pb-kl">modes de stimulation<br>dans un seul produit</div>
+</div>
+<div class="pb-icons">
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-04/FEATURE_100__waterproof_80x80.svg"><span>Waterproof</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2023-01/FEATURE_BODY_SAFE_80x80px_0.svg"><span>Body-safe</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2025-04/FEATURE_ISO_3533_80x80px_3.svg"><span>ISO 3533</span>
+</div>
+<div class="pb-ii">
+<img alt="" src="https://assets.lelo.com/dx/2022-04/FEATURE_long_lasting_charge_80x80.svg"><span>USB</span>
+</div>
+</div>
+<div class="pb-foot">
+<a rel="nofollow" class="button button-p" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1969" target="_blank">Voir le produit <span class="arr">→</span></a>
+<p class="offer-pill">−20% sur lelo.com : entrez <strong>LOVENSPA20</strong> dans le champ code promo au panier.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="reviews">
+<div class="c">
+<div class="sh">
+<span class="lbl">Avis vérifiés</span>
+<h2>Ce qu'ils<br><em>en disent</em>
+</h2>
+</div>
+<div class="rv-track">
+<div class="rv-card">
+<div class="rv-prod">SONA™ (gamme)</div>
+<div class="rv-stars">★★★★★</div>
+<p class="rv-body">Efficace, esthétique magnifique et matériau velouté très agréable. Je ne suis pas très sex-toy mais j'adore celui-ci. Je le recommande.</p>
+<div class="rv-attr">
+<strong>Acheteur vérifié</strong> — Amazon.fr</div>
+</div>
+<div class="rv-card">
+<div class="rv-prod">SONA™ (gamme)</div>
+<div class="rv-stars">★★★★★</div>
+<p class="rv-body">Effet + que whaou ! EFFET ORGASMIQUE qui te fait grimper aux rideaux. Épatant ! Simple d'utilisation, doux au toucher.</p>
+<div class="rv-attr">
+<strong>Nathalie F.</strong> — Gapianne</div>
+</div>
+<div class="rv-card">
+<div class="rv-prod">LELO (gamme)</div>
+<div class="rv-stars">★★★★★</div>
+<p class="rv-body">Je suis fidèle à LELO depuis des années. Leurs produits durent dans le temps, la qualité est toujours au rendez-vous.</p>
+<div class="rv-attr">
+<strong>Cliente vérifiée</strong> — Gapianne</div>
+</div>
+<div class="rv-card">
+<div class="rv-prod">TIANI™ (gamme)</div>
+<div class="rv-stars">★★★★★</div>
+<p class="rv-body">Sensations très agréables pour ma partenaire ! Et comme le silicone est doux, c'était agréable aussi à porter de mon côté.</p>
+<div class="rv-attr">
+<strong>Client vérifié</strong> — Gapianne</div>
+</div>
+<div class="rv-card">
+<div class="rv-prod">LELO (gamme)</div>
+<div class="rv-stars">★★★★★</div>
+<p class="rv-body">Haut de gamme n'est pas qu'un slogan, ça se ressent dès la prise en main. Fiable, puissant, durable.</p>
+<div class="rv-attr">
+<strong>Cliente vérifiée</strong> — Gapianne</div>
+</div>
+</div>
+</div>
+</section>
+<section class="compare">
+<div class="c">
+<div class="sh">
+<span class="lbl">Comparatif</span>
+<h2>Le tableau<br><em>qui décide</em>
+</h2>
+</div>
+<div class="cmp-outer">
+<table class="cmp">
+<thead>
+<tr>
+<th>Critère</th>
+<th class="pc">SONA™ 2 Travel</th>
+<th class="pc">SORAYA Wave™</th>
+<th class="pc">TIANI™ Twist</th>
+<th class="pc">SWITCH™</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cr">Usage</td>
+<td>Solo</td>
+<td>Solo</td>
+<td><span class="hl">Couple</span></td>
+<td>Solo / couple</td>
+</tr>
+<tr>
+<td class="cr">Technologie</td>
+<td>SenSonic™ sonique</td>
+<td>WaveMotion™</td>
+<td>SenseMotion™</td>
+<td>Double action</td>
+</tr>
+<tr>
+<td class="cr">Pendant le rapport</td>
+<td><span class="x">—</span></td>
+<td><span class="x">—</span></td>
+<td><span class="v">✓</span></td>
+<td><span class="x">—</span></td>
+</tr>
+<tr>
+<td class="cr">Jacuzzi / bain</td>
+<td><span class="v">✓</span></td>
+<td><span class="v">✓</span></td>
+<td><span class="v">✓</span></td>
+<td><span class="v">✓</span></td>
+</tr>
+<tr>
+<td class="cr">Télécommande</td>
+<td><span class="x">—</span></td>
+<td><span class="x">—</span></td>
+<td>
+<span class="v">✓</span> sans fil</td>
+<td><span class="x">—</span></td>
+</tr>
+<tr>
+<td class="cr">Format</td>
+<td><span class="hl">Compact voyage</span></td>
+<td>Standard</td>
+<td>Standard</td>
+<td>Compact</td>
+</tr>
+<tr>
+<td class="cr">Garantie</td>
+<td>2 ans + 10 ans QA</td>
+<td>2 ans + 10 ans QA</td>
+<td>2 ans + 10 ans QA</td>
+<td>2 ans + 10 ans QA</td>
+</tr>
+<tr>
+<td class="cr">Livraison discrète</td>
+<td><span class="v">✓</span></td>
+<td><span class="v">✓</span></td>
+<td><span class="v">✓</span></td>
+<td><span class="v">✓</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="ctx">
+<div class="c">
+<div class="ctx-in">
+<div class="ctx-img"><img loading="lazy" alt="Couple lovenspa" src="https://assets.lelo.com/dx/2022-05/Overlay_block_desktop_3_1920x840px_TIANI_DUO.webp"></div>
+<div class="ctx-txt">
+<span class="lbl">Le mot des experts</span>
+<p class="ctx-q">Ces 4 produits ont été sélectionnés par les spécialistes des love rooms en France.</p>
+<p class="ctx-body">100% waterproof — bain, douche et jacuzzi de votre prochaine <a href="/collections/love-room">love room</a>. Emballage luxueux, discret, digne d'un cadeau. Garantie 2 ans, assurance qualité 10 ans.</p>
+<div class="ctx-links">
+<a class="ctx-link" href="/">Love room pour un week-end en amoureux</a> <a class="ctx-link" href="https://lovenspa.fr/collections/love-room-sofa-tantrique">Love rooms avec sofa tantrique</a> <a class="ctx-link" href="https://lovenspa.fr/collections/love-room-paris">Love rooms à Paris</a> <a class="ctx-link" href="https://lovenspa.fr/blogs/magazine/massage-tantrique-couple-positions-guide">Guide massage tantrique</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="faq">
+<div class="cs">
+<div class="sh">
+<span class="lbl">Questions fréquentes</span>
+<h2>Ce que vous<br><em>voulez savoir</em>
+</h2>
+</div>
+<ul class="faq-l">
+<li class="fi">
+<button class="fq">Qu'est-ce que la technologie SenSonic™ du SONA™ 2 Travel ?<span class="fi-ic">+</span></button>
+<p class="fa">Le SONA™ 2 Travel n'utilise pas de vibrations classiques. Il génère des ondes soniques qui stimulent le clitoris en profondeur sans contact direct. La sensation est radicalement différente de tout ce que vous avez pu expérimenter avec un vibromasseur classique.</p>
+</li>
+<li class="fi">
+<button class="fq">Comment fonctionne la technologie WaveMotion™ du SORAYA Wave™ ?<span class="fi-ic">+</span></button>
+<p class="fa">L'embout interne du SORAYA Wave™ se courbe de manière rythmique, reproduisant le mouvement naturel de la stimulation du point G. En simultané, l'embout externe vibre sur le clitoris. Les deux stimulations se combinent pour une expérience de double plaisir unique.</p>
+</li>
+<li class="fi">
+<button class="fq">Le TIANI™ Twist s'utilise pendant le rapport ?<span class="fi-ic">+</span></button>
+<p class="fa">Oui, c'est sa raison d'être. Il est porté pendant le rapport. Ses deux moteurs vibrent simultanément. La télécommande SenseMotion™ permet au partenaire d'augmenter l'intensité d'un simple mouvement du poignet.</p>
+</li>
+<li class="fi">
+<button class="fq">Ces sextoys sont compatibles avec le jacuzzi d'une love room ?<span class="fi-ic">+</span></button>
+<p class="fa">Les 4 produits sont 100% waterproof. Bain, douche, jacuzzi sans restriction. LELO recommande un lubrifiant water-based même dans l'eau : l'eau neutralise la lubrification naturelle et rend la peau plus sensible.</p>
+</li>
+<li class="fi">
+<button class="fq">Quelle est la garantie LELO ?<span class="fi-ic">+</span></button>
+<p class="fa">LELO propose une garantie légale de 2 ans sur tous ses produits, ainsi qu'une assurance qualité de 10 ans. Silicone médical, sans BPA, certifié ISO 3533. 20 ans d'existence, 25 millions de produits vendus dans 160 pays.</p>
+</li>
+<li class="fi">
+<button class="fq">Comment utiliser le code −20% LOVENSPA20 sur lelo.com ?<span class="fi-ic">+</span></button>
+<p class="fa">Ouvrez lelo.com via un des liens de cette page, ajoutez vos articles au panier, puis saisissez <strong>LOVENSPA20</strong> dans le champ prévu pour le code promo avant de valider le paiement. La réduction de 20 % s'applique selon les conditions affichées sur le site marchand au moment de votre commande.</p>
+</li>
+</ul>
+</div>
+</section>
+<section class="cf">
+<div class="cs">
+<span style="text-align: center;" class="lbl">Prêts ?</span>
+<h2 class="cf-t">Choisissez votre<br><em>prochain complice</em>
+</h2>
+<p class="cf-s">Livraison discrète. Emballage luxueux. Garantie 2 ans + assurance qualité 10 ans.</p>
+<div class="cf-codebox">
+<span class="cf-code-lbl">Votre avantage lelo.com</span>
+<div class="cf-code-row">
+<code class="cf-code">LOVENSPA20</code> <button type="button" class="button button-g copy-code" data-copy-code="LOVENSPA20" style="padding:12px 22px;font-size:11px;">Copier le code</button>
+</div>
+<span class="cf-code-note"><strong>−20 %</strong> sur votre panier lelo.com — collez <strong>LOVENSPA20</strong> au moment du paiement.</span>
+</div>
+<a class="button button-p" href="#produits">Voir la sélection <span class="arr">→</span></a>
+<div class="cf-quad">
+<a rel="nofollow" class="cfl" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1877" target="_blank">SONA™ 2 Travel</a> <span class="cfd">·</span> <a rel="nofollow" class="cfl" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1370" target="_blank">SORAYA Wave™</a> <span class="cfd">·</span> <a rel="nofollow" class="cfl" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1982" target="_blank">TIANI™ Twist</a> <span class="cfd">·</span> <a rel="nofollow" class="cfl" href="http://lip.go2cloud.org/aff_c?offer_id=2&amp;aff_id=6770&amp;url_id=1969" target="_blank">LELO SWITCH™</a>
+</div>
+</div>
+</section>
+<script>
+(function(){
+  var sbar=document.getElementById('sbar');
+  if(sbar){
+    var on=false;
+    window.addEventListener('scroll',function(){
+      var y=window.scrollY||document.documentElement.scrollTop;
+      var show=y>380;
+      if(show!==on){on=show;sbar.classList.toggle('on',show);}
+    },{passive:true});
+  }
+  function flash(btn){
+    if(!btn.hasAttribute('data-copy-label'))
+      btn.setAttribute('data-copy-label',btn.textContent.replace(/\s+/g,' ').trim());
+    btn.textContent='Copié !';
+    btn.classList.add('copied');
+    setTimeout(function(){
+      btn.textContent=btn.getAttribute('data-copy-label');
+      btn.classList.remove('copied');
+    },2200);
+  }
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest('.copy-code');
+    if(!btn||btn.disabled)return;
+    var code=btn.getAttribute('data-copy-code')||'LOVENSPA20';
+    function ok(){flash(btn);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(code).then(ok).catch(function(){
+        var ta=document.createElement('textarea');
+        ta.value=code;ta.style.position='fixed';ta.style.left='-9999px';
+        document.body.appendChild(ta);ta.select();
+        try{document.execCommand('copy');ok();}catch(x){}
+        document.body.removeChild(ta);
+      });
+    }else{
+      var ta=document.createElement('textarea');
+      ta.value=code;document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');ok();}catch(x){}
+      document.body.removeChild(ta);
+    }
+  });
+})();
+</script>
+<p> </p>

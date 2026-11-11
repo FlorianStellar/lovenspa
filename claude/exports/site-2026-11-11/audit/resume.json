@@ -1,0 +1,42 @@
+{
+ "pages_publiees": 2875,
+ "pages_par_type": {
+  "product": 1237,
+  "collection": 505,
+  "page": 764,
+  "article": 369
+ },
+ "liens_editoriaux": 16222,
+ "liens_menu": 548,
+ "liens_a_corriger": {
+  "introuvable": 5,
+  "redirection": 183,
+  "non_publiee": 17
+ },
+ "cibles_a_corriger": 43,
+ "sans_lien_entrant_par_type": {
+  "article": 177,
+  "collection": 29,
+  "page": 20
+ },
+ "metas": {
+  "title_par_defaut": 1354,
+  "description_trop_longue": 735,
+  "description_trop_courte": 5,
+  "description_absente": 1069,
+  "description_dupliquee": 4,
+  "title_trop_long": 14,
+  "title_duplique": 2
+ },
+ "contenu_mince_par_type": {
+  "product": 29,
+  "collection": 24,
+  "page": 21,
+  "article": 8
+ },
+ "ancres_generiques": 4,
+ "diff": {
+  "modifiee": 11,
+  "ajoutee": 2
+ }
+}

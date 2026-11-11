@@ -112,7 +112,7 @@ SET = {
                    "{ collection { id } userErrors { field message } } }", "collectionUpdate"),
     "page": ("mutation($id: ID!, $h: String!) { pageUpdate(id: $id, page: {body: $h}) "
              "{ page { id } userErrors { field message } } }", "pageUpdate"),
-    "article": ("mutation($id: ID!, $h: String!) { articleUpdate(id: $id, article: {body: $h}) "
+    "article": ("mutation($id: ID!, $h: HTML!) { articleUpdate(id: $id, article: {body: $h}) "
                 "{ article { id } userErrors { field message } } }", "articleUpdate"),
 }
 
@@ -140,6 +140,7 @@ def apply(export_dir: Path, backup_dir: Path, work: list[dict], mapping: dict[st
             left = rewrite_hrefs(after, mapping)[1]
             res["statut"] = "corrige" if left == 0 else f"verification: {left} lien(s) restant(s)"
         out.append(res)
+        (backup_dir / "resultats_partiels.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     return out
 
 
