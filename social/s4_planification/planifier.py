@@ -152,10 +152,14 @@ def plan_week(start, catalogue, history, strat, partenaires=None, site=""):
                             lien=utm(strat, f["url"], "concours", d) if f else None)
                 if not f:
                     slot["statut"] = "BLOQUE"
-                    alerts.append(f"{d}: logement du partenaire {p['handle']} introuvable")
+                    alerts.append(f"{d}: offre du partenaire {p['handle']} introuvable")
+                elif not eligible(f, strat, set()):
+                    # mêmes critères que les autres cases (ambiance, équipements, photos, prix), sans la rotation
+                    slot["statut"] = "BLOQUE"
+                    alerts.append(f"{d}: offre du partenaire {p['handle']} non éligible (ambiance, équipements, photos ou prix)")
             else:
                 alerts.append(f"{d}: concours prévu le {week_conc[0]} mais aucun hébergeur volontaire "
-                              f"(data/partenaires.json) : sélection publiée à la place")
+                              f"(donnees/<marque>/<plateforme>/partenaires.json) : sélection publiée à la place")
         if slot["moteur"] == "selection":
             themes = strat["selections"]
             for k in range(len(themes)):

@@ -1,18 +1,18 @@
 # Bibliothèque de formats (amorce)
 
-Dix-huit fiches au format du contrat `social/contrats/fiche_format.schema.json` (champs obligatoires : `id`, `nom`, `plateforme`, `objectif`, `structure`, `preuve`, `sources` ; champs supplémentaires permis). Reprises de `social/compilation/s2-connaissance.md`, section 3.
+Dix-huit fiches au format du contrat `social/contrats/fiche_format.schema.json` (champs obligatoires : `id`, `nom`, `plateforme`, `objectif`, `structure`, `preuve`, `sources` ; champs supplémentaires permis). Reprises de `social/compilation/s2-connaissance.md`, section 3.
 
-Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F09 à F18), aucune en A.
+Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F09 à F18), aucune en A.
 
 ## Comment lire ces fiches
 
-- **Niveaux de preuve.** A : confirmé par nos propres données (aucune à ce jour). B : observé à plus de 3 fois l'engagement médian chez au moins 3 comptes du benchmark. C : signalé par une seule source.
-- **Ce que mesure le B.** Le benchmark ne donne que le type de publication, la date, le multiple d'engagement (likes + commentaires ÷ médiane du compte : « surperformance d'interactions », S2-M02) et la première ligne de légende. Le contenu visuel n'a pas été observé. Pour les fiches B, la structure est donc **proposée** à partir des règles des sources, pas relevée. Les durées viennent de sources de niveau C.
-- **Benchmark d'amorce (exemple : première marque cliente, Love'nSpa).** `lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md`, copie identique dans `social/donnees/lovenspa/instagram/benchmark-2026-11-11.md`. 37 comptes lus, 3 illisibles, 50 dernières publications par compte. Les comptes cités dans « observe » sont ceux de ce benchmark ; pour une autre marque, refaire le benchmark sur son panel avant de reprendre un niveau B.
-- **Biais des concours.** La mécanique d'un concours (commenter, identifier un ami, partager) gonfle les commentaires et donc le multiple d'interactions. Les concours, sponsorisés et collaborations doivent être retirés des médianes et classés à part (S2-M03, S2-R08). Le benchmark d'amorce ne l'a pas fait : F02 reste B mais marquée « biaisée », et les multiples des autres fiches sont calculés sur des médianes qui incluent ces publications.
+- **Niveaux de preuve.** A : confirmé par nos propres données (aucune à ce jour). B : observé à plus de 3 fois l'engagement médian chez au moins 3 comptes du benchmark. C : signalé par une seule source.
+- **Ce que mesure le B.** Le benchmark ne donne que le type de publication, la date, le multiple d'engagement (likes + commentaires ÷ médiane du compte : « surperformance d'interactions », S2-M02) et la première ligne de légende. Le contenu visuel n'a pas été observé. Pour les fiches B, la structure est donc **proposée** à partir des règles des sources, pas relevée. Les durées viennent de sources de niveau C.
+- **Benchmark d'amorce (exemple : première marque cliente, Love'nSpa).** `lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md`, copie identique dans `social/donnees/lovenspa/instagram/benchmark-2026-11-11.md`. 37 comptes lus, 3 illisibles, 50 dernières publications par compte. Les comptes cités dans « observe » sont ceux de ce benchmark ; pour une autre marque, refaire le benchmark sur son panel avant de reprendre un niveau B.
+- **Biais des concours.** La mécanique d'un concours (commenter, identifier un ami, partager) gonfle les commentaires et donc le multiple d'interactions. Les concours, sponsorisés et collaborations doivent être retirés des médianes et classés à part (S2-M03, S2-R08). Le benchmark d'amorce ne l'a pas fait : F02 reste B mais marquée « biaisée », et les multiples des autres fiches sont calculés sur des médianes qui incluent ces publications.
 - **Fenêtre.** Le benchmark mélange des publications de 2024 à 2026 selon les comptes. Les multiples cités sont donc à recalculer sur la fenêtre 7 à 180 jours (S2-M03).
 - **Contrat.** `plateforme` et `objectif` n'acceptent qu'une valeur. Les autres plateformes sont dans `transposable`, les objectifs secondaires dans `objectif_secondaire`. Quand l'objectif de la compilation sort de l'énumération du contrat (confiance, commentaires, trafic), il est gardé dans `objectif_compilation` et la valeur du contrat est signalée comme un rangement.
-- `{{ }}` = donnée réelle à fournir. Les éléments propres à la première marque sont marqués « exemple ».
+- `{{ }}` = donnée réelle à fournir. Les éléments propres à la première marque sont marqués « exemple ».
 
 ## F01. Reel de visite sensorielle d'un logement (B)
 
@@ -212,7 +212,7 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F0
 }
 ```
 
-## F07. Carrousel texte « qui parle » : phrase, mème, prise de position (B, ton à adapter)
+## F07. Carrousel texte « qui parle » : phrase, mème, prise de position (B, ton à adapter)
 
 ```json
 {
@@ -267,7 +267,7 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F0
 }
 ```
 
-## F09. Reel avec appel « commentez pour recevoir le lien » (C)
+## F09. Reel avec appel « commentez pour recevoir le lien » (C)
 
 ```json
 {
@@ -526,6 +526,6 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F0
 ## Tenir la bibliothèque à jour
 
 - Une fiche nouvelle entre en C, avec au moins une source au format `dépôt@commit:chemin` ou le chemin d'un fichier de `social/donnees/<id>/`.
-- Passage en B : relever les comptes et multiples dans `observe`, après hygiène S2-M03.
-- Passage en A ou déclassement : ajouter un champ `mesures` (date de l'audit S8, nombre de publications, multiple médian) et une ligne au journal.
-- Valider chaque fiche modifiée contre le contrat : `social/contrats/valider.py`, fonction `erreurs(fiche, "fiche_format")`.
+- Passage en B : relever les comptes et multiples dans `observe`, après hygiène S2-M03.
+- Passage en A ou déclassement : ajouter un champ `mesures` (date de l'audit S8, nombre de publications, multiple médian) et une ligne au journal.
+- Valider chaque fiche modifiée contre le contrat : `social/contrats/valider.py`, fonction `erreurs(fiche, "fiche_format")`.

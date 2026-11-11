@@ -97,6 +97,15 @@ class TestPlanWeek(unittest.TestCase):
         self.assertEqual(len(conc), 1)
         self.assertEqual(conc[0]["offres"][0]["handle"], cat[0]["handle"])
 
+    def test_concours_partner_not_eligible(self):
+        cat = catalogue()
+        cat[0] = dict(cat[0], ambiance=4)
+        partners = [{"handle": cat[0]["handle"], "accord_concours": True, "nuits_offertes": 1}]
+        p = planifier.plan_week(date(2026, 11, 30), cat, [], STRAT, partners)
+        conc = [s for s in p["cases"] if s["moteur"] == "concours"]
+        self.assertEqual(conc[0]["statut"], "BLOQUE")
+        self.assertTrue(any("non éligible" in a for a in p["alertes"]))
+
     def test_blocked_when_empty(self):
         p = planifier.plan_week(date(2026, 11, 16), [], [], STRAT)
         self.assertTrue(all(s["statut"] == "BLOQUE" for s in p["cases"] if s["moteur"] != "couple"))

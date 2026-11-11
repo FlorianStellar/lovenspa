@@ -1,19 +1,19 @@
 # Lexique FR des tics d’écriture IA (S6-01, S6-02)
 
-Lexique compilé le 11/11/2026 : 193 entrées (149 reprises de `lexique.json`, origine « L » ; 44 adaptées de `slop.json`, origine « S »). Provenance et licences : `../SOURCES.md`.
+Lexique compilé le 11/11/2026 : 193 entrées (149 reprises de `lexique.json`, origine « L » ; 44 adaptées de `slop.json`, origine « S »). Provenance et licences : `../SOURCES.md`.
 
-Mode d’emploi :
+Mode d’emploi :
 
 - Chaque occurrence produit un avertissement `TICS_IA` (code cible, à outiller dans `controle.py`). Jamais bloquant seul.
 - Le remplacement est une proposition. Le modèle réécrit la phrase et vérifie les accords. Aucun remplacement automatique (`humaniser.py` est écarté).
-- « (suppr.) » = supprimer l’expression et reformuler la phrase.
-- « (à relire) » = remplacement discutable : garder la détection, ne jamais appliquer le remplacement sans relecture.
-- Recherche insensible à la casse et aux apostrophes (’ et ' équivalents), en mot entier.
-- Les formes au « tu » restent détectées (C-08) ; la production suit le registre de `marques/<id>/marque.json` (`ton.registre`).
-- Le lexique est à la marque (S6-24) : un mot que la marque emploie vraiment en est retiré par une exception datée et motivée dans `marques/<id>/regles.json` (champ cible, à outiller).
-- Doublons avec les règles maison : « essentiel » reste traité par `tics_maison` (seuil de répétition) ; seule l’expression « il est essentiel de » est gardée ici (C-11). « Imaginez » est traité par `ouvertures_interdites` et n’est compté qu’une fois (C-10).
+- « (suppr.) » = supprimer l’expression et reformuler la phrase.
+- « (à relire) » = remplacement discutable : garder la détection, ne jamais appliquer le remplacement sans relecture.
+- Recherche insensible à la casse et aux apostrophes (’ et ’ équivalents), en mot entier.
+- Les formes au « tu » restent détectées (C-08) ; la production suit le registre de `marques/<id>/marque.json` (`ton.registre`).
+- Le lexique est à la marque (S6-24) : un mot que la marque emploie vraiment en est retiré par une exception datée et motivée dans `marques/<id>/regles.json` (champ cible, à outiller).
+- Doublons avec les règles maison : « essentiel » reste traité par `tics_maison` (seuil de répétition) ; seule l’expression « il est essentiel de » est gardée ici (C-11). « Imaginez » est traité par `ouvertures_interdites` et n’est compté qu’une fois (C-10).
 
-## A.1 Entrées reprises de lexique.json (« L »), 149 entrées
+## A.1 Entrées reprises de lexique.json (« L »), 149 entrées
 
 ### Verbes (30)
 
@@ -115,9 +115,9 @@ Mode d’emploi :
 | 79 | néanmoins | mais | L |
 | 80 | toutefois | mais | L |
 | 81 | afin de | pour | L |
-| 82 | afin d' | pour | L |
+| 82 | afin d’ | pour | L |
 | 83 | en somme | bref | L |
-| 84 | en définitive | (suppr.), jamais « au final » (C-12) | L |
+| 84 | en définitive | (suppr.), jamais « au final » (C-12) | L |
 | 85 | ainsi donc | donc | L |
 
 ### Ouvertures (28)
@@ -199,9 +199,9 @@ Mode d’emploi :
 | 148 | on se retrouve dans une prochaine vidéo | (suppr.) | L |
 | 149 | c’est parti | (suppr.) | L |
 
-## A.2 Entrées adaptées de slop.json (« S »), 44 entrées
+## A.2 Entrées adaptées de slop.json (« S »), 44 entrées
 
-Entre crochets : l'entrée anglaise d'origine. Traduction de ce projet.
+Entre crochets : l’entrée anglaise d’origine. Traduction de ce projet.
 
 | N° | Tic | Remplacement proposé | Origine |
 | --- | --- | --- | --- |
@@ -252,32 +252,32 @@ Entre crochets : l'entrée anglaise d'origine. Traduction de ce projet.
 
 ## B. Tics de structure à signaler (20 motifs, S6-02)
 
-Le code ne réécrit pas ces motifs. Il les signale (`STRUCTURE`, code cible à outiller) ; le modèle réécrit phrase par phrase en gardant le sens.
+Le code ne réécrit pas ces motifs. Il les signale (`STRUCTURE`, code cible à outiller) ; le modèle réécrit phrase par phrase en gardant le sens.
 
 | N° | Motif | Correction attendue |
 | --- | --- | --- |
-| 1 | « Ce n’est pas juste X, c’est Y » | Dire la seule chose voulue, supprimer la mise en place. |
-| 2 | « Non seulement X mais aussi Y » | Deux phrases, ou garder la moitié la plus forte. |
-| 3 | « Il ne s’agit pas de X. Il s’agit de Y. » | Commencer par Y. |
-| 4 | Question rhétorique seule sur sa ligne (« Le résultat ? ») | Répondre directement. |
-| 5 | « Voici ce que j’ai appris » | Donner la leçon sans l’annoncer. |
-| 6 | Triade « X, Y et Z. » | Deux éléments ou quatre. |
+| 1 | « Ce n’est pas juste X, c’est Y » | Dire la seule chose voulue, supprimer la mise en place. |
+| 2 | « Non seulement X mais aussi Y » | Deux phrases, ou garder la moitié la plus forte. |
+| 3 | « Il ne s’agit pas de X. Il s’agit de Y. » | Commencer par Y. |
+| 4 | Question rhétorique seule sur sa ligne (« Le résultat ? ») | Répondre directement. |
+| 5 | « Voici ce que j’ai appris » | Donner la leçon sans l’annoncer. |
+| 6 | Triade « X, Y et Z. » | Deux éléments ou quatre. |
 | 7 | Emoji 🚀 🔥 💡 ✨ 🎯 | Un emoji au plus, pas l’un de ceux-là (S6-22). |
 | 8 | Mur de hashtags (au-delà de `legende.max_hashtags` de `regles.json`) | Rester sous le plafond, hashtag de marque compris. Seuil aligné sur `max_hashtags` (C-06). |
-| 9 | Le modèle parle de lui (« en tant qu’IA ») | Supprimer la phrase. |
-| 10 | Ouverture de conclusion (« En résumé ») | Pas de paragraphe de conclusion. |
-| 11 | Appât d’engagement réflexe (« D’accord ? ») | Une question que seule la marque peut poser, sur le point précis. |
-| 12 | Ouverture « arrêtez de scroller » | L’accroche vient de l’affirmation elle-même. |
-| 13 | Préambule vidéo (« dans cette vidéo je vais vous montrer ») | Commencer par le gain. |
+| 9 | Le modèle parle de lui (« en tant qu’IA ») | Supprimer la phrase. |
+| 10 | Ouverture de conclusion (« En résumé ») | Pas de paragraphe de conclusion. |
+| 11 | Appât d’engagement réflexe (« D’accord ? ») | Une question que seule la marque peut poser, sur le point précis. |
+| 12 | Ouverture « arrêtez de scroller » | L’accroche vient de l’affirmation elle-même. |
+| 13 | Préambule vidéo (« dans cette vidéo je vais vous montrer ») | Commencer par le gain. |
 | 14 | Liste à puces en emojis | Tiret ou retour à la ligne. |
 | 15 | Trois mots ou plus en majuscules d’affilée | Un mot au plus en légende (S6-22). |
-| 16 | Appât réflexe d’abonnement ou d’identification | Demander la seule action que ce post mérite. L’appel à l’action exigé par `regles.json` reste obligatoire ; seule la formule générique est refusée (C-05). |
-| 17 | « Que vous soyez X ou Y » | Parler à une seule personne. |
-| 18 | Ouverture « Imaginez… » | Montrer la scène. Doublon de `ouvertures_interdites` : compter une fois (C-10). |
+| 16 | Appât réflexe d’abonnement ou d’identification | Demander la seule action que ce post mérite. L’appel à l’action exigé par `regles.json` reste obligatoire ; seule la formule générique est refusée (C-05). |
+| 17 | « Que vous soyez X ou Y » | Parler à une seule personne. |
+| 18 | Ouverture « Imaginez… » | Montrer la scène. Doublon de `ouvertures_interdites` : compter une fois (C-10). |
 | 19 | Longueur de phrase uniforme (variation sous 0,35 sur 4 phrases ou plus) | Couper une phrase, en laisser une autre courir. |
 | 20 | Puces de longueur uniforme (3 puces ou plus, écart type sous 1,6 mot) | Varier ou passer en phrases. |
 
 ## Non repris
 
-- 58 entrées de `slop.json` écartées comme doublons d’un concept déjà présent (liste : compilation, annexe A.3).
-- 43 entrées de `slop.json` non reprises : sans tic équivalent en français, ou contraires aux appels à l’action exigés (« save this for later », « tag someone who needs this », « share this with someone who needs it », « drop a comment below » : traités par le motif 16).
+- 58 entrées de `slop.json` écartées comme doublons d’un concept déjà présent (liste : compilation, annexe A.3).
+- 43 entrées de `slop.json` non reprises : sans tic équivalent en français, ou contraires aux appels à l’action exigés (« save this for later », « tag someone who needs this », « share this with someone who needs it », « drop a comment below » : traités par le motif 16).
