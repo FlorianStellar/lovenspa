@@ -1,0 +1,205 @@
+{
+ "plan": [
+  {
+   "source": "/pages/guide-a-occasions-organiser-week-end-amoureux",
+   "liens": 4
+  },
+  {
+   "source": "/pages/loveroom",
+   "liens": 4
+  },
+  {
+   "source": "/blogs/magazine/love-room-strasbourg-suites-avec-spa-privatif-de-la-petite-france-a-la-route-des-vins",
+   "liens": 2
+  },
+  {
+   "source": "/blogs/magazine/love-room-toulouse-les-meilleures-suites-romantiques-avec-jacuzzi-privatif",
+   "liens": 2
+  },
+  {
+   "source": "/pages/chambre-avec-jacuzzi-privatif-recap",
+   "liens": 2
+  },
+  {
+   "source": "/pages/guide-atouts-love-room-escapade-couple",
+   "liens": 2
+  },
+  {
+   "source": "/pages/guide-impact-love-rooms-relations-intimes",
+   "liens": 2
+  },
+  {
+   "source": "/pages/guide-la-love-room-jacuzzi-privatif",
+   "liens": 2
+  },
+  {
+   "source": "/pages/guide-la-love-room-piscine-privative",
+   "liens": 2
+  },
+  {
+   "source": "/pages/guide-la-love-room-sauna",
+   "liens": 2
+  },
+  {
+   "source": "/pages/guide-la-love-room-spa-privatif",
+   "liens": 2
+  },
+  {
+   "source": "/pages/guide-love-room-valencienne-ses-tresors-caches",
+   "liens": 2
+  },
+  {
+   "source": "/pages/guide-love-rooms-tendance-marche-hotelier",
+   "liens": 2
+  },
+  {
+   "source": "/pages/kit-sextoy-lelo-couple",
+   "liens": 2
+  },
+  {
+   "source": "/pages/sofa-tantra-recap",
+   "liens": 2
+  },
+  {
+   "source": "/blogs/magazine/10-idees-de-week-end-en-amoureux-en-auvergne-rhone-alpes",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/10-idees-de-week-end-en-amoureux-en-occitanie",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/10-idees-de-week-end-en-amoureux-en-pays-de-la-loire",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/5-langages-de-l-amour-test-interpretations",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/baby-clash-couple-proteger-lien-apres-bebe",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/casser-la-routine-du-couple-12-rituels",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/charge-mentale-du-couple-apres-bebe-la-partager-pour-se-retrouver",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/comment-raviver-la-flamme-durablement",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/dead-bedroom-comment-sortir-du-desert-sexuel-dans-le-couple",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/demande-en-mariage-a-la-maison-15-scenarios-cosy",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/demande-en-mariage-facon-disney-10-idees-sans-le-parc",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/demande-en-mariage-originale-50-idees-par-contexte",
+   "liens": 1
+  },
+  {
+   "source": "/blogs/magazine/demande-en-mariage-surprise-sans-stress-8-scenarios",
+   "liens": 1
+  }
+ ],
+ "correspondances": {
+  "/blogs/articles/le-fauteuil-tantra-un-guide-complet": "/blogs/magazine/le-fauteuil-tantra-un-guide-complet",
+  "/blogs/magazine/love-room-alsace-spa-privatif-route-des-vins-et-marches-de-noel-feeriques": "/collections/alsace",
+  "/blogs/magazine/raviver-la-flamme-du-couple-guide-complet": "/blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation",
+  "/collections/jacuzzi-privatif": "/collections/chambre-jacuzzi-spa-privatif",
+  "/collections/love-room-bordeaux": "/collections/bordeaux",
+  "/collections/love-room-lyon": "/collections/lyon",
+  "/collections/love-room-normandie": "/collections/normandie",
+  "/collections/love-room-paris": "/collections/paris",
+  "/collections/love-room-sauna-privatif": "/collections/sauna-privatif",
+  "/collections/love-room-sofa-tantrique": "/collections/sofa-tantrique",
+  "/collections/secret-room-love-room-week-end-amoureux": "/collections/secret-room",
+  "/collections/spa-privatif": "/collections/chambre-jacuzzi-spa-privatif",
+  "/collections/toutes-les-love-rooms": "/collections/love-room",
+  "/pages/chambre-jacuzzi-privatif-offrir-hors-saison ": "/pages/chambre-jacuzzi-privatif-offrir-hors-saison",
+  "/pages/chambre-jacuzzi-privatif-preservez-intimite-chambre-!": "/pages/chambre-jacuzzi-privatif-preservez-intimite-chambre",
+  "/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe ": "/pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe",
+  "/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel.": "/pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel",
+  "/pages/guide-la-love-room-secret-room ": "/pages/guide-la-love-room-secret-room",
+  "/pages/guide-love-room-rochelle-cœur-vieille-ville": "/pages/guide-love-room-rochelle-coeur-vieille-ville",
+  "/pages/guide-quel-type-love-room-choisir ": "/pages/guide-quel-type-love-room-choisir",
+  "/pages/guide-une-love-room-paris-ville-amour ": "/pages/guide-une-love-room-paris-ville-amour"
+ },
+ "exclus": [
+  {
+   "source": "/pages/je-souhaite-quitter-lovenspa",
+   "cible": "/products/abonnement-lovenspa-1an",
+   "ancre": "Finalement, je reste",
+   "emplacement": "body",
+   "verdict": "redirection",
+   "vers": "/"
+  },
+  {
+   "source": "/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun",
+   "cible": "/products/la-bulle-de-pierre-spa",
+   "ancre": "La Bulle de Pierre",
+   "emplacement": "body",
+   "verdict": "redirection",
+   "vers": "/collections/auvergne-rhone-alpes"
+  },
+  {
+   "source": "/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun",
+   "cible": "/products/les-spas-de-venus",
+   "ancre": "Les Spas de Vénus",
+   "emplacement": "body",
+   "verdict": "redirection",
+   "vers": "/collections/isere"
+  },
+  {
+   "source": "/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun",
+   "cible": "/products/chalet-trappeur",
+   "ancre": "Chalet Trappeur",
+   "emplacement": "body",
+   "verdict": "redirection",
+   "vers": "/collections/auvergne-rhone-alpes"
+  },
+  {
+   "source": "/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun",
+   "cible": "/products/la-patte-nordic-la-mine-de-buck",
+   "ancre": "La Mine de Buck",
+   "emplacement": "body",
+   "verdict": "redirection",
+   "vers": "/collections/haute-savoie"
+  },
+  {
+   "source": "/blogs/magazine/nuit-insolite-rhone-alpes-8-hebergements-magiques-pour-un-sejour-hors-du-commun",
+   "cible": "/products/love",
+   "ancre": "Love Suite Love",
+   "emplacement": "body",
+   "verdict": "redirection",
+   "vers": "/collections/auvergne-rhone-alpes"
+  },
+  {
+   "source": "/blogs/magazine/love-room-lyon-chambres-avec-jacuzzi-privatif-pour-un-week-end-en-amoureux",
+   "cible": "/products/gourguillon",
+   "ancre": "suites du Gourguillon",
+   "emplacement": "body",
+   "verdict": "redirection",
+   "vers": "/collections/lyon"
+  },
+  {
+   "source": "/blogs/magazine/love-room-bordeaux-les-meilleures-chambres-avec-jacuzzi-privatif-en-gironde",
+   "cible": "/products/loft-et-jacuzzi-bordeaux",
+   "ancre": "Loft et Jacuzzi Bordeaux",
+   "emplacement": "body",
+   "verdict": "redirection",
+   "vers": "/collections/bordeaux"
+  }
+ ]
+}

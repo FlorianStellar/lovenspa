@@ -176,6 +176,64 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Priorité : 2 liens de menu présents sur les 2 839 pages crawlées mènent à des redirections (`/pages/loveroom-recap` et `/pages/love-room-le-guide-des-hebergements-reserves-aux-couples`, toutes deux vers `/pages/loveroom`). Traitement : agent du mercredi (menus ajoutés au niveau Auto).
 - Concordance avec l'export plat : les cibles du crawl se retrouvent dans `liens_a_corriger.csv` ; l'export donne en plus la source exacte (menu ou body).
 
+## Bugs techniques, passage du 11/11/2026 (agent du mercredi) : inscription avant modification
+
+- Export du 11/11 + audit comparé au 10/11 : 205 liens à corriger vers 43 cibles (inchangé). Diff : 10 titles du lot L8, 2 nouveaux articles, 2 fiches modifiées hors agent (la-suite-isahora, mas-alegria-loverom-spa : description).
+- Périmètre du passage (plafond 30 objets) : 2 menus + 28 pages publiées, 47 liens qui passent par une redirection. Outil : `claude/agent-seo/fix_links.py` (6 tests). Sauvegardes : `claude/audits/tech-2026-11-11/avant/`.
+- Correspondances vérifiées en direct (chaîne suivie, 200 à l'arrivée) :
+  - /blogs/articles/le-fauteuil-tantra-un-guide-complet → /blogs/magazine/le-fauteuil-tantra-un-guide-complet
+  - /blogs/magazine/love-room-alsace-spa-privatif-route-des-vins-et-marches-de-noel-feeriques → /collections/alsace
+  - /blogs/magazine/raviver-la-flamme-du-couple-guide-complet → /blogs/magazine/comment-raviver-la-flamme-apres-des-annees-de-relation
+  - /collections/jacuzzi-privatif → /collections/chambre-jacuzzi-spa-privatif
+  - /collections/love-room-bordeaux → /collections/bordeaux
+  - /collections/love-room-lyon → /collections/lyon
+  - /collections/love-room-normandie → /collections/normandie
+  - /collections/love-room-paris → /collections/paris
+  - /collections/love-room-sauna-privatif → /collections/sauna-privatif
+  - /collections/love-room-sofa-tantrique → /collections/sofa-tantrique
+  - /collections/secret-room-love-room-week-end-amoureux → /collections/secret-room
+  - /collections/spa-privatif → /collections/chambre-jacuzzi-spa-privatif
+  - /collections/toutes-les-love-rooms → /collections/love-room
+  - /pages/chambre-jacuzzi-privatif-offrir-hors-saison  → /pages/chambre-jacuzzi-privatif-offrir-hors-saison
+  - /pages/chambre-jacuzzi-privatif-preservez-intimite-chambre-! → /pages/chambre-jacuzzi-privatif-preservez-intimite-chambre
+  - /pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe  → /pages/chambre-jacuzzi-privatif-services-exclusifs-suites-luxe
+  - /pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel. → /pages/erreurs-eviter-choix-chambre-spa-privatif-lune-miel
+  - /pages/guide-la-love-room-secret-room  → /pages/guide-la-love-room-secret-room
+  - /pages/guide-love-room-rochelle-cœur-vieille-ville → /pages/guide-love-room-rochelle-coeur-vieille-ville
+  - /pages/guide-quel-type-love-room-choisir  → /pages/guide-quel-type-love-room-choisir
+  - /pages/guide-une-love-room-paris-ville-amour  → /pages/guide-une-love-room-paris-ville-amour
+- Pages traitées :
+  - /pages/guide-a-occasions-organiser-week-end-amoureux (4)
+  - /pages/loveroom (4)
+  - /blogs/magazine/love-room-strasbourg-suites-avec-spa-privatif-de-la-petite-france-a-la-route-des-vins (2)
+  - /blogs/magazine/love-room-toulouse-les-meilleures-suites-romantiques-avec-jacuzzi-privatif (2)
+  - /pages/chambre-avec-jacuzzi-privatif-recap (2)
+  - /pages/guide-atouts-love-room-escapade-couple (2)
+  - /pages/guide-impact-love-rooms-relations-intimes (2)
+  - /pages/guide-la-love-room-jacuzzi-privatif (2)
+  - /pages/guide-la-love-room-piscine-privative (2)
+  - /pages/guide-la-love-room-sauna (2)
+  - /pages/guide-la-love-room-spa-privatif (2)
+  - /pages/guide-love-room-valencienne-ses-tresors-caches (2)
+  - /pages/guide-love-rooms-tendance-marche-hotelier (2)
+  - /pages/kit-sextoy-lelo-couple (2)
+  - /pages/sofa-tantra-recap (2)
+  - /blogs/magazine/10-idees-de-week-end-en-amoureux-en-auvergne-rhone-alpes (1)
+  - /blogs/magazine/10-idees-de-week-end-en-amoureux-en-occitanie (1)
+  - /blogs/magazine/10-idees-de-week-end-en-amoureux-en-pays-de-la-loire (1)
+  - /blogs/magazine/5-langages-de-l-amour-test-interpretations (1)
+  - /blogs/magazine/baby-clash-couple-proteger-lien-apres-bebe (1)
+  - /blogs/magazine/casser-la-routine-du-couple-12-rituels (1)
+  - /blogs/magazine/charge-mentale-du-couple-apres-bebe-la-partager-pour-se-retrouver (1)
+  - /blogs/magazine/comment-raviver-la-flamme-durablement (1)
+  - /blogs/magazine/dead-bedroom-comment-sortir-du-desert-sexuel-dans-le-couple (1)
+  - /blogs/magazine/demande-en-mariage-a-la-maison-15-scenarios-cosy (1)
+  - /blogs/magazine/demande-en-mariage-facon-disney-10-idees-sans-le-parc (1)
+  - /blogs/magazine/demande-en-mariage-originale-50-idees-par-contexte (1)
+  - /blogs/magazine/demande-en-mariage-surprise-sans-stress-8-scenarios (1)
+- Menus : `cocons` (2 éléments) et `guides` (1 élément) vers `/pages/loveroom` (200 vérifié).
+- Exclus, à arbitrer : 7 liens vers des fiches supprimées redirigées vers une collection régionale (ancre au nom de l'hébergement), 1 lien vers l'abonnement redirigé vers l'accueil (page je-souhaite-quitter-lovenspa). `/collections/luxe` : « introuvable » dans l'export mais 200 en direct, faux positif à expliquer.
+
 ## Règles du journal
 
 - Décision stratégique (Go, objectif, budget, périmètre, retour arrière sur page clé) : message privé Slack à Florian dès qu'elle apparaît.
