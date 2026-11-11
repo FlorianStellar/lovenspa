@@ -280,3 +280,9 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Intégré au cycle hebdo du lundi (trig_017RtycothGksfALbMLFJg3s) ; non bloquant si la clé manque.
 - Test réel 11/11 (session neuve) : clé OK (32 car.), lovenspa.fr présent ; 486 jours depuis le 11/07/2025, 36 988 clics, 788 510 impressions, 4 576 requêtes uniques, 3 625 lignes pages. Top clics : love room 4 117, kamasutra 1 211, love n spa 837.
 - Archive API de secours (alternative à E1) abandonnée : export BigQuery configuré.
+
+## Coordination des agents (11/11/2026)
+- Constat : le passage bugs du 11/11 (session Haloscan) a modifié des liens du body de /blogs/magazine/5-langages-de-l-amour-test-interpretations (lot L8) et de /blogs/magazine/demande-en-mariage-originale-50-idees-par-contexte (témoin L8), à J+1 du lot. Changement limité aux href (redirection → URL finale), texte inchangé. Réserve inscrite pour la lecture L8 du 05/12 : lire ces deux URL à part.
+- Cause : pas de registre commun des URL gelées. Créé : claude/lots/URL-GELEES.md (L8 lot + témoin, L5). Règles communes : claude/COORDINATION-AGENTS.md.
+- Contradiction de calendrier : la tâche « lecture L5 » du 24/11 (ancienne session GSC) prévoyait de préparer A3 si L5 validé, alors que la décision du 10/11 est « L5 non conclusif, garder, relecture le 30/11 contre un témoin élargi ». Remplacée par une tâche du 30/11 dans la session pilote.
+- Regroupement : toutes les tâches SEO dans la session pilote (session_01UXhdvmsiNitN3ZapBbasjZ).
