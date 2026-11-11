@@ -45,3 +45,4 @@ Doc : https://claude.ai/artifact/LJJy1JXosZoQqYMEWvgALw · Outils : `claude/agen
 - E7 : Bing opérationnel (claude/agent-seo/bing.py, clé BING_API_KEY), intégré au cycle hebdo du lundi.
 - Prochaines échéances : 16/11 cycle hebdo (1er Bing, cadrage G2 conversion blog → réservation) ; 23/11 lecture L6 ; 30/11 relecture L5 ; 05/12 lecture L8.
 - Détails : claude/journal-deploiements-seo.md.
+- RÈGLE (11/11, « hyper important ») : agent QA indépendant après chaque affirmation et chaque développement, avant toute mise en production ou publication. Voir CLAUDE.md.

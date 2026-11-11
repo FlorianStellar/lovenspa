@@ -8,6 +8,7 @@ Toutes les tâches SEO (veille, cycle hebdo, exécution des lots, correction des
 - Emailing LSPA, Google Ads, audit réservations, veille #bugs-issues : hors SEO on-page.
 
 ## Règles communes
+0. QA obligatoire (Florian, 11/11, « hyper important ») : toute affirmation, tout chiffre, tout développement passe par un agent QA indépendant avant production ou publication. Détail dans CLAUDE.md à la racine.
 1. Source de vérité : claude/journal-deploiements-seo.md (décisions, lots, réserves) et le doc Pilotage SEO.
 2. URL gelées : claude/lots/URL-GELEES.md. Lire avant toute modification de contenu ; ne pas toucher une URL gelée.
 3. Branche unique claude/zen-edison-sac366 ; `git pull --rebase` avant chaque push.
