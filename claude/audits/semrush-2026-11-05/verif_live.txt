@@ -1,0 +1,10 @@
+OK /products/love 
+OK /products/les-spas-de-venus 
+OK /products/la-bulle-de-pierre-spa 
+OK /products/chalet-trappeur 
+OK /products/la-patte-nordic-la-mine-de-buck 
+OK /products/gourguillon 
+OK /products/loft-et-jacuzzi-bordeaux 
+OK /products/coqueo-spa 
+OK /blogs/magazine/love-room-alsace-spa-privatif-route-des-vins-et-marches-de-noel-feeriques 
+OK /pages/guide-love-room-rochelle-cœur-vieille-ville 

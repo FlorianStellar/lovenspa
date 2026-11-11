@@ -1,0 +1,714 @@
+{
+ "periode": [
+  "2025-07-04",
+  "2026-11-02"
+ ],
+ "paires": [
+  {
+   "collections/cote-d-or": {
+    "http": 200,
+    "mots": 2397,
+    "title": "Love Room Côte-d’Or – Jacuzzi & Spa Privatifs\n |  Love’nSpa",
+    "description": "Réservez votre love room à Côte-d’Or avec jacuzzi privatif. Hébergements atypiques vérifiés pour une nuit en amoureux mémorable. Réservation en direct.",
+    "h1": [
+     "Love Rooms en Côte-d’Or"
+    ],
+    "canonical": "https://lovenspa.fr/collections/cote-d-or",
+    "robots": null,
+    "clics": 75,
+    "impressions": 3488,
+    "position_ponderee": 19.7,
+    "nb_requetes": 121,
+    "top_requetes": [
+     {
+      "q": "love room beaune",
+      "clics": 6,
+      "impr": 287,
+      "pos": 10.5
+     },
+     {
+      "q": "love room cote d'or",
+      "clics": 1,
+      "impr": 211,
+      "pos": 10.9
+     },
+     {
+      "q": "love room dijon",
+      "clics": 0,
+      "impr": 187,
+      "pos": 40.7
+     },
+     {
+      "q": "loveroom dijon",
+      "clics": 0,
+      "impr": 103,
+      "pos": 37.4
+     },
+     {
+      "q": "week-end en amoureux avec jacuzzi privatif franche-comté",
+      "clics": 0,
+      "impr": 90,
+      "pos": 17.1
+     },
+     {
+      "q": "spa côte d'or",
+      "clics": 0,
+      "impr": 75,
+      "pos": 26.9
+     },
+     {
+      "q": "spa cote d'or",
+      "clics": 0,
+      "impr": 62,
+      "pos": 28.1
+     },
+     {
+      "q": "love room bourgogne",
+      "clics": 0,
+      "impr": 38,
+      "pos": 50.2
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/collections/cote-d-or",
+     "userCanonical": "https://lovenspa.fr/collections/cote-d-or",
+     "lastCrawlTime": "2026-11-02",
+     "verdict": "PASS"
+    }
+   },
+   "collections/cote-dor": {
+    "http": 200,
+    "mots": 1849,
+    "title": "Love Room Côte-d'Or – Jacuzzi & Spa Privatifs\n |  Love’nSpa",
+    "description": "Réservez votre love room à Côte-d'Or avec jacuzzi privatif. Hébergements atypiques vérifiés pour une nuit en amoureux mémorable. Réservation en direct.",
+    "h1": [
+     "Love Rooms en Côte-d'Or"
+    ],
+    "canonical": "https://lovenspa.fr/collections/cote-dor",
+    "robots": null,
+    "clics": 159,
+    "impressions": 4181,
+    "position_ponderee": 20.3,
+    "nb_requetes": 143,
+    "top_requetes": [
+     {
+      "q": "love room dijon",
+      "clics": 0,
+      "impr": 475,
+      "pos": 38.1
+     },
+     {
+      "q": "love room cote d'or",
+      "clics": 8,
+      "impr": 251,
+      "pos": 6.9
+     },
+     {
+      "q": "loveroom dijon",
+      "clics": 0,
+      "impr": 236,
+      "pos": 37.5
+     },
+     {
+      "q": "love room autour de moi",
+      "clics": 14,
+      "impr": 186,
+      "pos": 13.1
+     },
+     {
+      "q": "love room",
+      "clics": 2,
+      "impr": 89,
+      "pos": 4.9
+     },
+     {
+      "q": "logement insolite avec spa privatif dijon",
+      "clics": 0,
+      "impr": 84,
+      "pos": 61.9
+     },
+     {
+      "q": "nuit insolite en amoureux dijon",
+      "clics": 0,
+      "impr": 71,
+      "pos": 75.4
+     },
+     {
+      "q": "chambre spa dijon",
+      "clics": 0,
+      "impr": 68,
+      "pos": 47.4
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/collections/cote-dor",
+     "userCanonical": "https://lovenspa.fr/collections/cote-dor",
+     "lastCrawlTime": "2026-11-03",
+     "verdict": "PASS"
+    }
+   },
+   "similarite_jaccard_5mots": 0.091
+  },
+  {
+   "collections/val-d-oise": {
+    "http": 200,
+    "mots": 1725,
+    "title": "Love Room Val-d’Oise – Jacuzzi & Spa Privatifs\n |  Love’nSpa",
+    "description": "Réservez votre love room à Val-d’Oise avec jacuzzi privatif. Hébergements atypiques vérifiés pour une nuit en amoureux mémorable. Réservation en direct.",
+    "h1": [
+     "Love Rooms en Val-d’Oise"
+    ],
+    "canonical": "https://lovenspa.fr/collections/val-d-oise",
+    "robots": null,
+    "clics": 155,
+    "impressions": 5478,
+    "position_ponderee": 14.9,
+    "nb_requetes": 125,
+    "top_requetes": [
+     {
+      "q": "love room 95",
+      "clics": 7,
+      "impr": 500,
+      "pos": 12.3
+     },
+     {
+      "q": "love room val d'oise",
+      "clics": 6,
+      "impr": 314,
+      "pos": 10.9
+     },
+     {
+      "q": "love room cergy",
+      "clics": 0,
+      "impr": 89,
+      "pos": 19.6
+     },
+     {
+      "q": "love room oise",
+      "clics": 0,
+      "impr": 83,
+      "pos": 27.1
+     },
+     {
+      "q": "spa privatif val d'oise",
+      "clics": 0,
+      "impr": 63,
+      "pos": 18.6
+     },
+     {
+      "q": "hotel romantique val d oise",
+      "clics": 0,
+      "impr": 62,
+      "pos": 54.1
+     },
+     {
+      "q": "hotel romantique 95",
+      "clics": 0,
+      "impr": 40,
+      "pos": 49.3
+     },
+     {
+      "q": "love room pontoise",
+      "clics": 0,
+      "impr": 39,
+      "pos": 10.3
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/collections/val-d-oise",
+     "userCanonical": "https://lovenspa.fr/collections/val-d-oise",
+     "lastCrawlTime": "2026-11-03",
+     "verdict": "PASS"
+    }
+   },
+   "collections/val-doise": {
+    "http": 200,
+    "mots": 1849,
+    "title": "Love Room Val-d'Oise – Jacuzzi & Spa Privatifs\n |  Love’nSpa",
+    "description": "Réservez votre love room à Val-d'Oise avec jacuzzi privatif. Hébergements atypiques vérifiés pour une nuit en amoureux mémorable. Réservation en direct.",
+    "h1": [
+     "Love Rooms en Val-d'Oise"
+    ],
+    "canonical": "https://lovenspa.fr/collections/val-doise",
+    "robots": null,
+    "clics": 144,
+    "impressions": 5634,
+    "position_ponderee": 21.9,
+    "nb_requetes": 139,
+    "top_requetes": [
+     {
+      "q": "love room 95",
+      "clics": 6,
+      "impr": 417,
+      "pos": 13.1
+     },
+     {
+      "q": "love room val d'oise",
+      "clics": 1,
+      "impr": 208,
+      "pos": 15.7
+     },
+     {
+      "q": "love room cergy",
+      "clics": 1,
+      "impr": 130,
+      "pos": 17.7
+     },
+     {
+      "q": "spa privatif val d'oise",
+      "clics": 1,
+      "impr": 83,
+      "pos": 17.3
+     },
+     {
+      "q": "hotel romantique val d'oise",
+      "clics": 0,
+      "impr": 79,
+      "pos": 29.3
+     },
+     {
+      "q": "hotel romantique val d oise",
+      "clics": 0,
+      "impr": 73,
+      "pos": 56.7
+     },
+     {
+      "q": "spa privatif 95",
+      "clics": 0,
+      "impr": 53,
+      "pos": 28.3
+     },
+     {
+      "q": "loveroom 95",
+      "clics": 2,
+      "impr": 49,
+      "pos": 8.2
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/collections/val-doise",
+     "userCanonical": "https://lovenspa.fr/collections/val-doise",
+     "lastCrawlTime": "2026-11-03",
+     "verdict": "PASS"
+    }
+   },
+   "similarite_jaccard_5mots": 0.07
+  },
+  {
+   "blogs/magazine/week-end-en-amoureux-bretagne": {
+    "http": 200,
+    "mots": 1785,
+    "title": "Week-end en amoureux en Bretagne\n |  Love’nSpa",
+    "description": "Week-end en amoureux en Bretagne : où aller, quoi choisir et comment créer une vraie parenthèse à deux, entre mer, spa privatif et silence.",
+    "h1": [
+     "Week-end en amoureux en Bretagne"
+    ],
+    "canonical": "https://lovenspa.fr/blogs/magazine/week-end-en-amoureux-bretagne",
+    "robots": null,
+    "clics": 0,
+    "impressions": 64,
+    "position_ponderee": 16.6,
+    "nb_requetes": 5,
+    "top_requetes": [
+     {
+      "q": "love room bretagne lovenspa",
+      "clics": 0,
+      "impr": 18,
+      "pos": 10.8
+     },
+     {
+      "q": "week end en amoureux bretagne spa privatif",
+      "clics": 0,
+      "impr": 9,
+      "pos": 34.6
+     },
+     {
+      "q": "epanouissement sexuel bretagne",
+      "clics": 0,
+      "impr": 3,
+      "pos": 74.7
+     },
+     {
+      "q": "week end amoureux bretagne spa",
+      "clics": 0,
+      "impr": 2,
+      "pos": 16
+     },
+     {
+      "q": "week end spa en amoureux bretagne",
+      "clics": 0,
+      "impr": 1,
+      "pos": 18
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/blogs/magazine/week-end-en-amoureux-bretagne",
+     "userCanonical": "https://lovenspa.fr/blogs/magazine/week-end-en-amoureux-bretagne",
+     "lastCrawlTime": "2026-09-05",
+     "verdict": "PASS"
+    }
+   },
+   "pages/guide-week-end-amoureux-bretagne": {
+    "http": 200,
+    "mots": 1351,
+    "title": "Week-end en amoureux en Bretagne\n |  Love’nSpa",
+    "description": "Découvrez la Bretagne pour un week-end en amoureux inoubliable ! Love rooms, escapades romantiques et nuits insolites vous attendent. Réservez vite !",
+    "h1": [
+     "Organiser un week-end en amoureux en Bretagne"
+    ],
+    "canonical": "https://lovenspa.fr/pages/guide-week-end-amoureux-bretagne",
+    "robots": null,
+    "clics": 146,
+    "impressions": 26719,
+    "position_ponderee": 23.7,
+    "nb_requetes": 374,
+    "top_requetes": [
+     {
+      "q": "love room bretagne lovenspa",
+      "clics": 40,
+      "impr": 5944,
+      "pos": 7.1
+     },
+     {
+      "q": "love room bretagne",
+      "clics": 30,
+      "impr": 1604,
+      "pos": 20.2
+     },
+     {
+      "q": "week end romantique bretagne",
+      "clics": 2,
+      "impr": 1106,
+      "pos": 22.7
+     },
+     {
+      "q": "week end amoureux bretagne",
+      "clics": 3,
+      "impr": 1066,
+      "pos": 35.5
+     },
+     {
+      "q": "week end en amoureux bretagne",
+      "clics": 0,
+      "impr": 1065,
+      "pos": 33.3
+     },
+     {
+      "q": "week end en amoureux en bretagne",
+      "clics": 2,
+      "impr": 678,
+      "pos": 24.8
+     },
+     {
+      "q": "nuit romantique bretagne",
+      "clics": 0,
+      "impr": 559,
+      "pos": 24.4
+     },
+     {
+      "q": "week-end en amoureux en bretagne",
+      "clics": 1,
+      "impr": 442,
+      "pos": 26.1
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/pages/guide-week-end-amoureux-bretagne",
+     "userCanonical": "https://lovenspa.fr/pages/guide-week-end-amoureux-bretagne",
+     "lastCrawlTime": "2026-11-03",
+     "verdict": "PASS"
+    }
+   },
+   "similarite_jaccard_5mots": 0.002
+  },
+  {
+   "blogs/magazine/creer-sa-love-room-l-amour-comme-modele-economique": {
+    "http": 200,
+    "mots": 1009,
+    "title": "Créer sa Love Room – L’amour comme modèle économique\n |  Love’nSpa",
+    "description": "Le livre incontournable pour tous ceux qui rêvent de créer un hébergement romantique Si vous rêvez de créer unelove room, unesuite romantique, unetiny house avec spaou unhébergement insolite, un ouvrage vient de devenir la référence du secteur.Le fondateur deLove’nSpa,Samuel Deleu, publieCréer sa Love Room – L’amour co",
+    "h1": [
+     "Créer sa Love Room – L’amour comme modèle économique"
+    ],
+    "canonical": "https://lovenspa.fr/blogs/magazine/creer-sa-love-room-l-amour-comme-modele-economique",
+    "robots": null,
+    "clics": 63,
+    "impressions": 3455,
+    "position_ponderee": 13.4,
+    "nb_requetes": 69,
+    "top_requetes": [
+     {
+      "q": "faire une love room chez soi",
+      "clics": 0,
+      "impr": 228,
+      "pos": 23.8
+     },
+     {
+      "q": "créer une love room",
+      "clics": 0,
+      "impr": 155,
+      "pos": 28.7
+     },
+     {
+      "q": "creer une love room",
+      "clics": 0,
+      "impr": 74,
+      "pos": 32.7
+     },
+     {
+      "q": "amenagement love room",
+      "clics": 0,
+      "impr": 70,
+      "pos": 33.1
+     },
+     {
+      "q": "aménagement love room",
+      "clics": 0,
+      "impr": 57,
+      "pos": 25.3
+     },
+     {
+      "q": "ouvrir une love room",
+      "clics": 0,
+      "impr": 43,
+      "pos": 23.5
+     },
+     {
+      "q": "image love room",
+      "clics": 0,
+      "impr": 41,
+      "pos": 1.2
+     },
+     {
+      "q": "love in room",
+      "clics": 0,
+      "impr": 27,
+      "pos": 8.6
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/blogs/magazine/creer-sa-love-room-l-amour-comme-modele-economique",
+     "userCanonical": "https://lovenspa.fr/blogs/magazine/creer-sa-love-room-l-amour-comme-modele-economique",
+     "lastCrawlTime": "2026-11-03",
+     "verdict": "PASS"
+    }
+   },
+   "pages/creer-sa-love-room-l-amour-comme-modele-economique": {
+    "http": 200,
+    "mots": 953,
+    "title": "Créer sa Love Room – L’amour comme modèle économique\n |  Love’nSpa",
+    "description": "Nouveauté Lovenspa En savoir plus: Love room avec sauna Créer sa Love Room – L’amour comme modèle économique Le premier livre en France qui dévoile les coulisses d’une love room rentable, émotionnelle et durable, écrit par Samuel, fondateur de Love’nSpa. Je commande le livre maintenant Disponible au format papier &amp;",
+    "h1": [
+     "Créer sa Love Room – L’amour comme modèle économique",
+     "Créer sa Love Room – L’amour comme modèle économique"
+    ],
+    "canonical": "https://lovenspa.fr/pages/creer-sa-love-room-l-amour-comme-modele-economique",
+    "robots": null,
+    "clics": 5,
+    "impressions": 94,
+    "position_ponderee": 10.1,
+    "nb_requetes": 6,
+    "top_requetes": [
+     {
+      "q": "ouvrir une love room",
+      "clics": 0,
+      "impr": 3,
+      "pos": 52.3
+     },
+     {
+      "q": "rentabilité love room",
+      "clics": 0,
+      "impr": 3,
+      "pos": 42
+     },
+     {
+      "q": "cree love",
+      "clics": 0,
+      "impr": 1,
+      "pos": 8
+     },
+     {
+      "q": "love'n spa",
+      "clics": 0,
+      "impr": 1,
+      "pos": 27
+     },
+     {
+      "q": "lovenspa",
+      "clics": 0,
+      "impr": 1,
+      "pos": 20
+     },
+     {
+      "q": "s+a love",
+      "clics": 0,
+      "impr": 1,
+      "pos": 3
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/pages/creer-sa-love-room-l-amour-comme-modele-economique",
+     "userCanonical": "https://lovenspa.fr/pages/creer-sa-love-room-l-amour-comme-modele-economique",
+     "lastCrawlTime": "2026-10-06",
+     "verdict": "PASS"
+    }
+   },
+   "similarite_jaccard_5mots": 0.033
+  },
+  {
+   "pages/sauna-recap": {
+    "http": 200,
+    "mots": 933,
+    "title": "Guide pas à pas pour bien choisir et utiliser un sauna\n |  Love’nSpa",
+    "description": "Comment choisir le type de sauna adapté à vos besoins",
+    "h1": [
+     "Guide pas à pas pour bien choisir et utiliser un sauna"
+    ],
+    "canonical": "https://lovenspa.fr/pages/sauna-recap",
+    "robots": null,
+    "clics": 2,
+    "impressions": 355,
+    "position_ponderee": 21.7,
+    "nb_requetes": 20,
+    "top_requetes": [
+     {
+      "q": "l'idã al sauna",
+      "clics": 0,
+      "impr": 15,
+      "pos": 22.6
+     },
+     {
+      "q": "guide sauna",
+      "clics": 0,
+      "impr": 13,
+      "pos": 29.1
+     },
+     {
+      "q": "love sauna",
+      "clics": 0,
+      "impr": 7,
+      "pos": 60.6
+     },
+     {
+      "q": "saunra page",
+      "clics": 0,
+      "impr": 7,
+      "pos": 9.4
+     },
+     {
+      "q": "sauna guide",
+      "clics": 0,
+      "impr": 5,
+      "pos": 29.6
+     },
+     {
+      "q": "saunas essentiels",
+      "clics": 0,
+      "impr": 5,
+      "pos": 85.6
+     },
+     {
+      "q": "que faire dans un spa privatif",
+      "clics": 0,
+      "impr": 4,
+      "pos": 87
+     },
+     {
+      "q": "comment utiliser un sauna",
+      "clics": 0,
+      "impr": 3,
+      "pos": 37.7
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/pages/sauna-recap",
+     "userCanonical": "https://lovenspa.fr/pages/sauna-recap",
+     "lastCrawlTime": "2026-11-01",
+     "verdict": "PASS"
+    }
+   },
+   "pages/sauna-guide-choisir-utiliser-sauna": {
+    "http": 200,
+    "mots": 3135,
+    "title": "Guide pas à pas pour bien choisir et utiliser un sauna\n |  Love’nSpa",
+    "description": "Avez-vous déjà rêvé de transformer votre maison en oasis de détente ? Le sauna, avec ses nombreuses vertus, pourrait bien être la réponse à vos envies de relaxation et de bien-être. Ce guide, spécialement conçu pour les amateurs de chaleur bienfaisante, vous aidera à choisir le type de sauna adapté à vos besoins, compr",
+    "h1": [
+     "Guide pas à pas pour bien choisir et utiliser un sauna"
+    ],
+    "canonical": "https://lovenspa.fr/pages/sauna-guide-choisir-utiliser-sauna",
+    "robots": null,
+    "clics": 60,
+    "impressions": 12885,
+    "position_ponderee": 17.5,
+    "nb_requetes": 293,
+    "top_requetes": [
+     {
+      "q": "sauna",
+      "clics": 0,
+      "impr": 503,
+      "pos": 38.7
+     },
+     {
+      "q": "guide sauna",
+      "clics": 1,
+      "impr": 463,
+      "pos": 6.3
+     },
+     {
+      "q": "sauna ideal",
+      "clics": 0,
+      "impr": 285,
+      "pos": 9.2
+     },
+     {
+      "q": "un sauna",
+      "clics": 0,
+      "impr": 270,
+      "pos": 30.4
+     },
+     {
+      "q": "quel sauna choisir",
+      "clics": 1,
+      "impr": 269,
+      "pos": 36.9
+     },
+     {
+      "q": "comment utiliser un sauna",
+      "clics": 1,
+      "impr": 244,
+      "pos": 10.1
+     },
+     {
+      "q": "comment utiliser sauna",
+      "clics": 0,
+      "impr": 237,
+      "pos": 31.3
+     },
+     {
+      "q": "je veux acheter un sauna intérieur, des recommandations?",
+      "clics": 0,
+      "impr": 228,
+      "pos": 39.4
+     }
+    ],
+    "indexation": {
+     "coverageState": "Submitted and indexed",
+     "googleCanonical": "https://lovenspa.fr/pages/sauna-guide-choisir-utiliser-sauna",
+     "userCanonical": "https://lovenspa.fr/pages/sauna-guide-choisir-utiliser-sauna",
+     "lastCrawlTime": "2026-10-26",
+     "verdict": "PASS"
+    }
+   },
+   "similarite_jaccard_5mots": 0.045
+  }
+ ]
+}

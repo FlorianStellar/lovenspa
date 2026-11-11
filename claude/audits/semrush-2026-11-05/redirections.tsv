@@ -1,0 +1,11 @@
+path	target	motif
+/products/love	/collections/auvergne-rhone-alpes	fiche DRAFT ; région ARA (tags et article concordent sur la région, pas sur le département)
+/products/les-spas-de-venus	/collections/isere	fiche DRAFT ; Isère (tags et article concordent)
+/products/la-bulle-de-pierre-spa	/collections/auvergne-rhone-alpes	fiche DRAFT ; tags Drôme, article Haute-Loire : repli région
+/products/chalet-trappeur	/collections/auvergne-rhone-alpes	fiche DRAFT ; tags Isère/Savoie, article Haute-Savoie : repli région
+/products/la-patte-nordic-la-mine-de-buck	/collections/haute-savoie	fiche DRAFT ; Haute-Savoie (tags et article concordent)
+/products/gourguillon	/collections/lyon	fiche DRAFT ; Lyon (tags et article concordent)
+/products/loft-et-jacuzzi-bordeaux	/collections/bordeaux	fiche DRAFT ; Bordeaux (tags et article concordent)
+/products/coqueo-spa	/collections/seine-et-marne	fiche DRAFT ; tag département Seine-et-Marne
+/blogs/magazine/love-room-alsace-spa-privatif-route-des-vins-et-marches-de-noel-feeriques	/collections/alsace	article non publié
+/pages/guide-love-room-rochelle-cœur-vieille-ville	/pages/guide-love-room-rochelle-coeur-vieille-ville	handle réel en « coeur » (lien mal encodé dans guide Valenciennes)

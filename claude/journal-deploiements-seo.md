@@ -240,6 +240,45 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - 28 pages et articles, 47 liens remplacés par leur URL finale (8 au premier lancement, interrompu par une erreur de type sur articleUpdate, puis 39 à la relance idempotente). Vérifié par l'API et en direct sur 3 pages (0 lien redirigé).
 - QA indépendant : conforme (diff limité aux href, 21 URL finales en 200, plafond 30/30, aucune action Go). Remarque : le libellé « Guide du week-end en amoureux » du menu cocons pointe vers le guide des love rooms (cible de la 301 existante) ; libellé à revoir (Go, contenu).
 - Reste : 110 liens redirigés dans 110 pages publiées (passages suivants), 8 liens exclus à arbitrer (Go), faux positif `/collections/luxe` : la boutique sert une collection « Love Room de Luxe » (id 654218821968, HTTP 200, canonical propre), mais l'API Admin ne connaît ni cet id ni le handle `luxe`. Cause non établie (suppression récente avec cache, ou ressource hors API) ; à revérifier au prochain passage, aucune action.
+---
+
+## Audit Semrush Site Audit du 05/11/2026 (snapshot 6ae7f846ed026a1b91c89985, crawl du 02/11, 4 372 pages)
+
+- Score : 46 erreurs, 10 871 avertissements, 10 541 notices. Erreurs = 4xx (10), titres dupliqués (16), contenu dupliqué (2), liens internes cassés (9), meta descriptions dupliquées (9).
+- Détail des URL par erreur, statuts Shopify, IDs et comptes : `claude/audits/semrush-2026-11-05/preuves.json`.
+- **Corrigé (autonome)** : 4xx + liens internes cassés, soit 19 des 46 erreurs. 10 redirections 301 Shopify (`claude/audits/semrush-2026-11-05/redirections.tsv`, IDs UrlRedirect 1010552111440 à 1010552406352).
+  - 8 fiches en DRAFT → collection géographique. Cible choisie là où les tags produit et le texte des articles concordent, sinon la région.
+  - Article Alsace non publié → /collections/alsace. Lien Rochelle « cœur » → handle réel « coeur ».
+  - Réversible : une redirection Shopify ne s'applique qu'en 404 ; si une fiche repasse ACTIVE, son URL et les liens des articles refonctionnent sans intervention. Retour arrière : supprimer les 10 IDs.
+  - Vérif live le 05/11 : 10/10 en 301 directe vers une cible en 200 sans chaîne (`verif_live.txt`).
+- **Non corrigé, décision Florian** :
+  - Doublons produits actifs : la-suite-etoilee / -2, le-boudoir-de-nana / -1, carte-cadeau-lovenspa / carte-cadeaux-love-room. Il faut choisir laquelle garder (l'autre passe en draft + 301).
+  - Doublons collections : cote-d-or (38 produits) / cote-dor (18), val-d-oise (5) / val-doise (6). updatedAt observés entre 02:02 et 02:08 UTC (04-05/11) sur les 4 : source de mise à jour à identifier avant toute fusion.
+  - Page vs article sur le même sujet : week-end-amoureux-bretagne, creer-sa-love-room, sauna-recap / sauna-guide. La règle « pas de fusion » du 02/11 s'applique-t-elle ?
+  - Meta descriptions dupliquées : paris-jadore (2), lessentiel (2), jardin-deden / clair-de-lune hors du temps. Modification on-page à passer en lot A avec témoin.
+  - Pages internes publiques et indexables : brandbook, charte-graphique, guidelines-images, guidelines-instagram. Elles contiennent 6 liens relatifs `Lovenspa_*.html` en 404. Je propose de les dépublier.
+  - « Bloqués » : toutes-les-regions, tous-les-departements (noindex), déjà en attente.
+
+### Suite du 05/11 : points 2 à 5 (go de Florian)
+
+- **5. Dépublication** (Matrixify, job 778069876 : 4 mises à jour, 0 échec) de brandbook, charte-graphique, guidelines-images et guidelines-instagram. Vérifié en live : 4 en 404. Retour arrière : Published=TRUE (IDs dans `preuves.json`).
+- **4. Meta descriptions différenciées** (Matrixify, job 778096614 : 6 mises à jour, 0 échec) sur paris-jadore ×2, lessentiel ×2, jardin-deden et clair-de-lune. Avant : chaque paire servait la meta d'une seule des deux fiches. Après : meta unique, tirée du texte de la fiche (`metas_lot.csv`, avant : `metas_avant.tsv`). Vérifié en live : 6/6 (`verif_metas_live.txt`). Lot on-page sans témoin, sur ordre explicite. Lecture GSC à J+21 (26/11), page par page.
+- **2. Navigation des collections en double** (`menus_collections_doublons.txt`, `liens_entrants_collections_doublons.tsv`) :
+  - menus : cote-dor et cote-d-or sont toutes deux dans « Tous les départements » ; val-doise y figure 2 fois ; val-d-oise n'est dans aucun menu ;
+  - header et footer : aucune des 4 ;
+  - corps des pages (blocs département ou proximité, aucune source trouvée dans nos scripts) : cote-d-or reçoit des liens de 25 pages, cote-dor de 31, val-d-oise de 12, val-doise de 19. Scan de 2 873 URL : 2 855 lues, 18 restées en 429.
+- **3. Audit des paires** (`audit_doublons_gsc.json`, GSC du 04/07/2025 au 02/11/2026, inspection d'URL, similarité de texte Jaccard sur 5 mots) :
+  - les 10 URL sont toutes indexées, avec un canonical Google égal à l'URL ;
+  - cote-d-or : 75 clics / 3 488 impressions ; cote-dor : 159 / 4 181. Les deux se positionnent sur « love room cote d'or » (10,9 contre 6,9). Similarité 0,09, 38 produits contre 18. **Vraie cannibalisation.**
+  - val-d-oise : 155 / 5 478 ; val-doise : 144 / 5 634. Les deux se positionnent sur « love room 95 » (12,3 contre 13,1). Similarité 0,07. **Vraie cannibalisation.**
+  - Bretagne : la page fait 146 / 26 719, l'article 0 / 64, avec un dernier crawl Google le 05/09. Liens entrants de l'article non mesurés (HTTP 429 dans le crawl du 05/11) ; la page en a 7. Similarité 0,002 : seul le titre est en double.
+  - Créer sa love room : l'article fait 63 / 3 455, la page 5 / 94. L'article a 0 lien entrant et n'est pas atteignable depuis l'accueil ; la page a 2 liens entrants et 2 H1. Similarité 0,033.
+  - Sauna : le guide fait 60 / 12 885, sauna-recap 2 / 355, alors que sauna-recap est lié dans le footer de 2 854 des 2 855 pages scannées. Similarité 0,045, même titre et même H1.
+  - Liens entrants des pages et articles : `claude/audits/tech-2026-11-05/crawl.csv` (colonne inbound_internal).
+- **Conclusion du point 3** :
+  - Collections : vraie cannibalisation, sur les mêmes requêtes, avec un maillage partagé entre les deux URL. Il faut fusionner sur une seule URL. Deux préalables : identifier la source des blocs de liens générés et des mises à jour de 02:00, puis réunir les produits avant la 301.
+  - Pages contre articles : ce ne sont pas des doublons de contenu (similarité ≤ 0,045). Le seul doublon est le titre (et le H1 pour sauna). Dans chaque paire, une URL prend le trafic : 146 contre 0, 63 contre 5, 60 contre 2. Il ne faut donc pas fusionner : il faut différencier le titre et le H1 de l'URL qui ne reçoit pas de trafic (article Bretagne, page Créer, sauna-recap) et relier l'article Créer, qui n'a aucun lien entrant.
+  - Exécution à valider par Florian : lot A avec témoin.
 
 ## Règles du journal
 
