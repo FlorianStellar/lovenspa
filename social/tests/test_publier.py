@@ -9,6 +9,7 @@ from social.s7_diffusion import instagram as publier
 from social.tests.test_ig_client import FakeResp, FakeSession
 from social.connecteurs.instagram import IGClient
 
+STRAT = {"plafond_publications_jour": 2, "moteurs_valides": ["lieu"]}
 NOW = datetime(2026, 11, 16, 19, 0, tzinfo=publier.PARIS)
 PRET = {"statut": "PRET", "medias": ["a.mp4"], "legende": "L", "bloquants": [],
         "case": {"date": "2026-11-16", "heure": "18:30", "moteur": "lieu", "format": "REELS",
@@ -17,26 +18,30 @@ PRET = {"statut": "PRET", "medias": ["a.mp4"], "legende": "L", "bloquants": [],
 
 class TestGuards(unittest.TestCase):
     def test_green_light(self):
-        self.assertEqual(publier.verifier(PRET, [], NOW), [])
+        self.assertEqual(publier.verifier(PRET, [], NOW, STRAT), [])
 
     def test_not_ready(self):
-        r = publier.verifier(dict(PRET, statut="REFUSE", bloquants=["prix"]), [], NOW)
+        r = publier.verifier(dict(PRET, statut="REFUSE", bloquants=["prix"]), [], NOW, STRAT)
         self.assertTrue(r and "REFUSE" in r[0])
 
     def test_too_early(self):
         early = datetime(2026, 11, 16, 18, 0, tzinfo=publier.PARIS)
-        self.assertTrue(any("échéance" in x for x in publier.verifier(PRET, [], early)))
+        self.assertTrue(any("échéance" in x for x in publier.verifier(PRET, [], early, STRAT)))
 
     def test_already_published(self):
-        self.assertTrue(any("déjà" in x for x in publier.verifier(PRET, [{"cle": "2026-11-16-lieu"}], NOW)))
+        self.assertTrue(any("déjà" in x for x in publier.verifier(PRET, [{"cle": "2026-11-16-lieu"}], NOW, STRAT)))
 
     def test_daily_cap(self):
         pubs = [{"cle": f"k{i}", "publie_le": "2026-11-16T10:00:00"} for i in range(2)]
-        self.assertTrue(any("plafond" in x for x in publier.verifier(PRET, pubs, NOW)))
+        self.assertTrue(any("plafond" in x for x in publier.verifier(PRET, pubs, NOW, STRAT)))
 
     def test_cap_counts_publications_not_offers(self):
         pubs = [{"cle": "k1", "publie_le": "2026-11-16T10:00:00"} for _ in range(6)]
-        self.assertEqual(publier.verifier(PRET, pubs, NOW), [])
+        self.assertEqual(publier.verifier(PRET, pubs, NOW, STRAT), [])
+
+    def test_engine_not_validated_blocks(self):
+        r = publier.verifier(PRET, [], NOW, dict(STRAT, moteurs_valides=[]))
+        self.assertTrue(any("J4" in x for x in r))
 
     def test_switch(self):
         with tempfile.TemporaryDirectory() as d:
@@ -143,7 +148,7 @@ class TestTraiter(unittest.TestCase):
                 json.dump({k: PRET[k] for k in ("case", "legende", "medias")}, f)
             with open(os.path.join(d, "verdict.json"), "w") as f:
                 json.dump({"statut": "PRET", "bloquants": [], "controle": {"resultats": []}}, f)
-            marque = mock.Mock(donnees=mock.Mock(return_value=d))
+            marque = mock.Mock(donnees=mock.Mock(return_value=d), strategie=mock.Mock(return_value=STRAT))
             with mock.patch.object(publier, "load_publies", return_value=[]), \
                     mock.patch.dict(os.environ, {"IG_PUBLICATION_ACTIVE": "1"}):
                 r = publier.traiter(d, marque, go=False, now=NOW)

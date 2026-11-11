@@ -31,7 +31,7 @@ Ce que je ne mesure pas : la légende réellement affichée (comparaison champ 
 
 ## Chemin réel (Instagram, `social/s7_diffusion/instagram.py`)
 
-1. **Garde-fous** (`verifier` + `interrupteur_ouvert`) : verdict `PRET` ; échéance atteinte ; clé `<date>-<moteur>` absente de `publies.json` ; moins de 2 entrées publiées le jour même (`MAX_PAR_JOUR = 2`) ; au moins un média ; `IG_PUBLICATION_ACTIVE=1` et pas de fichier `STOP`. Une seule raison suffit à arrêter.
+1. **Garde-fous** (`verifier` + `interrupteur_ouvert`) : verdict `PRET` ; échéance atteinte ; clé `<date>-<moteur>` absente de `publies.json` ; moins de publications distinctes le jour même que `plafond_publications_jour` de la stratégie (exemple Love’nSpa : 2, règle maison non sourcée) ; moteur de la case présent dans `moteurs_valides` de la stratégie (rendus validés par un humain, jalon J4 ; liste vide au 11/11/2026) ; au moins un média ; `IG_PUBLICATION_ACTIVE=1` et pas de fichier `STOP`. Une seule raison suffit à arrêter.
 2. **Simulation** : sans `--go`, arrêt ici avec la raison « simulation (--go absent) ». Rien n’est envoyé, rien n’est hébergé.
 3. **Quota** (`--go` seulement) : `content_publishing_limit` ; si `quota_usage` atteint `quota_total`, arrêt.
 4. **Hébergement** : chaque média local part dans Shopify Files (envoi préparé, création du fichier, attente de `READY` par pas de 5 s, 300 s au plus). Image : URL de l’image. Vidéo : source MP4 de plus grande hauteur. `FAILED` ou délai dépassé : erreur.
@@ -81,8 +81,8 @@ Nouvel essai automatique du client Instagram sur les erreurs temporaires (codes 
 | Simuler (sans `--go`), une case ou `--dues` | Seul | Aucun envoi, aucun hébergement. |
 | Publier (`--go`) une case `PRET`, à son échéance | Seul sous condition : tous les garde-fous verts, paquet inchangé depuis son verdict, quota API disponible | Les garde-fous remplacent l’accord humain (C-07). |
 | Créer le fichier `donnees/<marque>/instagram/STOP` | Seul | Arrêt d’urgence ; ne peut que réduire le risque. |
-| Ouvrir l’interrupteur (`IG_PUBLICATION_ACTIVE=1`) ou supprimer `STOP` | Jamais | Décision humaine, liée au jalon J7 (publication supervisée). |
-| Relever le plafond `MAX_PAR_JOUR` ou contourner un garde-fou | Jamais | Les garde-fous sont la charte. |
+| Ouvrir l’interrupteur (`IG_PUBLICATION_ACTIVE=1`) ou supprimer `STOP` | Jamais | Décision humaine, liée aux jalons J4 (rendus validés) et J7 (publication supervisée). Au 11/11/2026, `donnees/lovenspa/instagram/STOP` existe et les deux paquets au statut PRET des 16 et 17/11 ne sont pas validés : ils ne doivent pas partir. |
+| Relever `plafond_publications_jour`, ajouter un moteur à `moteurs_valides` ou contourner un garde-fou | Jamais | Champs de la stratégie (S1, validation humaine) ; les garde-fous sont la charte. |
 | Relancer après une erreur survenue avant `media_publish` | Seul sous condition : cause comprise et consignée | Rien n’est en ligne. |
 | Relancer après une erreur survenue après `media_publish` | Seul sous condition : absence de la publication vérifiée sur le compte | Évite le doublon. |
 | Supprimer, archiver ou modifier une publication en ligne | Jamais | Non outillé ; effet public. Statut en erreur et compte rendu. |
@@ -102,4 +102,4 @@ Nouvel essai automatique du client Instagram sur les erreurs temporaires (codes 
 - Doublon : réduit le 11/11/2026. Une erreur de lecture du permalien après `media_publish` n’interrompt plus l’enregistrement (permalien `null`, relu par S8). Une coupure du processus entre la publication et l’écriture de `publies.json` reste possible : vérifier le compte avant toute relance (voir charte).
 - Les médias hébergés dans Shopify Files ne sont pas supprimés après publication ni après échec.
 - Le chemin est propre à Instagram : `--dues` ne lit que `donnees/<marque>/instagram/production/`.
-- Règles de plateforme citées par les sources, toutes à vérifier dans la documentation officielle : `references/regles-plateformes.md`.
+- Règles de plateforme : référence unique dans la skill `social-veille` (`references/regles-plateformes.md`, S2) ; le fichier local de cette skill ne sert que d’extrait pour la publication.

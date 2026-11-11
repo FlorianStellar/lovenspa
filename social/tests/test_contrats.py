@@ -92,7 +92,8 @@ class TestSchemas(unittest.TestCase):
 
 class TestBrandIsolation(unittest.TestCase):
     """Aucune donnée propre à une marque dans le code : tout vient de marques/<id>/."""
-    MOTIFS = [r"lovenspa", r"love'?n'?spa", r"accentuate", r"spicy", r"#?E83F4E", r"FBF6F2", r"Poppins"]
+    MOTIFS = [r"lovenspa", r"love'?n'?spa", r"accentuate", r"spicy", r"#?E83F4E", r"FBF6F2", r"Poppins",
+              r"escale", r"\b\d{2}:\d{2}'\)", r"_\d{2}_\d{2}_\d{4}", r"MAX_PAR_JOUR\s*=\s*\d", r"cible\s*=\s*\d"]
 
     def test_no_brand_data_in_code(self):
         fichiers = [f for f in glob.glob(os.path.join(RACINE, "**", "*.py"), recursive=True)
@@ -107,6 +108,12 @@ class TestBrandIsolation(unittest.TestCase):
                         if re.search(m, code, re.I) and "SOCIAL_MARQUE" not in code and "charger(" not in code:
                             trouves.append(f"{os.path.relpath(f, RACINE)}:{i}: {ligne.strip()[:80]}")
         self.assertEqual(trouves, [])
+
+    def test_no_brand_values_in_contracts(self):
+        import glob as g
+        for f in g.glob(os.path.join(RACINE, "contrats", "*.json")):
+            with open(f, encoding="utf-8") as h:
+                self.assertNotRegex(h.read(), r"_\d{2}_\d{2}_\d{4}", f)
 
     def test_brand_switch_by_folder(self):
         with tempfile.TemporaryDirectory() as d:

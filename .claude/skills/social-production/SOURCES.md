@@ -11,7 +11,7 @@ Matière : `social/compilation/s5-production.md` (compilée le 2026-11-11, lectu
 | MV | `Melvynx_video-agent-skills@f454292:skills/` | MIT | Melvyn Malherbe, 2026 |
 | KW | `knowledge-work-plugins@877a617:` | Apache-2.0 | à relever dans le fichier LICENSE du dépôt |
 | CM | `copy-machine` (skill interne synchronisée, sans commit) | interne | Stellar Projects |
-| LNS | `lovenspa@485c428:claude/agent-instagram/` (code et règles maison, déplacés vers `social/`) | interne | Stellar Projects |
+| LNS | `lovenspa:social/` (code et règles maison) | interne | Stellar Projects |
 | FL | catalogue Flora, `flora_discover_skills`, lu le 2026-11-11 (aucune version publiée) | service tiers, conditions du service | Flora |
 
 ## Provenance par élément
@@ -21,14 +21,14 @@ Colonne « Modifications » : tous les éléments tiers sont reformulés et trad
 | ID | Source (dépôt@commit:chemin) | Licence | Modifications |
 |---|---|---|---|
 | S5-01 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md | MIT | reformulé, traduit en français |
-| S5-02 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/legende.py (`PLATEFORMES`) ; lovenspa@485c428:claude/agent-instagram/regles.json (`legende.cible_caracteres`) | MIT, interne | reformulé, traduit en français |
-| S5-03 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/legende.py (`ASKS`) ; lovenspa@485c428:claude/agent-instagram/regles.json (`appels_a_l_action`) | MIT, interne | reformulé, traduit en français |
-| S5-04 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md ; lovenspa@485c428:claude/agent-instagram/produire.py (note « lien UTM à mettre en bio ») | MIT, interne | reformulé, traduit en français |
+| S5-02 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/legende.py (`PLATEFORMES`) ; lovenspa:social/marques/lovenspa/regles.json (`legende.cible_caracteres`) | MIT, interne | reformulé, traduit en français |
+| S5-03 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/legende.py (`ASKS`) ; lovenspa:social/marques/lovenspa/regles.json (`appels_a_l_action`) | MIT, interne | reformulé, traduit en français |
+| S5-04 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md ; lovenspa:social/s5_production/produire.py (note « lien UTM à mettre en bio ») | MIT, interne | reformulé, traduit en français |
 | S5-05 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-video/SKILL.md (« Les mots-clés sur TikTok ») | MIT | reformulé, traduit en français |
-| S5-06 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/legende.py (`FILLER_TAGS`) ; lovenspa@485c428:claude/agent-instagram/regles.json (`max_hashtags`, `hashtag_marque`) | MIT, interne | reformulé, traduit en français |
+| S5-06 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/legende.py (`FILLER_TAGS`) ; lovenspa:social/marques/lovenspa/regles.json (`max_hashtags`, `hashtag_marque`) | MIT, interne | reformulé, traduit en français |
 | S5-07 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md ; copy-machine:brands/lovenspa.md (Ton : vous) | MIT, interne | reformulé, traduit en français |
 | S5-08 | instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md | MIT | reformulé, traduit en français |
-| S5-09 | Melvynx_video-agent-skills@f454292:skills/studio-script/references/humanize.md ; Melvynx_video-agent-skills@f454292:skills/studio-script/references/ai-tells.md ; copy-machine:references/compliance-fr.md ; lovenspa@485c428:claude/agent-instagram/regles.json (`tics_maison`, `ouvertures_interdites`, `conclusions_interdites`) | MIT, interne | reformulé, traduit en français |
+| S5-09 | Melvynx_video-agent-skills@f454292:skills/studio-script/references/humanize.md ; Melvynx_video-agent-skills@f454292:skills/studio-script/references/ai-tells.md ; copy-machine:references/compliance-fr.md ; lovenspa:social/marques/lovenspa/regles.json (`tics_maison`, `ouvertures_interdites`, `conclusions_interdites`) | MIT, interne | reformulé, traduit en français |
 | S5-10 | knowledge-work-plugins@877a617:small-business/skills/social-content-engine/reference/shopify-assets.md ; copy-machine:SKILL.md (règle 1) ; copy-machine:references/compliance-fr.md ; instagram-agent-skill@d03c56b:skills/ig-reel/SKILL.md (« Never fabricate ») | MIT, Apache-2.0, interne | reformulé, traduit en français ; modifié et traduit en français par Stellar Projects, 2026 |
 | S5-11 | instagram-agent-skill@d03c56b:skills/ig-caption/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-legende/SKILL.md ; copy-machine:references/compliance-fr.md | MIT, interne | reformulé, traduit en français |
 | S5-12 | copy-machine:brands/lovenspa.md ; copy-machine:references/compliance-fr.md | interne | repris du code ou des règles maison |
@@ -43,9 +43,9 @@ Colonne « Modifications » : tous les éléments tiers sont reformulés et trad
 | S5-21 | Melvynx_video-agent-skills@f454292:skills/studio-script/references/script-rules.md (« Visual notes ») ; Melvynx_video-agent-skills@f454292:skills/studio-script/references/making-of.md (« a beat with nothing to show is a beat to cut ») | MIT | reformulé, traduit en français |
 | S5-22 | Melvynx_video-agent-skills@f454292:skills/studio-script/references/script-rules.md (« Re-hook ») | MIT | reformulé, traduit en français |
 | S5-23 | instagram-agent-skill@d03c56b:skills/ig-reel/SKILL.md (bloc « REEL READY ») ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-video/SKILL.md (bloc « VIDÉO PRÊTE ») ; Melvynx_video-agent-skills@f454292:skills/studio-script/SKILL.md (format) | MIT | reformulé, traduit en français |
-| S5-24 | instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-carrousel/SKILL.md ; lovenspa@485c428:claude/agent-instagram/produire.py (moteurs `selection`, `concours`, `couple`) | MIT, interne | reformulé, traduit en français |
+| S5-24 | instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-carrousel/SKILL.md ; lovenspa:social/s5_production/produire.py (moteurs `selection`, `concours`, `couple`) | MIT, interne | reformulé, traduit en français |
 | S5-25 | instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-carrousel/SKILL.md | MIT | reformulé, traduit en français |
-| S5-26 | instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-carrousel/SKILL.md ; lovenspa@485c428:claude/agent-instagram/visuels.py (docstring « rose en accent seulement ») | MIT, interne | reformulé, traduit en français |
+| S5-26 | instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-carrousel/SKILL.md ; lovenspa:social/s5_production/visuels.py (docstring « rose en accent seulement ») | MIT, interne | reformulé, traduit en français |
 | S5-27 | instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-carrousel/SKILL.md | MIT | reformulé, traduit en français |
 | S5-28 | Explo38_reels-tiktok-fr@a2281b6:skills/rt-carrousel/SKILL.md | MIT | reformulé, traduit en français |
 | S5-29 | knowledge-work-plugins@877a617:small-business/skills/social-content-engine/reference/calendar.md (matrice, « Carousel slide 1 ») | Apache-2.0 | reformulé, traduit en français ; modifié et traduit en français par Stellar Projects, 2026 |
@@ -62,26 +62,26 @@ Colonne « Modifications » : tous les éléments tiers sont reformulés et trad
 | S5-40 | Explo38_reels-tiktok-fr@a2281b6:skills/rt-recyclage/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-video/SKILL.md | MIT | reformulé, traduit en français |
 | S5-41 | knowledge-work-plugins@877a617:small-business/skills/social-content-engine/reference/calendar.md (« Repurposing matrix ») ; knowledge-work-plugins@877a617:small-business/skills/social-content-engine/SKILL.md (étape 7) | Apache-2.0 | reformulé, traduit en français ; modifié et traduit en français par Stellar Projects, 2026 |
 | S5-42 | Melvynx_video-agent-skills@f454292:skills/clips/SKILL.md (étapes 3 et 6) | MIT | reformulé, traduit en français |
-| S5-43 | Melvynx_video-agent-skills@f454292:skills/short-editing/references/shorts-codes.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/rendre.py (`libx264`, `crf 20`, `yuv420p`, AAC 192k) ; lovenspa@485c428:claude/agent-instagram/visuels.py (`render_reel`) | MIT, interne | reformulé, traduit en français |
+| S5-43 | Melvynx_video-agent-skills@f454292:skills/short-editing/references/shorts-codes.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/rendre.py (`libx264`, `crf 20`, `yuv420p`, AAC 192k) ; lovenspa:social/s5_production/visuels.py (`render_reel`) | MIT, interne | reformulé, traduit en français |
 | S5-44 | Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/SKILL.md (« La musique ») ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-voix/SKILL.md (« Montage ») ; Melvynx_video-agent-skills@f454292:skills/short-editing/references/music.md (fondus, `out`) | MIT | reformulé, traduit en français |
 | S5-45 | Melvynx_video-agent-skills@f454292:skills/short-editing/references/music.md (« Pick by what the viewer should feel », « Rotation ») ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-carrousel/SKILL.md (son calme sans paroles) | MIT | reformulé, traduit en français |
 | S5-46 | Melvynx_video-agent-skills@f454292:skills/short-editing/references/shorts-codes.md (« Captions ») ; Melvynx_video-agent-skills@f454292:skills/short-editing/SKILL.md (étape 7) ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-voix/SKILL.md | MIT | reformulé, traduit en français |
 | S5-47 | Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/SKILL.md (« La boucle ») ; Melvynx_video-agent-skills@f454292:skills/short-editing/SKILL.md (« Quality bar ») | MIT | reformulé, traduit en français |
-| S5-48 | Melvynx_video-agent-skills@f454292:skills/short-editing/references/design-system.md (« Motion », liste des interdits) ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/SKILL.md (`zoom: lent`, `animation`) ; lovenspa@485c428:claude/agent-instagram/visuels.py (`zoompan … 1.08`) | MIT, interne | reformulé, traduit en français |
+| S5-48 | Melvynx_video-agent-skills@f454292:skills/short-editing/references/design-system.md (« Motion », liste des interdits) ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/SKILL.md (`zoom: lent`, `animation`) ; lovenspa:social/s5_production/visuels.py (`zoompan … 1.08`) | MIT, interne | reformulé, traduit en français |
 | S5-49 | Melvynx_video-agent-skills@f454292:skills/short-editing/references/sfx.md (« The house rule ») | MIT | reformulé, traduit en français |
 | S5-50 | Explo38_reels-tiktok-fr@a2281b6:skills/rt-voix/SKILL.md ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-voix/prononciation.json (format) | MIT | reformulé, traduit en français |
 | S5-51 | Explo38_reels-tiktok-fr@a2281b6:skills/rt-voix/SKILL.md (« Étiquette IA ») | MIT | reformulé, traduit en français |
 | S5-52 | Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/SKILL.md (« Le storyboard ») ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/exemple_storyboard.json | MIT | reformulé, traduit en français |
 | S5-53 | Melvynx_video-agent-skills@f454292:skills/broll/SKILL.md (structure `library.json`, règles de choix, consigne des taggueurs) | MIT | reformulé, traduit en français |
-| S5-54 | lovenspa@485c428:claude/agent-instagram/visuels.py (docstring et fonctions `cover`, `fit_on_blur`) ; stratégie maison | interne | repris du code ou des règles maison |
-| S5-55 | lovenspa@485c428:claude/agent-instagram/visuels.py (en-tête, `slide_text`) ; `social/s5_production/visuels.py` (copie de travail, `appliquer_kit`) | interne | repris du code ou des règles maison |
-| S5-56 | lovenspa@485c428:claude/agent-instagram/visuels.py (`slide_cover`) | interne | repris du code ou des règles maison |
-| S5-57 | lovenspa@485c428:claude/agent-instagram/visuels.py (`slide_lodging`) ; instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md (32 px) | MIT, interne | reformulé, traduit en français |
-| S5-58 | lovenspa@485c428:claude/agent-instagram/visuels.py (`reel_frame`) ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/rendre.py (`SAFE_TOP, SAFE_BOTTOM, SAFE_RIGHT, SAFE_LEFT = 230, 1440, 140, 60`) | MIT, interne | reformulé, traduit en français |
+| S5-54 | lovenspa:social/s5_production/visuels.py (docstring et fonctions `cover`, `fit_on_blur`) ; stratégie maison | interne | repris du code ou des règles maison |
+| S5-55 | lovenspa:social/s5_production/visuels.py (en-tête, `slide_text`) ; `appliquer_kit` | interne | repris du code ou des règles maison |
+| S5-56 | lovenspa:social/s5_production/visuels.py (`slide_cover`) | interne | repris du code ou des règles maison |
+| S5-57 | lovenspa:social/s5_production/visuels.py (`slide_lodging`) ; instagram-agent-skill@d03c56b:skills/ig-carousel/SKILL.md (32 px) | MIT, interne | reformulé, traduit en français |
+| S5-58 | lovenspa:social/s5_production/visuels.py (`reel_frame`) ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/rendre.py (`SAFE_TOP, SAFE_BOTTOM, SAFE_RIGHT, SAFE_LEFT = 230, 1440, 140, 60`) | MIT, interne | reformulé, traduit en français |
 | S5-59 | Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/SKILL.md (`--vignette`) ; Explo38_reels-tiktok-fr@a2281b6:skills/rt-carrousel/SKILL.md (recadrage de grille) | MIT | reformulé, traduit en français |
 | S5-60 | knowledge-work-plugins@877a617:small-business/skills/canva-creator/SKILL.md (étape 2) ; knowledge-work-plugins@877a617:small-business/skills/social-content-engine/reference/gotchas.md | Apache-2.0 | reformulé, traduit en français ; modifié et traduit en français par Stellar Projects, 2026 |
 | S5-61 | knowledge-work-plugins@877a617:small-business/skills/social-content-engine/SKILL.md (étape 6, « What not to do ») ; Melvynx_video-agent-skills@f454292:skills/short-editing/SKILL.md (« Quality bar ») | MIT, Apache-2.0 | reformulé, traduit en français ; modifié et traduit en français par Stellar Projects, 2026 |
-| S5-62 | lovenspa@485c428:claude/agent-instagram/regles.json (`equipements_exclus_instagram`, `equipements_sans_interet`) | interne | repris du code ou des règles maison |
+| S5-62 | lovenspa:social/marques/lovenspa/regles.json (`equipements_exclus_instagram`, `equipements_sans_interet`) | interne | repris du code ou des règles maison |
 | S5-63 | Explo38_reels-tiktok-fr@a2281b6:skills/rt-montage/rendre.py (champ `couleur_texte`, contraste auto) ; Melvynx_video-agent-skills@f454292:skills/short-editing/references/style.md (« no text on the face ») | MIT | reformulé, traduit en français |
 | S5-64 | Flora:flora-brand-consistency-audit | service tiers | reformulé, traduit en français |
 | S5-65 | Flora:flora-script-to-video (« View every keyframe ») ; Flora:flora-brand-consistency-audit | service tiers | reformulé, traduit en français |
@@ -105,7 +105,7 @@ Autres éléments de la skill :
 
 - **MIT** (IG, RT, MV) : réutiliser des règles reformulées est libre. Toute copie de code ou d'une portion substantielle doit garder l'avis de copyright et le texte de la licence MIT. Mention de reprise : « d'après <dépôt>@<commit>, licence MIT, © <titulaire> ».
 - **Apache-2.0** (KW) : éléments S5-10, S5-29, S5-41, S5-60, S5-61, et formats de déclinaison de `specs-plateformes.md`. Mention : « modifié et traduit en français par Stellar Projects, 2026 ». Garder le texte de la licence Apache-2.0 et tout fichier NOTICE du dépôt en cas de redistribution ; aucune marque de l'auteur n'est utilisée.
-- **Polices Poppins** (kit Love'nSpa, exemple) : SIL Open Font License (OFL), fichier `OFL.txt` dans `lovenspa@485c428:assets/fonts/`.
+- **Polices Poppins** (kit Love'nSpa, exemple) : SIL Open Font License (OFL), fichier `social/marques/lovenspa/polices/OFL.txt`.
 - **Flora** : service tiers soumis à ses conditions ; aucun contenu de ses skills n'est copié, seuls leurs usages sont décrits.
 - **Interne** (CM, LNS) : Stellar Projects.
 

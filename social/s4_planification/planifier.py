@@ -3,13 +3,15 @@
 S4 Planification : plan de la semaine pour une marque et une plateforme, déduit de la stratégie validée
 (marques/<marque>/strategie_<plateforme>.json) et du catalogue (S3).
 
-5 cases : 3 Reels « le lieu », 1 carrousel « sélection » (ou concours), 1 carrousel couple.
+Grille de la semaine (jours, moteurs, formats), ambiances autorisées, rotation, taille des sélections,
+temps forts et dates de concours : tout vient de la stratégie, rien n'est fixé ici.
 Choix déterministes et explicables :
-  - région de chaque Reel : poids de strategie.json divisé par (1 + passages récents) ;
-  - logement : actif, prix connu, au moins 3 médias, un équipement phare, pas publié depuis 56 jours ;
-  - sélection : thème suivant dans la liste, 6 logements qui passent le filtre ;
-  - concours : si une date de concours tombe dans la semaine et qu'un hébergeur a donné son accord
-    (donnees/<marque>/<plateforme>/partenaires.json), sinon la case reste une sélection et le plan le signale.
+  - région de chaque case « lieu » : poids de la stratégie divisé par (1 + passages récents) ;
+  - offre : active, prix connu, au moins 3 médias, ville connue, ambiance autorisée, aucun équipement non citable,
+    un équipement phare, absente des publications de la période de rotation ;
+  - sélection : thème suivant dans la liste, autant d'offres que la taille demandée ;
+  - concours : si une date de concours tombe dans la semaine et qu'un partenaire a donné son accord
+    (donnees/<marque>/<plateforme>/partenaires.json) et que son offre est éligible, sinon une sélection, signalée.
 Sortie : contrat Plan (cases conformes à contrats/case.schema.json).
 
 Usage :

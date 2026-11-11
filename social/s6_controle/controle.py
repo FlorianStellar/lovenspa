@@ -11,6 +11,9 @@ Bloquants (statut REFUSE) :
   EXCLUS        un équipement non citable sur Instagram (regles.json)
   HASHTAGS      plus de hashtags que la limite, ou hashtag de marque absent
   A_COMPLETER   un {{trou}} reste dans le texte
+  EXPLICITE     un terme du lexique explicite de la marque (regles.json : lexique_explicite)
+  AMBIANCE      une offre de la case hors des ambiances autorisées par la stratégie (verdict)
+  MEDIAS        aucun média (verdict)
 Avertissements (statut A_REVOIR) :
   LONGUEUR      hors de la plage cible de caractères
   OUVERTURE     ouverture maison usée (« Parfois », « Il y a des »…)
@@ -19,9 +22,10 @@ Avertissements (statut A_REVOIR) :
   REPETITION    trop proche des dernières légendes publiées (mêmes tics)
   TYPO          espace avant : ; ! ? (insécable), « » sans insécables, guillemets droits
   AUTRE_MONTANT un montant en euros qui n'est pas le prix du logement
+  EMOJI         plus d'emojis que la limite de la marque (regles.json : max_emojis_legende)
 
 Usage :
-  python3 -m social.s6_controle.controle legende.txt --offre escale-spa-dinard [--marque <id>] [--historique snapshot.json]
+  python3 -m social.s6_controle.controle legende.txt --offre <handle> [--marque <id>] [--historique snapshot.json]
   python3 -m social.s6_controle.controle legende.txt --fiche fiche.json
 Sortie : rapport texte, ou --json. Code de sortie 0 = OK, 1 = A_REVOIR, 2 = REFUSE.
 """
@@ -94,7 +98,7 @@ def prices_in(text, rules=None):
 def name_variants(nom):
     """Façons acceptées de nommer le logement : nom court (avant « - ») et ses débuts d'au moins 5 lettres utiles.
 
-    « L'Escale Dinard - L'Escale Spa » -> « l'escale dinard », « l'escale »."""
+    Exemple : « Le Grand Chalet Alpin - Suite » -> « le grand chalet alpin », « le grand chalet », « le grand »."""
     short = norm(nom.split(" - ")[0]).strip()
     words = short.split()
     out = [short]
@@ -125,6 +129,14 @@ def repetition(body, history, rules):
     recent = history[: rules["fenetre_repetition"]]
     close = sum(1 for h in recent if len(mine & set(tics_in(split_caption(h)[0], rules))) >= k)
     return close / len(recent)
+
+
+EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF]")
+
+
+def emojis_in(text):
+    """Nombre d'emojis (pictogrammes) ; les sélecteurs de variante ne comptent pas."""
+    return len(EMOJI_RE.findall(text))
 
 
 def typo_issues(body):
@@ -190,6 +202,12 @@ def check(text, fiche=None, history=None, rules=None):
             for e in f.get("equipements_non_citables", []):
                 if word_in(norm(e), n):
                     add("EXCLUS", "bloquant", f"équipement non citable sur Instagram : {e}")
+    for terme in rules.get("lexique_explicite", []):
+        if word_in(norm(terme), norm(text)):
+            add("EXPLICITE", "bloquant", f"terme explicite : « {terme} » (ton de la marque : jamais explicite)")
+    max_emo = rules.get("max_emojis_legende")
+    if max_emo is not None and emojis_in(body) > max_emo:
+        add("EMOJI", "avertissement", f"{emojis_in(body)} emojis (maximum de la marque : {max_emo})")
     for e in rules["equipements_exclus_instagram"]:
         if word_in(norm(e), norm(body)) and not any(r["code"] == "EXCLUS" and e in r["message"] for r in res):
             add("EXCLUS", "bloquant", f"équipement non citable sur Instagram : {e}")
@@ -221,7 +239,7 @@ def check(text, fiche=None, history=None, rules=None):
             "appels": ctas, "resultats": res}
 
 
-def verdict(paquet, rules=None, history=None):
+def verdict(paquet, rules=None, history=None, ambiances=None):
     """Verdict d'un Paquet : texte contrôlé contre les Offres de sa case.
 
     Le moteur « couple » ne porte aucune offre par construction : le critère LOGEMENT ne s'y applique pas."""
@@ -232,6 +250,11 @@ def verdict(paquet, rules=None, history=None):
                  and not (case["moteur"] == "couple" and x["code"] == "LOGEMENT")]
     if not paquet.get("medias"):
         bloquants.append({"code": "MEDIAS", "niveau": "bloquant", "message": "aucun média"})
+    if ambiances is not None:
+        for f in offres:
+            if f.get("ambiance") not in ambiances:
+                bloquants.append({"code": "AMBIANCE", "niveau": "bloquant",
+                                  "message": f"« {f['nom']} » : ambiance {f.get('ambiance')} hors des ambiances autorisées {ambiances}"})
     return {"statut": "PRET" if not bloquants else "REFUSE", "controle": r,
             "bloquants": [x["message"] for x in bloquants]}
 

@@ -112,5 +112,34 @@
       "la soirée",
       "le séjour"
     ]
-  }
+  },
+  "max_emojis_legende": 1,
+  "lexique_explicite": [
+    "sexe",
+    "sexuel",
+    "sexuelle",
+    "érotique",
+    "érotisme",
+    "porno",
+    "pornographique",
+    "BDSM",
+    "fétiche",
+    "fétichisme",
+    "sextoy",
+    "sex-toy",
+    "libertin",
+    "libertinage",
+    "échangisme",
+    "échangiste",
+    "coquin",
+    "coquine",
+    "nu",
+    "nue",
+    "nus",
+    "nues",
+    "orgasme",
+    "jouir",
+    "sensualité explicite"
+  ],
+  "lexique_explicite_note": "Liste initiale (11/11/2026) traduisant la règle « romantique et sensuel, jamais explicite » ; à valider par la marque. Un terme présent bloque la publication."
 }

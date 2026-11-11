@@ -76,7 +76,7 @@ class TestImaging(unittest.TestCase):
 
 FICHE = {"handle": "le-nid", "nom": "Le Nid - Spa", "ville": "Vannes", "ville_reference": None, "region": "Bretagne",
          "prix_a_partir_de": 150.0, "equipements": ["Spa", "Sauna"], "equipements_non_citables": [],
-         "url": "https://www.lovenspa.fr/products/le-nid", "actif": True}
+         "url": "https://www.lovenspa.fr/products/le-nid", "actif": True, "ambiance": 1}
 BASE = {"date": "2026-11-16", "heure": "18:30", "plateforme": "instagram", "statut": "A_PRODUIRE"}
 CAPTION = ("Spa et sauna à Vannes : Le Nid, dès 150 € la nuit.\n\nUn gîte pour deux, le spa rien qu'à vous et le sauna "
            "qui chauffe pendant le dîner. Vous arrivez quand vous voulez, vous repartez sans vous presser, et la soirée "

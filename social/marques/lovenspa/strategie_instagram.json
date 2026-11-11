@@ -1,6 +1,7 @@
 {
   "note": "Traduction exécutable du doc « Stratégie Instagram Love'nSpa 2026-2027 » validé le 11/11/2026 (https://claude.ai/artifact/2kWuAKDD13LwfSTDqDUY5v). Toute modification de stratégie se fait dans le doc puis ici.",
-  "objectifs_31_05_2027": {
+  "objectifs": {
+    "echeance": "2027-05-31",
     "abonnes": 20000,
     "part_portee_non_abonnes": 0.7,
     "partages_portee_hors_concours": 0.01,
@@ -183,5 +184,9 @@
   "liens": {
     "selection": "/collections/all",
     "couple": "/"
-  }
+  },
+  "plafond_publications_jour": 2,
+  "plafond_publications_jour_source": "Règle maison (11/11/2026), non sourcée : à confirmer avec les données de J7.",
+  "moteurs_valides": [],
+  "moteurs_valides_note": "Moteurs dont les rendus ont été validés par un humain (jalon J4). S7 refuse de publier un moteur absent de cette liste. Vide tant que J4 n'est pas validé."
 }

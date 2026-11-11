@@ -121,7 +121,6 @@ Sécurité
 
 - Codé : seulement le plan hebdomadaire Instagram (`planifier.py`). Brief mensuel des ventes, cadence TikTok, épingles Pinterest, calendrier permanent, horizon 30 jours, alertes de jours fériés, fin de vente, horaire passé et thème sous quinze jours, plafond d'offre, alternance, stories, brief vidéo, déclinaisons : manuel (à outiller).
 - Le contrat `case` limite les moteurs à `lieu`, `selection`, `concours`, `couple` et les statuts à `A_PRODUIRE`, `BLOQUE`. Une marque Stellar d'un autre secteur demande d'abord une évolution des contrats et du planificateur.
-- Le produit d'un concours est pris dans tout le catalogue, sans contrôle d'éligibilité ni de rotation.
 - Alerte de concours : corrigée le 11/11/2026, elle cite `donnees/<marque>/<plateforme>/partenaires.json` ; l’offre du partenaire passe désormais les critères d’éligibilité (hors rotation).
 - Aucune donnée de disponibilité sur des dates ni de stock : à signaler dans les alertes, jamais supposer.
 - Pinterest : aucune source du corpus pour la cadence ni les formats d'image ; seules les limites de texte sont sourcées.

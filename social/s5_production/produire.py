@@ -93,7 +93,7 @@ def produce(folder, marque=None, catalogue=None, session=None, history=None):
         notes.append("lien UTM à mettre en bio ou en message (non présent dans la légende)")
     paquet = {"case": case, "legende": c["legende"], "medias": medias, "notes": notes}
     valider(paquet, "paquet")
-    verdict = valider(controle.verdict(paquet, marque.regles, history or []), "verdict")
+    verdict = valider(controle.verdict(paquet, marque.regles, history or [], strat["ambiances_autorisees"]), "verdict")
     for nom, obj in (("paquet.json", paquet), ("verdict.json", verdict)):
         with open(os.path.join(folder, nom), "w", encoding="utf-8") as fh:
             json.dump(obj, fh, ensure_ascii=False, indent=1)

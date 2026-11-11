@@ -105,7 +105,7 @@ def show(v):
     return "-" if v is None else v
 
 
-def to_markdown(rows, total, since=None, reels_cible=3, today=None, compte=""):
+def to_markdown(rows, total, since=None, reels_cible=None, today=None, compte=""):
     def pct(x):
         return "-" if x is None else f"{x * 100:.2f} %"
 
@@ -147,8 +147,11 @@ def to_markdown(rows, total, since=None, reels_cible=3, today=None, compte=""):
     out += ["", f"## Cadence ({c['debut']} au {c['fin']}, {c['semaines']} semaines)", "",
             "| Format | Publications par semaine |", "|---|---|"]
     out += [f"| {k} | {v:.2f} |" for k, v in c["par_semaine"].items()]
-    out += ["", f"Reels : {reels:.2f} par semaine pour une cible de {reels_cible} "
-                f"({'atteinte' if reels >= reels_cible else 'non atteinte'})."]
+    if reels_cible is None:
+        out += ["", f"Reels : {reels:.2f} par semaine (aucune cible : stratégie non fournie, --marque)."]
+    else:
+        out += ["", f"Reels : {reels:.2f} par semaine pour une cible de {reels_cible} "
+                    f"({'atteinte' if reels >= reels_cible else 'non atteinte'})."]
     return "\n".join(out) + "\n"
 
 
@@ -158,13 +161,18 @@ def main(argv=None):
     ap.add_argument("--depuis")
     ap.add_argument("--par-format", action="store_true")
     ap.add_argument("--md")
+    ap.add_argument("--marque", help="lit la cible de Reels dans la stratégie Instagram de la marque")
     a = ap.parse_args(argv)
+    cible = None
+    if a.marque:
+        from social.marque import charger
+        cible = sum(1 for s in charger(a.marque).strategie("instagram")["semaine"] if s["format"] == "REELS")
     with open(a.snapshot, encoding="utf-8") as f:
         snap = json.load(f)
     posts = filter_since(snap["publications"], a.depuis)
     rows = enrich(posts, par_format=a.par_format)
     compte = "@" + snap["profil"]["username"] if snap.get("profil", {}).get("username") else ""
-    md = to_markdown(rows, len(snap["publications"]), a.depuis, compte=compte)
+    md = to_markdown(rows, len(snap["publications"]), a.depuis, reels_cible=cible, compte=compte)
     if a.md:
         with open(a.md, "w", encoding="utf-8") as f:
             f.write(md)

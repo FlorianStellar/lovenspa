@@ -5,7 +5,7 @@
   "type": "object",
   "required": [
     "plateforme",
-    "objectifs_31_05_2027",
+    "objectifs",
     "semaine",
     "heure_publication",
     "rotation_logement_jours",
@@ -16,7 +16,9 @@
     "couple",
     "temps_forts",
     "utm",
-    "liens"
+    "liens",
+    "plafond_publications_jour",
+    "moteurs_valides"
   ],
   "properties": {
     "plateforme": {
@@ -65,6 +67,28 @@
     },
     "liens": {
       "type": "object"
+    },
+    "objectifs": {
+      "type": "object",
+      "required": [
+        "echeance"
+      ],
+      "properties": {
+        "echeance": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      }
+    },
+    "plafond_publications_jour": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "moteurs_valides": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "additionalProperties": true,

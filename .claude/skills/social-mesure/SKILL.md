@@ -21,7 +21,7 @@ Je relève les métriques de nos publications par l'API officielle et je les ren
 | Complétude de chaque métrique (vues, portée, partages, enregistrements, abonnements) | idem | idem |
 | Top 5 et 5 derniers par multiple et par partages ÷ portée | idem | idem |
 | Médianes par format (vues, partages ÷ portée, enregistrements ÷ portée) | idem | idem |
-| Cadence par format sur les 4 dernières semaines complètes (lundi-dimanche), Reels contre une cible | idem (cible = 3 par défaut dans le code, non lue dans la stratégie) | idem |
+| Cadence par format sur les 4 dernières semaines complètes (lundi-dimanche), Reels contre une cible | idem (cible lue dans la stratégie avec `--marque <id>`, nombre de cases REELS de la semaine type ; sans marque, aucune cible) | idem |
 | Score par format (médiane du format ÷ médiane du compte) | table « Par format » de l'audit | manuel (à outiller) |
 | Score par moteur de contenu (lieu, sélection, couple, concours… selon la stratégie) | jointure `publies.json` (`media_id`, `moteur`) et instantané (`id`) | manuel (à outiller) |
 | Score par formule d'accroche | `id` de formule noté dans le paquet S5, joint à l'instantané | manuel (à outiller) |
@@ -111,7 +111,7 @@ Boucles
 - Instagram seulement : le connecteur et l'instantané écrivent dans `instagram` en dur ; aucun connecteur TikTok ni Pinterest.
 - L'audit ne prend pas `--marque` : il lit le chemin d'un instantané.
 - Il n'écrit pas d'objets `mesure`. Il n'exclut ni les publications de moins de 48 h, ni les concours, ni les épinglées. Il n'applique pas le seuil de 3 publications par groupe. Il n'affiche pas abonnements ÷ portée.
-- La cible de Reels de la cadence vaut 3 par défaut dans le code au lieu d'être lue dans la stratégie.
+- Cible de Reels : corrigé le 11/11/2026, lue dans la stratégie (`audit.py --marque <id>`).
 - Non collectés : rétention à 3 s, durée des vidéos (donc visionnage moyen ÷ durée), portée hors abonnés par publication (seulement au niveau du compte, sur 30 jours), clics tracés, ventes. S2-M10 n'est donc couvert qu'en partie.
 - Scores par format, par moteur et par formule d'accroche ; les trois boucles : manuel (à outiller). Le planificateur S4 n'a pas d'entrée de pondération venant de S8 ; ses poids de région sont dans la stratégie (propriété de S1).
 - La compilation ne fixe pas de seuil d'infirmation d'une fiche de format : écrire au journal la valeur utilisée.

@@ -119,7 +119,7 @@ class TestAuditFixes(unittest.TestCase):
         self.assertEqual(c["par_semaine"], {"REELS": 0.5})
 
     def test_markdown_has_cadence_target(self):
-        md = audit.to_markdown(audit.enrich([]), 0, today=date(2026, 11, 11))
+        md = audit.to_markdown(audit.enrich([]), 0, today=date(2026, 11, 11), reels_cible=3)
         self.assertIn("pour une cible de 3 (non atteinte)", md)
 
 

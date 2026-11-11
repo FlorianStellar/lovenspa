@@ -6,7 +6,7 @@ Compilation de référence : `social/compilation/s6-s7-s9-controle-diffusion-co
 
 | Élément de la skill | Provenance (`dépôt@commit:chemin`) | Licence | Modification |
 | --- | --- | --- | --- |
-| Codes bloquants et avertissements, fonction `verdict`, typographie `TYPO` | `lovenspa:social/s6_controle/controle.py` (copie de `lovenspa@485c428:claude/agent-instagram/controle.py`) | Interne | Décrit fidèlement, non modifié. |
+| Codes bloquants et avertissements, fonction `verdict`, typographie `TYPO` | `lovenspa:social/s6_controle/controle.py` | Interne | Décrit fidèlement, non modifié. |
 | Clés de règles citées | `lovenspa:social/marques/lovenspa/regles.json` | Interne | Exemple de marque ; la skill ne reprend que les noms de clés. |
 | Note anti-style IA, `detecter.py`, `lexique.json` repris | `Explo38/reels-tiktok-fr@a2281b6:skills/rt-humain/` via `social/s6_controle/vendor/` | MIT | Modifications du vendor listées dans `social/s6_controle/vendor/README.md` (marquées `[lovenspa]`). |
 | `references/lexique-tics-fr.md`, entrées « L » (149) | `Explo38/reels-tiktok-fr@a2281b6:skills/rt-humain/lexique.json` | MIT | Recopiées ; « en définitive » remplacé par une suppression (C-12) ; six remplacements marqués « à relire ». |

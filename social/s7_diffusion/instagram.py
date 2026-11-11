@@ -34,7 +34,6 @@ from social.connecteurs.instagram import IGClient, IGError
 from social.connecteurs.shopify import Shopify
 from social.marque import charger
 PARIS = ZoneInfo("Europe/Paris")
-MAX_PAR_JOUR = 2
 
 STAGED = """mutation($input: [StagedUploadInput!]!) { stagedUploadsCreate(input: $input) {
   stagedTargets { url resourceUrl parameters { name value } } userErrors { field message } } }"""
@@ -59,10 +58,10 @@ def load_publies(data_dir="."):
 
 
 def echeance(case):
-    return datetime.fromisoformat(f"{case['date']}T{case.get('heure', '18:30')}").replace(tzinfo=PARIS)
+    return datetime.fromisoformat(f"{case['date']}T{case['heure']}").replace(tzinfo=PARIS)
 
 
-def verifier(pret, publies, now):
+def verifier(pret, publies, now, strat):
     """Liste des raisons de ne pas publier (vide = feu vert). Pure, testable."""
     case = pret["case"]
     raisons = []
@@ -74,8 +73,11 @@ def verifier(pret, publies, now):
     if any(p.get("cle") == cle for p in publies):
         raisons.append(f"déjà publié ({cle})")
     # une publication à plusieurs offres compte pour une seule (clé unique par case)
-    if len({p.get("cle") for p in publies if p.get("publie_le", "")[:10] == now.date().isoformat()}) >= MAX_PAR_JOUR:
-        raisons.append(f"plafond de {MAX_PAR_JOUR} publications par jour atteint")
+    plafond = strat["plafond_publications_jour"]
+    if len({p.get("cle") for p in publies if p.get("publie_le", "")[:10] == now.date().isoformat()}) >= plafond:
+        raisons.append(f"plafond de {plafond} publications par jour atteint")
+    if case["moteur"] not in strat.get("moteurs_valides", []):
+        raisons.append(f"rendus du moteur « {case['moteur']} » non validés par un humain (jalon J4)")
     if not pret.get("medias"):
         raisons.append("aucun média")
     return raisons
@@ -190,7 +192,7 @@ def traiter(folder, marque, go=False, ig=None, shop=None, now=None):
     now = now or datetime.now(PARIS)
     data_dir = marque.donnees("instagram")
     pret = charger_pret(folder)
-    raisons = verifier(pret, load_publies(data_dir), now)
+    raisons = verifier(pret, load_publies(data_dir), now, marque.strategie("instagram"))
     if not interrupteur_ouvert(data_dir=data_dir):
         raisons.append("interrupteur fermé (IG_PUBLICATION_ACTIVE≠1 ou STOP présent)")
     if raisons:
