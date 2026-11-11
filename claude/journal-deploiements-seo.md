@@ -263,6 +263,6 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Push live : refusé par la politique de sécurité de la session, en attente (go de Florian donné dans le chat).
 
 ## Veille indexation du 11/11/2026
-- Univers : 588 URL (82 fiches modifiées ≤ 48 h, dont 15 suivies, plus les collections), 588 inspectées, 0 erreur.
+- Univers : 588 URL (82 fiches modifiées ≤ 48 h + 15 suivies + collections du sitemap), 588 inspectées, 0 erreur.
 - Aucune nouvelle anomalie, aucun écart de canonical. 4 anomalies connues ; suivi inchangé : 11 en 404, 3 inconnues de Google, 1 en noindex (en standby, décision du 10/11).
 - L8 v2 vérifié en ligne : 10/10 conformes (title + suffixe ≤ 60, meta identique à celle de L8_valeurs.json). J0 du lot = 10/11.
