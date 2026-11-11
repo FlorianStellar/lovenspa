@@ -48,3 +48,4 @@ Skill : `.claude/skills/lovenspa-instagram/SKILL.md` · Outils : `claude/agent-i
 - 11/11 (suite) : stratégie validée (doc https://claude.ai/artifact/2kWuAKDD13LwfSTDqDUY5v), agent autonome : planifier.py, produire.py, visuels.py, publier.py, strategie.json.
   Tâches planifiées (heure de Paris) : plan et production le vendredi 10:13 (trig_01MGRCHs2CHwY7LUyoSuUYrm), mesure le lundi 09:41 (trig_0185Ym33FqDPuAaU3j8NEKj4).
   Publication bloquée : ajouter instagram_content_publish au jeton (utilisateur système claude-insights), mettre IG_PUBLICATION_ACTIVE=1, puis créer la tâche quotidienne `publier.py --dues --go`.
+- 11/11 (fin) : à la demande de Florian, les 2 tâches planifiées sont EN PAUSE (rien ne tourne tant que les rendus ne sont pas validés). Nouvelle architecture en jalons J1 à J10 : doc « Système social média – Love'nSpa puis Stellar Fleet » (https://claude.ai/artifact/Jeqa1t5M5XiwiDE1DS3U1f). Prochaine étape : validation de J1, puis J2.
