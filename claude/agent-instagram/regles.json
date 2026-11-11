@@ -1,5 +1,5 @@
 {
-  "note": "Règles maison de la skill lovenspa-instagram. Modifiables. Les chiffres viennent d'Instagram (limite de 5 hashtags depuis le 18/12/2025, coupe du fil vers 125 caractères).",
+  "note": "Règles maison de la skill lovenspa-instagram, modifiables. Sourcé : 5 hashtags max par post et Reel depuis le 18/12/2025 (blogdumoderateur.com/instagram-limite-hashtags-5-par-publication ; socialmediatoday.com, 19/12/2025). Règles maison non sourcées, à ajuster sur les résultats d'audit : coupe du fil à 125 caractères (mesurée sur le fil de @lovenspa.fr à vérifier), plage cible 300-700 caractères, fenêtre de 12 légendes, seuils de tics et de répétition.",
   "legende": {
     "max_visible": 125,
     "max_caracteres": 2200,
@@ -30,31 +30,50 @@
     "Musique",
     "Vidéo"
   ],
-  "appels_a_l_action": [
-    "lien en bio",
-    "commente",
-    "commentez",
-    "enregistre",
-    "enregistrez",
-    "partage ce post",
-    "partagez ce post",
-    "réserve",
-    "réservez",
-    "dm",
-    "message privé",
-    "écris-nous",
-    "écrivez-nous",
-    "tague",
-    "taguez",
-    "identifie",
-    "identifiez",
-    "envoie-le",
-    "envoyez-le",
-    "envoie ce post",
-    "envoyez ce post",
-    "envoie-lui",
-    "envoyez-lui"
-  ],
+  "appels_a_l_action": {
+    "lien": [
+      "lien en bio",
+      "réservez",
+      "réserve ta",
+      "réserve ton",
+      "réserve votre",
+      "réserve vos",
+      "clique",
+      "cliquez"
+    ],
+    "commentaire": [
+      "commente",
+      "commentez",
+      "dis-nous en commentaire",
+      "dites-nous en commentaire"
+    ],
+    "enregistrer": [
+      "enregistre",
+      "enregistrez"
+    ],
+    "partager": [
+      "partage ce post",
+      "partagez ce post",
+      "envoie-le",
+      "envoyez-le",
+      "envoie ce post",
+      "envoyez ce post",
+      "envoie-lui",
+      "envoyez-lui",
+      "tague ta",
+      "tague ton",
+      "taguez votre",
+      "identifie ta",
+      "identifie ton",
+      "identifiez votre"
+    ],
+    "message": [
+      "dm",
+      "message privé",
+      "écris-nous",
+      "écrivez-nous"
+    ]
+  },
   "tics_maison": [
     "quotidien",
     "parenthèse",
@@ -79,5 +98,19 @@
     "Car "
   ],
   "fenetre_repetition": 12,
-  "seuil_repetition": 0.5
+  "seuil_repetition": 0.5,
+  "tics_communs_min": 2,
+  "contexte_prix_logement": {
+    "avant": [
+      "dès",
+      "à partir de"
+    ],
+    "apres": [
+      "la nuit",
+      "/nuit",
+      "par nuit",
+      "la soirée",
+      "le séjour"
+    ]
+  }
 }

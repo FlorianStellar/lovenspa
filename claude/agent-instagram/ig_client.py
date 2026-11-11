@@ -91,7 +91,7 @@ class IGClient:
             err = data.get("error", {}) if isinstance(data, dict) else {}
             code = err.get("code")
             # 4 / 17 / 32 / 613 : limites de débit ; 1 / 2 : erreur transitoire
-            if code in (1, 2, 4, 17, 32, 613) and attempt < retries:
+            if (code in (1, 2, 4, 17, 32, 613) or r.status_code >= 500) and attempt < retries:
                 time.sleep(2 ** attempt * 5)
                 continue
             raise IGError(err.get("message") or f"HTTP {r.status_code}", code, data)
@@ -171,8 +171,15 @@ class IGClient:
 
     def snapshot(self, with_insights=True):
         """Profil + toutes les publications + leurs métriques."""
+        from datetime import date, timedelta
         prof = self.profile()
         posts = self.media()
+        until = date.today()
+        try:
+            prof["portee_30j_par_type"] = self.account_reach_by_follow_type(
+                (until - timedelta(days=29)).isoformat(), until.isoformat())
+        except IGError as e:
+            prof["portee_30j_par_type"] = {"erreur": str(e)}
         if with_insights:
             for p in posts:
                 time.sleep(self.pause)
@@ -183,7 +190,7 @@ class IGClient:
         return {"profil": prof, "publications": posts}
 
 
-if __name__ == "__main__":
+def main(argv=None):
     import argparse
     import json
     from datetime import date
@@ -191,10 +198,14 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="Instantané Instagram @lovenspa.fr (lecture seule)")
     ap.add_argument("--out", default=None, help="fichier JSON de sortie")
     ap.add_argument("--check", action="store_true", help="teste seulement la connexion")
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
     c = IGClient()
     if a.check:
-        p = c.profile()
+        try:
+            p = c.profile()
+        except IGError as e:
+            hint = " (jeton absent ou révoqué : secret réseau graph.facebook.com à enregistrer)" if e.code in (190, None) else ""
+            raise SystemExit(f"ÉCHEC connexion Instagram : {e}{hint}")
         print(f"OK @{p.get('username')} · {p.get('followers_count')} abonnés · {p.get('media_count')} publications")
     else:
         snap = c.snapshot()
@@ -204,3 +215,8 @@ if __name__ == "__main__":
         with open(out, "w", encoding="utf-8") as f:
             json.dump(snap, f, ensure_ascii=False, indent=1)
         print(f"{len(snap['publications'])} publications -> {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

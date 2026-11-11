@@ -5,8 +5,8 @@ Contrôle maison d'une légende Instagram Love'nSpa, avant validation humaine.
 Bloquants (statut REFUSE) :
   ACCROCHE      la première ligne dépasse la zone visible (125 car.) ou est vide
   APPEL         zéro ou plusieurs appels à l'action (il en faut exactement un)
-  LOGEMENT      aucun logement réel nommé (nom ou ville de la fiche Shopify)
-  PRIX          un prix cité différent du « à partir de » de la fiche
+  LOGEMENT      le logement de la fiche Shopify n'est pas nommé
+  PRIX          un prix de logement (« dès X € », « X € la nuit ») différent du « à partir de » de la fiche
   EXCLUS        un équipement non citable sur Instagram (regles.json)
   HASHTAGS      plus de 5 hashtags, ou #lovenspa absent
   A_COMPLETER   un {{trou}} reste dans le texte
@@ -16,7 +16,8 @@ Avertissements (statut A_REVOIR) :
   CONCLUSION    morale finale usée (« Parce que… »)
   TICS          mots maison surutilisés dans ce texte
   REPETITION    trop proche des dernières légendes publiées (mêmes tics)
-  TYPO          espace manquante avant : ; ! ? ou guillemets droits
+  TYPO          espace avant : ; ! ? (insécable), « » sans insécables, guillemets droits
+  AUTRE_MONTANT un montant en euros qui n'est pas le prix du logement
 
 Usage :
   python3 controle.py legende.txt --logement escale-spa-dinard [--historique data/snapshot.json]
@@ -59,56 +60,94 @@ def first_line(body):
     return ""
 
 
+def word_in(needle, hay):
+    """needle présent en mot entier dans hay (tous deux déjà normalisés)."""
+    return re.search(r"(?<![\w])" + re.escape(needle) + r"(?![\w])", hay) is not None
+
+
 def count_ctas(body, rules):
+    """Familles d'appels à l'action présentes (lien, commentaire, enregistrer, partager, message).
+
+    « Réservez via le lien en bio » = une seule famille (lien)."""
     n = norm(body)
-    found = []
-    for cta in rules["appels_a_l_action"]:
-        pat = r"(?<![\w])" + re.escape(norm(cta)) + r"(?![\w])"
-        if re.search(pat, n):
-            found.append(cta)
-    # « commente » et « commentez » désignent le même appel : on dédoublonne par racine
-    roots, kept = set(), []
-    for f in found:
-        r = norm(f)[:6]
-        if r not in roots:
-            roots.add(r)
-            kept.append(f)
-    return kept
+    return [fam for fam, phrases in rules["appels_a_l_action"].items() if any(word_in(norm(p), n) for p in phrases)]
 
 
-def prices_in(text):
-    """Montants en euros cités : « 190 € », « 190€ », « 190 euros »."""
-    vals = []
-    for m in re.finditer(r"(\d{2,4}(?:[.,]\d{1,2})?)[\s  ]?(?:€|euros?\b)", text):
-        vals.append(float(m.group(1).replace(",", ".")))
-    return vals
+AMOUNT = r"(\d{1,3}(?:[ \u00a0\u202f]\d{3})*(?:[.,]\d{1,2})?|\d+(?:[.,]\d{1,2})?)[ \u00a0\u202f]?(?:€|euros?\b)"
+
+
+def prices_in(text, rules=None):
+    """Montants en euros : liste de (valeur, est_un_prix_de_logement).
+
+    Prix de logement = précédé de « dès » / « à partir de » ou suivi de « la nuit », « par nuit »…"""
+    ctx = (rules or load_rules())["contexte_prix_logement"]
+    out = []
+    for m in re.finditer(AMOUNT, text):
+        val = float(re.sub(r"[ \u00a0\u202f]", "", m.group(1)).replace(",", "."))
+        before, after = norm(text[max(0, m.start() - 20):m.start()]), norm(text[m.end():m.end() + 12])
+        lodging = (any(re.search(re.escape(norm(b)) + r"\s*$", before) for b in ctx["avant"])
+                   or any(after.strip().startswith(norm(a)) for a in ctx["apres"]))
+        out.append((val, lodging))
+    return out
+
+
+def name_variants(nom):
+    """Façons acceptées de nommer le logement : nom court (avant « - ») et ses débuts d'au moins 5 lettres utiles.
+
+    « L'Escale Dinard - L'Escale Spa » -> « l'escale dinard », « l'escale »."""
+    short = norm(nom.split(" - ")[0]).strip()
+    words = short.split()
+    out = [short]
+    for i in range(len(words) - 1, 0, -1):
+        prefix = " ".join(words[:i])
+        useful = re.sub(r"^(l'|le |la |les |au |aux |un |une |d'|du )", "", prefix)
+        if len(re.sub(r"\W", "", useful)) >= 5:
+            out.append(prefix)
+    return out
 
 
 def tics_in(body, rules):
     n = norm(body)
-    return {t: n.count(norm(t)) for t in rules["tics_maison"] if n.count(norm(t))}
+    out = {}
+    for t in rules["tics_maison"]:
+        c = len(re.findall(r"(?<![\w])" + re.escape(norm(t)) + r"(?![\w])", n))
+        if c:
+            out[t] = c
+    return out
 
 
 def repetition(body, history, rules):
-    """Part des légendes récentes qui partagent au moins 3 tics avec celle-ci."""
+    """Part des légendes récentes qui partagent au moins `tics_communs_min` tics avec celle-ci."""
+    k = rules.get("tics_communs_min", 2)
     mine = set(tics_in(body, rules))
-    if len(mine) < 3 or not history:
+    if len(mine) < k or not history:
         return 0.0
     recent = history[: rules["fenetre_repetition"]]
-    close = sum(1 for h in recent if len(mine & set(tics_in(split_caption(h)[0], rules))) >= 3)
+    close = sum(1 for h in recent if len(mine & set(tics_in(split_caption(h)[0], rules))) >= k)
     return close / len(recent)
 
 
 def typo_issues(body):
+    """Typographie française : espace avant ; : ! ? (insécable conseillée), « » avec espaces, guillemets droits."""
+    text = re.sub(r"https?://\S+|www\.\S+", " ", body)
     issues = []
-    for m in re.finditer(r"(\S)([;:!?])", body):
-        prev = m.group(1)
-        if prev in NBSP or prev == " " or prev in "!?:;" or re.match(r"https?", body[max(0, m.start() - 6):m.start() + 1]):
+    for m in re.finditer(r"(.)([;:!?])", text):
+        prev, sign = m.group(1), m.group(2)
+        if prev in NBSP or prev in "!?:;" or prev == "\n":
             continue
-        if m.group(2) == ":" and body[m.end():m.end() + 2] == "//":
-            continue
-        issues.append(f"espace manquante avant « {m.group(2)} » : …{body[max(0, m.start() - 12):m.end()]}")
-    if '"' in body:
+        if sign == ":" and prev.isdigit() and text[m.end():m.end() + 1].isdigit():
+            continue  # heure 16:00
+        where = text[max(0, m.start() - 12):m.end()].replace("\n", " ")
+        if prev == " ":
+            issues.append(f"espace ordinaire avant « {sign} » (insécable conseillée) : …{where}")
+        else:
+            issues.append(f"espace manquante avant « {sign} » : …{where}")
+    for m in re.finditer(r"«(.)|(.)»", text):
+        c = m.group(1) if m.group(1) is not None else m.group(2)
+        if c not in NBSP:
+            issues.append("« » sans espace insécable à l'intérieur")
+            break
+    if '"' in text:
         issues.append("guillemets droits : utiliser « »")
     return issues
 
@@ -137,18 +176,18 @@ def check(text, fiche=None, history=None, rules=None):
         add("LOGEMENT", "bloquant", "aucune fiche logement fournie : impossible de vérifier un logement réel")
     else:
         n = norm(body)
-        nom_court = norm(fiche["nom"].split(" - ")[0])
-        villes = [norm(v) for v in (fiche.get("ville"), fiche.get("ville_reference")) if v]
-        if nom_court not in n and not any(v in n for v in villes):
-            add("LOGEMENT", "bloquant", f"ni « {fiche['nom'].split(' - ')[0]} » ni sa ville ne sont cités")
-        for p in prices_in(body):
-            if fiche.get("prix_a_partir_de") is None or abs(p - fiche["prix_a_partir_de"]) > 0.01:
+        if not any(word_in(v, n) for v in name_variants(fiche["nom"])):
+            add("LOGEMENT", "bloquant", f"le logement « {fiche['nom'].split(' - ')[0]} » n'est pas nommé")
+        for p, lodging in prices_in(body, rules):
+            if not lodging:
+                add("AUTRE_MONTANT", "avertissement", f"montant {p:g} € cité hors prix du logement : vérifier sa source")
+            elif fiche.get("prix_a_partir_de") is None or abs(p - fiche["prix_a_partir_de"]) > 0.01:
                 add("PRIX", "bloquant", f"prix cité {p:g} € ≠ fiche {fiche.get('prix_a_partir_de')}")
         for e in fiche.get("equipements_non_citables", []):
-            if norm(e) in n:
+            if word_in(norm(e), n):
                 add("EXCLUS", "bloquant", f"équipement non citable sur Instagram : {e}")
     for e in rules["equipements_exclus_instagram"]:
-        if norm(e) in norm(body) and not any(r["code"] == "EXCLUS" and e in r["message"] for r in res):
+        if word_in(norm(e), norm(body)) and not any(r["code"] == "EXCLUS" and e in r["message"] for r in res):
             add("EXCLUS", "bloquant", f"équipement non citable sur Instagram : {e}")
     if len(tags) > L["max_hashtags"]:
         add("HASHTAGS", "bloquant", f"{len(tags)} hashtags (max {L['max_hashtags']})")
@@ -159,15 +198,17 @@ def check(text, fiche=None, history=None, rules=None):
         add("LONGUEUR", "avertissement", f"{len(body)} caractères (cible {lo} à {hi})")
     if any(line1.startswith(o) for o in rules["ouvertures_interdites"]):
         add("OUVERTURE", "avertissement", f"ouverture usée : « {line1[:40]}… »")
-    last = [p for p in body.split("\n") if p.strip()]
-    if last and any(last[-1].strip().startswith(c) for c in rules["conclusions_interdites"]):
-        add("CONCLUSION", "avertissement", f"conclusion usée : « {last[-1].strip()[:40]}… »")
+    paras = [p.strip() for p in body.split("\n") if p.strip()]
+    for p in paras[-2:]:  # dernier paragraphe, ou celui juste avant l'appel à l'action
+        if any(p.startswith(c) for c in rules["conclusions_interdites"]):
+            add("CONCLUSION", "avertissement", f"conclusion usée : « {p[:40]}… »")
+            break
     t = tics_in(body, rules)
     if sum(t.values()) >= 3:
         add("TICS", "avertissement", "tics maison : " + ", ".join(f"{k} ×{v}" for k, v in t.items()))
     rep = repetition(body, history or [], rules)
     if rep >= rules["seuil_repetition"]:
-        add("REPETITION", "avertissement", f"{rep:.0%} des dernières légendes partagent au moins 3 de ses tics")
+        add("REPETITION", "avertissement", f"{rep:.0%} des dernières légendes partagent au moins {rules.get('tics_communs_min', 2)} de ses tics")
     for i in typo_issues(body):
         add("TYPO", "avertissement", i)
 

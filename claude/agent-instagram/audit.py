@@ -75,11 +75,30 @@ def rank(rows, key, top=5):
     return valid[:top], valid[-top:][::-1] if len(valid) > top else []
 
 
+def cadence(posts, weeks=4, today=None):
+    """Publications par semaine et par format sur les `weeks` dernières semaines complètes (lundi-dimanche)."""
+    from datetime import date, timedelta
+    today = today or date.today()
+    start = today - timedelta(days=today.weekday() + 7 * weeks)
+    end = today - timedelta(days=today.weekday())
+    counts = {}
+    for p in posts:
+        d = (p.get("timestamp") or "")[:10]
+        if d and start.isoformat() <= d < end.isoformat():
+            counts[fmt(p)] = counts.get(fmt(p), 0) + 1
+    return {"debut": start.isoformat(), "fin": (end - timedelta(days=1)).isoformat(), "semaines": weeks,
+            "par_semaine": {k: v / weeks for k, v in sorted(counts.items())}}
+
+
 def filter_since(posts, since):
     return [p for p in posts if not since or (p.get("timestamp") or "")[:10] >= since]
 
 
-def to_markdown(rows, total, since=None):
+def show(v):
+    return "-" if v is None else v
+
+
+def to_markdown(rows, total, since=None, reels_cible=3, today=None):
     def pct(x):
         return "-" if x is None else f"{x * 100:.2f} %"
 
@@ -89,7 +108,7 @@ def to_markdown(rows, total, since=None):
     def line(r):
         cap = (r.get("caption") or "").split("\n")[0][:70].replace("|", "/")
         return (f"| {r['timestamp'][:10]} | {r['format']} | {mult(r['multiple'])} | {pct(r['partages_portee'])} | "
-                f"{pct(r['enregistrements_portee'])} | {metric(r, 'views') or '-'} | {metric(r, 'reach') or '-'} | "
+                f"{pct(r['enregistrements_portee'])} | {show(metric(r, 'views'))} | {show(metric(r, 'reach'))} | "
                 f"[{cap}]({r.get('permalink', '')}) |")
 
     head = "| Date | Format | Multiple | Partages/portée | Enreg./portée | Vues | Portée | Post |\n|---|---|---|---|---|---|---|---|"
@@ -98,6 +117,11 @@ def to_markdown(rows, total, since=None):
            f"Périmètre : {len(rows)} publications" + (f" depuis le {since}" if since else "") + f" (compte : {total}).",
            "Complétude des métriques : " + ", ".join(f"{k} {v}/{len(rows)}" for k, v in comp.items()), ""]
     for key, title in (("multiple", "multiple sur la médiane"), ("partages_portee", "partages par portée")):
+        n_ok = sum(1 for r in rows if r.get(key) is not None)
+        if n_ok * 2 < len(rows):
+            out += [f"## Classement par {title} : non publié", "",
+                    f"Métrique disponible pour {n_ok}/{len(rows)} publications, moins de la moitié : aucune conclusion.", ""]
+            continue
         top, bottom = rank(rows, key)
         out += [f"## Top 5 par {title}", "", head] + [line(r) for r in top] + [""]
         if bottom:
@@ -110,7 +134,14 @@ def to_markdown(rows, total, since=None):
         def med(k):
             v = [r[k] for r in rs if r.get(k) is not None]
             return statistics.median(v) if v else None
-        out.append(f"| {f} | {len(rs)} | {median_of(rs, 'views') or '-'} | {pct(med('partages_portee'))} | {pct(med('enregistrements_portee'))} |")
+        out.append(f"| {f} | {len(rs)} | {show(median_of(rs, 'views'))} | {pct(med('partages_portee'))} | {pct(med('enregistrements_portee'))} |")
+    c = cadence(rows, today=today)
+    reels = c["par_semaine"].get("REELS", 0)
+    out += ["", f"## Cadence ({c['debut']} au {c['fin']}, {c['semaines']} semaines)", "",
+            "| Format | Publications par semaine |", "|---|---|"]
+    out += [f"| {k} | {v:.2f} |" for k, v in c["par_semaine"].items()]
+    out += ["", f"Reels : {reels:.2f} par semaine pour une cible de {reels_cible} "
+                f"({'atteinte' if reels >= reels_cible else 'non atteinte'})."]
     return "\n".join(out) + "\n"
 
 

@@ -44,13 +44,15 @@ class TestHelpers(unittest.TestCase):
         self.assertEqual(controle.norm("L’Écrin"), "l'ecrin")
 
     def test_prices(self):
-        self.assertEqual(controle.prices_in("dès 190 € ou 245,50€ et 99 euros"), [190.0, 245.5, 99.0])
+        self.assertEqual(controle.prices_in("dès 190 € ou 245,50€ et 99 euros"),
+                         [(190.0, True), (245.5, False), (99.0, False)])
         self.assertEqual(controle.prices_in("2 personnes, 3 nuits"), [])
 
     def test_ctas_dedup_by_root(self):
         rules = controle.load_rules()
         self.assertEqual(len(controle.count_ctas("Commente ou commentez", rules)), 1)
         self.assertEqual(len(controle.count_ctas("Enregistrez ce post et lien en bio", rules)), 2)
+        self.assertEqual(len(controle.count_ctas("Réservez via le lien en bio", rules)), 1)
         self.assertEqual(controle.count_ctas("Une soirée douce", rules), [])
 
     def test_typo(self):

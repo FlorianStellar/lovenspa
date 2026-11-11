@@ -27,7 +27,7 @@ FIELDS = """handle title status productType onlineStoreUrl tags
   ville: metafield(namespace: "accentuate", key: "ville") { value }
   region: metafield(namespace: "accentuate", key: "region") { value }
   onAime: metafield(namespace: "accentuate", key: "on_aime") { value }"""
-Q_ONE = "query($h: String!) { productByHandle(handle: $h) { %s } }" % FIELDS
+Q_ONE = "query($q: String!) { products(first: 1, query: $q) { nodes { %s } } }" % FIELDS
 Q_SEARCH = "query($q: String!) { products(first: 10, query: $q) { nodes { %s } } }" % FIELDS
 
 
@@ -98,7 +98,8 @@ class Shop:
         raise RuntimeError("Shopify : trop d'essais")
 
     def logement(self, handle):
-        return fiche(self.gql(Q_ONE, {"h": handle}).get("productByHandle"))
+        nodes = self.gql(Q_ONE, {"q": f"handle:{handle}"})["products"]["nodes"]
+        return fiche(nodes[0]) if nodes and nodes[0]["handle"] == handle else None
 
     def chercher(self, texte):
         q = f"status:active {texte}".strip()
