@@ -266,3 +266,10 @@ Colonnes : date déploiement · lot · levier · URLs modifiées · témoin · d
 - Univers : 588 URL (82 fiches modifiées ≤ 48 h + 15 suivies + collections du sitemap), 588 inspectées, 0 erreur.
 - Aucune nouvelle anomalie, aucun écart de canonical. 4 anomalies connues ; suivi inchangé : 11 en 404, 3 inconnues de Google, 1 en noindex (en standby, décision du 10/11).
 - L8 v2 vérifié en ligne : 10/10 conformes (title + suffixe ≤ 60, meta identique à celle de L8_valeurs.json). J0 du lot = 10/11.
+
+## E1 — Export GSC → BigQuery : configuration Cloud (11/11/2026)
+- Projet « lovenspa » inaccessible depuis florian@lovenspa.fr (créé sous un autre compte Google, facturation 018C76… fermée) : abandonné pour E1.
+- Projet retenu : deep-rainfall-514310-j9 (« My First Project », org lovenspa.fr 864340713183), facturation 012B6C-716B93-6C13A4 active (billingEnabled: true).
+- API BigQuery activée. Exception projet à la contrainte iam.allowedPolicyMemberDomains (allowAll, ce projet seulement ; le reste de l'org reste restreint). florian@lovenspa.fr : orgpolicy.policyAdmin au niveau org.
+- Rôles : search-console-data-export@system → bigquery.jobUser + dataEditor ; lovenspa-seo-agent → bigquery.dataViewer + jobUser (4/4 après ~propagation).
+- Reste : « Configurer l'exportation » dans GSC (dataset searchconsole, UE), puis contrôle des tables searchdata_site_impression / searchdata_url_impression sous 48 h.
