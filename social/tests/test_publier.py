@@ -34,6 +34,10 @@ class TestGuards(unittest.TestCase):
         pubs = [{"cle": f"k{i}", "publie_le": "2026-11-16T10:00:00"} for i in range(2)]
         self.assertTrue(any("plafond" in x for x in publier.verifier(PRET, pubs, NOW)))
 
+    def test_cap_counts_publications_not_offers(self):
+        pubs = [{"cle": "k1", "publie_le": "2026-11-16T10:00:00"} for _ in range(6)]
+        self.assertEqual(publier.verifier(PRET, pubs, NOW), [])
+
     def test_switch(self):
         with tempfile.TemporaryDirectory() as d:
             self.assertFalse(publier.interrupteur_ouvert({}, d))
@@ -116,6 +120,14 @@ class TestInstagram(unittest.TestCase):
         kinds = [p[1].get("media_type") or ("item" if p[1].get("is_carousel_item") else p[0]) for p in s.posts]
         self.assertEqual(kinds, ["item", "item", "item", "CAROUSEL", "media_publish"])
         self.assertEqual(s.posts[3][1]["children"], "C1,C2,C3")
+
+    def test_permalink_error_still_returns_media(self):
+        s = FakeIGSession()
+        orig = s.get
+        s.get = lambda url, params=None, timeout=None: (FakeResp(500, {}) if "permalink" in (params or {}).get("fields", "")
+                                                       else orig(url, params, timeout))
+        mid, link = publier.publier_instagram(IGClient("1", session=s, version=""), "REELS", ["u"], "cap")
+        self.assertEqual((mid, link), ("M1", None))
 
     def test_container_error(self):
         s = FakeIGSession()

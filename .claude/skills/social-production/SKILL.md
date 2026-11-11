@@ -260,8 +260,8 @@ Une déclinaison part d'un visuel validé et recadre les vraies photos, sans reg
 ## Limites connues
 
 Corrections à faire dans le code (relevées par la compilation, non appliquées) :
-1. **Zone sûre des Reels : texte trop bas.** `visuels.reel_frame` place les cartons suivants à `y0 = 1920 - 420 - h` : leur bas descend à y=1500, alors que l'arbitrage fixe le texte entre y=230 et y=1440. Le carton s'étend aussi de x=60 à x=1020, au-delà de x=940, et empiète sur la colonne d'actions (rien au-delà de x=850 entre y=900 et y=1440). Corriger : bas du carton à y=1440 au plus, carton entre x=60 et x=940 (S5-58, conflit « zone sûre »).
-2. **Tailles de texte sous 32 px.** `slide_lodging` : équipements en 28 px, compteur en 26 px ; `slide_text` : compteur en 26 px ; `slide_cover` : compteur en 28 px. Corriger : 32 px minimum sur toute diapo, 34 px dans les vidéos, sous-titres 72 px minimum si voix (S5-26, S5-57, conflit « taille minimale »).
+1. **Zone sûre des Reels : corrigé le 11/11/2026.** Le bas du texte est fixé à `ZONE_SURE_BAS = 1440` dans `visuels.py` (test `test_reel_text_inside_safe_zone`). La valeur reste à vérifier dans la documentation officielle.
+2. **Tailles de texte : corrigé le 11/11/2026.** Plus aucun texte sous `TAILLE_TEXTE_MIN = 32` px (test `test_min_text_size_in_code`).
 
 Autres écarts du code :
 - Mention de la marque seulement sur la diapo finale, pas sur chaque diapo (S5-25).

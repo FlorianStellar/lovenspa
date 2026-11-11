@@ -13,7 +13,8 @@ Variables optionnelles :
   IG_USERNAME       impose le nom du compte (sinon celui de la marque)
   IG_GRAPH_VERSION  version d'API, ex. "v24.0" (défaut : version par défaut de l'app Meta)
 
-Aucune écriture : ce client ne publie, ne commente et n'envoie rien.
+Écriture limitée à la publication (méthode post), appelée seulement par S7 avec ses garde-fous ;
+ce connecteur ne commente et n'envoie aucun message.
 """
 import os
 import re

@@ -24,25 +24,25 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "transposable": ["tiktok"],
   "objectif": "portee",
   "objectif_secondaire": ["conversion"],
-  "objectif_note": "Hypothèse : le benchmark ne mesure que l'engagement.",
+  "objectif_note": "Hypothèse : le benchmark ne mesure que l'engagement.",
   "structure": [
-    "0-1 s : premier plan déjà en mouvement, dans le lieu (porte qui s'ouvre, vapeur qui monte). Texte à l'écran de 6 mots maximum. Pas de mise en place.",
-    "1-8 s : détails sensoriels, plans courts de 0,5 à 1,5 s, coupe franche.",
-    "Avant la moitié : l'atout promis est montré (exemple Love'nSpa : le spa rien qu'à deux).",
-    "Fin : nom du lieu ou région, appel (lien en bio ou commentaire, voir F09).",
-    "Légende : première ligne en suspens (accroche A61)."
+    "0-1 s : premier plan déjà en mouvement, dans le lieu (porte qui s'ouvre, vapeur qui monte). Texte à l'écran de 6 mots maximum. Pas de mise en place.",
+    "1-8 s : détails sensoriels, plans courts de 0,5 à 1,5 s, coupe franche.",
+    "Avant la moitié : l'atout promis est montré (exemple Love'nSpa : le spa rien qu'à deux).",
+    "Fin : nom du lieu ou région, appel (lien en bio ou commentaire, voir F09).",
+    "Légende : première ligne en suspens (accroche A61)."
   ],
   "structure_statut": "proposée (contenu visuel non observé)",
   "duree": "15 à 30 s (preuve C)",
   "preuve": "B",
-  "observe": "8 comptes au-dessus de 3x : Love in Room (50,1x ; 11,2x ; 7,2x ; 4,1x ; 3,6x), Chéri fais tes valises (15,5x ; 7,8x ; 4,5x), Let's go my love (9,9x), Les Cabanes dans les Bois (5,8x ; 3,4x ; 3,2x), Canopy & Stars (4,2x ; 3,4x), Secret de Paris (4,0x ; 3,5x), AbracadaRoom (3,1x), Attrape-Rêves (3,1x).",
+  "observe": "8 comptes au-dessus de 3x : Love in Room (50,1x ; 11,2x ; 7,2x ; 4,1x ; 3,6x), Chéri fais tes valises (15,5x ; 7,8x ; 4,5x), Let's go my love (9,9x), Les Cabanes dans les Bois (5,8x ; 3,4x ; 3,2x), Canopy & Stars (4,2x ; 3,4x), Secret de Paris (4,0x ; 3,5x), AbracadaRoom (3,1x), Attrape-Rêves (3,1x).",
   "exemples": [
     "https://www.instagram.com/reel/DcTr2wHI4T9/ (Love in Room, 50,1x)",
     "https://www.instagram.com/reel/Dcd6dG_AdSS/ (Secret de Paris, 4,0x)",
     "https://www.instagram.com/reel/DbtYgFHILBd/ (Les Cabanes dans les Bois, 5,8x)"
   ],
   "limites": [
-    "Love in Room n'a que 20 publications : sous le seuil de 10 publications dans la fenêtre si l'on applique S2-M03, à vérifier.",
+    "Love in Room n'a que 20 publications au total : vérifier qu'au moins 10 tombent dans la fenêtre de 7 à 180 jours (S2-M03).",
     "Les succès de Chéri fais tes valises datent de 2025 (dernière publication il y a 177 jours au moment du benchmark).",
     "Multiple d'interactions, pas de vues."
   ],
@@ -51,7 +51,7 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
     "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json (rules)",
     "Melvynx_video-agent-skills@f454292:skills/steal/references/learnings.md (point 4)",
     "nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-content-marketing/SKILL.md (Instagram, durée)",
-    "accroche A24 « La révélation »"
+    "accroche A24 « La révélation »"
   ]
 }
 ```
@@ -66,22 +66,22 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "objectif": "abonnes",
   "objectif_secondaire": ["portee"],
   "structure": [
-    "Titre en capitales « CONCOURS ».",
-    "Lot chiffré (« 2 nuits », « une nuitée »).",
+    "Titre en capitales « CONCOURS ».",
+    "Lot chiffré (« 2 nuits », « une nuitée »).",
     "Souvent un partenaire co-organisateur.",
-    "Après le tirage : mention « terminé » ajoutée au titre."
+    "Après le tirage : mention « terminé » ajoutée au titre."
   ],
-  "structure_statut": "observée dans les légendes seulement ; contenu des diapositives non observé",
+  "structure_statut": "observée dans les légendes seulement ; contenu des diapositives non observé",
   "preuve": "B",
   "biais": "La mécanique (commenter, identifier un ami) gonfle les commentaires. Ces publications devraient être retirées des médianes et classées à part (S2-M03, S2-R08). Le multiple ne prouve donc pas une préférence du public pour le format.",
-  "observe": "9 comptes au-dessus de 3x : Weekendesk (152,2x ; 56,7x), Coucoo Cabanes (55,2x ; 50,1x), Smartbox (39,4x), Explore France (31,8x), Staycation (31,3x), YESforLOV (8,3x), Let's go my love (7,8x ; 6,1x ; 5,8x), Amoureux du monde (7,4x ; 6,0x ; 5,1x ; 3,2x), Passage du Désir (6,9x).",
+  "observe": "9 comptes au-dessus de 3x : Weekendesk (152,2x ; 56,7x), Coucoo Cabanes (55,2x ; 50,1x), Smartbox (39,4x), Explore France (31,8x), Staycation (31,3x), YESforLOV (8,3x), Let's go my love (7,8x ; 6,1x ; 5,8x), Amoureux du monde (7,4x ; 6,0x ; 5,1x ; 3,2x), Passage du Désir (6,9x).",
   "exemples": [
     "https://www.instagram.com/p/DeMCq8tEV3j/ (Coucoo Cabanes, 55,2x)",
     "https://www.instagram.com/p/DfPDpKzjUxR/ (Let's go my love, 7,8x)"
   ],
   "limites": [
-    "Biais de mécanique : multiple non comparable aux autres formats ; comparer un concours à d'autres concours seulement.",
-    "À valider hors sources : règlement de jeu-concours et règles Meta sur les promotions (aucune source compilée ne les couvre)."
+    "Biais de mécanique : multiple non comparable aux autres formats ; comparer un concours à d'autres concours seulement.",
+    "À valider hors sources : règlement de jeu-concours et règles Meta sur les promotions (aucune source compilée ne les couvre)."
   ],
   "sources": [
     "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
@@ -102,24 +102,24 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "objectif": "enregistrement",
   "objectif_secondaire": ["partage"],
   "structure": [
-    "Diapo 1 : couverture forte, promesse chiffrée (exemple : « {{N}} logements avec spa à moins de {{durée}} de {{ville}} »).",
-    "Diapos 2 à N : un lieu par diapositive, une photo réelle, une ligne d'atout.",
-    "Une diapositive « favori » annoncée dès la couverture.",
-    "Dernière diapo : appel à enregistrer ou à partager."
+    "Diapo 1 : couverture forte, promesse chiffrée (exemple : « {{N}} logements avec spa à moins de {{durée}} de {{ville}} »).",
+    "Diapos 2 à N : un lieu par diapositive, une photo réelle, une ligne d'atout.",
+    "Une diapositive « favori » annoncée dès la couverture.",
+    "Dernière diapo : appel à enregistrer ou à partager."
   ],
   "structure_statut": "proposée",
-  "nombre_diapos": "5 à 10 (preuve C) ; 7 éléments maximum dans la liste",
+  "nombre_diapos": "5 à 10 (preuve C) ; 7 éléments maximum dans la liste",
   "preuve": "B",
-  "observe": "6 comptes au-dessus de 3x : Hipcamp (9,6x), Le Bonbon (8,6x), Millesvoyages (7,1x), Explore France (6,5x ; 3,4x), Staycation (4,9x), Mr & Mrs Smith (4,6x ; 3,2x).",
+  "observe": "6 comptes au-dessus de 3x : Hipcamp (9,6x), Le Bonbon (8,6x), Millesvoyages (7,1x), Explore France (6,5x ; 3,4x), Staycation (4,9x), Mr & Mrs Smith (4,6x ; 3,2x).",
   "exemples": [
     "https://www.instagram.com/p/Dd4K8BxjgEG/ (Staycation, 4,9x)",
     "https://www.instagram.com/p/DcgYiaZoMGi/ (Mr & Mrs Smith, 4,6x)"
   ],
-  "limites": ["Multiple d'interactions : l'objectif enregistrement n'est pas mesuré par le benchmark (hypothèse à confirmer par S8)."],
+  "limites": ["Multiple d'interactions : l'objectif enregistrement n'est pas mesuré par le benchmark (hypothèse à confirmer par S8)."],
   "sources": [
     "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
     "nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-content-marketing/SKILL.md",
-    "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json#id=11 (piège : 7 éléments maximum)",
+    "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json#id=11 (piège : 7 éléments maximum)",
     "accroche A11"
   ]
 }
@@ -135,18 +135,18 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "objectif": "portee",
   "objectif_secondaire": ["enregistrement"],
   "structure": [
-    "Diapo 1 : la plus belle vue du logement.",
-    "Diapos suivantes : détails (exemple Love'nSpa : spa, lit, lumière du soir).",
-    "Dernière diapo : localisation."
+    "Diapo 1 : la plus belle vue du logement.",
+    "Diapos suivantes : détails (exemple Love'nSpa : spa, lit, lumière du soir).",
+    "Dernière diapo : localisation."
   ],
-  "structure_statut": "proposée ; contenu exact des diapositives non observé",
+  "structure_statut": "proposée ; contenu exact des diapositives non observé",
   "preuve": "B",
-  "observe": "5 comptes au-dessus de 3x : Bruno Maltor (65,7x ; 12,8x ; 5,1x, légende réduite au nom du lieu), Plum Guide (5,5x), Canopy & Stars (4,3x ; 3,7x), Les Plus Beaux Villages de France (4,3x), Secret de Paris (3,9x).",
+  "observe": "5 comptes au-dessus de 3x : Bruno Maltor (65,7x ; 12,8x ; 5,1x, légende réduite au nom du lieu), Plum Guide (5,5x), Canopy & Stars (4,3x ; 3,7x), Les Plus Beaux Villages de France (4,3x), Secret de Paris (3,9x).",
   "exemples": [
     "https://www.instagram.com/p/Dehf8O5Fy68/ (Plum Guide, 5,5x)",
     "https://www.instagram.com/p/De3l2XJl7hv/ (Canopy & Stars, 4,3x)"
   ],
-  "limites": ["Structure non observée : à confirmer par visionnage (S2-M05)."],
+  "limites": ["Structure non observée : à confirmer par visionnage (S2-M05)."],
   "sources": ["lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md"]
 }
 ```
@@ -161,19 +161,19 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "objectif": "portee",
   "objectif_secondaire": ["abonnes"],
   "structure": [
-    "Diapo 1 : « Nouveau » et la photo qui montre l'atout.",
-    "Diapo 2 : ce que ça change.",
-    "Diapos suivantes : détails.",
-    "Dernière diapo : quand et où réserver."
+    "Diapo 1 : « Nouveau » et la photo qui montre l'atout.",
+    "Diapo 2 : ce que ça change.",
+    "Diapos suivantes : détails.",
+    "Dernière diapo : quand et où réserver."
   ],
-  "structure_statut": "proposée (formule A24 « La révélation »)",
+  "structure_statut": "proposée (formule A24 « La révélation »)",
   "preuve": "B",
-  "observe": "4 comptes au-dessus de 3x, surtout en carrousel : YESforLOV (53,1x, artiste partenaire), Coucoo Cabanes (6,8x, nouveau domaine), Canopy & Stars (6,8x), Staycation (4,0x ; 3,6x ; 3,0x, collaborations et événements).",
+  "observe": "4 comptes au-dessus de 3x, surtout en carrousel : YESforLOV (53,1x, artiste partenaire), Coucoo Cabanes (6,8x, nouveau domaine), Canopy & Stars (6,8x), Staycation (4,0x ; 3,6x ; 3,0x, collaborations et événements).",
   "exemples": [
     "https://www.instagram.com/p/DdmVvBFjWUG/ (Canopy & Stars, 6,8x)",
     "https://www.instagram.com/p/DbDQNKeCHRc/ (Coucoo Cabanes, 6,8x)"
   ],
-  "limites": ["Les partenariats et collaborations sont à classer à part dans les médianes (S2-M03) : même biais que F02, à un degré inconnu."],
+  "limites": ["Les partenariats et collaborations sont à classer à part dans les médianes (S2-M03) : même biais que F02, à un degré inconnu."],
   "sources": [
     "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
     "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json#id=24"
@@ -191,19 +191,19 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "objectif": "portee",
   "objectif_secondaire": ["partage"],
   "structure": [
-    "Accroche avec la date ou la saison (formule A19 « La date limite »).",
+    "Accroche avec la date ou la saison (formule A19 « La date limite »).",
     "Plans du lieu dans l'ambiance de saison.",
     "Information pratique datée.",
     "Appel avant la date. L'urgence doit être vraie."
   ],
   "structure_statut": "proposée",
   "preuve": "B",
-  "observe": "5 comptes au-dessus de 3x, en Reel et en carrousel : Beautiful Destinations (35,6x ; 34,3x ; 33,8x, Noël), Le Bonbon (30,8x, événement), Hipcamp (14,2x, Perséides avec dates), Sortir à Paris (10,4x ; 5,7x ; 4,4x ; 3,4x), Weekendesk (3,0x).",
+  "observe": "5 comptes au-dessus de 3x, en Reel et en carrousel : Beautiful Destinations (35,6x ; 34,3x ; 33,8x, Noël), Le Bonbon (30,8x, événement), Hipcamp (14,2x, Perséides avec dates), Sortir à Paris (10,4x ; 5,7x ; 4,4x ; 3,4x), Weekendesk (3,0x).",
   "exemples": [
     "https://www.instagram.com/reel/DfPEcFqMawt/ (Sortir à Paris, 10,4x)",
     "https://www.instagram.com/reel/DfPywy5GBl3/ (Weekendesk, 3,0x)"
   ],
-  "limites": ["Effet de saison : un multiple de décembre ne se compare qu'à un multiple de décembre."],
+  "limites": ["Effet de saison : un multiple de décembre ne se compare qu'à un multiple de décembre."],
   "sources": [
     "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
     "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json#id=19",
@@ -217,25 +217,25 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
 ```json
 {
   "id": "F07",
-  "nom": "Carrousel texte « qui parle » (phrase, mème, prise de position)",
+  "nom": "Carrousel texte « qui parle » (phrase, mème, prise de position)",
   "plateforme": "instagram",
   "objectif": "partage",
   "objectif_compilation": "partage et commentaires",
   "structure": [
-    "Diapo 1 : une phrase courte qui se suffit.",
-    "Diapos suivantes : développement en 2 à 4 phrases.",
-    "Dernière diapo : question ouverte au public."
+    "Diapo 1 : une phrase courte qui se suffit.",
+    "Diapos suivantes : développement en 2 à 4 phrases.",
+    "Dernière diapo : question ouverte au public."
   ],
   "structure_statut": "proposée",
   "preuve": "B",
-  "observe": "5 comptes au-dessus de 3x : Je m'en bats le clito (20,4x ; 17,1x ; 14,3x), Madmoizelle (19,1x ; 10,4x), Gang du clito (8,1x ; 6,5x ; 6,3x), Passage du Désir (4,5x), Coucoo Cabanes (3,5x).",
+  "observe": "5 comptes au-dessus de 3x : Je m'en bats le clito (20,4x ; 17,1x ; 14,3x), Madmoizelle (19,1x ; 10,4x), Gang du clito (8,1x ; 6,5x ; 6,3x), Passage du Désir (4,5x), Coucoo Cabanes (3,5x).",
   "exemples": [
     "https://www.instagram.com/p/DbdrcbKjEbg/ (Passage du Désir, 4,5x)",
     "https://www.instagram.com/p/DbF5S6oDZnf/ (Coucoo Cabanes, 3,5x)"
   ],
   "limites": [
-    "La plupart des succès sont militants ou d'actualité sociale : le ton doit être adapté à la marque.",
-    "Exemple Love'nSpa : complicité de couple, humour tendre, jamais militant ni explicite."
+    "La plupart des succès sont militants ou d'actualité sociale : le ton doit être adapté à la marque.",
+    "Exemple Love'nSpa : complicité de couple, humour tendre, jamais militant ni explicite."
   ],
   "sources": ["lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md"]
 }
@@ -253,15 +253,15 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "objectif_secondaire": ["abonnes"],
   "structure": [
     "Une personne à l'écran, épisodes numérotés.",
-    "Fin d'épisode : renvoi vers la suite (« la suite sur YouTube »)."
+    "Fin d'épisode : renvoi vers la suite (« la suite sur YouTube »)."
   ],
   "structure_statut": "observée dans les légendes seulement",
   "preuve": "B",
-  "observe": "4 comptes au-dessus de 3x : Ben N'co (62,2x ; 14,4x ; 9,7x ; 9,2x ; 6,1x), Millesvoyages (49,0x ; 6,9x), Madmoizelle (27,8x), Bruno Maltor (3,9x).",
+  "observe": "4 comptes au-dessus de 3x : Ben N'co (62,2x ; 14,4x ; 9,7x ; 9,2x ; 6,1x), Millesvoyages (49,0x ; 6,9x), Madmoizelle (27,8x), Bruno Maltor (3,9x).",
   "exemples": ["https://www.instagram.com/reel/DcL4im-ti9E/ (Ben N'co, 62,2x)"],
   "limites": [
-    "Repose sur une personne à l'écran. Exemple Love'nSpa : publie sans visage à ce stade.",
-    "Élément transposable sans visage : la série à épisodes."
+    "Repose sur une personne à l'écran. Exemple Love'nSpa : publie sans visage à ce stade.",
+    "Élément transposable sans visage : la série à épisodes."
   ],
   "sources": ["lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md"]
 }
@@ -272,20 +272,20 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
 ```json
 {
   "id": "F09",
-  "nom": "Reel avec appel « commentez pour recevoir le lien »",
+  "nom": "Reel avec appel « commentez pour recevoir le lien »",
   "plateforme": "instagram",
   "objectif": "conversion",
   "objectif_compilation": "conversion et commentaires",
   "structure": [
     "Reel de visite (F01).",
-    "Légende ouverte par l'appel : le premier mot est l'appel (accroche A63).",
+    "Légende ouverte par l'appel : le premier mot est l'appel (accroche A63).",
     "Réponse automatique en message privé après le commentaire."
   ],
   "regle": "Réponse automatique uniquement via les outils officiels ou des partenaires agréés (S2-R03, à vérifier dans la documentation officielle).",
   "preuve": "C",
-  "observe": "Un seul compte : AbracadaRoom (3,5x ; 3,2x).",
+  "observe": "Un seul compte : AbracadaRoom (3,5x ; 3,2x).",
   "exemples": ["https://www.instagram.com/reel/DdDowLuOgdv/ (AbracadaRoom, 3,5x)"],
-  "limites": ["Un seul compte : seuil B non atteint.", "Le multiple de commentaires est gonflé par la mécanique de l'appel, comme pour F02."],
+  "limites": ["Un seul compte : seuil B non atteint.", "Le multiple de commentaires est gonflé par la mécanique de l'appel, comme pour F02."],
   "sources": [
     "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
     "Melvynx_video-agent-skills@f454292:skills/outliers/SKILL.md (Hand off)",
@@ -304,13 +304,13 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "objectif": "enregistrement",
   "objectif_secondaire": ["partage"],
   "structure": [
-    "Reel avec une experte, ou carrousel « N façons de… ».",
+    "Reel avec une experte, ou carrousel « N façons de… ».",
     "Statistique toujours sourcée (accroche A23)."
   ],
-  "garde_fou": "Exemple Love'nSpa : ton romantique et sensuel, jamais explicite ; sujets possibles : complicité, temps à deux, rituels.",
+  "garde_fou": "Exemple Love'nSpa : ton romantique et sensuel, jamais explicite ; sujets possibles : complicité, temps à deux, rituels.",
   "preuve": "C",
-  "observe": "2 comptes seulement (seuil B non atteint) : YESforLOV (17,7x, Reel avec sexologue ; 10,8x, carrousel « 5 façons… »), Le Bonbon (5,3x, statistique sur les couples).",
-  "limites": ["Deux comptes : un de plus au-dessus de 3x suffirait pour le niveau B."],
+  "observe": "2 comptes seulement (seuil B non atteint) : YESforLOV (17,7x, Reel avec sexologue ; 10,8x, carrousel « 5 façons… »), Le Bonbon (5,3x, statistique sur les couples).",
+  "limites": ["Deux comptes : un de plus au-dessus de 3x suffirait pour le niveau B."],
   "sources": ["lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md"]
 }
 ```
@@ -325,9 +325,9 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "transposable": ["tiktok"],
   "objectif": "portee",
   "structure": [
-    "Plan 1 : l'avant (exemple Love'nSpa : chambre en journée).",
+    "Plan 1 : l'avant (exemple Love'nSpa : chambre en journée).",
     "Coupe franche.",
-    "Plan 2 : l'après (exemple : bougies, spa allumé).",
+    "Plan 2 : l'après (exemple : bougies, spa allumé).",
     "Une phrase sur un seul levier."
   ],
   "duree": "non précisée par la source",
@@ -352,9 +352,9 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "transposable": ["tiktok"],
   "objectif": "portee",
   "structure": [
-    "La vidéo commence au milieu du geste (exemple : couvercle qu'on soulève, eau qui se met à bouillonner).",
+    "La vidéo commence au milieu du geste (exemple : couvercle qu'on soulève, eau qui se met à bouillonner).",
     "Résultat visible tout de suite.",
-    "Si le résultat tarde : couper jusqu'à lui et montrer l'attente après."
+    "Si le résultat tarde : couper jusqu'à lui et montrer l'attente après."
   ],
   "preuve": "C",
   "exemples": ["accroche A18"],
@@ -376,9 +376,9 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "transposable": ["instagram"],
   "objectif": "portee",
   "structure": [
-    "Texte à l'écran « POV : vous… » dès la première image.",
+    "Texte à l'écran « POV : vous… » dès la première image.",
     "Caméra subjective qui avance dans le logement.",
-    "Arrivée sur l'atout (exemple Love'nSpa : le spa)."
+    "Arrivée sur l'atout (exemple Love'nSpa : le spa)."
   ],
   "structure_statut": "proposée",
   "preuve": "C",
@@ -403,8 +403,8 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "objectif": "portee",
   "structure": [
     "Début du son ou du format tendance.",
-    "« Moi : situation qu'on reconnaît. »",
-    "« Aussi moi : la solution. »",
+    "« Moi : situation qu'on reconnaît. »",
+    "« Aussi moi : la solution. »",
     "Démonstration.",
     "Appel discret."
   ],
@@ -414,7 +414,7 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   ],
   "preuve": "C",
   "exemples": ["accroche A60"],
-  "limites": ["Une tendance est très locale et courte : à revérifier le jour de la production."],
+  "limites": ["Une tendance est très locale et courte : à revérifier le jour de la production."],
   "sources": [
     "nexscope-ai_ecommerce-skills@ee0fb29:tiktok-shop-content-strategy/SKILL.md (Template 3)",
     "Explo38_reels-tiktok-fr@a2281b6:skills/rt-veille/SKILL.md"
@@ -433,7 +433,7 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "objectif": "conversion",
   "objectif_compilation": "conversion (preuve sociale)",
   "structure": [
-    "L'avant : le besoin du client (exemple Love'nSpa : le besoin du couple).",
+    "L'avant : le besoin du client (exemple Love'nSpa : le besoin du couple).",
     "L'expérience.",
     "L'après.",
     "Nom et accord du client."
@@ -442,7 +442,7 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "exemples": ["accroches A25, A44"],
   "limites": [
     "L'accord du client est obligatoire avant reprise.",
-    "« 2 fois par semaine » dans la source est un exemple, pas une mesure."
+    "« 2 fois par semaine » dans la source est un exemple, pas une mesure."
   ],
   "sources": [
     "nexscope-ai_ecommerce-skills@ee0fb29:tiktok-shop-branding/SKILL.md (Customer Transformation)",
@@ -460,14 +460,14 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "nom": "Épingle Pinterest verticale",
   "plateforme": "pinterest",
   "objectif": "conversion",
-  "objectif_compilation": "trafic vers le site (recherche) ; rangé en « conversion », l'énumération du contrat n'ayant pas de valeur « trafic »",
+  "objectif_compilation": "trafic vers le site (recherche) ; rangé en « conversion », l'énumération du contrat n'ayant pas de valeur « trafic »",
   "structure": [
     "Visuel vertical 2:3, texte en surimpression, couleurs vives (S2-R09, à vérifier).",
     "Mots-clés dans le titre, la description et le nom du tableau.",
-    "Variante multipage pour les tutoriels pas à pas (« Idea Pins » dans la source, nom de format à vérifier)."
+    "Variante multipage pour les tutoriels pas à pas (« Idea Pins » dans la source, nom de format à vérifier)."
   ],
   "preuve": "C",
-  "limites": ["Seule source Pinterest du corpus ; aucune mesure."],
+  "limites": ["Seule source Pinterest du corpus ; aucune mesure."],
   "sources": ["nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-content-marketing/SKILL.md (Pinterest)"]
 }
 ```
@@ -481,11 +481,11 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "plateforme": "instagram",
   "transposable": ["tiktok"],
   "objectif": "partage",
-  "objectif_compilation": "commentaires ; rangé en « partage », l'énumération du contrat n'ayant pas de valeur « commentaires »",
+  "objectif_compilation": "commentaires ; rangé en « partage », l'énumération du contrat n'ayant pas de valeur « commentaires »",
   "structure": [
     "Annonce des deux options.",
     "Critères montrés.",
-    "Verdict net, jamais « les deux ont du bon »."
+    "Verdict net, jamais « les deux ont du bon »."
   ],
   "preuve": "C",
   "exemples": ["accroche A17"],
@@ -507,9 +507,9 @@ Bilan : 8 fiches en preuve B (F01 à F08, dont F02 biaisée), 10 en preuve C (F
   "transposable": ["tiktok"],
   "transposable_note": "Stories et Reels sur Instagram.",
   "objectif": "conversion",
-  "objectif_compilation": "confiance ; rangé en « conversion », l'énumération du contrat n'ayant pas de valeur « confiance »",
+  "objectif_compilation": "confiance ; rangé en « conversion », l'énumération du contrat n'ayant pas de valeur « confiance »",
   "structure": [
-    "Préparation réelle avant l'arrivée d'un client (exemple Love'nSpa : préparation d'un logement).",
+    "Préparation réelle avant l'arrivée d'un client (exemple Love'nSpa : préparation d'un logement).",
     "Aucun visage nécessaire."
   ],
   "structure_statut": "proposée",

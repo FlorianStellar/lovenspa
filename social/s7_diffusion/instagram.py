@@ -73,7 +73,8 @@ def verifier(pret, publies, now):
     cle = f"{case['date']}-{case['moteur']}"
     if any(p.get("cle") == cle for p in publies):
         raisons.append(f"déjà publié ({cle})")
-    if sum(1 for p in publies if p.get("publie_le", "")[:10] == now.date().isoformat()) >= MAX_PAR_JOUR:
+    # une publication à plusieurs offres compte pour une seule (clé unique par case)
+    if len({p.get("cle") for p in publies if p.get("publie_le", "")[:10] == now.date().isoformat()}) >= MAX_PAR_JOUR:
         raisons.append(f"plafond de {MAX_PAR_JOUR} publications par jour atteint")
     if not pret.get("medias"):
         raisons.append("aucun média")
@@ -146,8 +147,13 @@ def publier_instagram(ig, fmt, urls, caption):
                                        "caption": caption})["id"]
     attendre_conteneur(ig, cid)
     mid = ig.post(f"{uid}/media_publish", {"creation_id": cid})["id"]
-    info = ig.get(mid, {"fields": "permalink,timestamp,media_product_type"})
-    return mid, info.get("permalink")
+    # Le post est en ligne : une erreur de lecture du permalien ne doit pas faire croire à un échec
+    # (sinon une relance publierait un doublon). Le permalien manquant est relu par S8.
+    try:
+        permalink = ig.get(mid, {"fields": "permalink,timestamp,media_product_type"}).get("permalink")
+    except IGError:
+        permalink = None
+    return mid, permalink
 
 
 def quota_ok(ig):

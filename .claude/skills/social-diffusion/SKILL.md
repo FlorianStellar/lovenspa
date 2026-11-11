@@ -98,8 +98,8 @@ Nouvel essai automatique du client Instagram sur les erreurs temporaires (codes 
 - **Pinterest** : à outiller (aucun adaptateur ; aucune source compilée ne donne de règle propre à Pinterest).
 - Statut « programmé » non outillé : le code publie à l’échéance, il ne programme pas.
 - Comparaison de la légende publiée (S7-03), vérification des octets du média (S7-11 : le type vient de l’extension via `mimetypes`), empreinte du paquet contrôlé (S7-02) et étiquette IA (S7-06) : à outiller.
-- Le plafond compte les entrées de `publies.json` du jour : une case à plusieurs offres écrit plusieurs entrées et consomme plusieurs places du plafond (à vérifier).
-- Une erreur entre `media_publish` et l’enregistrement laisse une publication en ligne sans entrée dans `publies.json` : risque de doublon à la relance (voir charte).
+- Plafond : corrigé le 11/11/2026, il compte les publications distinctes (clé de case) et non les offres (test `test_cap_counts_publications_not_offers`).
+- Doublon : réduit le 11/11/2026. Une erreur de lecture du permalien après `media_publish` n’interrompt plus l’enregistrement (permalien `null`, relu par S8). Une coupure du processus entre la publication et l’écriture de `publies.json` reste possible : vérifier le compte avant toute relance (voir charte).
 - Les médias hébergés dans Shopify Files ne sont pas supprimés après publication ni après échec.
 - Le chemin est propre à Instagram : `--dues` ne lit que `donnees/<marque>/instagram/production/`.
 - Règles de plateforme citées par les sources, toutes à vérifier dans la documentation officielle : `references/regles-plateformes.md`.
