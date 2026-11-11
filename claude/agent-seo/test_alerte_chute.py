@@ -39,8 +39,29 @@ class T(unittest.TestCase):
         self.assertEqual(r["alertes"], [])
 
     def test_degradation_position(self):
-        r = a.analyser(rows_for("/p", [100] * 5, pos_par_bloc=[9, 4, 4, 5, 4]), FIN)
+        # position +5 mais clics stables : pas d'alerte (longue traîne)
+        self.assertEqual(a.analyser(rows_for("/p", [100] * 5, pos_par_bloc=[9, 4, 4, 5, 4]), FIN)["alertes"], [])
+        # position +5 et clics -20 % : alerte position
+        r = a.analyser(rows_for("/p", [80, 100, 100, 100, 100], pos_par_bloc=[9, 4, 4, 5, 4]), FIN)
         self.assertEqual(r["alertes"][0]["motifs"], ["position"])
+
+    def test_complet(self):
+        dates = [str(FIN - timedelta(days=k)) for k in range(35)]
+        self.assertTrue(a.complet(dates, FIN))
+        self.assertFalse(a.complet(dates[1:], FIN))
+        self.assertFalse(a.complet(dates[:20] + dates[21:], FIN))
+
+    def test_site_byproperty(self):
+        site = [{"keys": [str(FIN - timedelta(days=k))], "clicks": 10, "impressions": 100, "position": 3} for k in range(35)]
+        r = a.analyser(rows_for("/p", [100] * 5), FIN, site_rows=site)
+        self.assertEqual(r["site"]["clics"], 70)
+        self.assertEqual(r["site"]["pos"], 3.0)
+
+    def test_pct_et_agreger(self):
+        self.assertIsNone(a.pct(5, 0)); self.assertEqual(a.pct(50, 100), -50.0)
+        g = a.agreger([{"keys": [str(FIN), "/p"], "clicks": 2, "impressions": 10, "position": 4}], a.blocs(FIN))
+        self.assertEqual(g["/p"][0], [2, 10, 40.0])
+        self.assertEqual(g["/p"][1], [0, 0, 0.0])
 
     def test_top_n(self):
         rows = rows_for("/gros", [1000] * 5) + rows_for("/petit", [0, 30, 30, 30, 30])

@@ -15,6 +15,8 @@ SEUIL_PAGE = -30.0     # % clics page
 MIN_CLICS_PAGE = 20    # base 7 j minimale pour juger une page
 SEUIL_POS = 3.0        # dégradation de position moyenne pondérée
 MIN_IMPR_POS = 200
+SEUIL_POS_CLICS = -10.0  # la dégradation de position doit s'accompagner de -10 % de clics
+JOURS = 35
 
 
 def blocs(fin: date):
@@ -53,19 +55,42 @@ def juger(serie, seuil, min_base):
            "pos_base": round(pos_base, 1) if pos_base else None, "motifs": []}
     if base_clics >= min_base and res["var_clics"] is not None and res["var_clics"] <= seuil:
         res["motifs"].append("clics")
-    if pos_cur and pos_base and base_impr >= MIN_IMPR_POS and pos_cur - pos_base >= SEUIL_POS:
+    # position : seulement si les clics baissent aussi (sinon élargissement de la longue traîne)
+    if (pos_cur and pos_base and base_impr >= MIN_IMPR_POS and pos_cur - pos_base >= SEUIL_POS
+            and res["var_clics"] is not None and res["var_clics"] <= SEUIL_POS_CLICS):
         res["motifs"].append("position")
     return res
 
 
-def analyser(rows, fin: date, top=40):
+def complet(dates_site, fin: date):
+    """Vrai si les 35 jours se terminant à `fin` sont tous présents (données finales)."""
+    attendu = {str(fin - timedelta(days=k)) for k in range(JOURS)}
+    return attendu <= set(dates_site)
+
+
+def site_blocs(site_rows, b):
+    """Total site depuis une requête dimension date en agrégation byProperty."""
+    out = [[0, 0, 0.0] for _ in b]
+    for r in site_rows:
+        d = date.fromisoformat(r["keys"][0])
+        for i, (s, e) in enumerate(b):
+            if s <= d <= e:
+                out[i][0] += r.get("clicks", 0); out[i][1] += r.get("impressions", 0)
+                out[i][2] += r.get("position", 0) * r.get("impressions", 0)
+    return out
+
+
+def analyser(rows, fin: date, top=40, site_rows=None):
     b = blocs(fin)
     pages = agreger(rows, b)
-    site = [[0, 0, 0.0] for _ in b]
-    for s in pages.values():
-        for i, x in enumerate(s):
-            for j in range(3):
-                site[i][j] += x[j]
+    if site_rows is not None:
+        site = site_blocs(site_rows, b)
+    else:  # repli (tests) : somme des pages
+        site = [[0, 0, 0.0] for _ in b]
+        for s in pages.values():
+            for i, x in enumerate(s):
+                for j in range(3):
+                    site[i][j] += x[j]
     base28 = {p: sum(x[0] for x in s[1:]) for p, s in pages.items()}
     cles = sorted(base28, key=lambda p: -base28[p])[:top]
     site_res = juger(site, SEUIL_SITE, 1)
@@ -83,10 +108,20 @@ def main(argv):
     from gsc_client import GSCClient
     top = int(argv[argv.index("--top") + 1]) if "--top" in argv else 40
     c = GSCClient()
-    fin = date.today() - timedelta(days=3)
-    debut = fin - timedelta(days=34)
-    rows = c.search_analytics_all(str(debut), str(fin), dimensions=["date", "page"])
-    res = analyser(rows, fin, top)
+    # dernier jour final disponible : on part de J-2 et on recule jusqu'à 35 jours complets
+    debut_large = date.today() - timedelta(days=JOURS + 6)
+    site_rows = c.search_analytics_all(str(debut_large), str(date.today() - timedelta(days=2)),
+                                       dimensions=["date"], aggregate_type="byProperty")
+    dates = sorted(r["keys"][0] for r in site_rows)
+    fin = date.fromisoformat(dates[-1]) if dates else None
+    if not fin or not complet(dates, fin):
+        res = {"statut": "incomplet", "dates_recues": len(dates), "derniere": dates[-1] if dates else None}
+        json.dump(res, open(argv[1], "w"), ensure_ascii=False, indent=1)
+        print("données GSC incomplètes : pas de jugement", res)
+        return 3
+    rows = c.search_analytics_all(str(fin - timedelta(days=JOURS - 1)), str(fin), dimensions=["date", "page"])
+    res = analyser(rows, fin, top, site_rows=site_rows)
+    res["statut"] = "complet"
     res["lignes_gsc"] = len(rows)
     json.dump(res, open(argv[1], "w"), ensure_ascii=False, indent=1)
     s = res["site"]

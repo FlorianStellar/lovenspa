@@ -1,0 +1,130 @@
+{
+ "periode": [
+  "2026-10-10",
+  "2026-11-06"
+ ],
+ "periode_n1": [
+  "2025-10-11",
+  "2025-11-07"
+ ],
+ "persistants": 28,
+ "sans_historique_n1": 12,
+ "candidats": [
+  {
+   "page": "https://lovenspa.fr/pages/guide-les-villes-romantiques-france-week-end-amoureux",
+   "clicks_prev": 355,
+   "clicks": 246,
+   "delta_pct": -30.7,
+   "clicks_n1": 1080,
+   "yoy_pct": -77.2
+  },
+  {
+   "page": "https://lovenspa.fr/products/luxury-love-room-tentation",
+   "clicks_prev": 179,
+   "clicks": 119,
+   "delta_pct": -33.5,
+   "clicks_n1": 154,
+   "yoy_pct": -22.7
+  },
+  {
+   "page": "https://lovenspa.fr/pages/love-room-le-guide-des-hebergements-reserves-aux-couples",
+   "clicks_prev": 51,
+   "clicks": 0,
+   "delta_pct": -100.0,
+   "clicks_n1": 3,
+   "yoy_pct": -100.0
+  },
+  {
+   "page": "https://lovenspa.fr/pages/sofa-tantra-meilleures-positions-sexuelles-pratiques",
+   "clicks_prev": 85,
+   "clicks": 44,
+   "delta_pct": -48.2,
+   "clicks_n1": 309,
+   "yoy_pct": -85.8
+  },
+  {
+   "page": "https://lovenspa.fr/products/lincontournable-love-room",
+   "clicks_prev": 175,
+   "clicks": 138,
+   "delta_pct": -21.1,
+   "clicks_n1": 182,
+   "yoy_pct": -24.2
+  },
+  {
+   "page": "https://lovenspa.fr/pages/guide-la-love-room-piscine-privative",
+   "clicks_prev": 120,
+   "clicks": 83,
+   "delta_pct": -30.8,
+   "clicks_n1": 115,
+   "yoy_pct": -27.8
+  },
+  {
+   "page": "https://lovenspa.fr/products/lov-asion",
+   "clicks_prev": 41,
+   "clicks": 8,
+   "delta_pct": -80.5,
+   "clicks_n1": 12,
+   "yoy_pct": -33.3
+  }
+ ],
+ "lot_propose": [
+  {
+   "page": "https://lovenspa.fr/pages/guide-les-villes-romantiques-france-week-end-amoureux",
+   "clicks_prev": 355,
+   "clicks": 246,
+   "delta_pct": -30.7,
+   "clicks_n1": 1080,
+   "yoy_pct": -77.2
+  },
+  {
+   "page": "https://lovenspa.fr/products/lincontournable-love-room",
+   "clicks_prev": 175,
+   "clicks": 138,
+   "delta_pct": -21.1,
+   "clicks_n1": 182,
+   "yoy_pct": -24.2
+  },
+  {
+   "page": "https://lovenspa.fr/pages/sofa-tantra-meilleures-positions-sexuelles-pratiques",
+   "clicks_prev": 85,
+   "clicks": 44,
+   "delta_pct": -48.2,
+   "clicks_n1": 309,
+   "yoy_pct": -85.8
+  },
+  {
+   "page": "https://lovenspa.fr/products/lov-asion",
+   "clicks_prev": 41,
+   "clicks": 8,
+   "delta_pct": -80.5,
+   "clicks_n1": 12,
+   "yoy_pct": -33.3
+  }
+ ],
+ "temoin_propose": [
+  {
+   "page": "https://lovenspa.fr/products/luxury-love-room-tentation",
+   "clicks_prev": 179,
+   "clicks": 119,
+   "delta_pct": -33.5,
+   "clicks_n1": 154,
+   "yoy_pct": -22.7
+  },
+  {
+   "page": "https://lovenspa.fr/pages/guide-la-love-room-piscine-privative",
+   "clicks_prev": 120,
+   "clicks": 83,
+   "delta_pct": -30.8,
+   "clicks_n1": 115,
+   "yoy_pct": -27.8
+  },
+  {
+   "page": "https://lovenspa.fr/pages/love-room-le-guide-des-hebergements-reserves-aux-couples",
+   "clicks_prev": 51,
+   "clicks": 0,
+   "delta_pct": -100.0,
+   "clicks_n1": 3,
+   "yoy_pct": -100.0
+  }
+ ]
+}

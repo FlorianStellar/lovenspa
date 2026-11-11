@@ -6,16 +6,22 @@ ET en baisse d'au moins 20 % sur la même fenêtre de 28 j un an plus tôt (ann�
 hors /en/ (exclu de l'univers cible, décision du 10/11) et hors URL gelées.
 """
 import json, re, sys
+from pathlib import Path
 from datetime import date, timedelta
 
 SEUIL_YOY = -20.0
 
 
-def gelees(path="../lots/URL-GELEES.md"):
-    try:
-        return set(re.findall(r"^\| (/\S+) \|", open(path, encoding="utf-8").read(), re.M))
-    except FileNotFoundError:
-        return set()
+GELEES = Path(__file__).resolve().parent.parent / "lots" / "URL-GELEES.md"
+
+
+def gelees(path=GELEES):
+    """URL gelées ; erreur si le registre manque (jamais d'exclusion silencieusement vide)."""
+    texte = Path(path).read_text(encoding="utf-8")
+    urls = set(re.findall(r"^\| (/\S+) \|", texte, re.M))
+    if not urls:
+        raise ValueError(f"registre des URL gelées vide ou illisible : {path}")
+    return urls
 
 
 def chemin(url):
@@ -31,6 +37,12 @@ def persistants(cur, prev, exclues=frozenset()):
 def an_moins_un(periode):
     f = lambda s: str(date.fromisoformat(s) - timedelta(days=364))  # même jour de semaine
     return f(periode[0]), f(periode[1])
+
+
+def apparier(cands):
+    """Répartit les candidats en lot / témoin équilibrés : tri par clics N-1 décroissants, alternance."""
+    tri = sorted(cands, key=lambda d: -d["clicks_prev"])
+    return tri[0::2], tri[1::2]
 
 
 def filtrer_yoy(cands, clics_n1: dict):
@@ -51,13 +63,19 @@ def main(argv):
     s, e = an_moins_un(cur["periode"])
     rows = GSCClient().search_analytics_all(s, e, dimensions=["page"]) if cands else []
     n1 = {r["keys"][0]: r["clicks"] for r in rows}
+    retenus = filtrer_yoy(cands, n1)
+    lot, temoin = apparier(retenus)
     res = {"periode": cur["periode"], "periode_n1": [s, e], "persistants": len(cands),
-           "candidats": filtrer_yoy(cands, n1)}
-    json.dump(res, open(argv[3], "w"), ensure_ascii=False, indent=1)
-    print(f"déclin persistant : {len(cands)} ; candidats après filtre N-1 : {len(res['candidats'])}")
-    for c in res["candidats"]:
+           "sans_historique_n1": sum(1 for d in cands if not n1.get(d["page"])),
+           "candidats": retenus, "lot_propose": lot, "temoin_propose": temoin}
+    with open(argv[3], "w") as f:
+        json.dump(res, f, ensure_ascii=False, indent=1)
+    print(f"déclin persistant : {len(cands)} (dont {res['sans_historique_n1']} sans N-1) ; "
+          f"candidats : {len(retenus)} ; lot {len(lot)} / témoin {len(temoin)}")
+    for c in retenus:
         print(" ", c["page"], c["delta_pct"], "% 28j ;", c["yoy_pct"], "% N-1")
+    return 0 if retenus else 1
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    sys.exit(main(sys.argv))

@@ -23,9 +23,27 @@ class T(unittest.TestCase):
         self.assertEqual(date.fromisoformat(s).weekday(), date(2026, 10, 10).weekday())
         self.assertEqual(e, "2025-11-07")
 
-    def test_gelees(self):
-        g = r.gelees()
-        self.assertIn("/collections/love-room", g)
+    def test_gelees_independant_du_repertoire(self):
+        import os, tempfile
+        cwd = os.getcwd()
+        try:
+            os.chdir(tempfile.gettempdir())
+            self.assertIn("/collections/love-room", r.gelees())
+        finally:
+            os.chdir(cwd)
+
+    def test_gelees_absent_erreur(self):
+        with self.assertRaises(FileNotFoundError):
+            r.gelees("/nexiste/pas.md")
+
+    def test_chemin(self):
+        self.assertEqual(r.chemin("https://lovenspa.fr/pages/x"), "/pages/x")
+
+    def test_apparier(self):
+        c = [{"page": p, "clicks_prev": n} for p, n in [("a", 10), ("b", 40), ("c", 30), ("d", 20), ("e", 5)]]
+        lot, tem = r.apparier(c)
+        self.assertEqual([d["page"] for d in lot], ["b", "d", "e"])
+        self.assertEqual([d["page"] for d in tem], ["c", "a"])
 
 
 if __name__ == "__main__":

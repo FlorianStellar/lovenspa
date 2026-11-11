@@ -85,7 +85,7 @@ def main(out_path):
         "det_cannibalisation": cannibalization(cur["qp"])[:30],
         "det_quick_wins": quick_wins(cur["queries"], min_impr=500)[:40],
         "det_ctr_anormal": ctr_anomalies(cur["queries"], curve)[:30],
-        "det_declin": declining_pages(cur["pages"], prev["pages"])[:40],
+        "det_declin": declining_pages(cur["pages"], prev["pages"]),
         "nb": {"cannibalisation": len(cannibalization(cur["qp"])),
                "quick_wins": len(quick_wins(cur["queries"], min_impr=500)),
                "ctr_anormal": len(ctr_anomalies(cur["queries"], curve)),
