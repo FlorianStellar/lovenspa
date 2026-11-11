@@ -172,20 +172,24 @@ def check(text, fiche=None, history=None, rules=None):
         add("APPEL", "bloquant", f"{len(ctas)} appel(s) à l'action ({', '.join(ctas) or 'aucun'}) : il en faut un seul")
     if "{{" in text:
         add("A_COMPLETER", "bloquant", "texte à compléter : " + ", ".join(re.findall(r"\{\{[^}]*\}\}", text)))
-    if fiche is None:
+    fiches = [f for f in (fiche if isinstance(fiche, list) else [fiche]) if f]
+    if not fiches:
         add("LOGEMENT", "bloquant", "aucune fiche logement fournie : impossible de vérifier un logement réel")
     else:
         n = norm(body)
-        if not any(word_in(v, n) for v in name_variants(fiche["nom"])):
-            add("LOGEMENT", "bloquant", f"le logement « {fiche['nom'].split(' - ')[0]} » n'est pas nommé")
+        missing = [f["nom"].split(" - ")[0] for f in fiches if not any(word_in(v, n) for v in name_variants(f["nom"]))]
+        if missing:
+            add("LOGEMENT", "bloquant", "logement(s) non nommé(s) : " + ", ".join(f"« {m} »" for m in missing))
+        allowed = [f["prix_a_partir_de"] for f in fiches if f.get("prix_a_partir_de") is not None]
         for p, lodging in prices_in(body, rules):
             if not lodging:
                 add("AUTRE_MONTANT", "avertissement", f"montant {p:g} € cité hors prix du logement : vérifier sa source")
-            elif fiche.get("prix_a_partir_de") is None or abs(p - fiche["prix_a_partir_de"]) > 0.01:
-                add("PRIX", "bloquant", f"prix cité {p:g} € ≠ fiche {fiche.get('prix_a_partir_de')}")
-        for e in fiche.get("equipements_non_citables", []):
-            if word_in(norm(e), n):
-                add("EXCLUS", "bloquant", f"équipement non citable sur Instagram : {e}")
+            elif not any(abs(p - x) <= 0.01 for x in allowed):
+                add("PRIX", "bloquant", f"prix cité {p:g} € absent des fiches ({', '.join(f'{x:g}' for x in allowed) or 'aucun prix'})")
+        for f in fiches:
+            for e in f.get("equipements_non_citables", []):
+                if word_in(norm(e), n):
+                    add("EXCLUS", "bloquant", f"équipement non citable sur Instagram : {e}")
     for e in rules["equipements_exclus_instagram"]:
         if word_in(norm(e), norm(body)) and not any(r["code"] == "EXCLUS" and e in r["message"] for r in res):
             add("EXCLUS", "bloquant", f"équipement non citable sur Instagram : {e}")

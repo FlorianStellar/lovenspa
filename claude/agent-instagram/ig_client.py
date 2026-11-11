@@ -97,6 +97,23 @@ class IGClient:
             raise IGError(err.get("message") or f"HTTP {r.status_code}", code, data)
         raise IGError("nombre d'essais dépassé")
 
+    def post(self, path, data=None, retries=2):
+        """POST (publication). Mêmes règles de nouvel essai que get(), sauf erreurs de contenu."""
+        for attempt in range(retries + 1):
+            r = self.s.post(self.url(path), data=data, timeout=120)
+            try:
+                payload = r.json()
+            except ValueError:
+                payload = {}
+            if r.status_code == 200 and "error" not in payload:
+                return payload
+            err = payload.get("error", {}) if isinstance(payload, dict) else {}
+            if (err.get("code") in (1, 2, 4, 17, 32, 613) or r.status_code >= 500) and attempt < retries:
+                time.sleep(2 ** attempt * 5)
+                continue
+            raise IGError(err.get("message") or f"HTTP {r.status_code}", err.get("code"), payload)
+        raise IGError("nombre d'essais dépassé")
+
     def paginate(self, path, params=None, limit_pages=1000):
         data = self.get(path, params)
         out = list(data.get("data", []))

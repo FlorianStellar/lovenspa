@@ -24,9 +24,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 FIELDS = """handle title status productType onlineStoreUrl tags
   priceRangeV2 { minVariantPrice { amount currencyCode } }
+  mediaCount { count }
   ville: metafield(namespace: "accentuate", key: "ville") { value }
   region: metafield(namespace: "accentuate", key: "region") { value }
-  onAime: metafield(namespace: "accentuate", key: "on_aime") { value }"""
+  onAime: metafield(namespace: "accentuate", key: "on_aime") { value }
+  ambiance: metafield(namespace: "custom", key: "spicy_level") { value }"""
 Q_ONE = "query($q: String!) { products(first: 1, query: $q) { nodes { %s } } }" % FIELDS
 Q_SEARCH = "query($q: String!) { products(first: 10, query: $q) { nodes { %s } } }" % FIELDS
 
@@ -75,6 +77,9 @@ def fiche(node, rules=None):
         "on_aime": ((node.get("onAime") or {}).get("value") or "").strip() or None,
         "url": node.get("onlineStoreUrl") or f"{SITE}/products/{node['handle']}",
         "actif": node.get("status") == "ACTIVE",
+        # Niveau affiché sur le site (vérifié sur les pages produit le 11/11/2026) :
+        # 1 Romantique, 2 Sensuel, 3 Coquin, 4 Pimenté, 5 Averti
+        "ambiance": int((node.get("ambiance") or {}).get("value")) if (node.get("ambiance") or {}).get("value") else None,
     }
 
 

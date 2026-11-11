@@ -1,0 +1,48 @@
+{
+ "case": {
+  "date": "2026-11-16",
+  "heure": "18:30",
+  "moteur": "lieu",
+  "format": "REELS",
+  "temps_fort": "Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir",
+  "statut": "A_PRODUIRE",
+  "logements": [
+   {
+    "handle": "la-villa-yucatan",
+    "nom": "La Villa Yucatan - 2h",
+    "type": "Loft",
+    "ville": "Paris",
+    "region": "Île-de-France",
+    "ville_reference": null,
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Day Use",
+     "Douche XL",
+     "Hammam",
+     "Lit King Size",
+     "Piscine intérieure",
+     "Sauna",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 180.0,
+    "devise": "EUR",
+    "on_aime": null,
+    "url": "https://lovenspa.fr/products/la-villa-yucatan",
+    "actif": true,
+    "ambiance": 2,
+    "medias": 10
+   }
+  ],
+  "region": "Île-de-France",
+  "lien": "https://lovenspa.fr/products/la-villa-yucatan?utm_source=instagram&utm_medium=social&utm_campaign=lieu&utm_content=2026-11-16"
+ },
+ "legende": "Piscine intérieure, sauna et hammam en plein Paris : La Villa Yucatan, dès 180 € la nuit.\n\nVous poussez la porte, et Paris disparaît. L'eau de la piscine est à vous seuls, le hammam chauffe pendant que le sauna attend son tour.\n\nUne douche XL, un lit king size et une ambiance lumineuse à régler selon votre humeur.\n\nCommentez « YUCATAN » et on vous envoie le lien des disponibilités.\n\n#lovenspa #loveroomparis #spaprivatif #piscineprivee #weekendamoureux",
+ "reel_lignes": [
+  "Une piscine rien qu'à vous, en plein Paris",
+  "Le hammam pendant que le sauna chauffe",
+  "Personne d'autre que vous deux",
+  "La Villa Yucatan · dès 180 € la nuit",
+  "Commentez YUCATAN pour le lien"
+ ]
+}

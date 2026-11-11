@@ -70,6 +70,13 @@ class TestCheck(unittest.TestCase):
     def test_no_fiche_is_blocking(self):
         self.assertIn("LOGEMENT", codes(controle.check(BONNE, None)))
 
+    def test_several_lodgings(self):
+        f2 = dict(FICHE, nom="Le Nid - x", prix_a_partir_de=130.0, ville="Vannes", ville_reference=None)
+        ok = BONNE.replace("dès 190 € la nuit.", "dès 190 € la nuit. Et Le Nid, dès 130 € la nuit.")
+        self.assertNotIn("PRIX", codes(controle.check(ok, [FICHE, f2])))
+        self.assertNotIn("LOGEMENT", codes(controle.check(ok, [FICHE, f2])))
+        self.assertIn("LOGEMENT", codes(controle.check(BONNE, [FICHE, f2])))
+
     def test_wrong_price_blocked(self):
         r = controle.check(BONNE.replace("190 €", "150 €"), FICHE)
         self.assertIn("PRIX", codes(r))

@@ -1,0 +1,252 @@
+{
+ "case": {
+  "date": "2026-11-17",
+  "heure": "18:30",
+  "moteur": "selection",
+  "format": "CAROUSEL",
+  "temps_fort": "Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir",
+  "statut": "A_PRODUIRE",
+  "theme": "6 nuits avec spa privatif à moins de 150 €",
+  "logements": [
+   {
+    "handle": "le-calypso-love-room-balneo-de-luxe-2025",
+    "nom": "Le Calypso : Love Room Balnéo de luxe",
+    "type": "Appartement",
+    "ville": "Perpignan",
+    "region": "Occitanie",
+    "ville_reference": "Perpignan",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Animaux",
+     "Champagne",
+     "Cinéma privatif",
+     "Climatisation",
+     "Cuisine équipée",
+     "Douche XL",
+     "Piscine intérieure",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 140.0,
+    "devise": "EUR",
+    "on_aime": null,
+    "url": "https://lovenspa.fr/products/le-calypso-love-room-balneo-de-luxe-2025",
+    "actif": true,
+    "ambiance": 2,
+    "medias": 13
+   },
+   {
+    "handle": "dolce-gabbane",
+    "nom": "Designer Hotel - Dolce Gabbane",
+    "type": "Hôtel",
+    "ville": "Liège",
+    "region": "Belgique",
+    "ville_reference": "Liège",
+    "equipements": [
+     "Animaux",
+     "Climatisation",
+     "Douche XL",
+     "Lit Rond",
+     "Parking privé",
+     "Piscine extérieure",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 150.0,
+    "devise": "EUR",
+    "on_aime": null,
+    "url": "https://lovenspa.fr/products/dolce-gabbane",
+    "actif": true,
+    "ambiance": 2,
+    "medias": 14
+   },
+   {
+    "handle": "jacuzzi-xxl-charme-et-caracteres-de-campagne",
+    "nom": "Jacuzzi XXL+ Charme et Caractères de campagne",
+    "type": "Gîte",
+    "ville": "Rennes",
+    "region": "Bretagne",
+    "ville_reference": "Rennes",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Cheminée",
+     "Cuisine équipée",
+     "Jardin",
+     "Lit King Size",
+     "Parking privé",
+     "Piscine intérieure",
+     "Spa",
+     "Spa de nage"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 130.0,
+    "devise": "EUR",
+    "on_aime": null,
+    "url": "https://lovenspa.fr/products/jacuzzi-xxl-charme-et-caracteres-de-campagne",
+    "actif": true,
+    "ambiance": 2,
+    "medias": 20
+   },
+   {
+    "handle": "gite-ecolodge-avec-jacuzzi",
+    "nom": "Gîte écolodge avec jacuzzi",
+    "type": "Gîte",
+    "ville": "Saint-Affrique",
+    "region": "Occitanie",
+    "ville_reference": null,
+    "equipements": [
+     "Champagne",
+     "Climatisation",
+     "Cuisine équipée",
+     "Douche XL",
+     "Jardin",
+     "Lit King Size",
+     "Parking privé",
+     "Piscine extérieure",
+     "Sauna",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 133.0,
+    "devise": "EUR",
+    "on_aime": null,
+    "url": "https://lovenspa.fr/products/gite-ecolodge-avec-jacuzzi",
+    "actif": true,
+    "ambiance": 2,
+    "medias": 5
+   },
+   {
+    "handle": "les-suites-b-spa-suite-wood-1",
+    "nom": "Les Suites B Spa - Romantique CineWood Spa",
+    "type": "Loft",
+    "ville": "Marseille",
+    "region": "Provence-Alpes-Côte d'Azur",
+    "ville_reference": "Marseille",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Champagne",
+     "Cinéma privatif",
+     "Day Use",
+     "Douche XL",
+     "Hammam",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 149.0,
+    "devise": "EUR",
+    "on_aime": null,
+    "url": "https://lovenspa.fr/products/les-suites-b-spa-suite-wood-1",
+    "actif": true,
+    "ambiance": 2,
+    "medias": 5
+   },
+   {
+    "handle": "loft-spa-st-etienne",
+    "nom": "Loft Spa - St Etienne",
+    "type": "Appartement",
+    "ville": "Saint Etienne",
+    "region": "Auvergne-Rhône-Alpes",
+    "ville_reference": null,
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Climatisation",
+     "Cuisine équipée",
+     "Day Use",
+     "Douche XL",
+     "Hammam",
+     "Lit King Size",
+     "Sauna",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 143.0,
+    "devise": "EUR",
+    "on_aime": null,
+    "url": "https://lovenspa.fr/products/loft-spa-st-etienne",
+    "actif": true,
+    "ambiance": 2,
+    "medias": 13
+   }
+  ],
+  "region": null,
+  "lien": "https://www.lovenspa.fr/collections/all?utm_source=instagram&utm_medium=social&utm_campaign=selection&utm_content=2026-11-17"
+ },
+ "medias": [
+  "data/production/2026-11-17-selection/diapo-01.jpg",
+  "data/production/2026-11-17-selection/diapo-02.jpg",
+  "data/production/2026-11-17-selection/diapo-03.jpg",
+  "data/production/2026-11-17-selection/diapo-04.jpg",
+  "data/production/2026-11-17-selection/diapo-05.jpg",
+  "data/production/2026-11-17-selection/diapo-06.jpg",
+  "data/production/2026-11-17-selection/diapo-07.jpg",
+  "data/production/2026-11-17-selection/diapo-08.jpg"
+ ],
+ "legende": "6 nuits avec spa privatif à moins de 150 €, de Le Calypso à Loft Spa.\n\nUn spa rien qu'à vous deux ne coûte pas forcément une fortune. Voici six adresses où la nuit reste sous les 150 € :\n\n1. Le Calypso, Perpignan : dès 140 €\n2. Designer Hotel, Liège : dès 150 €\n3. Jacuzzi XXL+ Charme et Caractères de campagne, Rennes : dès 130 €\n4. Gîte écolodge avec jacuzzi, Saint-Affrique : dès 133 €\n5. Les Suites B Spa, Marseille : dès 149 €\n6. Loft Spa, Saint Etienne : dès 143 €\n\nEnregistrez ce carrousel pour votre prochain week-end à deux.\n\n#lovenspa #spaprivatif #loveroom #weekendamoureux #petitprix",
+ "controle": {
+  "statut": "A_REVOIR",
+  "caracteres": 533,
+  "premiere_ligne": 69,
+  "hashtags": [
+   "#lovenspa",
+   "#spaprivatif",
+   "#loveroom",
+   "#weekendamoureux",
+   "#petitprix"
+  ],
+  "appels": [
+   "enregistrer"
+  ],
+  "resultats": [
+   {
+    "code": "AUTRE_MONTANT",
+    "niveau": "avertissement",
+    "message": "montant 150 € cité hors prix du logement : vérifier sa source"
+   },
+   {
+    "code": "AUTRE_MONTANT",
+    "niveau": "avertissement",
+    "message": "montant 150 € cité hors prix du logement : vérifier sa source"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …us les 150 € :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …o, Perpignan :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …Hotel, Liège :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …agne, Rennes :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …int-Affrique :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …a, Marseille :"
+   },
+   {
+    "code": "TYPO",
+    "niveau": "avertissement",
+    "message": "espace ordinaire avant « : » (insécable conseillée) : …aint Etienne :"
+   }
+  ]
+ },
+ "notes": [
+  "lien UTM à mettre en bio ou en message (non présent dans la légende)"
+ ],
+ "statut": "PRET",
+ "bloquants": []
+}

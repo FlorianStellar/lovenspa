@@ -11,7 +11,7 @@ NODE = {
     "tags": ["Equipements|Spa", "Equipements|Sauna", "Equipements|wifi", "Equipements|BDSM", "Equipements|Spa",
              "ville|Saint-Malo", "region|Bretagne", "Dinard"],
     "priceRangeV2": {"minVariantPrice": {"amount": "190.0", "currencyCode": "EUR"}},
-    "ville": {"value": " Tréméreuc "}, "region": None, "onAime": {"value": "  "},
+    "ville": {"value": " Tréméreuc "}, "region": None, "onAime": {"value": "  "}, "ambiance": {"value": "2"},
 }
 
 
@@ -36,6 +36,10 @@ class TestFiche(unittest.TestCase):
         self.assertEqual(self.f["ville"], "Tréméreuc")
         self.assertEqual(self.f["ville_reference"], "Saint-Malo")
         self.assertEqual(self.f["region"], "Bretagne")  # repli sur le tag
+
+    def test_ambiance(self):
+        self.assertEqual(self.f["ambiance"], 2)
+        self.assertIsNone(logements.fiche(dict(NODE, ambiance=None), RULES)["ambiance"])
 
     def test_empty_on_aime_is_none(self):
         self.assertIsNone(self.f["on_aime"])
