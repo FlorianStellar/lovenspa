@@ -10,7 +10,7 @@ FICHE = {"id": "F01", "nom": "Reel lieu", "plateforme": "instagram", "objectif":
 def sig(compte, fiche="F01", mult=4.0, fr=True, acc="Une cabane rien qu'à vous"):
     return {"compte": compte, "fiche_format": fiche, "multiple": mult, "permalink": f"p-{compte}-{mult}",
             "langue_fr": fr, "accroche": acc, "format": "REELS", "date": "2026-10-01",
-            "formule_accroche": "A01", "pertinence_lovenspa": "directe"}
+            "formule_accroche": "A01", "pertinence_marque": "directe"}
 
 
 class TestBibliotheque(unittest.TestCase):
@@ -42,6 +42,7 @@ class TestBibliotheque(unittest.TestCase):
         acc = b.accroches_observees([sig("a", mult=4), sig("b", mult=8), sig("c", fr=False), sig("d", acc="  ")])
         self.assertEqual([a["compte"] for a in acc], ["b", "a"])
         self.assertIn("pas l'accroche parlée", acc[0]["nature"])
+        self.assertEqual(acc[0]["pertinence"], "directe")
 
     def test_synthese(self):
         f = b.construire([FICHE], [sig("a")], "2026-11-12")

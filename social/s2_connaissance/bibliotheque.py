@@ -84,11 +84,16 @@ def construire(fiches, signaux, date_benchmark):
     return out
 
 
+def _pertinence(s):
+    """Pertinence pour la marque, quel que soit le nom du champ (« pertinence_<marque> » ou « pertinence »)."""
+    return next((v for k, v in s.items() if k.startswith("pertinence")), None)
+
+
 def accroches_observees(signaux):
     """Premières lignes réelles en français, classées par multiple (aucune réécriture)."""
     out = [{"accroche": s["accroche"], "compte": s["compte"], "format": s["format"], "multiple": s["multiple"],
             "date": s["date"], "permalink": s["permalink"], "fiche_format": s.get("fiche_format"),
-            "formule_accroche": s.get("formule_accroche"), "pertinence": s.get("pertinence_lovenspa"),
+            "formule_accroche": s.get("formule_accroche"), "pertinence": _pertinence(s),
             "nature": "première ligne de légende (pas l'accroche parlée, S2-M06)"}
            for s in signaux if s.get("langue_fr") and (s.get("accroche") or "").strip()]
     return sorted(out, key=lambda a: a["multiple"], reverse=True)
