@@ -1,0 +1,28 @@
+{
+  "id": "F17",
+  "nom": "Face à face (comparatif tranché)",
+  "plateforme": "instagram",
+  "transposable": [
+    "tiktok"
+  ],
+  "objectif": "partage",
+  "objectif_compilation": "commentaires ; rangé en « partage », l'énumération du contrat n'ayant pas de valeur « commentaires »",
+  "structure": [
+    "Annonce des deux options.",
+    "Critères montrés.",
+    "Verdict net, jamais « les deux ont du bon »."
+  ],
+  "preuve": "C",
+  "exemples": [
+    "accroche A17"
+  ],
+  "limites": [
+    "Aucune mesure publiée par les sources."
+  ],
+  "sources": [
+    "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json#id=17",
+    "Explo38_reels-tiktok-fr@a2281b6:skills/rt-video/hooks.json#id=17",
+    "benchmark Business Discovery du 2026-11-12"
+  ],
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 0 compte(s) avec au moins un signal à 3x ou plus."
+}

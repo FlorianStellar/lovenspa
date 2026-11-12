@@ -1,0 +1,22 @@
+{
+  "id": "F16",
+  "nom": "Épingle Pinterest verticale",
+  "plateforme": "pinterest",
+  "objectif": "conversion",
+  "objectif_compilation": "trafic vers le site (recherche) ; rangé en « conversion », l'énumération du contrat n'ayant pas de valeur « trafic »",
+  "structure": [
+    "Visuel vertical 2:3, texte en surimpression, couleurs vives (S2-R09, à vérifier).",
+    "Mots-clés dans le titre, la description et le nom du tableau.",
+    "Variante multipage pour les tutoriels pas à pas (« Idea Pins » dans la source, nom de format à vérifier)."
+  ],
+  "preuve": "C",
+  "limites": [
+    "Seule source Pinterest du corpus ; aucune mesure."
+  ],
+  "sources": [
+    "nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-content-marketing/SKILL.md (Pinterest)",
+    "benchmark Business Discovery du 2026-11-12"
+  ],
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 0 compte(s) avec au moins un signal à 3x ou plus.",
+  "exemples": []
+}

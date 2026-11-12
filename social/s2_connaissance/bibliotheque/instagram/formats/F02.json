@@ -1,0 +1,32 @@
+{
+  "id": "F02",
+  "nom": "Concours (carrousel ou Reel)",
+  "plateforme": "instagram",
+  "objectif": "abonnes",
+  "objectif_secondaire": [
+    "portee"
+  ],
+  "structure": [
+    "Titre en capitales « CONCOURS ».",
+    "Lot chiffré (« 2 nuits », « une nuitée »).",
+    "Souvent un partenaire co-organisateur.",
+    "Après le tirage : mention « terminé » ajoutée au titre."
+  ],
+  "structure_statut": "observée dans les légendes seulement ; contenu des diapositives non observé",
+  "preuve": "C",
+  "biais": "La mécanique (commenter, identifier un ami) gonfle les commentaires. Ces publications devraient être retirées des médianes et classées à part (S2-M03, S2-R08). Le multiple ne prouve donc pas une préférence du public pour le format.",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 0 compte(s) avec au moins un signal à 3x ou plus. Concours : publications mises à part (hors organique), aucune preuve organique possible.",
+  "exemples": [
+    "https://www.instagram.com/p/DeMCq8tEV3j/ (Coucoo Cabanes, 55,2x)",
+    "https://www.instagram.com/p/DfPDpKzjUxR/ (Let's go my love, 7,8x)"
+  ],
+  "limites": [
+    "Biais de mécanique : multiple non comparable aux autres formats ; comparer un concours à d'autres concours seulement.",
+    "À valider hors sources : règlement de jeu-concours et règles Meta sur les promotions (aucune source compilée ne les couvre)."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "Melvynx_video-agent-skills@f454292:skills/insta-audit/references/workflow.md (point 6, concours à séparer)",
+    "benchmark Business Discovery du 2026-11-12"
+  ]
+}

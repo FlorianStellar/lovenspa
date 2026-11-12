@@ -1,0 +1,26 @@
+{
+  "id": "F10",
+  "nom": "Contenu éducatif sur le couple, avec une experte",
+  "plateforme": "instagram",
+  "objectif": "enregistrement",
+  "objectif_secondaire": [
+    "partage"
+  ],
+  "structure": [
+    "Reel avec une experte, ou carrousel « N façons de… ».",
+    "Statistique toujours sourcée (accroche A23)."
+  ],
+  "garde_fou": "Exemple Love'nSpa : ton romantique et sensuel, jamais explicite ; sujets possibles : complicité, temps à deux, rituels.",
+  "preuve": "C",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 1 compte(s) avec au moins un signal à 3x ou plus : yesforlov_official.",
+  "limites": [
+    "Deux comptes : un de plus au-dessus de 3x suffirait pour le niveau B."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "benchmark Business Discovery du 2026-11-12"
+  ],
+  "exemples": [
+    "https://www.instagram.com/p/DdJaAyMiEih/ (yesforlov_official, 6.86x)"
+  ]
+}

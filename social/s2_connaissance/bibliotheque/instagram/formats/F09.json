@@ -1,0 +1,29 @@
+{
+  "id": "F09",
+  "nom": "Reel avec appel « commentez pour recevoir le lien »",
+  "plateforme": "instagram",
+  "objectif": "conversion",
+  "objectif_compilation": "conversion et commentaires",
+  "structure": [
+    "Reel de visite (F01).",
+    "Légende ouverte par l'appel : le premier mot est l'appel (accroche A63).",
+    "Réponse automatique en message privé après le commentaire."
+  ],
+  "regle": "Réponse automatique uniquement via les outils officiels ou des partenaires agréés (S2-R03, à vérifier dans la documentation officielle).",
+  "preuve": "C",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 2 compte(s) avec au moins un signal à 3x ou plus : abracadaroom, hipcamp.",
+  "exemples": [
+    "https://www.instagram.com/reel/DZ3qqVhyhpw/ (hipcamp, 3.25x)",
+    "https://www.instagram.com/reel/DdDowLuOgdv/ (abracadaroom, 3.23x)"
+  ],
+  "limites": [
+    "Un seul compte : seuil B non atteint.",
+    "Le multiple de commentaires est gonflé par la mécanique de l'appel, comme pour F02."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "Melvynx_video-agent-skills@f454292:skills/outliers/SKILL.md (Hand off)",
+    "instagram-agent-skill@d03c56b:README.md (The fine print)",
+    "benchmark Business Discovery du 2026-11-12"
+  ]
+}

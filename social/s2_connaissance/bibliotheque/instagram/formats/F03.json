@@ -1,0 +1,40 @@
+{
+  "id": "F03",
+  "nom": "Carrousel sélection ou guide d'adresses",
+  "plateforme": "instagram",
+  "transposable": [
+    "pinterest"
+  ],
+  "transposable_note": "Version épingle multipage sur Pinterest (F16).",
+  "objectif": "enregistrement",
+  "objectif_secondaire": [
+    "partage"
+  ],
+  "structure": [
+    "Diapo 1 : couverture forte, promesse chiffrée (exemple : « {{N}} logements avec spa à moins de {{durée}} de {{ville}} »).",
+    "Diapos 2 à N : un lieu par diapositive, une photo réelle, une ligne d'atout.",
+    "Une diapositive « favori » annoncée dès la couverture.",
+    "Dernière diapo : appel à enregistrer ou à partager."
+  ],
+  "structure_statut": "proposée",
+  "nombre_diapos": "5 à 10 (preuve C) ; 7 éléments maximum dans la liste",
+  "preuve": "B",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 4 compte(s) avec au moins un signal à 3x ou plus : explorefrance, hipcamp, mrandmrssmith, staycation.",
+  "exemples": [
+    "https://www.instagram.com/p/DatrO4FARke/ (hipcamp, 7.06x)",
+    "https://www.instagram.com/p/Das5aSLDp1K/ (explorefrance, 4.93x)",
+    "https://www.instagram.com/p/Dd4K8BxjgEG/ (staycation, 4.9x)",
+    "https://www.instagram.com/p/DcgYiaZoMGi/ (mrandmrssmith, 4.69x)",
+    "https://www.instagram.com/p/DeEazJGCBdb/ (mrandmrssmith, 3.22x)"
+  ],
+  "limites": [
+    "Multiple d'interactions : l'objectif enregistrement n'est pas mesuré par le benchmark (hypothèse à confirmer par S8)."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-content-marketing/SKILL.md",
+    "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json#id=11 (piège : 7 éléments maximum)",
+    "accroche A11",
+    "benchmark Business Discovery du 2026-11-12"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "F14",
+  "nom": "Adaptation d'une tendance (son ou format du moment)",
+  "plateforme": "tiktok",
+  "transposable": [
+    "instagram"
+  ],
+  "objectif": "portee",
+  "structure": [
+    "Début du son ou du format tendance.",
+    "« Moi : situation qu'on reconnaît. »",
+    "« Aussi moi : la solution. »",
+    "Démonstration.",
+    "Appel discret."
+  ],
+  "regles": [
+    "Vérifier que le son est dans la bibliothèque commerciale si le compte est entreprise (S2-R06, à vérifier dans la documentation officielle).",
+    "Écarter les tendances qui ne collent pas à la marque (S2-M18)."
+  ],
+  "preuve": "C",
+  "exemples": [
+    "https://www.instagram.com/p/DbF5S6oDZnf/ (coucoocabanes, 3.03x)"
+  ],
+  "limites": [
+    "Une tendance est très locale et courte : à revérifier le jour de la production."
+  ],
+  "sources": [
+    "nexscope-ai_ecommerce-skills@ee0fb29:tiktok-shop-content-strategy/SKILL.md (Template 3)",
+    "Explo38_reels-tiktok-fr@a2281b6:skills/rt-veille/SKILL.md",
+    "benchmark Business Discovery du 2026-11-12"
+  ],
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 1 compte(s) avec au moins un signal à 3x ou plus : coucoocabanes."
+}

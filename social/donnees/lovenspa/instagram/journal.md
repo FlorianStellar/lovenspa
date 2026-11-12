@@ -28,3 +28,9 @@ Stratégie déduite de la marque et du benchmark, non des posts passés : doc «
 - Abonnés (API) : 35-44 ans 36,7 %, 25-34 ans 27,9 %, 45-54 ans 20,6 % ; femmes 55,1 % ; France 89,8 %, Ukraine 3,5 %, Belgique 2,2 %.
 - Commandes Shopify par mois : pic en décembre (136 en 2024, 174 en 2025), creux en août (23, 46).
 - Heures de connexion des abonnés : non fournies par l'API pour ce compte.
+
+## 2026-11-12 — J3 bibliothèque S2 Instagram v1
+- Échantillon : benchmark-2026-11-12.json, 37 comptes lus (3 illisibles), 100 publications max par compte, hygiène S2-M03 (fenêtre 7–180 j, ≥10 publications, épinglées retirées, concours et partenariats écrits à part).
+- 76 signaux à 3x ou plus de la médiane du compte et du format, classés par agent (signaux_classes.json) ; 5 recalculés hors organique (co-marquage « X x Y », lien affilié, partenaire).
+- Fiches : 18 (B : F01, F03, F05, F06, F07 ; C : 13 ; A : 0). Accroches réelles FR : 45. Règles officielles : 34 (31 officielles, 2 secondaires, 2 non trouvées) dans regles.md.
+- Écarts majeurs relevés (décisions à prendre) : zone de texte des Reels, permissions du jeton, format JPEG 4:5 des carrousels par l'API, is_ai_generated.

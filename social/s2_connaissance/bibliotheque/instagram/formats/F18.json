@@ -1,0 +1,29 @@
+{
+  "id": "F18",
+  "nom": "Coulisses",
+  "plateforme": "instagram",
+  "transposable": [
+    "tiktok"
+  ],
+  "transposable_note": "Stories et Reels sur Instagram.",
+  "objectif": "conversion",
+  "objectif_compilation": "confiance ; rangé en « conversion », l'énumération du contrat n'ayant pas de valeur « confiance »",
+  "structure": [
+    "Préparation réelle avant l'arrivée d'un client (exemple Love'nSpa : préparation d'un logement).",
+    "Aucun visage nécessaire."
+  ],
+  "structure_statut": "proposée",
+  "preuve": "C",
+  "exemples": [
+    "accroche A59"
+  ],
+  "limites": [
+    "Aucune mesure publiée par les sources."
+  ],
+  "sources": [
+    "nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-social-media-marketing/SKILL.md (Behind-the-Scenes Content)",
+    "rediumvex_viral-hooks-skill@e26b339:hooks-database.md#100",
+    "benchmark Business Discovery du 2026-11-12"
+  ],
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 0 compte(s) avec au moins un signal à 3x ou plus."
+}

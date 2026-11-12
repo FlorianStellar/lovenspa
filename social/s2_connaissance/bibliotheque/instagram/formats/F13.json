@@ -1,0 +1,29 @@
+{
+  "id": "F13",
+  "nom": "POV (point de vue)",
+  "plateforme": "tiktok",
+  "transposable": [
+    "instagram"
+  ],
+  "objectif": "portee",
+  "structure": [
+    "Texte à l'écran « POV : vous… » dès la première image.",
+    "Caméra subjective qui avance dans le logement.",
+    "Arrivée sur l'atout (exemple Love'nSpa : le spa)."
+  ],
+  "structure_statut": "proposée",
+  "preuve": "C",
+  "exemples": [
+    "accroche A48"
+  ],
+  "limites": [
+    "Aucune mesure publiée par les sources."
+  ],
+  "sources": [
+    "rediumvex_viral-hooks-skill@e26b339:hooks-database.md#068",
+    "nexscope-ai_ecommerce-skills@ee0fb29:tiktok-shop-content-strategy/SKILL.md (Hook Strategies)",
+    "nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-content-marketing/SKILL.md (TikTok, Best formats)",
+    "benchmark Business Discovery du 2026-11-12"
+  ],
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 0 compte(s) avec au moins un signal à 3x ou plus."
+}

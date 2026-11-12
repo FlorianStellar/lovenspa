@@ -1,0 +1,34 @@
+{
+  "id": "F06",
+  "nom": "Contenu saisonnier ou daté",
+  "plateforme": "instagram",
+  "objectif": "portee",
+  "objectif_secondaire": [
+    "partage"
+  ],
+  "structure": [
+    "Accroche avec la date ou la saison (formule A19 « La date limite »).",
+    "Plans du lieu dans l'ambiance de saison.",
+    "Information pratique datée.",
+    "Appel avant la date. L'urgence doit être vraie."
+  ],
+  "structure_statut": "proposée",
+  "preuve": "B",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 3 compte(s) avec au moins un signal à 3x ou plus : beautifuldestinations, hipcamp, sortiraparis.officiel.",
+  "exemples": [
+    "https://www.instagram.com/reel/DezCpl9RsGA/ (beautifuldestinations, 38.09x)",
+    "https://www.instagram.com/p/DbuaaVcEcnf/ (hipcamp, 10.48x)",
+    "https://www.instagram.com/reel/DfPEcFqMawt/ (sortiraparis.officiel, 8.72x)",
+    "https://www.instagram.com/reel/DfPsznsOkCI/ (beautifuldestinations, 8.22x)",
+    "https://www.instagram.com/reel/DfCMDWsMVg-/ (sortiraparis.officiel, 4.77x)"
+  ],
+  "limites": [
+    "Effet de saison : un multiple de décembre ne se compare qu'à un multiple de décembre."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json#id=19",
+    "nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-content-marketing/SKILL.md (Step 3, calendrier saisonnier)",
+    "benchmark Business Discovery du 2026-11-12"
+  ]
+}

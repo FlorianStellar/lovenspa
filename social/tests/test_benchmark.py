@@ -72,13 +72,24 @@ class TestHygiene(unittest.TestCase):
                 "like_count": eng, "comments_count": 0, "caption": cap, "permalink": f"p{i}"}
 
     def test_langue_fr(self):
-        self.assertTrue(benchmark.langue_fr("Une nuit pour vous deux avec le spa"))
-        self.assertFalse(benchmark.langue_fr("A night for the two of you"))
+        oui = ["Une nuit pour vous deux avec le spa", "ABONNE-TOI pour d’autres DÉCOUVERTES", "j’ai tellement aimé Riyadh",
+               "N’allez SURTOUT PAS au Liban", "Muhahaha, j’y pensais ce matin", "La team anxieux.ses, vous validez ?"]
+        non = ["A night for the two of you", "Brasil doesn’t have just one Carnaval...it has many",
+               "Staycation lanza su primer Running Club en Barcelona", "Run. Don’t walk.", "It’s a café in the city"]
+        for x in oui:
+            self.assertTrue(benchmark.langue_fr(x), x)
+        for x in non:
+            self.assertFalse(benchmark.langue_fr(x), x)
 
     def test_hors_organique(self):
         self.assertTrue(benchmark.HORS_ORGANIQUE.search("🎁 JEU CONCOURS : 2 nuits à gagner"))
         self.assertTrue(benchmark.HORS_ORGANIQUE.search("En partenariat avec @x"))
         self.assertFalse(benchmark.HORS_ORGANIQUE.search("Une cabane au bord de l'eau"))
+        self.assertFalse(benchmark.HORS_ORGANIQUE.search("2 x 3 nuits, lit 160 x 200"))
+        for x in ("Collaboration commerciale avec snapdragon_france", "Lien affilié en bio", "Paid partnership with x",
+                  "Merci à notre partenaire @y", "coffret Smartbox x Red Bull Kart Fight", "Staycation x 48collagencafe",
+                  "commente SAILY et je t’envoie le lien, t’auras -15%!!"):
+            self.assertTrue(benchmark.HORS_ORGANIQUE.search(x), x)
 
     def test_pinned_post_set_aside(self):
         posts = [self.post(i, 10, f"2026-10-{i + 1:02d}") for i in range(10)]

@@ -1,0 +1,32 @@
+{
+  "id": "F08",
+  "nom": "Reel incarné en série (vlog)",
+  "plateforme": "instagram",
+  "transposable_note": "Avec renvoi vers YouTube.",
+  "objectif": "portee",
+  "objectif_secondaire": [
+    "abonnes"
+  ],
+  "structure": [
+    "Une personne à l'écran, épisodes numérotés.",
+    "Fin d'épisode : renvoi vers la suite (« la suite sur YouTube »)."
+  ],
+  "structure_statut": "observée dans les légendes seulement",
+  "preuve": "C",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 1 compte(s) avec au moins un signal à 3x ou plus : ben.nco.",
+  "exemples": [
+    "https://www.instagram.com/reel/DcL4im-ti9E/ (ben.nco, 52.43x)",
+    "https://www.instagram.com/reel/DZDe2OWtnVV/ (ben.nco, 12.07x)",
+    "https://www.instagram.com/reel/DZIYm74NQNj/ (ben.nco, 8.11x)",
+    "https://www.instagram.com/reel/DY44FB1NQa4/ (ben.nco, 5.11x)",
+    "https://www.instagram.com/reel/DZzYNVdyHo4/ (ben.nco, 4.18x)"
+  ],
+  "limites": [
+    "Repose sur une personne à l'écran. Exemple Love'nSpa : publie sans visage à ce stade.",
+    "Élément transposable sans visage : la série à épisodes."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "benchmark Business Discovery du 2026-11-12"
+  ]
+}

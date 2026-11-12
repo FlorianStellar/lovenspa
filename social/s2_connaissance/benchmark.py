@@ -101,16 +101,36 @@ def summarize(acc, today=None):
 
 # ------------------------------------------------------------------ hygiène (S2-M01 à S2-M03)
 HORS_ORGANIQUE = re.compile(
-    r"concours|giveaway|jeu[- ]concours|à gagner|a gagner|tirage au sort|gagnez|sorteo|#ad\b|#sponsoris|"
-    r"sponsoris|partenariat|collaboration avec|en collab|#partenaire|#gifted|code promo", re.I)
+    r"concours|giveaway|jeu[- ]concours|à gagner|a gagner|tirage au sort|gagnez|sorteo|"
+    r"#ad\b|#sponsoris|sponsoris|sponsored|partenariat|paid partnership|in partnership|#partner|"
+    r"collaboration commerciale|collaboration avec|en collab|#partenaire|partenaire|affili|"
+    r"#gifted|code promo|offert par|en association avec|s.associe|presented by|"
+    r"\b[a-z][\w.]* x [\w.]*[a-z]|-\d{1,2} ?%|envoie le lien", re.I)
+# Limite : la mention « Collaboration commerciale » d'Instagram est un libellé d'interface, absent de la légende
+# lue par l'API ; seuls les partenariats écrits dans la légende sont détectés.
 MOTS_FR = {"le", "la", "les", "des", "une", "un", "et", "pour", "avec", "vous", "nous", "dans", "sur", "est",
-           "pas", "qui", "que", "votre", "notre", "plus", "au", "aux", "du", "ce", "cette", "à"}
+           "pas", "qui", "que", "votre", "notre", "plus", "au", "aux", "du", "ce", "cette", "à", "il", "elle",
+           "en", "on", "mais", "ou", "donc", "quoi", "très", "tout", "tous", "sans", "chez"}
+MOTS_EN = {"the", "and", "to", "of", "is", "for", "you", "your", "this", "with", "it", "in", "on", "are", "our"}
+ELISION_FR = re.compile(r"\b[dljnmtsc]['’][a-zàâçéèêëîïôûùüÿœ]", re.I)
+ACCENTS_FR = re.compile(r"[éèêàçùâîôûœ]", re.I)
 
 
 def langue_fr(texte):
-    """Vrai si au moins 3 mots outils français (repérage, pas un détecteur de langue)."""
+    """Repérage du français (pas un détecteur de langue) : mots outils, élisions (d’, j’, l’…) et accents
+    français, à condition de l'emporter sur les mots outils anglais."""
+    t = (texte or "").lower()
+    mots = re.findall(r"[a-zàâçéèêëîïôûùüÿœ]+", t)
+    fr = sum(1 for m in mots if m in MOTS_FR) + len(ELISION_FR.findall(t)) + (1 if ACCENTS_FR.search(t) else 0)
+    en = sum(1 for m in mots if m in MOTS_EN)
+    return fr >= 2 and fr > en
+
+
+def anglais(texte):
+    """Ligne dominée par les mots outils anglais (accroche anglaise d'une légende bilingue)."""
     mots = re.findall(r"[a-zàâçéèêëîïôûùüÿœ]+", (texte or "").lower())
-    return sum(1 for m in mots if m in MOTS_FR) >= 3
+    en = sum(1 for m in mots if m in MOTS_EN)
+    return en >= 2 and en > sum(1 for m in mots if m in MOTS_FR)
 
 
 def epinglees(media):

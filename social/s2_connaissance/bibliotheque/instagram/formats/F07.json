@@ -1,0 +1,30 @@
+{
+  "id": "F07",
+  "nom": "Carrousel texte « qui parle » (phrase, mème, prise de position)",
+  "plateforme": "instagram",
+  "objectif": "partage",
+  "objectif_compilation": "partage et commentaires",
+  "structure": [
+    "Diapo 1 : une phrase courte qui se suffit.",
+    "Diapos suivantes : développement en 2 à 4 phrases.",
+    "Dernière diapo : question ouverte au public."
+  ],
+  "structure_statut": "proposée",
+  "preuve": "B",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 3 compte(s) avec au moins un signal à 3x ou plus : jemenbatsleclito, passagedudesir, yesforlov_official.",
+  "exemples": [
+    "https://www.instagram.com/p/DcTncWLCHkD/ (jemenbatsleclito, 9.43x)",
+    "https://www.instagram.com/p/DZQN-EtCm-r/ (jemenbatsleclito, 7.91x)",
+    "https://www.instagram.com/p/DcnhVLkiuRf/ (jemenbatsleclito, 6.59x)",
+    "https://www.instagram.com/p/DbVk4O5CBaD/ (yesforlov_official, 3.83x)",
+    "https://www.instagram.com/p/DbdrcbKjEbg/ (passagedudesir, 3.75x)"
+  ],
+  "limites": [
+    "La plupart des succès sont militants ou d'actualité sociale : le ton doit être adapté à la marque.",
+    "Exemple Love'nSpa : complicité de couple, humour tendre, jamais militant ni explicite."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "benchmark Business Discovery du 2026-11-12"
+  ]
+}

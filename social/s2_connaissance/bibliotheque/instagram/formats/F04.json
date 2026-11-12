@@ -1,0 +1,29 @@
+{
+  "id": "F04",
+  "nom": "Carrousel d'un lieu unique, en reportage photo",
+  "plateforme": "instagram",
+  "objectif": "portee",
+  "objectif_secondaire": [
+    "enregistrement"
+  ],
+  "structure": [
+    "Diapo 1 : la plus belle vue du logement.",
+    "Diapos suivantes : détails (exemple Love'nSpa : spa, lit, lumière du soir).",
+    "Dernière diapo : localisation."
+  ],
+  "structure_statut": "proposée ; contenu exact des diapositives non observé",
+  "preuve": "C",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 1 compte(s) avec au moins un signal à 3x ou plus : plumguide.",
+  "exemples": [
+    "https://www.instagram.com/p/Dehf8O5Fy68/ (plumguide, 5.68x)",
+    "https://www.instagram.com/p/Dc5zfGxoKSA/ (plumguide, 3.32x)",
+    "https://www.instagram.com/p/DecWVy4l8oY/ (plumguide, 3.07x)"
+  ],
+  "limites": [
+    "Structure non observée : à confirmer par visionnage (S2-M05)."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "benchmark Business Discovery du 2026-11-12"
+  ]
+}

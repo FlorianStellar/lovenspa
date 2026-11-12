@@ -1,0 +1,31 @@
+{
+  "id": "F15",
+  "nom": "Avis client ou contenu client repris",
+  "plateforme": "instagram",
+  "transposable": [
+    "tiktok"
+  ],
+  "objectif": "conversion",
+  "objectif_compilation": "conversion (preuve sociale)",
+  "structure": [
+    "L'avant : le besoin du client (exemple Love'nSpa : le besoin du couple).",
+    "L'expérience.",
+    "L'après.",
+    "Nom et accord du client."
+  ],
+  "preuve": "C",
+  "exemples": [
+    "accroches A25, A44"
+  ],
+  "limites": [
+    "L'accord du client est obligatoire avant reprise.",
+    "« 2 fois par semaine » dans la source est un exemple, pas une mesure."
+  ],
+  "sources": [
+    "nexscope-ai_ecommerce-skills@ee0fb29:tiktok-shop-branding/SKILL.md (Customer Transformation)",
+    "nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-social-media-marketing/SKILL.md (UGC)",
+    "nexscope-ai_ecommerce-skills@ee0fb29:tiktok-shop-content-strategy/SKILL.md (UGC Repost)",
+    "benchmark Business Discovery du 2026-11-12"
+  ],
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 0 compte(s) avec au moins un signal à 3x ou plus."
+}

@@ -1,0 +1,44 @@
+{
+  "id": "F01",
+  "nom": "Reel de visite sensorielle d'un logement",
+  "plateforme": "instagram",
+  "transposable": [
+    "tiktok"
+  ],
+  "objectif": "portee",
+  "objectif_secondaire": [
+    "conversion"
+  ],
+  "objectif_note": "Hypothèse : le benchmark ne mesure que l'engagement.",
+  "structure": [
+    "0-1 s : premier plan déjà en mouvement, dans le lieu (porte qui s'ouvre, vapeur qui monte). Texte à l'écran de 6 mots maximum. Pas de mise en place.",
+    "1-8 s : détails sensoriels, plans courts de 0,5 à 1,5 s, coupe franche.",
+    "Avant la moitié : l'atout promis est montré (exemple Love'nSpa : le spa rien qu'à deux).",
+    "Fin : nom du lieu ou région, appel (lien en bio ou commentaire, voir F09).",
+    "Légende : première ligne en suspens (accroche A61)."
+  ],
+  "structure_statut": "proposée (contenu visuel non observé)",
+  "duree": "15 à 30 s (preuve C)",
+  "preuve": "B",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 4 compte(s) avec au moins un signal à 3x ou plus : beautifuldestinations, canopyandstars, lescabanesdanslesbois, loveinroom.fr.",
+  "exemples": [
+    "https://www.instagram.com/reel/DcTr2wHI4T9/ (loveinroom.fr, 15.51x)",
+    "https://www.instagram.com/reel/DfPGzQyOAAj/ (beautifuldestinations, 13.6x)",
+    "https://www.instagram.com/reel/DfTtr63ulJj/ (beautifuldestinations, 10.27x)",
+    "https://www.instagram.com/reel/Dd113hnO2CW/ (canopyandstars, 5.7x)",
+    "https://www.instagram.com/reel/DbtYgFHILBd/ (lescabanesdanslesbois, 4.5x)"
+  ],
+  "limites": [
+    "Love in Room n'a que 20 publications au total : vérifier qu'au moins 10 tombent dans la fenêtre de 7 à 180 jours (S2-M03).",
+    "Les succès de Chéri fais tes valises datent de 2025 (dernière publication il y a 177 jours au moment du benchmark).",
+    "Multiple d'interactions, pas de vues."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json (rules)",
+    "Melvynx_video-agent-skills@f454292:skills/steal/references/learnings.md (point 4)",
+    "nexscope-ai_ecommerce-skills@ee0fb29:ecommerce-content-marketing/SKILL.md (Instagram, durée)",
+    "accroche A24 « La révélation »",
+    "benchmark Business Discovery du 2026-11-12"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "F11",
+  "nom": "Avant / après à l'écran",
+  "plateforme": "instagram",
+  "transposable": [
+    "tiktok"
+  ],
+  "objectif": "portee",
+  "structure": [
+    "Plan 1 : l'avant (exemple Love'nSpa : chambre en journée).",
+    "Coupe franche.",
+    "Plan 2 : l'après (exemple : bougies, spa allumé).",
+    "Une phrase sur un seul levier."
+  ],
+  "duree": "non précisée par la source",
+  "preuve": "C",
+  "exemples": [
+    "accroche A13"
+  ],
+  "limites": [
+    "Aucune mesure publiée par les sources."
+  ],
+  "sources": [
+    "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json#id=13",
+    "Explo38_reels-tiktok-fr@a2281b6:skills/rt-video/hooks.json#id=13",
+    "nexscope-ai_ecommerce-skills@ee0fb29:tiktok-shop-content-strategy/SKILL.md (format Transformation)",
+    "benchmark Business Discovery du 2026-11-12"
+  ],
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 0 compte(s) avec au moins un signal à 3x ou plus."
+}

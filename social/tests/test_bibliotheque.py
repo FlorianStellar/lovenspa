@@ -44,6 +44,19 @@ class TestBibliotheque(unittest.TestCase):
         self.assertIn("pas l'accroche parlée", acc[0]["nature"])
         self.assertEqual(acc[0]["pertinence"], "directe")
 
+    def test_rafraichir_and_exclude_partnerships(self):
+        bench = {"comptes": {"x": {"media": [
+            {"permalink": "p-a-4.0", "caption": "Une cabane rien qu’à vous, avec le spa"},
+            {"permalink": "p-b-4.0", "caption": "Collaboration commerciale avec @marque : une nuit pour vous"},
+            {"permalink": "p-c-4.0", "caption": "A cabin for the two of you"},
+            {"permalink": "p-d-4.0", "caption": "Which of these villages will you add to your list?\n7 villages que vous allez aimer"}]}}}
+        s = b.rafraichir([sig("a"), sig("b"), sig("c"), sig("d", acc="Which of these villages will you add to your list?")], bench)
+        self.assertEqual([x["hors_organique"] for x in s], [False, True, False, False])
+        self.assertEqual([x["langue_fr"] for x in s], [True, True, False, False])  # d : accroche anglaise
+        out = b.construire([FICHE], s, "2026-11-12")[0]
+        self.assertIn("3 compte(s) avec au moins un signal à 3x ou plus : a, c, d.", out["observe"])  # b (partenariat) exclu
+        self.assertEqual([a["compte"] for a in b.accroches_observees(s)], ["a"])
+
     def test_synthese(self):
         f = b.construire([FICHE], [sig("a")], "2026-11-12")
         md = b.synthese_md(f, b.accroches_observees([sig("a")]), "2026-11-12")

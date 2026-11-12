@@ -40,6 +40,24 @@ def fiches_amorce(chemin=FORMATS_SKILL):
     return [json.loads(b) for b in re.findall(r"```json\n(.*?)\n```", texte, re.S)]
 
 
+def rafraichir(signaux, benchmark_json):
+    """Recalcule langue et caractère hors organique de chaque signal sur sa légende complète
+    (filtres de benchmark.py), sans toucher au classement humain ou agent."""
+    from social.s2_connaissance.benchmark import HORS_ORGANIQUE, anglais, langue_fr
+    legendes = {m.get("permalink"): m.get("caption") or ""
+                for acc in benchmark_json["comptes"].values() for m in acc.get("media", [])}
+    out = []
+    for s in signaux:
+        cap = legendes.get(s["permalink"], s.get("accroche") or "")
+        out.append({**s, "langue_fr": langue_fr(cap) and not anglais(s.get("accroche")),
+                    "hors_organique": bool(HORS_ORGANIQUE.search(cap))})
+    return out
+
+
+def organiques(signaux):
+    return [s for s in signaux if not s.get("hors_organique")]
+
+
 def preuves(signaux):
     """fiche -> {comptes: [...], signaux: [...]} pour les signaux organiques classés."""
     out = {}
@@ -61,7 +79,7 @@ def niveau(nb_comptes, fiche_id, hors_organique_ids=("F02",)):
 
 def construire(fiches, signaux, date_benchmark):
     """Fiches mises à jour (pur, testable)."""
-    p = preuves(signaux)
+    p = preuves(organiques(signaux))
     out = []
     for f in fiches:
         e = p.get(f["id"], {"comptes": set(), "signaux": []})
@@ -95,7 +113,7 @@ def accroches_observees(signaux):
             "date": s["date"], "permalink": s["permalink"], "fiche_format": s.get("fiche_format"),
             "formule_accroche": s.get("formule_accroche"), "pertinence": _pertinence(s),
             "nature": "première ligne de légende (pas l'accroche parlée, S2-M06)"}
-           for s in signaux if s.get("langue_fr") and (s.get("accroche") or "").strip()]
+           for s in organiques(signaux) if s.get("langue_fr") and (s.get("accroche") or "").strip()]
     return sorted(out, key=lambda a: a["multiple"], reverse=True)
 
 
@@ -119,10 +137,15 @@ def main(argv=None):
     ap.add_argument("--plateforme", default="instagram")
     ap.add_argument("--skill-formats", default=FORMATS_SKILL)
     ap.add_argument("--date-benchmark", required=True)
+    ap.add_argument("--benchmark", required=True, help="fichier JSON du benchmark (légendes complètes)")
     a = ap.parse_args(argv)
     dossier = os.path.join(ICI, "bibliotheque", a.plateforme)
     with open(os.path.join(dossier, "signaux_classes.json"), encoding="utf-8") as f:
         signaux = json.load(f)
+    with open(a.benchmark, encoding="utf-8") as f:
+        signaux = rafraichir(signaux, json.load(f))
+    with open(os.path.join(dossier, "signaux_classes.json"), "w", encoding="utf-8") as f:
+        json.dump(signaux, f, ensure_ascii=False, indent=1)
     fiches = construire(fiches_amorce(a.skill_formats), signaux, a.date_benchmark)
     os.makedirs(os.path.join(dossier, "formats"), exist_ok=True)
     for f in fiches:

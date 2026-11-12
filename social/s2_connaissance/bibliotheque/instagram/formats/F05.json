@@ -1,0 +1,33 @@
+{
+  "id": "F05",
+  "nom": "Annonce de nouveauté ou de partenariat",
+  "plateforme": "instagram",
+  "objectif": "portee",
+  "objectif_secondaire": [
+    "abonnes"
+  ],
+  "structure": [
+    "Diapo 1 : « Nouveau » et la photo qui montre l'atout.",
+    "Diapo 2 : ce que ça change.",
+    "Diapos suivantes : détails.",
+    "Dernière diapo : quand et où réserver."
+  ],
+  "structure_statut": "proposée (formule A24 « La révélation »)",
+  "preuve": "B",
+  "observe": "Benchmark du 2026-11-12 (hygiène S2-M03, multiple d'interactions) : 4 compte(s) avec au moins un signal à 3x ou plus : canopyandstars, coucoocabanes, staycation, yesforlov_official.",
+  "exemples": [
+    "https://www.instagram.com/p/DcyFwP8iH4n/ (yesforlov_official, 33.75x)",
+    "https://www.instagram.com/p/DbDQNKeCHRc/ (coucoocabanes, 5.98x)",
+    "https://www.instagram.com/p/DdmVvBFjWUG/ (canopyandstars, 4.38x)",
+    "https://www.instagram.com/p/DfP2ilpkVlw/ (staycation, 4.04x)",
+    "https://www.instagram.com/p/Dc6OyyIjlUv/ (staycation, 3.56x)"
+  ],
+  "limites": [
+    "Les partenariats et collaborations sont à classer à part dans les médianes (S2-M03) : même biais que F02, à un degré inconnu."
+  ],
+  "sources": [
+    "lovenspa@485c428:claude/agent-instagram/data/benchmark-2026-11-11.md",
+    "instagram-agent-skill@d03c56b:skills/ig-reel/hooks.json#id=24",
+    "benchmark Business Discovery du 2026-11-12"
+  ]
+}
