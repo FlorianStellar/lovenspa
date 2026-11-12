@@ -1,0 +1,55 @@
+{
+ "case": {
+  "date": "2026-11-19",
+  "heure": "18:30",
+  "plateforme": "instagram",
+  "moteur": "lieu",
+  "format": "REELS",
+  "temps_fort": "Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir",
+  "statut": "A_PRODUIRE",
+  "offres": [
+   {
+    "handle": "romantic-room-alexis",
+    "nom": "Romantic Room Alexis",
+    "type": "Chambre d'hôte",
+    "ville": "Sablettes",
+    "ville_reference": "Toulon",
+    "region": "Provence-Alpes-Côte d'Azur",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Champagne",
+     "Cheminée",
+     "Climatisation",
+     "Day Use",
+     "Douche XL",
+     "Hammam",
+     "Jardin",
+     "Lit Rond",
+     "Parking privé",
+     "Piscine extérieure",
+     "Spa",
+     "Table de massage"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 395.0,
+    "unite_prix": "la nuit",
+    "devise": "EUR",
+    "on_aime": null,
+    "ambiance": 1,
+    "ambiance_libelle": "Romantique",
+    "url": "https://lovenspa.fr/products/romantic-room-alexis",
+    "actif": true,
+    "medias": 27
+   }
+  ],
+  "region": "Provence-Alpes-Côte d'Azur",
+  "lien": "https://lovenspa.fr/products/romantic-room-alexis?utm_source=instagram&utm_medium=social&utm_campaign=lieu&utm_content=2026-11-19"
+ },
+ "legende": "Jacuzzi privatif, lit rond XXL et dîner compris : la Romantic Room Alexis, près de Toulon, dès 395 € la nuit.\n\nVous arrivez par une entrée indépendante, la voiture reste sur votre place privée. Ensuite, vous n'avez plus rien à prévoir : l'apéritif, le dîner et le petit-déjeuner sont inclus.\n\nLe jacuzzi vous attend, la cheminée s'allume d'un geste, et les volets se ferment à distance quand le film commence sur l'écran de 3 mètres.\n\nPour réserver votre date, lien en bio.\n\n#lovenspa #loveroom #toulon #jacuzziprivatif #nuitromantique",
+ "medias": [
+  "social/donnees/lovenspa/instagram/production/j4/2-reel-lieu-alexis/reel.mp4"
+ ],
+ "notes": [
+  "durée 15.0 s"
+ ]
+}

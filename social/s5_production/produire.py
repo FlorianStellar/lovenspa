@@ -8,7 +8,9 @@ Entrée : donnees/<marque>/<plateforme>/production/<date>-<moteur>/contenu.json
     "case": { ... case du plan (date, plateforme, moteur, format, offres, lien) ... },
     "legende": "texte complet de la légende",
     "reel_lignes": ["accroche à l'écran", "ligne 2", ...],          # moteur lieu
-    "couverture": {"titre": "...", "sous_titre": "..."},             # sélection / concours
+    "reel_photos": [3, 1, 7, ...],                                  # rang (1 = première) de la photo de la boutique
+                                                                    # choisie pour chaque ligne, après l'avoir regardée
+    "couverture": {"titre": "...", "sous_titre": "...", "photo": 2},  # sélection / concours ; photo = rang (option)
     "couple": {"titre": "...", "diapos": [{"titre": "...", "texte": "..."}], "cta": "..."},
     "fin": {"titre": "...", "texte": "..."}                          # dernière diapositive (sélection / concours)
   }
@@ -30,6 +32,16 @@ from social.s6_controle import controle
 MAX_DIAPOS = 10  # choix éditorial (décision du 12/11/2026) ; Instagram en accepte 20 (IG-R05, IG-R06)
 
 
+def typo_fr(texte):
+    """Espaces insécables de la typographie française : avant « : », guillemets intérieurs (espace fine avant ; ! ?).
+    Les URL et heures (« 18:30 ») ne sont pas touchées : seule une espace déjà présente est remplacée."""
+    import re
+    t = re.sub(r"(?<=\S) :(?=\s|$)", "\u00a0:", texte)
+    t = re.sub(r"(?<=\S) ([;!?])(?=\s|$)", "\u202f\\1", t)
+    t = re.sub(r"« ", "«\u00a0", t)
+    return re.sub(r" »", "\u00a0»", t)
+
+
 def lieu_txt(f):
     ref = f.get("ville_reference") or f.get("ville")
     return f"{f['ville']}" + (f" · près de {ref}" if ref and ref != f["ville"] else "")
@@ -46,7 +58,17 @@ def fabriquer(c, folder, catalogue, strat, session=None):
     phares = strat["equipements_phares"]
     if case["moteur"] == "lieu":
         f = offres[0]
-        photos = [visuels.fetch(u, session) for u in catalogue.images(f["handle"], n=len(c["reel_lignes"]))]
+        choix = c.get("reel_photos")
+        if choix and len(choix) != len(c["reel_lignes"]):
+            raise RuntimeError("reel_photos : une photo par ligne")
+        urls = catalogue.images(f["handle"], n=max(choix) if choix else len(c["reel_lignes"]))
+        if choix:
+            if max(choix) > len(urls) or min(choix) < 1:
+                raise RuntimeError(f"reel_photos : rang hors des {len(urls)} photos de la boutique")
+            urls = [urls[i - 1] for i in choix]
+        else:
+            notes.append("photos prises dans l'ordre de la boutique, sans choix par ligne (reel_photos absent)")
+        photos = [visuels.fetch(u, session) for u in urls]
         if len(photos) < 3:
             raise RuntimeError(f"{f['handle']} : moins de 3 photos")
         lines = (c["reel_lignes"] + [""] * len(photos))[: len(photos)]
@@ -60,8 +82,13 @@ def fabriquer(c, folder, catalogue, strat, session=None):
         return [out], notes
     if case["moteur"] in ("selection", "concours"):
         n = len(offres)
-        # couverture : 2e photo de la première offre, pour ne pas répéter la diapositive 2
-        first = visuels.fetch(catalogue.images(offres[0]["handle"], 2)[-1], session)
+        # couverture : photo choisie (« couverture.photo », rang dans la boutique) ou, à défaut, la 2e photo de la
+        # première offre, pour ne pas répéter la diapositive 2
+        rang = c["couverture"].get("photo", 2)
+        urls = catalogue.images(offres[0]["handle"], rang)
+        if len(urls) < rang:
+            raise RuntimeError(f"couverture.photo : rang {rang} hors des {len(urls)} photos de la boutique")
+        first = visuels.fetch(urls[rang - 1], session)
         slides = [visuels.slide_cover(first, c["couverture"]["titre"], c["couverture"]["sous_titre"], f"1/{n + 2}")]
         for i, f in enumerate(offres, 2):
             photo = visuels.fetch(catalogue.images(f["handle"], 1)[0], session)
@@ -91,7 +118,7 @@ def produce(folder, marque=None, catalogue=None, session=None, history=None):
         raise RuntimeError(f"{len(medias)} diapositives : {MAX_DIAPOS} au maximum")
     if case.get("lien") and case["lien"].split("?")[0] not in c["legende"] and case["moteur"] != "lieu":
         notes.append("lien UTM à mettre en bio ou en message (non présent dans la légende)")
-    paquet = {"case": case, "legende": c["legende"], "medias": medias, "notes": notes}
+    paquet = {"case": case, "legende": typo_fr(c["legende"]), "medias": medias, "notes": notes}
     valider(paquet, "paquet")
     verdict = valider(controle.verdict(paquet, marque.regles, history or [], strat["ambiances_autorisees"]), "verdict")
     for nom, obj in (("paquet.json", paquet), ("verdict.json", verdict)):

@@ -42,6 +42,15 @@ class TestImaging(unittest.TestCase):
                   visuels.slide_text("Titre", "Texte", "3/3", cta=True)):
             self.assertEqual(s.size, visuels.CAROUSEL)
 
+    def test_text_is_dark_on_cream(self):
+        """Régression J4 : titres de couverture et noms de logement étaient blancs sur fond crème."""
+        def sombres(im, box):
+            return sum(1 for p in im.crop(box).getdata() if sum(p) < 200)
+        c = visuels.slide_cover(PHOTO, "Titre de couverture", "Sous-titre", "1/3")
+        self.assertGreater(sombres(c, (80, 950, 1000, 1030)), 500)
+        l = visuels.slide_lodging(PHOTO, "Nom du logement", "Ville", 150.0, ["Spa"], "2/3")
+        self.assertGreater(sombres(l, (80, 945, 1000, 1000)), 500)
+
     def test_cta_slide_is_not_pink_flat(self):
         s = visuels.slide_text("T", "", cta=True)
         self.assertEqual(s.getpixel((1000, 100)), visuels.CREME)
@@ -100,12 +109,12 @@ CAPTION = ("Spa et sauna à Vannes : Le Nid, dès 150 € la nuit.\n\nUn gîte
 
 
 class TestProduire(unittest.TestCase):
-    def run_case(self, contenu):
+    def run_case(self, contenu, fetch=True):
         with tempfile.TemporaryDirectory() as d:
             with open(os.path.join(d, "contenu.json"), "w", encoding="utf-8") as f:
                 json.dump(contenu, f)
             cat = mock.Mock(images=mock.Mock(return_value=["u1", "u2", "u3", "u4"]))
-            with mock.patch.object(visuels, "fetch", return_value=PHOTO), \
+            with (mock.patch.object(visuels, "fetch", return_value=PHOTO) if fetch else mock.MagicMock()), \
                     mock.patch.object(visuels, "render_reel", side_effect=lambda fr, out, **k: out), \
                     mock.patch.object(visuels, "probe", return_value={"streams": [{"codec_type": "video", "width": 1080,
                                                                                       "height": 1920}],
@@ -117,6 +126,30 @@ class TestProduire(unittest.TestCase):
         p = self.run_case({"case": {**BASE, "moteur": "lieu", "format": "REELS", "offres": [FICHE]}, "legende": CAPTION,
                            "reel_lignes": ["a", "b", "c"]})
         self.assertEqual(p["statut"], "PRET", p["bloquants"])
+
+    def test_reel_photos_chosen_per_line(self):
+        vus = []
+        with mock.patch.object(visuels, "fetch", side_effect=lambda u, s=None: vus.append(u) or PHOTO):
+            p = self.run_case({"case": {**BASE, "moteur": "lieu", "format": "REELS", "offres": [FICHE]},
+                                                 "legende": CAPTION, "reel_lignes": ["a", "b", "c"], "reel_photos": [4, 1, 2]}, fetch=False)
+        self.assertEqual(vus, ["u4", "u1", "u2"])
+        self.assertNotIn("ordre de la boutique", " ".join(p["notes"]))
+
+    def test_cover_photo_choice(self):
+        vus = []
+        with mock.patch.object(visuels, "fetch", side_effect=lambda u, s=None: vus.append(u) or PHOTO):
+            self.run_case({"case": {**BASE, "moteur": "selection", "format": "CAROUSEL", "offres": [FICHE]},
+                           "legende": CAPTION, "couverture": {"titre": "T", "sous_titre": "S", "photo": 4},
+                           "fin": {"titre": "F", "texte": "x"}}, fetch=False)
+        self.assertEqual(vus[0], "u4")
+
+    def test_reel_photos_out_of_range(self):
+        with self.assertRaises(RuntimeError):
+            self.run_case({"case": {**BASE, "moteur": "lieu", "format": "REELS", "offres": [FICHE]}, "legende": CAPTION,
+                           "reel_lignes": ["a", "b"], "reel_photos": [1, 9]})
+        with self.assertRaises(RuntimeError):
+            self.run_case({"case": {**BASE, "moteur": "lieu", "format": "REELS", "offres": [FICHE]}, "legende": CAPTION,
+                           "reel_lignes": ["a", "b"], "reel_photos": [1]})
 
     def test_wrong_price_refused(self):
         p = self.run_case({"case": {**BASE, "moteur": "lieu", "format": "REELS", "offres": [FICHE]},

@@ -1,0 +1,20 @@
+{
+ "statut": "PRET",
+ "controle": {
+  "statut": "OK",
+  "caracteres": 538,
+  "premiere_ligne": 90,
+  "hashtags": [
+   "#lovenspa",
+   "#concours",
+   "#nantes",
+   "#spaprivatif",
+   "#nuitadeux"
+  ],
+  "appels": [
+   "lien"
+  ],
+  "resultats": []
+ },
+ "bloquants": []
+}

@@ -1,0 +1,31 @@
+{
+ "statut": "PRET",
+ "controle": {
+  "statut": "A_REVOIR",
+  "caracteres": 526,
+  "premiere_ligne": 62,
+  "hashtags": [
+   "#lovenspa",
+   "#spaprivatif",
+   "#loveroom",
+   "#weekendamoureux",
+   "#petitprix"
+  ],
+  "appels": [
+   "enregistrer"
+  ],
+  "resultats": [
+   {
+    "code": "AUTRE_MONTANT",
+    "niveau": "avertissement",
+    "message": "montant 150 € cité hors prix du logement : vérifier sa source"
+   },
+   {
+    "code": "AUTRE_MONTANT",
+    "niveau": "avertissement",
+    "message": "montant 150 € cité hors prix du logement : vérifier sa source"
+   }
+  ]
+ },
+ "bloquants": []
+}

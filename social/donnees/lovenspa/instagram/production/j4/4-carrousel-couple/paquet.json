@@ -1,0 +1,27 @@
+{
+ "case": {
+  "date": "2026-11-20",
+  "heure": "18:30",
+  "plateforme": "instagram",
+  "moteur": "couple",
+  "format": "CAROUSEL",
+  "temps_fort": "Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir",
+  "statut": "A_PRODUIRE",
+  "theme": "Les petites attentions qui rallument le désir",
+  "offres": [],
+  "lien": "https://www.lovenspa.fr/?utm_source=instagram&utm_medium=social&utm_campaign=couple&utm_content=2026-11-20"
+ },
+ "legende": "Le désir ne s'éteint pas d'un coup : il s'endort quand on cesse d'y faire attention.\n\nPas besoin de grands gestes pour le réveiller. Un message au milieu de la journée, un regard qui dure une seconde de trop, une soirée où les téléphones restent dans l'entrée.\n\nFaites défiler : cinq petites attentions qui changent l'ambiance d'une soirée.\n\nEnvoyez ce post à la personne qui vous fait encore cet effet.\n\n#lovenspa #couple #desir #amour #soireeadeux",
+ "medias": [
+  "social/donnees/lovenspa/instagram/production/j4/4-carrousel-couple/diapo-01.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/4-carrousel-couple/diapo-02.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/4-carrousel-couple/diapo-03.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/4-carrousel-couple/diapo-04.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/4-carrousel-couple/diapo-05.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/4-carrousel-couple/diapo-06.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/4-carrousel-couple/diapo-07.jpg"
+ ],
+ "notes": [
+  "lien UTM à mettre en bio ou en message (non présent dans la légende)"
+ ]
+}

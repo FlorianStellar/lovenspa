@@ -1,0 +1,61 @@
+{
+ "case": {
+  "date": "2026-11-22",
+  "heure": "18:30",
+  "plateforme": "instagram",
+  "moteur": "lieu",
+  "format": "REELS",
+  "temps_fort": "Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir",
+  "statut": "A_PRODUIRE",
+  "offres": [
+   {
+    "handle": "le-nid-de-lerdre",
+    "nom": "Le Nid de l'Erdre",
+    "type": "Gîte",
+    "ville": "Nantes",
+    "ville_reference": "Nantes",
+    "region": "Pays de la Loire",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Climatisation",
+     "Day Use",
+     "Douche XL",
+     "Jardin",
+     "Parking privé",
+     "Piscine intérieure",
+     "Sauna",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 225.0,
+    "unite_prix": "la nuit",
+    "devise": "EUR",
+    "on_aime": "Le calme des lieux, la vue sur la rivière, la location avec enfant possible",
+    "ambiance": 2,
+    "ambiance_libelle": "Sensuel",
+    "url": "https://lovenspa.fr/products/le-nid-de-lerdre",
+    "actif": true,
+    "medias": 16
+   }
+  ],
+  "region": "Pays de la Loire",
+  "lien": "https://lovenspa.fr/products/le-nid-de-lerdre?utm_source=instagram&utm_medium=social&utm_campaign=lieu&utm_content=2026-11-22"
+ },
+ "legende": "Une piscine chauffée à 32 °C, un sauna et la rivière au bout du jardin : Le Nid de l'Erdre, dès 225 € la nuit.\n\nSur les rives de l'Erdre, à deux pas de Nantes, la baie vitrée s'ouvre sur un jardin qui descend jusqu'à l'eau. L'espace bien-être est entièrement privé : vous flottez, vous vous réchauffez au sauna, et personne ne vient troubler le silence.\n\nLe soir, le ponton en bois vous attend pour regarder le soleil se coucher sur la rivière.\n\nLes disponibilités sont sur notre site, lien en bio.\n\n#lovenspa #spaprivatif #nantes #piscineprivee #weekendamoureux",
+ "reel_lignes": [
+  "Une piscine à 32 °C rien qu'à vous deux",
+  "Un sauna privatif, vue sur le jardin",
+  "La baie vitrée ouvre sur la nature",
+  "Le soleil se couche sur l'Erdre",
+  "Le soir, la piscine change de couleur",
+  "Le Nid de l'Erdre · près de Nantes · dès 225 €"
+ ],
+ "reel_photos": [
+  1,
+  4,
+  11,
+  12,
+  3,
+  6
+ ]
+}

@@ -92,7 +92,9 @@ def wrap(draw, text, fnt, width):
     return lines
 
 
-def text_block(img, lines_spec, x, y, width, color=INK, gap=12):
+def text_block(img, lines_spec, x, y, width, color=None, gap=12):
+    # couleur lue à l'appel : INK n'existe qu'après appliquer_kit (une valeur par défaut figée vaudrait None = blanc)
+    color = color or INK
     d = ImageDraw.Draw(img)
     for txt, fnt in lines_spec:
         for line in wrap(d, txt, fnt, width):

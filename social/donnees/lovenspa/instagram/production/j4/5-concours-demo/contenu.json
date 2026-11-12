@@ -1,0 +1,54 @@
+{
+ "case": {
+  "date": "2026-12-01",
+  "heure": "18:30",
+  "plateforme": "instagram",
+  "moteur": "concours",
+  "format": "CAROUSEL",
+  "statut": "A_PRODUIRE",
+  "temps_fort": "Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir",
+  "offres": [
+   {
+    "handle": "le-nid-de-lerdre",
+    "nom": "Le Nid de l'Erdre",
+    "type": "Gîte",
+    "ville": "Nantes",
+    "ville_reference": "Nantes",
+    "region": "Pays de la Loire",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Climatisation",
+     "Day Use",
+     "Douche XL",
+     "Jardin",
+     "Parking privé",
+     "Piscine intérieure",
+     "Sauna",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 225.0,
+    "unite_prix": "la nuit",
+    "devise": "EUR",
+    "on_aime": "Le calme des lieux, la vue sur la rivière, la location avec enfant possible",
+    "ambiance": 2,
+    "ambiance_libelle": "Sensuel",
+    "url": "https://lovenspa.fr/products/le-nid-de-lerdre",
+    "actif": true,
+    "medias": 16
+   }
+  ],
+  "region": "Pays de la Loire",
+  "lien": "https://lovenspa.fr/products/le-nid-de-lerdre?utm_source=instagram&utm_medium=social&utm_campaign=concours&utm_content=2026-12-01"
+ },
+ "legende": "Concours : une nuit pour deux à gagner dans Le Nid de l'Erdre, piscine et sauna privatifs.\n\nPour participer : abonnez-vous à @lovenspa.fr, aimez ce post et identifiez en commentaire la personne avec qui vous partiriez. Tirage au sort le 15 décembre, résultat annoncé en story.\n\nRèglement complet : lien en bio. Concours gratuit, sans obligation d'achat, réservé aux personnes majeures résidant en France. Chaque participant dégage Instagram de toute responsabilité. Ce concours n'est ni parrainé, ni approuvé, ni administré par Instagram.\n\n#lovenspa #concours #nantes #spaprivatif #nuitadeux",
+ "couverture": {
+  "titre": "Une nuit pour deux à gagner",
+  "sous_titre": "Le Nid de l'Erdre, piscine et sauna privatifs",
+  "photo": 12
+ },
+ "fin": {
+  "titre": "Comment participer",
+  "texte": "Abonnez-vous, aimez ce post et identifiez la personne avec qui vous partiriez. Règlement : lien en bio."
+ }
+}

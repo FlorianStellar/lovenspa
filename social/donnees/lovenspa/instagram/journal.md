@@ -47,3 +47,10 @@ Stratégie déduite de la marque et du benchmark, non des posts passés : doc «
 ## 2026-11-12 — Jeton Meta régénéré
 - Utilisateur système, sans expiration. Permissions vérifiées par debug_token : instagram_basic, instagram_manage_insights, instagram_content_publish, instagram_manage_comments, instagram_manage_messages, instagram_manage_contents, pages_show_list, pages_read_engagement, business_management.
 - Connexion vérifiée : @lovenspa.fr, 7956 abonnés, 222 publications. Publication toujours fermée (STOP, moteurs_valides vide).
+
+## 2026-11-12 — J4 galerie de rendus (en attente de validation)
+- 5 rendus dans production/j4 : 2 Reels lieu (Le Nid de l'Erdre, Romantic Room Alexis), carrousel sélection (6 logements ≤ 150 €), carrousel couple, concours de démonstration. Prix relus le jour même ; tous PRET au contrôle S6.
+- Défauts trouvés à la relecture visuelle et corrigés : titres de carrousel blancs sur crème (couleur figée avant chargement du kit) ; phrases des Reels sans lien avec la photo (ajout de `reel_photos`) ; photo de vin en couverture du concours (ajout de `couverture.photo`). Espaces insécables ajoutés automatiquement (typo_fr).
+- Photos écartées : sofa tantrique (équipement exclu), vin (loi Evin).
+- Anomalie catalogue à corriger (S3) : La Villa Yucatan a pour ville « Paris » alors que la page dit « au cœur de l'Île-de-France », spa accessible de 21 h 30 à 23 h 30 seulement ; l'ancienne légende « en plein Paris » était fausse.
+- Galerie : https://claude.ai/artifact/FkGZpdPZXhGHmNyYa4rJgL
