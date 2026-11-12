@@ -43,3 +43,7 @@ Stratégie déduite de la marque et du benchmark, non des posts passés : doc «
 4. Label IA : visuel photoréaliste généré ou modifié par IA seulement (`ia_photorealiste` -> is_ai_generated).
 5. Concours : 3 mentions IG-R28 bloquantes en S6.
 6. Mot-clé -> message privé unique avec lien, sous 7 j, sans relance, à partir de J7 (C-04).
+
+## 2026-11-12 — Jeton Meta régénéré
+- Utilisateur système, sans expiration. Permissions vérifiées par debug_token : instagram_basic, instagram_manage_insights, instagram_content_publish, instagram_manage_comments, instagram_manage_messages, instagram_manage_contents, pages_show_list, pages_read_engagement, business_management.
+- Connexion vérifiée : @lovenspa.fr, 7956 abonnés, 222 publications. Publication toujours fermée (STOP, moteurs_valides vide).
