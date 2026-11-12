@@ -194,8 +194,8 @@
  "couverture": {
   "titre": "6 nuits avec spa jusqu'à 150 €, à offrir avant Noël",
   "sous_titre": "Classées par prix · notre favori en 4",
-  "photo": 4,
-  "handle": "loft-spa-st-etienne"
+  "photo": 1,
+  "handle": "gite-ecolodge-avec-jacuzzi"
  },
  "fin": {
   "titre": "Enregistrez-le, ou offrez-le",
@@ -204,7 +204,9 @@
  },
  "favori": "le-calypso-love-room-balneo-de-luxe-2025",
  "photos_logements": {
-  "le-calypso-love-room-balneo-de-luxe-2025": 9
+  "le-calypso-love-room-balneo-de-luxe-2025": 9,
+  "les-suites-b-spa-suite-wood-1": 4,
+  "gite-ecolodge-avec-jacuzzi": 4
  },
  "noms_courts": {
   "jacuzzi-xxl-charme-et-caracteres-de-campagne": "Gîte jacuzzi XXL",
@@ -216,9 +218,9 @@
  },
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "303b47c6e3f8a99f",
+  "empreinte": "5ab7b1089fc82915",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "8 diapositives : « Saint-Étienne » corrigé (diapositive 5 et légende)."
+  "remarques": "8 diapositives : couverture jacuzzi du Gîte écolodge (aucune photo de la semaine réutilisée en couverture) ; écartées : photo avec texte incrusté par l'hébergeur (horaires) et écran projetant un film d'animation (droits d'auteur)."
  }
 }

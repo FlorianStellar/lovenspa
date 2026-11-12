@@ -76,6 +76,13 @@ class TestPlanWeek(unittest.TestCase):
         handles = [f["handle"] for s in p["cases"] if s["format"] != "STORY" for f in s.get("offres") or []]
         self.assertEqual(len(handles), len(set(handles)))
 
+    def test_couple_gets_unseen_lodging(self):
+        p = planifier.plan_week(date(2026, 11, 18), catalogue(), [], STRAT)
+        c = next(x for x in p["cases"] if x["moteur"] == "couple")
+        autres = {o["handle"] for x in p["cases"] if x["moteur"] in ("lieu", "selection", "concours") for o in x.get("offres") or []}
+        self.assertEqual(len(c["offres"]), 1)
+        self.assertNotIn(c["offres"][0]["handle"], autres)
+
     def test_support_cases_stories_and_monthly_recruitment(self):
         p = planifier.plan_week(date(2026, 11, 30), catalogue(), [], STRAT)  # semaine du 30/11 : mercredi 2 décembre
         stories = [c for c in p["cases"] if c["moteur"] == "story"]

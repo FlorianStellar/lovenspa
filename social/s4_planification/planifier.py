@@ -181,7 +181,10 @@ def plan_week(start, catalogue, history, strat, partenaires=None, site=""):
                 slot["statut"] = "BLOQUE"
                 alerts.append(f"{d}: aucune sélection de {strat['taille_selection']} logements possible")
         elif slot["moteur"] == "couple":
-            slot.update(theme=strat["couple"][wk % len(strat["couple"])], offres=[],
+            # logement de la dernière diapositive : jamais vu dans la semaine (revue J4 : pas de doublon de logement)
+            fin = sorted([f for f in pool if f["handle"] not in taken], key=lambda f: score(f, strat, wk), reverse=True)[:1]
+            taken.update(f["handle"] for f in fin)
+            slot.update(theme=strat["couple"][wk % len(strat["couple"])], offres=fin,
                         lien=utm(strat, site + strat["liens"]["couple"], "couple", d))
         slots.append(slot)
     slots += cases_soutien(start, slots, pool, strat, site)
