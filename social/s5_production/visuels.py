@@ -23,7 +23,11 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 # Dimensions Instagram (à déplacer dans les règles de plateforme de S2 au jalon J3)
 CAROUSEL, REEL = (1080, 1350), (1080, 1920)
-ZONE_SURE_BAS = 1440  # bas du texte dans un Reel (compilation S5)
+# Zone sûre des Reels (décision du 12/11/2026, IG-R15 : zone sûre publicitaire Meta, seule référence publiée) :
+# 14 % en haut, 35 % en bas, 6 % sur les côtés d'un 1080x1920.
+ZONE_SURE_HAUT, ZONE_SURE_BAS, MARGE_LATERALE = 270, 1248, 65
+# Images envoyées par l'API (IG-R09) : JPEG seulement, ratio entre 4:5 et 1,91:1, 8 Mo au plus.
+RATIO_MIN, RATIO_MAX, POIDS_MAX = 4 / 5, 1.91, 8 * 1024 * 1024
 TAILLE_TEXTE_MIN = 32  # px, lisibilité mobile (compilation S5)
 
 # Kit courant : défini par appliquer_kit(marque) avant tout rendu.
@@ -148,11 +152,10 @@ def reel_frame(photo, line, first=False):
     if line:
         d = ImageDraw.Draw(im)
         fnt = font("Bold", 64 if first else 54)
-        lines = wrap(d, line, fnt, 900)
+        lines = wrap(d, line, fnt, REEL[0] - 2 * MARGE_LATERALE - 80)
         h = len(lines) * (fnt.size + 14) + 60
-        # Zone sûre verticale : texte entre y=250 et y=1440 (compilation S5, à vérifier dans la documentation officielle)
-        y0 = 260 if first else ZONE_SURE_BAS - h
-        d.rounded_rectangle((60, y0, 1020, y0 + h), radius=28, fill=(255, 255, 255))
+        y0 = ZONE_SURE_HAUT if first else ZONE_SURE_BAS - h
+        d.rounded_rectangle((MARGE_LATERALE, y0, REEL[0] - MARGE_LATERALE, y0 + h), radius=28, fill=(255, 255, 255))
         y = y0 + 30
         for ln in lines:
             d.text((540, y), ln, font=fnt, fill=INK, anchor="ma")
@@ -194,8 +197,12 @@ def save_slides(slides, outdir, prefix):
     os.makedirs(outdir, exist_ok=True)
     paths = []
     for i, s in enumerate(slides, 1):
+        if not RATIO_MIN - 1e-3 <= s.width / s.height <= RATIO_MAX:
+            raise ValueError(f"diapositive {i} : ratio {s.width}x{s.height} refusé par l'API (4:5 à 1,91:1)")
         p = os.path.join(outdir, f"{prefix}-{i:02d}.jpg")
-        s.save(p, quality=92)
+        s.convert("RGB").save(p, "JPEG", quality=92)
+        if os.path.getsize(p) > POIDS_MAX:
+            s.convert("RGB").save(p, "JPEG", quality=80)
         paths.append(p)
     return paths
 

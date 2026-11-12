@@ -134,19 +134,21 @@ def attendre_conteneur(ig, cid, timeout=600):
     raise IGError(f"conteneur {cid} : délai dépassé")
 
 
-def publier_instagram(ig, fmt, urls, caption):
+def publier_instagram(ig, fmt, urls, caption, ia=False):
+    """ia : média photoréaliste généré ou modifié par IA -> is_ai_generated (IG-R31 ; carrousel : parent seul)."""
     uid = ig.ensure_user()
+    label = {"is_ai_generated": "true"} if ia else {}
     if fmt == "REELS":
         cid = ig.post(f"{uid}/media", {"media_type": "REELS", "video_url": urls[0], "caption": caption,
-                                       "share_to_feed": "true"})["id"]
+                                       "share_to_feed": "true", **label})["id"]
     elif len(urls) == 1:
-        cid = ig.post(f"{uid}/media", {"image_url": urls[0], "caption": caption})["id"]
+        cid = ig.post(f"{uid}/media", {"image_url": urls[0], "caption": caption, **label})["id"]
     else:
         children = [ig.post(f"{uid}/media", {"image_url": u, "is_carousel_item": "true"})["id"] for u in urls]
         for c in children:
             attendre_conteneur(ig, c)
         cid = ig.post(f"{uid}/media", {"media_type": "CAROUSEL", "children": ",".join(children),
-                                       "caption": caption})["id"]
+                                       "caption": caption, **label})["id"]
     attendre_conteneur(ig, cid)
     mid = ig.post(f"{uid}/media_publish", {"creation_id": cid})["id"]
     # Le post est en ligne : une erreur de lecture du permalien ne doit pas faire croire à un échec
@@ -203,7 +205,8 @@ def traiter(folder, marque, go=False, ig=None, shop=None, now=None):
     if not quota_ok(ig):
         return {"dossier": folder, "publie": False, "raisons": ["quota de publication de l'API atteint"]}
     urls = [heberger(shop, m) for m in pret["medias"]]
-    mid, permalink = publier_instagram(ig, pret["case"]["format"], urls, pret["legende"])
+    mid, permalink = publier_instagram(ig, pret["case"]["format"], urls, pret["legende"],
+                                        ia=bool(pret.get("ia_photorealiste")))
     enregistrer(pret, mid, permalink, now, data_dir)
     return {"dossier": folder, "publie": True, "media_id": mid, "permalink": permalink}
 

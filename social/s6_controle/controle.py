@@ -239,6 +239,19 @@ def check(text, fiche=None, history=None, rules=None):
             "appels": ctas, "resultats": res}
 
 
+# Concours Instagram (IG-R28, help.instagram.com/179379842258600 ; décision du 12/11/2026 : bloquant).
+MENTIONS_CONCOURS = {
+    "REGLEMENT": (r"r[èe]glement", "lien ou mention du règlement du jeu"),
+    "EXONERATION": (r"(d[ée]gag|exon[èée]r|d[ée]charg)\w*[^.\n]{0,80}instagram", "exonération d'Instagram par les participants"),
+    "NON_PARRAINAGE": (r"(ni|pas|non)[^.\n]{0,30}(parrain|sponsoris)[^.\n]{0,80}instagram",
+                       "mention « ni parrainé, ni approuvé, ni administré par Instagram »"),
+}
+
+
+def mentions_concours_manquantes(legende):
+    return [m for code, (rx, m) in MENTIONS_CONCOURS.items() if not re.search(rx, legende, re.I)]
+
+
 def verdict(paquet, rules=None, history=None, ambiances=None):
     """Verdict d'un Paquet : texte contrôlé contre les Offres de sa case.
 
@@ -250,6 +263,9 @@ def verdict(paquet, rules=None, history=None, ambiances=None):
                  and not (case["moteur"] == "couple" and x["code"] == "LOGEMENT")]
     if not paquet.get("medias"):
         bloquants.append({"code": "MEDIAS", "niveau": "bloquant", "message": "aucun média"})
+    if case["moteur"] == "concours":
+        for m in mentions_concours_manquantes(paquet["legende"]):
+            bloquants.append({"code": "CONCOURS", "niveau": "bloquant", "message": f"concours sans {m} (IG-R28)"})
     if ambiances is not None:
         for f in offres:
             if f.get("ambiance") not in ambiances:

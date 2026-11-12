@@ -27,7 +27,7 @@ from social.s3_catalogue.offres import Catalogue
 from social.s5_production import visuels
 from social.s6_controle import controle
 
-MAX_DIAPOS = 10  # Instagram (à déplacer dans les règles de plateforme de S2 au jalon J3)
+MAX_DIAPOS = 10  # choix éditorial (décision du 12/11/2026) ; Instagram en accepte 20 (IG-R05, IG-R06)
 
 
 def lieu_txt(f):

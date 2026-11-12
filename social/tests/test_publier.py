@@ -119,6 +119,17 @@ class TestInstagram(unittest.TestCase):
         self.assertEqual(s.posts[0][1]["media_type"], "REELS")
         self.assertEqual(s.posts[-1][0], "media_publish")
 
+    def test_ai_label(self):
+        s = FakeIGSession()
+        publier.publier_instagram(IGClient("1", session=s, version=""), "REELS", ["u"], "cap", ia=True)
+        self.assertEqual(s.posts[0][1].get("is_ai_generated"), "true")
+        s = FakeIGSession()
+        publier.publier_instagram(IGClient("1", session=s, version=""), "CAROUSEL", ["u1", "u2"], "cap", ia=True)
+        self.assertEqual([p[1].get("is_ai_generated") for p in s.posts[:3]], [None, None, "true"])  # parent seul
+        s = FakeIGSession()
+        publier.publier_instagram(IGClient("1", session=s, version=""), "REELS", ["u"], "cap")
+        self.assertNotIn("is_ai_generated", s.posts[0][1])
+
     def test_carousel(self):
         s = FakeIGSession()
         publier.publier_instagram(IGClient("1", session=s, version=""), "CAROUSEL", ["u1", "u2", "u3"], "cap")

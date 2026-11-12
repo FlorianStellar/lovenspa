@@ -78,7 +78,7 @@ Gabarit de `contenu.json` :
 }
 ```
 
-Contrôles avant S6 : 3 photos au moins ; nombre de lignes égal au nombre de photos voulues ; chaque ligne reliée à une photo regardée ; prix et nom identiques à l'offre relue ce jour ; durée rendue lue dans les notes (15 s au moins, S5-19) ; 4 à 5 images extraites et regardées (S5-47) : accroche lisible, aucun texte sous y=1440 ni au-delà de x=940 (voir Limites connues), aucun texte sur un visage ; équipement exclu absent de l'image comme du texte (S5-62).
+Contrôles avant S6 : 3 photos au moins ; nombre de lignes égal au nombre de photos voulues ; chaque ligne reliée à une photo regardée ; prix et nom identiques à l'offre relue ce jour ; durée rendue lue dans les notes (15 s au moins, S5-19) ; 4 à 5 images extraites et regardées (S5-47) : accroche lisible, aucun texte hors de la zone y=270 à 1248, x=65 à 1015 (décision du 12/11/2026, IG-R15), aucun texte sur un visage ; équipement exclu absent de l'image comme du texte (S5-62).
 
 ### Format 2 : carrousel « sélection » (moteur `selection`, format `CAROUSEL`)
 
@@ -285,7 +285,10 @@ Une déclinaison part d'un visuel validé et recadre les vraies photos, sans reg
 ## Limites connues
 
 Corrections à faire dans le code (relevées par la compilation, non appliquées) :
-1. **Zone sûre des Reels : corrigé le 11/11/2026.** Le bas du texte est fixé à `ZONE_SURE_BAS = 1440` dans `visuels.py` (test `test_reel_text_inside_safe_zone`). La valeur reste à vérifier dans la documentation officielle.
+1. **Zone sûre des Reels : décidée le 12/11/2026.** Texte entre y=270 et y=1248, marges latérales de 65 px (`ZONE_SURE_HAUT`, `ZONE_SURE_BAS`, `MARGE_LATERALE` dans `visuels.py`, tests `test_reel_text_inside_safe_zone` et `test_safe_zone_values`). Seule référence publiée : la zone sûre publicitaire Meta (IG-R15, statut secondaire).
+2. **Carrousels : JPEG 1080x1350 (4:5)**, ratio contrôlé à l'export (IG-R09) ; 10 diapositives au plus par choix éditorial (Instagram : 20).
+3. **Visuel photoréaliste généré ou modifié par IA** : mettre `"ia_photorealiste": true` dans le paquet ; S7 passe le label « AI info » (IG-R30, IG-R31). Pas de label sur les vraies photos des logements ni sur les diapositives de texte.
+4. **Concours** : la légende contient le lien du règlement, l'exonération d'Instagram par les participants et la mention « ni parrainé, ni approuvé, ni administré par Instagram » ; S6 bloque sinon (IG-R28). Prérequis avant le premier concours : un règlement publié sur le site de la marque.
 2. **Tailles de texte : corrigé le 11/11/2026.** Plus aucun texte sous `TAILLE_TEXTE_MIN = 32` px (test `test_min_text_size_in_code`).
 
 Autres écarts du code :

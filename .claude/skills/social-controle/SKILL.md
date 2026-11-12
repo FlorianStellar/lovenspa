@@ -163,6 +163,6 @@ Données entrantes :
 - Les champs `ton.voix`, `ton.profil`, `ton.matrice` de `marque.json` n’existent pas, ni de liste de mots propres : sans eux, le contrôle de voix se limite au registre et au style (confiance basse).
 - `regles.json` porte des règles propres à Instagram (`equipements_exclus_instagram`, `max_visible`) : pas encore de règles par plateforme pour TikTok et Pinterest.
 - Règles de plateforme : seule référence, `regles-plateformes.md` de social-veille. Ce fichier ne porte pas encore la zone visible de la légende : `ACCROCHE` applique `legende.max_visible` de `regles.json`, valeur maison non sourcée (note de `regles.json`). Plafond de hashtags : `max_hashtags` de `regles.json`.
-- Jeux-concours et mention de partenariat commercial : aucune source compilée (`references/conformite-fr.md`, section 8).
+- Concours Instagram : les trois mentions d'IG-R28 (règlement, exonération d'Instagram, non-parrainage) sont bloquantes (`mentions_concours_manquantes`, décision du 12/11/2026). Droit français des jeux-concours et mention de partenariat commercial : aucune source compilée (`references/conformite-fr.md`, section 8).
 - Articles du Code de la consommation cités par copy-machine : non vérifiés sur Légifrance.
 - Le contrôle visuel (S6-19 à S6-21) n’a pas d’outil : la tolérance de couleur et de traitement n’est écrite dans aucune charte.

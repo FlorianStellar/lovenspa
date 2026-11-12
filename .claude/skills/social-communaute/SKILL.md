@@ -35,7 +35,7 @@ Ordre de traitement : MOT-CLÉ, PROSPECT, FOND, QUESTION, SOUTIEN, BRUIT. Caté
 
 | Catégorie | Reconnaissance | Suite (gabarit) |
 | --- | --- | --- |
-| MOT-CLÉ | Commentaire du mot demandé par la légende | G3 (réponse publique ; message privé : décision en attente C-04) |
+| MOT-CLÉ | Commentaire du mot demandé par la légende | G3 (réponse publique + message privé à partir de J7, décision C-04 du 12/11/2026) |
 | PROSPECT | Question de réservation | G2 ; prix : G7 tant que C-03 est en attente |
 | FOND | Avis, expérience, critique argumentée | Réponse sur le point précis ; critique : G4 |
 | QUESTION | Question dont la réponse est dans l’offre | Réponse publique tirée de l’offre (S9-03) |
@@ -70,7 +70,7 @@ Une tournée s’ouvre dans l’heure qui suit chaque publication (S7-13), puis 
 5. S9-05. Critique : concéder d’abord la partie vraie, avec ses mots, puis tenir la position avec un fait de l’offre. Jamais de suppression, jamais sur la défensive, jamais deux réponses dans le même fil. Réclamation : transfert.
 6. S9-06. Spam, insulte, troll : aucune réponse ; masquer, jamais supprimer (C-02) ; tenir à jour les mots filtrés ; journal : date, compte, motif.
 7. S9-07. Soutien : un j’aime et 3 à 8 mots au plus, ou rien.
-8. S9-08. Commentaire mot-clé : répondre à chacun, livrer la chose promise d’abord, sans condition préalable ; une ligne chacun, formulations variées. Message privé : voir décision en attente C-04.
+8. S9-08. Commentaire mot-clé : répondre à chacun, livrer la chose promise d’abord, sans condition préalable ; une ligne chacun, formulations variées. Message privé (C-04, décidé le 12/11/2026, actif à partir de J7) : une seule réponse privée par commentaire, sous 7 jours, qui contient le lien promis ; jamais de relance ; envoi journalisé pour ne jamais doubler (IG-R25).
 9. S9-09. Jamais de premier message privé non sollicité, jamais de message en masse, jamais d’envoi programmé à qui n’a pas interagi, pas de relance de prospection.
 10. S9-10. Destinataire TikTok qui ne peut pas recevoir de message : ne pas contourner, répondre en public.
 11. S9-11. Question fréquente : idée de Reel de réponse au commentaire, transmise à S5.
@@ -95,7 +95,7 @@ Toutes les actions ci-dessous sont aujourd’hui « manuel (à outiller, jalon 
 | Répondre en public (QUESTION, PROSPECT sans argent, FOND, SOUTIEN, MOT-CLÉ) | Seul sous condition : réponse dans l’offre, contrôle S6 passé | S9-02, S6-23. | manuel (à outiller, jalon J7) |
 | Répondre à un message privé entrant | Seul sous condition : réponse dans l’offre, contrôle S6 passé, la personne a écrit en premier | S9-09. | manuel (à outiller, jalon J7) |
 | Citer le prix « à partir de » de l’offre en réponse (G1) | **Décision en attente (C-03).** Par défaut : Jamais, transmettre au service client (G7) | La marque n’a pas encore choisi entre citer le « à partir de » et tout transmettre ; le plus prudent est de transmettre. | manuel (à outiller, jalon J7) |
-| Envoyer en message privé la chose promise après un commentaire mot-clé | **Décision en attente (C-04).** Par défaut : Jamais, réponse publique seulement (G3) | Le brief interdit tout premier message non sollicité ; tant que la marque n’a pas tranché, ne pas envoyer. Si elle l’autorise : seulement via l’outil officiel déclenché par le commentaire et si la légende l’a promis. | manuel (à outiller, jalon J7) |
+| Envoyer en message privé la chose promise après un commentaire mot-clé | **Seul à partir de J7** (C-04, décision du 12/11/2026) ; Jamais avant | Une seule réponse privée, sous 7 jours, lien inclus, sans relance, journalisée (IG-R25) ; seulement si la légende l'a promis. | manuel (à outiller, jalon J7) |
 | Transférer au service client (argent, réclamation, doute) avec G7 | Seul | Le transfert n’est pas un accord : il protège la marque. | manuel (à outiller, jalon J7) |
 | Masquer un spam, une insulte, un troll | Seul | S9-06. | manuel (à outiller, jalon J7) |
 | Ajouter des mots à la liste des mots filtrés | Seul sous condition : ajout consigné au journal | S9-06. | manuel (à outiller, jalon J7) |
@@ -117,7 +117,7 @@ Toutes les actions ci-dessous sont aujourd’hui « manuel (à outiller, jalon 
 
 - Sous-système non codé : aucun module `social/s9_communaute/` exécutable, aucun contrat S9. À construire au jalon J7, après l’ajout au jeton des droits de gestion des commentaires et des messages (`social/s9_communaute/README.md`).
 - API de messagerie : non décrite par les sources compilées, à vérifier dans la documentation officielle.
-- Décisions en attente de la marque : C-03 (prix « à partir de » ou transfert) et C-04 (message privé après mot-clé). Comportements par défaut ci-dessus jusqu’à décision écrite.
+- Décision en attente de la marque : C-03 (prix « à partir de » ou transfert ; comportement par défaut ci-dessus). C-04 décidée le 12/11/2026.
 - Coordonnées du service client et de l’équipe partenaires : absentes de `marques/<id>/` (champ cible, à outiller).
 - Règles de plateforme (P-04 à P-11 : réponses automatiques par mot-clé, messages en masse, boîte « demandes », limites TikTok, 150 caractères, Reels de réponse, outils de modération, collab) : toutes à vérifier dans la documentation officielle. Pinterest : aucune règle compilée.
 - Données personnelles : journaux de transferts et d’accords contenant pseudos et messages ; durée de conservation et base légale à définir (à vérifier).

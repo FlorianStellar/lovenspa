@@ -23,6 +23,10 @@
       },
       "minItems": 1
     },
+    "ia_photorealiste": {
+      "type": "boolean",
+      "description": "Au moins un média photoréaliste généré ou modifié par IA : label « AI info » obligatoire (IG-R30, IG-R31)."
+    },
     "notes": {
       "type": "array",
       "items": {

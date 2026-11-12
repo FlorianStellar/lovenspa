@@ -59,8 +59,16 @@ class TestImaging(unittest.TestCase):
     def test_reel_text_inside_safe_zone(self):
         im = visuels.reel_frame(Image.new("RGB", (1024, 756), (0, 0, 0)), "Texte de fin assez long pour deux lignes")
         # sous la zone sûre, plus aucun pixel blanc du cartouche de texte
-        bas = im.crop((60, visuels.ZONE_SURE_BAS + 2, 1020, 1920))
+        bas = im.crop((0, visuels.ZONE_SURE_BAS + 2, 1080, 1920))
         self.assertNotIn((255, 255, 255), [p for p in bas.getdata()][::50])
+        for x0 in (0, 1080 - visuels.MARGE_LATERALE + 1):  # marges latérales vides
+            cote = im.crop((x0, 0, x0 + visuels.MARGE_LATERALE - 1, 1920))
+            self.assertNotIn((255, 255, 255), list(cote.getdata())[::50])
+        haut = visuels.reel_frame(Image.new("RGB", (1024, 756), (0, 0, 0)), "Accroche", first=True)
+        self.assertNotIn((255, 255, 255), list(haut.crop((0, 0, 1080, visuels.ZONE_SURE_HAUT - 1)).getdata())[::50])
+
+    def test_safe_zone_values(self):
+        self.assertEqual((visuels.ZONE_SURE_HAUT, visuels.ZONE_SURE_BAS, visuels.MARGE_LATERALE), (270, 1248, 65))
 
     def test_min_text_size_in_code(self):
         import re
@@ -72,6 +80,14 @@ class TestImaging(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             paths = visuels.save_slides([PHOTO, PHOTO], d, "x")
             self.assertEqual([os.path.basename(p) for p in paths], ["x-01.jpg", "x-02.jpg"])
+            with Image.open(paths[0]) as im:
+                self.assertEqual(im.format, "JPEG")
+
+    def test_save_slides_rejects_api_ratio(self):
+        with tempfile.TemporaryDirectory() as d, self.assertRaises(ValueError):
+            visuels.save_slides([Image.new("RGB", (1080, 1440))], d, "x")  # 3:4 refusé par l'API
+        with tempfile.TemporaryDirectory() as d:
+            visuels.save_slides([Image.new("RGB", visuels.CAROUSEL)], d, "x")  # 4:5 accepté
 
 
 FICHE = {"handle": "le-nid", "nom": "Le Nid - Spa", "ville": "Vannes", "ville_reference": None, "region": "Bretagne",

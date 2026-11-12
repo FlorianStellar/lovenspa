@@ -35,3 +35,11 @@ Stratégie déduite de la marque et du benchmark, non des posts passés : doc «
 - Fiches : 18 (B : F01, F03, F06, F07 ; C : 14 ; A : 0). F05 redescend en C (2 comptes organiques). Accroches réelles FR : 40. Règles : 34 (30 officielles, 2 secondaires, 2 non trouvées) dans regles.md.
 - Écarts majeurs relevés (décisions à prendre) : zone de texte des Reels, permissions du jeton, format JPEG 4:5 des carrousels par l'API, is_ai_generated.
 - Relecture humaine : en attente (Florian).
+
+## 2026-11-12 — Décisions de Florian sur les écarts J3 (regles.md)
+1. Zone texte des Reels : y=270–1248, marges 65 px (visuels.py).
+2. Permissions Meta (content_publish, manage_comments, manage_messages) : à ajouter maintenant.
+3. Carrousels : JPEG 1080x1350 (4:5), 10 diapositives max (choix éditorial).
+4. Label IA : visuel photoréaliste généré ou modifié par IA seulement (`ia_photorealiste` -> is_ai_generated).
+5. Concours : 3 mentions IG-R28 bloquantes en S6.
+6. Mot-clé -> message privé unique avec lien, sous 7 j, sans relance, à partir de J7 (C-04).

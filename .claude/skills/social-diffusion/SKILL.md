@@ -61,7 +61,7 @@ Nouvel essai automatique du client Instagram sur les erreurs temporaires (codes 
 3. S7-03. Une publication par appel ; relire ce qui est réellement publié et le comparer au contenu `PRET` ; un écart passe le statut en erreur.
 4. S7-04. Écrire au journal le statut réel de chaque contenu ; jamais deviné.
 5. S7-05. Lire le schéma réel d’un outil de publication avant de l’appeler ; ses champs font foi.
-6. S7-06. Étiquette « contenu généré par IA » si le contenu contient une voix de synthèse ou une image générée. Si l’outil ne la propose pas : « à faire à la main ».
+6. S7-06. Étiquette « contenu généré par IA » si le contenu contient une voix de synthèse ou une image générée. Si l’outil ne la propose pas : « à faire à la main ». Instagram : `publier_instagram(..., ia=True)` passe `is_ai_generated` (carrousel : parent seul) quand le paquet porte `ia_photorealiste` : visuel photoréaliste généré ou modifié par IA (décision du 12/11/2026, IG-R30, IG-R31).
 7. S7-07. Voix venant de Kyutai Pocket TTS : crédit « Voix : Kyutai Pocket TTS (CC-BY 4.0) » en légende ou en bio.
 8. S7-08. Horaires : 1) données d’audience du compte (S8) ; 2) sans données, créneaux variés sur deux semaines, puis garder ceux qui marchent ; 3) ne pas surinvestir l’heure. Heure de Paris.
 9. S7-09. Pas deux contenus du même format d’affilée ; plusieurs heures entre deux publications sur une même plateforme ; un Reel peut sortir sur Instagram et TikTok le même jour avec une légende propre à chacune.
