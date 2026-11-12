@@ -12,7 +12,7 @@ Sorties (bibliotheque/<plateforme>/) :
   - synthese.md : tableau de relecture humaine.
 
 Niveaux de preuve (S2, skill social-veille) :
-  A : nos propres publications le confirment (au moins 4 essais au-dessus de la médiane du compte) — non calculé ici ;
+  A : nos propres publications le confirment (au moins 3 publications du format à 2x ou plus notre médiane, skill social-veille) — non calculé ici ;
   B : au moins 3 comptes distincts avec un signal à 3x ou plus dans la fiche ;
   C : moins de 3 comptes.
 Les publications hors organique (concours, partenariats) ne comptent jamais pour un niveau B.
@@ -42,7 +42,8 @@ def fiches_amorce(chemin=FORMATS_SKILL):
 
 def rafraichir(signaux, benchmark_json):
     """Recalcule langue et caractère hors organique de chaque signal sur sa légende complète
-    (filtres de benchmark.py), sans toucher au classement humain ou agent."""
+    (filtres de benchmark.py), sans toucher au classement humain ou agent. Un partenariat repéré à la relecture
+    (« partenariat_releve » : motif) reste hors organique : le libellé « Collaboration commerciale » n'est pas lu par l'API."""
     from social.s2_connaissance.benchmark import HORS_ORGANIQUE, anglais, langue_fr
     legendes = {m.get("permalink"): m.get("caption") or ""
                 for acc in benchmark_json["comptes"].values() for m in acc.get("media", [])}
@@ -50,7 +51,7 @@ def rafraichir(signaux, benchmark_json):
     for s in signaux:
         cap = legendes.get(s["permalink"], s.get("accroche") or "")
         out.append({**s, "langue_fr": langue_fr(cap) and not anglais(s.get("accroche")),
-                    "hors_organique": bool(HORS_ORGANIQUE.search(cap))})
+                    "hors_organique": bool(HORS_ORGANIQUE.search(cap)) or bool(s.get("partenariat_releve"))})
     return out
 
 

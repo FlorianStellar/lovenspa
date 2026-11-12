@@ -109,7 +109,9 @@ Bibliothèque
 - Le benchmark mesure likes + commentaires, pas les vues, enregistrements ni partages, et ne voit que la première ligne de légende.
 - Épinglées repérées par l'ordre (une publication plus ancienne qu'une suivante parmi les 3 premières) : heuristique, l'API Business Discovery ne donne pas le champ.
 - Détection du français par mots outils, élisions et accents : un repérage, pas un détecteur de langue (cas réels testés dans `social/tests/test_benchmark.py`).
-- 3 comptes portent 38 % des signaux du benchmark du 2026-11-12 : le niveau B compte les comptes, pas les signaux.
+- 3 comptes portent 24 des 76 signaux du benchmark du 2026-11-12 (31,6 %) : le niveau B compte les comptes, pas les signaux.
+- Partenariats non écrits dans la légende : repérés à la relecture et marqués `partenariat_releve` (motif) dans `signaux_classes.json` ; la commande les garde hors organique.
+- Benchmark du 2026-11-12 : 37 comptes lus, au-delà du panel de 6 à 12 comptes prévu, pour amorcer la bibliothèque ; les veilles mensuelles reviennent au panel.
 - Médiane d'un nombre pair : moyenne des deux valeurs du milieu (`statistics.median`), alors qu'une source prend la plus haute. Écart mineur, méthode actuelle gardée.
 - Pinterest n'est couvert que par une source généraliste sans mesure ; TikTok par aucune donnée de la marque. Le benchmark ne lit qu'Instagram.
 - Toutes les accroches sont en preuve C.

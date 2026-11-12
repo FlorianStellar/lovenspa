@@ -57,6 +57,17 @@ class TestBibliotheque(unittest.TestCase):
         self.assertIn("3 compte(s) avec au moins un signal à 3x ou plus : a, c, d.", out["observe"])  # b (partenariat) exclu
         self.assertEqual([a["compte"] for a in b.accroches_observees(s)], ["a"])
 
+    def test_organiques_and_preuves(self):
+        s = [sig("a"), dict(sig("b"), hors_organique=True), sig("a", fiche=None)]
+        self.assertEqual([x["compte"] for x in b.organiques(s)], ["a", "a"])
+        p = b.preuves(b.organiques(s))
+        self.assertEqual((sorted(p), p["F01"]["comptes"]), (["F01"], {"a"}))
+
+    def test_partenariat_releve_survives_refresh(self):
+        bench = {"comptes": {"x": {"media": [{"permalink": "p-a-4.0", "caption": "Une cabane pour vous, avec le spa"}]}}}
+        s = b.rafraichir([dict(sig("a"), partenariat_releve="artiste partenaire")], bench)
+        self.assertTrue(s[0]["hors_organique"])
+
     def test_synthese(self):
         f = b.construire([FICHE], [sig("a")], "2026-11-12")
         md = b.synthese_md(f, b.accroches_observees([sig("a")]), "2026-11-12")

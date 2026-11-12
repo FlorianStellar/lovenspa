@@ -6,7 +6,7 @@
 | F02 | Concours (carrousel ou Reel) | C | 0 | https://www.instagram.com/p/DeMCq8tEV3j/ (Coucoo Cabanes, 55,2x) |
 | F03 | Carrousel sélection ou guide d'adresses | B | 4 | https://www.instagram.com/p/DatrO4FARke/ (hipcamp, 7.06x) |
 | F04 | Carrousel d'un lieu unique, en reportage photo | C | 1 | https://www.instagram.com/p/Dehf8O5Fy68/ (plumguide, 5.68x) |
-| F05 | Annonce de nouveauté ou de partenariat | B | 4 | https://www.instagram.com/p/DcyFwP8iH4n/ (yesforlov_official, 33.75x) |
+| F05 | Annonce de nouveauté ou de partenariat | C | 2 | https://www.instagram.com/p/DbDQNKeCHRc/ (coucoocabanes, 5.98x) |
 | F06 | Contenu saisonnier ou daté | B | 3 | https://www.instagram.com/reel/DezCpl9RsGA/ (beautifuldestinations, 38.09x) |
 | F07 | Carrousel texte « qui parle » (phrase, mème, prise de position) | B | 3 | https://www.instagram.com/p/DcTncWLCHkD/ (jemenbatsleclito, 9.43x) |
 | F08 | Reel incarné en série (vlog) | C | 1 | https://www.instagram.com/reel/DcL4im-ti9E/ (ben.nco, 52.43x) |
@@ -21,14 +21,13 @@
 | F17 | Face à face (comparatif tranché) | C | 0 | accroche A17 |
 | F18 | Coulisses | C | 0 | accroche A59 |
 
-## Accroches réelles en français (45)
+## Accroches réelles en français (40)
 
 | Multiple | Compte | Format | Première ligne | Fiche | Formule |
 |---|---|---|---|---|---|
 | 834.27x | millesvoyages | REELS | [un SPA pour bébé à Séoul, évidemment que Bebito allait y aller 🤭🤭🤭 ouvrez moi ça en france pitié !!](https://www.instagram.com/reel/DejuXBLtcC1/) | - | - |
 | 118.18x | millesvoyages | REELS | [vous savez il y a ce genre de destinations que tu vois que sur les réseaux et tu te dis « ah ouais ça a l’air dingue »… ](https://www.instagram.com/reel/DefHNcetUDt/) | - | - |
 | 52.43x | ben.nco | REELS | [Un Marocain au Cameroun 😀🇲🇦🇨🇲 (la suite sur Ytb : Ben N’co) #maroc #cameroun #afrique #voyage #vlogvoyage](https://www.instagram.com/reel/DcL4im-ti9E/) | F08 | - |
-| 33.75x | yesforlov_official | CAROUSEL | [C’est la rentrée des artistes… Chez YESforLOV, on met à l’honneur helenbeardart , une artiste anglaise qui bouscule les ](https://www.instagram.com/p/DcyFwP8iH4n/) | F05 | - |
 | 32.22x | millesvoyages | REELS | [en soit il aura déjà parcouru la map donc… #vicecity](https://www.instagram.com/reel/DfShQCQgaVY/) | - | - |
 | 22.9x | millesvoyages | REELS | [mon itinéraire pour 12 jours en Corée du Sud 🇰🇷(Enregistre cette vidéo pour ton prochain voyage 🫰🏻)](https://www.instagram.com/reel/DezX9WTNENe/) | - | - |
 | 21.89x | millesvoyages | REELS | [welcome to miamiiiiiiiiiii 🇺🇸 fun fact cette ville n’étais pas DU TOUT dans ma bucket list mais finalement j’adore!!!! J](https://www.instagram.com/reel/DfIErebtr7M/) | - | - |
@@ -42,7 +41,6 @@
 | 7.75x | ben.nco | REELS | [N’allez SURTOUT PAS au Liban 🙅🏻‍♂️🇱🇧](https://www.instagram.com/reel/DfICNXZBkPU/) | - | - |
 | 6.86x | yesforlov_official | CAROUSEL | [Après la théorie sur le Boobgasm, place à la pratique : 5 façons d’éveiller la poitrine, de la plus simple à la plus acc](https://www.instagram.com/p/DdJaAyMiEih/) | F10 | - |
 | 6.59x | jemenbatsleclito | CAROUSEL | [Muhahahahahaha, j’y pensais ce matin 😂🤌🏾](https://www.instagram.com/p/DcnhVLkiuRf/) | F07 | - |
-| 6.2x | smartbox_fr | REELS | [Retour sur le voyage en Autriche de offroy_luca_57, le grand vainqueur du Red Bull Kart Fight ! 🇦🇹](https://www.instagram.com/reel/DfC9uTXtJ1I/) | - | - |
 | 5.98x | coucoocabanes | CAROUSEL | [𝗖𝗢𝗨𝗖𝗢𝗢 𝗖𝗔𝗕𝗔𝗡𝗘𝗦 𝗗𝗘𝗕𝗔𝗥𝗤𝗨𝗘 𝗗𝗔𝗡𝗦 𝗟𝗘𝗦 𝗩𝗢𝗦𝗚𝗘𝗦 : 𝗡𝗢𝗧𝗥𝗘 𝟭𝗘𝗥 𝗗𝗢𝗠𝗔𝗜𝗡𝗘 À 𝗟𝗔 𝗠𝗢𝗡𝗧𝗔𝗚𝗡𝗘 ! 🤩🎉](https://www.instagram.com/p/DbDQNKeCHRc/) | F05 | A24 |
 | 5.92x | brunomaltor | REELS | [L’ARBRE LE PLUS FOU DE FRANCE 🤯🌳🇫🇷](https://www.instagram.com/reel/DdrRb4oCt1K/) | - | - |
 | 5.14x | dorcelstore_fr | IMAGE | [Certains rituels se réinventent, loin des regards 🫣](https://www.instagram.com/p/DcLUGWXKHrD/) | - | - |
@@ -53,14 +51,11 @@
 | 4.5x | lescabanesdanslesbois | REELS | [Votre cabane vous attend, réservez votre séjour dès maintenant ! 🌳.](https://www.instagram.com/reel/DbtYgFHILBd/) | F01 | - |
 | 4.18x | ben.nco | REELS | [On ne peut pas plaire à tout le monde 🤷🏻‍♂️ (la suite sur ytb : Ben N’co) #cameroun #cameroon #voyage #vlogvoyage](https://www.instagram.com/reel/DZzYNVdyHo4/) | F08 | - |
 | 4.11x | secretdeparis_hotelandspa | IMAGE | [La Chambre Musée d’Orsay s’inspire de l’un des lieux les plus emblématiques de Paris. Son décor reprend l’esprit de l’an](https://www.instagram.com/p/DeHDhm5iB8z/) | - | - |
-| 4.04x | staycation | CAROUSEL | [staycation et sonoriummusic investissent leroyalmonceau pour quatre sessions d’écoute les 21 et 22 novembre.](https://www.instagram.com/p/DfP2ilpkVlw/) | F05 | - |
 | 3.83x | yesforlov_official | CAROUSEL | [C’est dur, en tant que femme, de se construire quand on se sent jugée, regardée ou complexée à cause de sa poitrine. Sur](https://www.instagram.com/p/DbVk4O5CBaD/) | F07 | - |
 | 3.75x | passagedudesir | CAROUSEL | [La team anxieux.ses, vous validez ? Il manque quoi ? 💕](https://www.instagram.com/p/DbdrcbKjEbg/) | F07 | A14 |
 | 3.72x | ben.nco | REELS | [Le meilleur poisson braisé du Cameroun 😲🇨🇲 (la suite sur Ytb : Ben N’co) #cameroun #cameroon #yaounde #afrique #voyage](https://www.instagram.com/reel/DZPn1UhtOBR/) | F08 | - |
-| 3.7x | smartbox_fr | REELS | [Pour avoir l’impression de sauter d’un avion, rendez-vous chez iFly Paris ! iflyparis](https://www.instagram.com/reel/DaPiaeCInUl/) | - | - |
 | 3.67x | brunomaltor | REELS | [ABONNE-TOI pour d’autres DÉCOUVERTES ♥️](https://www.instagram.com/reel/Ddv-j5nIEjO/) | - | - |
 | 3.66x | sortiraparis.officiel | REELS | [Les dates des illuminations de Noël à Paris se dévoilent petit à petit ! Voici les premières annoncés.](https://www.instagram.com/reel/DfFqQgIsorv/) | F06 | - |
-| 3.56x | staycation | CAROUSEL | [Staycation lanza su primer Running Club, Breakfast & Spa en Barcelona, en edición ultra-limitada.](https://www.instagram.com/p/Dc6OyyIjlUv/) | F05 | - |
 | 3.47x | loveinroom.fr | REELS | [L’évasion, la vraie.](https://www.instagram.com/reel/DcL_9_oow8K/) | F01 | - |
 | 3.44x | jemenbatsleclito | CAROUSEL | [Soutien à vous, Mesdames.](https://www.instagram.com/p/Dc8EaFNiumy/) | F07 | - |
 | 3.29x | dorcelstore_fr | IMAGE | [Le Calendrier des Plaisirs ❤️‍🔥](https://www.instagram.com/p/DfCzg0CKAg2/) | - | - |

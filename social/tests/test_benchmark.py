@@ -71,6 +71,14 @@ class TestHygiene(unittest.TestCase):
         return {"timestamp": f"{day}T10:00:00+0000", "media_product_type": kind, "media_type": mtype,
                 "like_count": eng, "comments_count": 0, "caption": cap, "permalink": f"p{i}"}
 
+    def test_anglais(self):
+        self.assertTrue(benchmark.anglais("Which of these villages will you add to your list?"))
+        self.assertTrue(benchmark.anglais("Staycation lanza su primer Running Club en Barcelona y por la ciudad"))
+        self.assertFalse(benchmark.anglais("Une cabane pour vous deux, with love"))
+
+    def test_langue_fr_rejects_spanish(self):
+        self.assertFalse(benchmark.langue_fr("Staycation lanza su primer Running Club, Breakfast & Spa en Barcelona, en edición ultra-limitada. 5 km por Montjuïc con baiafoodco"))
+
     def test_langue_fr(self):
         oui = ["Une nuit pour vous deux avec le spa", "ABONNE-TOI pour d’autres DÉCOUVERTES", "j’ai tellement aimé Riyadh",
                "N’allez SURTOUT PAS au Liban", "Muhahaha, j’y pensais ce matin", "La team anxieux.ses, vous validez ?"]

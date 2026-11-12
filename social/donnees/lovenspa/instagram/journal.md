@@ -30,7 +30,8 @@ Stratégie déduite de la marque et du benchmark, non des posts passés : doc «
 - Heures de connexion des abonnés : non fournies par l'API pour ce compte.
 
 ## 2026-11-12 — J3 bibliothèque S2 Instagram v1
-- Échantillon : benchmark-2026-11-12.json, 37 comptes lus (3 illisibles), 100 publications max par compte, hygiène S2-M03 (fenêtre 7–180 j, ≥10 publications, épinglées retirées, concours et partenariats écrits à part).
-- 76 signaux à 3x ou plus de la médiane du compte et du format, classés par agent (signaux_classes.json) ; 5 recalculés hors organique (co-marquage « X x Y », lien affilié, partenaire).
-- Fiches : 18 (B : F01, F03, F05, F06, F07 ; C : 13 ; A : 0). Accroches réelles FR : 45. Règles officielles : 34 (31 officielles, 2 secondaires, 2 non trouvées) dans regles.md.
+- Échantillon : benchmark-2026-11-12.json, 37 comptes lus (3 illisibles), 50 publications max par compte, hygiène S2-M03 (fenêtre 7–180 j, ≥10 publications, épinglées retirées, concours et partenariats écrits à part).
+- 76 signaux à 3x ou plus de la médiane du compte et du format, classés par agent (signaux_classes.json) ; 10 hors organique : 5 par le filtre de légende, 5 partenariats repérés au contrôle qualité (`partenariat_releve`).
+- Fiches : 18 (B : F01, F03, F06, F07 ; C : 14 ; A : 0). F05 redescend en C (2 comptes organiques). Accroches réelles FR : 40. Règles : 34 (30 officielles, 2 secondaires, 2 non trouvées) dans regles.md.
 - Écarts majeurs relevés (décisions à prendre) : zone de texte des Reels, permissions du jeton, format JPEG 4:5 des carrousels par l'API, is_ai_generated.
+- Relecture humaine : en attente (Florian).

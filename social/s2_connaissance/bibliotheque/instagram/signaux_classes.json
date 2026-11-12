@@ -123,7 +123,8 @@
   "formule_accroche": null,
   "pertinence_lovenspa": "voisine",
   "justification": "La légende raconte le voyage du vainqueur du Red Bull Kart Fight et renvoie vers les stages de pilotage Smartbox.",
-  "hors_organique": false
+  "hors_organique": true,
+  "partenariat_releve": "opération co-marquée Smartbox x Red Bull Kart Fight"
  },
  {
   "permalink": "https://www.instagram.com/reel/Db_FjL6qq9p/",
@@ -156,7 +157,8 @@
   "formule_accroche": null,
   "pertinence_lovenspa": "directe",
   "justification": "La légende présente le simulateur de chute libre iFly Paris (2 vols) et renvoie vers une vidéo « 3 idées de cadeaux ».",
-  "hors_organique": false
+  "hors_organique": true,
+  "partenariat_releve": "mise en avant du partenaire iflyparis"
  },
  {
   "permalink": "https://www.instagram.com/p/Dd4K8BxjgEG/",
@@ -186,7 +188,8 @@
   "formule_accroche": null,
   "pertinence_lovenspa": "voisine",
   "justification": "La légende annonce une collaboration Staycation x Sonorium au Royal Monceau les 21 et 22 novembre.",
-  "hors_organique": false
+  "hors_organique": true,
+  "partenariat_releve": "événement co-organisé avec sonoriummusic et leroyalmonceau"
  },
  {
   "permalink": "https://www.instagram.com/p/Dc6OyyIjlUv/",
@@ -194,14 +197,15 @@
   "format": "CAROUSEL",
   "multiple": 3.56,
   "date": "2026-09-05",
-  "langue_fr": true,
+  "langue_fr": false,
   "accroche": "Staycation lanza su primer Running Club, Breakfast & Spa en Barcelona, en edición ultra-limitada.",
   "fiche_format": "F05",
   "format_nouveau": null,
   "formule_accroche": null,
   "pertinence_lovenspa": "voisine",
   "justification": "La légende (en espagnol) annonce un premier Running Club avec petit-déjeuner et spa à Barcelone, le 12 septembre.",
-  "hors_organique": false
+  "hors_organique": true,
+  "partenariat_releve": "événement co-organisé avec baiafoodco et hotelmiramarbarcelona"
  },
  {
   "permalink": "https://www.instagram.com/p/De9ze5ODihI/",
@@ -1110,7 +1114,8 @@
   "formule_accroche": null,
   "pertinence_lovenspa": "hors",
   "justification": "La légende met à l'honneur une artiste partenaire qui peint l'érotisme.",
-  "hors_organique": false
+  "hors_organique": true,
+  "partenariat_releve": "mise en avant de l'artiste partenaire helenbeardart"
  },
  {
   "permalink": "https://www.instagram.com/reel/Dd4KL_UI5fc/",

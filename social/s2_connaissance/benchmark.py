@@ -112,6 +112,7 @@ MOTS_FR = {"le", "la", "les", "des", "une", "un", "et", "pour", "avec", "vous", 
            "pas", "qui", "que", "votre", "notre", "plus", "au", "aux", "du", "ce", "cette", "à", "il", "elle",
            "en", "on", "mais", "ou", "donc", "quoi", "très", "tout", "tous", "sans", "chez"}
 MOTS_EN = {"the", "and", "to", "of", "is", "for", "you", "your", "this", "with", "it", "in", "on", "are", "our"}
+MOTS_ES = {"el", "los", "las", "su", "sus", "del", "por", "con", "y", "hasta", "primer", "es", "muy", "para"}
 ELISION_FR = re.compile(r"\b[dljnmtsc]['’][a-zàâçéèêëîïôûùüÿœ]", re.I)
 ACCENTS_FR = re.compile(r"[éèêàçùâîôûœ]", re.I)
 
@@ -123,14 +124,15 @@ def langue_fr(texte):
     mots = re.findall(r"[a-zàâçéèêëîïôûùüÿœ]+", t)
     fr = sum(1 for m in mots if m in MOTS_FR) + len(ELISION_FR.findall(t)) + (1 if ACCENTS_FR.search(t) else 0)
     en = sum(1 for m in mots if m in MOTS_EN)
-    return fr >= 2 and fr > en
+    es = sum(1 for m in mots if m in MOTS_ES)
+    return fr >= 2 and fr > en and fr > es
 
 
 def anglais(texte):
-    """Ligne dominée par les mots outils anglais (accroche anglaise d'une légende bilingue)."""
+    """Ligne dominée par des mots outils anglais ou espagnols (accroche étrangère d'une légende bilingue)."""
     mots = re.findall(r"[a-zàâçéèêëîïôûùüÿœ]+", (texte or "").lower())
-    en = sum(1 for m in mots if m in MOTS_EN)
-    return en >= 2 and en > sum(1 for m in mots if m in MOTS_FR)
+    etr = max(sum(1 for m in mots if m in MOTS_EN), sum(1 for m in mots if m in MOTS_ES))
+    return etr >= 2 and etr > sum(1 for m in mots if m in MOTS_FR)
 
 
 def epinglees(media):
