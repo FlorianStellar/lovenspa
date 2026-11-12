@@ -12,6 +12,7 @@ Usage :
   python3 -m social.s2_connaissance.benchmark [--marque <id>] [--comptes fichier.txt] [--n 50] [--md rapport.md]
 """
 import argparse
+import re
 import json
 import os
 import statistics
@@ -25,13 +26,23 @@ from social.marque import charger
 MEDIA = "timestamp,media_type,media_product_type,like_count,comments_count,caption,permalink"
 
 
-def discover(client, username, n=50):
+def discover(client, username, n=100, page=50):
+    """Profil et jusqu'à n publications récentes (pagination de Business Discovery)."""
     uid = client.ensure_user()
-    fields = (f"business_discovery.username({username})"
-              f"{{username,name,followers_count,media_count,media.limit({n}){{{MEDIA}}}}}")
-    data = client.get(uid, {"fields": fields}).get("business_discovery", {})
-    data["media"] = (data.get("media") or {}).get("data", [])
-    return data
+    media, after, acc = [], None, {}
+    while len(media) < n:
+        lim = min(page, n - len(media))
+        sel = f"media.after({after}).limit({lim})" if after else f"media.limit({lim})"
+        fields = (f"business_discovery.username({username})"
+                  f"{{username,name,followers_count,media_count,{sel}{{{MEDIA}}}}}")
+        acc = client.get(uid, {"fields": fields}).get("business_discovery", {})
+        bloc = acc.get("media") or {}
+        media += bloc.get("data", [])
+        after = (bloc.get("paging") or {}).get("cursors", {}).get("after")
+        if not after or not bloc.get("data") or not (bloc.get("paging") or {}).get("next"):
+            break
+    acc["media"] = media
+    return acc
 
 
 def fmt(m):
@@ -88,6 +99,77 @@ def summarize(acc, today=None):
     }
 
 
+# ------------------------------------------------------------------ hygiène (S2-M01 à S2-M03)
+HORS_ORGANIQUE = re.compile(
+    r"concours|giveaway|jeu[- ]concours|à gagner|a gagner|tirage au sort|gagnez|sorteo|#ad\b|#sponsoris|"
+    r"sponsoris|partenariat|collaboration avec|en collab|#partenaire|#gifted|code promo", re.I)
+MOTS_FR = {"le", "la", "les", "des", "une", "un", "et", "pour", "avec", "vous", "nous", "dans", "sur", "est",
+           "pas", "qui", "que", "votre", "notre", "plus", "au", "aux", "du", "ce", "cette", "à"}
+
+
+def langue_fr(texte):
+    """Vrai si au moins 3 mots outils français (repérage, pas un détecteur de langue)."""
+    mots = re.findall(r"[a-zàâçéèêëîïôûùüÿœ]+", (texte or "").lower())
+    return sum(1 for m in mots if m in MOTS_FR) >= 3
+
+
+def epinglees(media):
+    """Indices des publications épinglées : en tête de liste mais plus anciennes qu'une publication suivante.
+    L'API ne donne pas ce champ : repérage par l'ordre, documenté comme tel."""
+    out = set()
+    for i, m in enumerate(media[:3]):
+        ts = m.get("timestamp") or ""
+        if any((x.get("timestamp") or "") > ts for x in media[i + 1:]):
+            out.add(i)
+    return out
+
+
+def analyser(acc, today=None, fenetre=(7, 180), seuil=3.0, minimum=10):
+    """Multiple d'interactions par compte et par format, avec l'hygiène S2-M03.
+
+    Renvoie les groupes (format -> taille de l'échantillon, médiane, statut), les publications mises à part
+    (épinglées, hors organique) et les publications au-dessus du seuil, sans rien estimer."""
+    today = today or date.today()
+    media = acc.get("media", [])
+    pin = epinglees(media)
+    debut, fin = (today - timedelta(days=fenetre[1])).isoformat(), (today - timedelta(days=fenetre[0])).isoformat()
+    a_part, propres = [], {}
+    for i, m in enumerate(media):
+        d = (m.get("timestamp") or "")[:10]
+        if not d or not (debut <= d <= fin):
+            continue
+        cap = m.get("caption") or ""
+        base = {"date": d, "format": fmt(m), "engagement": engagement(m), "permalink": m.get("permalink"),
+                "accroche": cap.strip().split("\n")[0][:200], "langue_fr": langue_fr(cap)}
+        if i in pin:
+            a_part.append({**base, "motif": "épinglée"})
+        elif HORS_ORGANIQUE.search(cap):
+            a_part.append({**base, "motif": "hors organique (concours, partenariat)"})
+        elif base["engagement"] is None:
+            a_part.append({**base, "motif": "interactions masquées"})
+        else:
+            propres.setdefault(base["format"], []).append(base)
+    groupes, signaux = {}, []
+    for f, items in propres.items():
+        if len(items) < minimum:
+            groupes[f] = {"n": len(items), "mediane": None, "statut": "échantillon trop petit"}
+            continue
+        med = statistics.median(i["engagement"] for i in items)
+        groupes[f] = {"n": len(items), "mediane": med, "statut": "classé"}
+        if not med:
+            continue
+        for it in items:
+            mult = it["engagement"] / med
+            if mult >= seuil:
+                signaux.append({**it, "compte": acc.get("username"), "multiple": round(mult, 2), "mediane_ref": med})
+    for p in a_part:  # multiple indicatif des publications mises à part, contre la médiane organique du format
+        med = (groupes.get(p["format"]) or {}).get("mediane")
+        p["multiple_indicatif"] = round(p["engagement"] / med, 2) if med and p["engagement"] is not None else None
+    signaux.sort(key=lambda s: s["multiple"], reverse=True)
+    return {"username": acc.get("username"), "abonnes": acc.get("followers_count"), "fenetre": [debut, fin],
+            "groupes": groupes, "a_part": a_part, "signaux": signaux, "metrique": "likes + commentaires (S2-M02)"}
+
+
 def to_markdown(rows, errors):
     def v(x, suf=""):
         return "-" if x is None else f"{x}{suf}"
@@ -113,7 +195,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--marque")
     ap.add_argument("--comptes", help="fichier : un nom d'utilisateur par ligne (défaut : liste de la marque)")
-    ap.add_argument("--n", type=int, default=50)
+    ap.add_argument("--n", type=int, default=100)
     ap.add_argument("--out")
     ap.add_argument("--md")
     a = ap.parse_args(argv)
@@ -124,19 +206,20 @@ def main(argv=None):
     else:
         users = m.comptes_reference("instagram")
     client = IGClient(marque=m)
-    raw, rows, errors = {}, [], []
+    raw, rows, errors, analyses = {}, [], [], []
     for u in users:
         try:
             acc = discover(client, u, a.n)
             raw[u] = acc
             rows.append(summarize(acc))
+            analyses.append(analyser(acc))
         except IGError as e:
             errors.append((u, str(e)))
         time.sleep(1)
     today = date.today().isoformat()
     out = a.out or m.donnees("instagram", f"benchmark-{today}.json")
     with open(out, "w", encoding="utf-8") as f:
-        json.dump({"date": today, "comptes": raw, "erreurs": errors}, f, ensure_ascii=False, indent=1)
+        json.dump({"date": today, "comptes": raw, "erreurs": errors, "analyses": analyses}, f, ensure_ascii=False, indent=1)
     if a.md:
         with open(a.md, "w", encoding="utf-8") as f:
             f.write(to_markdown(rows, errors))

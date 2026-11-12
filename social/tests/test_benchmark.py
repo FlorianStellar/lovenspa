@@ -64,5 +64,74 @@ class TestDiscover(unittest.TestCase):
         self.assertEqual(len(acc["media"]), 1)
 
 
+class TestHygiene(unittest.TestCase):
+    TODAY = date(2026, 11, 12)
+
+    def post(self, i, eng, day, kind="FEED", mtype="IMAGE", cap="Une nuit pour vous deux avec le spa et la vue"):
+        return {"timestamp": f"{day}T10:00:00+0000", "media_product_type": kind, "media_type": mtype,
+                "like_count": eng, "comments_count": 0, "caption": cap, "permalink": f"p{i}"}
+
+    def test_langue_fr(self):
+        self.assertTrue(benchmark.langue_fr("Une nuit pour vous deux avec le spa"))
+        self.assertFalse(benchmark.langue_fr("A night for the two of you"))
+
+    def test_hors_organique(self):
+        self.assertTrue(benchmark.HORS_ORGANIQUE.search("🎁 JEU CONCOURS : 2 nuits à gagner"))
+        self.assertTrue(benchmark.HORS_ORGANIQUE.search("En partenariat avec @x"))
+        self.assertFalse(benchmark.HORS_ORGANIQUE.search("Une cabane au bord de l'eau"))
+
+    def test_pinned_post_set_aside(self):
+        posts = [self.post(i, 10, f"2026-10-{i + 1:02d}") for i in range(10)]
+        posts.sort(key=lambda p: p["timestamp"], reverse=True)
+        posts.insert(0, self.post(55, 999, "2026-06-01"))  # ancien succès épinglé en tête
+        r = benchmark.analyser({"username": "x", "media": posts}, today=self.TODAY)
+        self.assertEqual(r["a_part"][0]["motif"], "épinglée")
+        self.assertEqual(r["signaux"], [])
+
+    def test_epinglees(self):
+        media = [{"timestamp": "2025-01-01"}, {"timestamp": "2026-11-01"}, {"timestamp": "2026-10-01"}]
+        self.assertEqual(benchmark.epinglees(media), {0})
+        self.assertEqual(benchmark.epinglees(media[1:]), set())
+
+    def test_analyser(self):
+        posts = [self.post(i, 10, f"2026-10-{i + 1:02d}") for i in range(12)]
+        posts.insert(0, self.post(99, 500, "2026-10-20"))                       # signal 50x
+        posts.append(self.post(98, 900, "2026-10-21", cap="JEU CONCOURS : à gagner"))  # mis à part
+        posts.append(self.post(97, 10, "2026-11-10"))                           # trop récent (< 7 j)
+        posts.append(self.post(96, 10, "2026-01-10"))                           # trop ancien (> 180 j)
+        posts += [self.post(50 + i, 30, f"2026-09-{i + 1:02d}", kind="REELS", mtype="VIDEO") for i in range(4)]
+        posts.sort(key=lambda p: p["timestamp"], reverse=True)  # ordre de l'API : du plus récent au plus ancien
+        r = benchmark.analyser({"username": "x", "media": posts}, today=self.TODAY)
+        self.assertEqual(r["groupes"]["IMAGE"], {"n": 13, "mediane": 10, "statut": "classé"})
+        self.assertEqual(r["groupes"]["REELS"]["statut"], "échantillon trop petit")
+        self.assertEqual([s["permalink"] for s in r["signaux"]], ["p99"])
+        self.assertEqual(r["signaux"][0]["multiple"], 50.0)
+        self.assertEqual([p["motif"] for p in r["a_part"]], ["hors organique (concours, partenariat)"])
+        self.assertEqual(r["a_part"][0]["multiple_indicatif"], 90.0)
+
+    def test_hidden_likes_set_aside(self):
+        posts = [self.post(i, 10, f"2026-10-{i + 1:02d}") for i in range(10)] + [
+            dict(self.post(77, 0, "2026-10-15"), like_count=None)]
+        posts.sort(key=lambda p: p["timestamp"], reverse=True)
+        r = benchmark.analyser({"username": "x", "media": posts}, today=self.TODAY)
+        self.assertEqual(r["a_part"][0]["motif"], "interactions masquées")
+
+
+class TestPagination(unittest.TestCase):
+    def test_two_pages(self):
+        calls = []
+
+        def route(u, p):
+            calls.append(p["fields"])
+            if "after(" in p["fields"]:
+                return FakeResp(200, {"business_discovery": {"username": "a", "media": {"data": [media(3, 1)]}}})
+            return FakeResp(200, {"business_discovery": {"username": "a", "media": {
+                "data": [media(1, 1), media(2, 1)], "paging": {"cursors": {"after": "C1"}, "next": "n"}}}})
+        s = FakeSession([(lambda u, p: True, route)])
+        acc = benchmark.discover(IGClient("1", session=s, version=""), "a", n=3, page=2)
+        self.assertEqual(len(acc["media"]), 3)
+        self.assertIn("media.after(C1).limit(1)", calls[1])
+
+
 if __name__ == "__main__":
     unittest.main()
