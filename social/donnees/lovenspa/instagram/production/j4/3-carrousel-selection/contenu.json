@@ -160,7 +160,7 @@
     "handle": "loft-spa-st-etienne",
     "nom": "Loft Spa - St Etienne",
     "type": "Appartement",
-    "ville": "Saint Etienne",
+    "ville": "Saint-Étienne",
     "ville_reference": null,
     "region": "Auvergne-Rhône-Alpes",
     "equipements": [
@@ -190,7 +190,7 @@
   "region": null,
   "lien": "https://www.lovenspa.fr/collections/all?utm_source=instagram&utm_medium=social&utm_campaign=selection&utm_content=2026-11-17"
  },
- "legende": "6 nuits avec spa privatif jusqu'à 150 €, à offrir avant Noël.\n\nUn spa rien qu'à vous deux ne coûte pas forcément une fortune. Six adresses où la nuit reste à 150 € ou moins, de la moins chère à la plus chère :\n\n1. Gîte jacuzzi XXL, Rennes : dès 130 €\n2. Gîte écolodge, Saint-Affrique : dès 133 €\n3. Le Calypso, Perpignan : dès 140 € (notre favori)\n4. Loft Spa, Saint Etienne : dès 143 €\n5. Les Suites B Spa, Marseille : dès 149 €\n6. Designer Hotel, Liège : dès 150 €\n\nEnregistrez ce post pour votre prochain week-end, ou glissez la carte cadeau sous le sapin.\n\n#lovenspa #spaprivatif #loveroom #weekendamoureux #carteCadeau",
+ "legende": "6 nuits avec spa privatif jusqu'à 150 €, à offrir avant Noël.\n\nUn spa rien qu'à vous deux ne coûte pas forcément une fortune. Six adresses où la nuit reste à 150 € ou moins, de la moins chère à la plus chère :\n\n1. Gîte jacuzzi XXL, Rennes : dès 130 €\n2. Gîte écolodge, Saint-Affrique : dès 133 €\n3. Le Calypso, Perpignan : dès 140 € (notre favori)\n4. Loft Spa, Saint-Étienne : dès 143 €\n5. Les Suites B Spa, Marseille : dès 149 €\n6. Designer Hotel, Liège : dès 150 €\n\nEnregistrez ce post pour votre prochain week-end, ou glissez la carte cadeau sous le sapin.\n\n#lovenspa #spaprivatif #loveroom #weekendamoureux #carteCadeau",
  "couverture": {
   "titre": "6 nuits avec spa jusqu'à 150 €, à offrir avant Noël",
   "sous_titre": "Classées par prix · notre favori en 4",
@@ -216,9 +216,9 @@
  },
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "855d12ed98ba1753",
+  "empreinte": "303b47c6e3f8a99f",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "8 diapositives : couverture jacuzzi (Loft Spa), Calypso favori avec sa baignoire, titres courts identiques à la légende, prix croissants."
+  "remarques": "8 diapositives : « Saint-Étienne » corrigé (diapositive 5 et légende)."
  }
 }

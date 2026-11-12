@@ -191,9 +191,9 @@
   "moteurs_valides": [],
   "moteurs_valides_note": "Moteurs dont les rendus ont été validés par un humain (jalon J4). S7 refuse de publier un moteur absent de cette liste. Vide tant que J4 n'est pas validé.",
   "stories": {
-    "heure": "12:30",
+    "heure": "19:30",
     "images": 3,
-    "source": "Doc de stratégie validé le 11/11/2026 : « En soutien, chaque jour en story : sondage ou question, repartage des clients et des hébergeurs, rappel du lien et des cartes cadeaux. » Heure : règle maison, à mesurer (S8).",
+    "source": "Doc de stratégie validé le 11/11/2026 : « En soutien, chaque jour en story : sondage ou question, repartage des clients et des hébergeurs, rappel du lien et des cartes cadeaux. » Heure : règle maison, à mesurer (S8). Heure : 19:30, après le post du jour (18:30), pour qu'une story puisse annoncer un post déjà en ligne (revue J4).",
     "limite": "L'API ne pose ni sticker (sondage, lien) ni repartage : la question invite à répondre en message, le lien renvoie à la bio ; les repartages restent manuels (S9)."
   },
   "recrutement": {

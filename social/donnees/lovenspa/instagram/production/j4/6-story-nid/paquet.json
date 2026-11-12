@@ -1,7 +1,7 @@
 {
  "case": {
   "date": "2026-11-22",
-  "heure": "12:30",
+  "heure": "19:30",
   "plateforme": "instagram",
   "moteur": "story",
   "format": "STORY",
@@ -57,13 +57,13 @@
   "À offrir avant Noël : la carte cadeau, lien en bio",
   "Nouveau Reel : Le Nid de l'Erdre, sur notre profil"
  ],
- "empreinte_contenu": "37ebbbfb1753c0fd",
+ "empreinte_contenu": "9c9af2672bb5f2a7",
+ "sources_montants": {},
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "37ebbbfb1753c0fd",
+  "empreinte": "9c9af2672bb5f2a7",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "5 images : textes cohérents, question avec réponse 1 ou 2 en message, renvoi au Reel ; pas de repartage (aucun accord d'auteur enregistré)."
- },
- "sources_montants": {}
+  "remarques": "5 images : publication à 19:30, après le Reel de 18:30 ; l'image 5 annonce un Reel déjà en ligne."
+ }
 }

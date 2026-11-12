@@ -40,6 +40,10 @@ class TestSchemas(unittest.TestCase):
     def test_offre(self):
         self.assertEqual(erreurs(offres.offre(NODE, M), "offre"), [])
 
+    def test_city_spelling_fixed_by_brand_config(self):
+        n = dict(NODE, ville={"value": "Saint Etienne"})
+        self.assertEqual(offres.offre(n, M)["ville"], "Saint-Étienne")
+
     def test_offre_rejects_private_data(self):
         self.assertTrue(erreurs(dict(offres.offre(NODE, M), email="a@b.fr"), "offre"))
 

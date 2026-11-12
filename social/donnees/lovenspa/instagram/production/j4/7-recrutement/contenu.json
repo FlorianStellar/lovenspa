@@ -52,7 +52,7 @@
   "diapos": [
    {
     "titre": "Près de 8 000 abonnés",
-    "texte": "Des couples qui cherchent une nuit avec spa privatif."
+    "texte": "Des couples qui aiment les nuits avec spa privatif."
    },
    {
     "titre": "Votre logement sur lovenspa.fr",
@@ -67,14 +67,14 @@
   "texte_cta": "Le formulaire est sur lovenspa.fr, page Devenir partenaire.",
   "bouton": "Lien en bio"
  },
- "revue_visuelle": {
-  "statut": "OK",
-  "empreinte": "f1dca73cf617e246",
-  "par": "agent (Claude)",
-  "date": "2026-11-12",
-  "remarques": "5 diapositives : seuls faits publiés (page devenir-partenaire, abonnés de l'instantané), couverture Calypso nommée en légende."
- },
  "sources_montants": {
   "30": "https://lovenspa.fr/pages/devenir-partenaire (« Mettez votre logement en avant à partir de 30€/mois », lu le 12/11/2026)"
+ },
+ "revue_visuelle": {
+  "statut": "OK",
+  "empreinte": "e3b87fc708b5ac69",
+  "par": "agent (Claude)",
+  "date": "2026-11-12",
+  "remarques": "5 diapositives : audience décrite sans affirmation non mesurée."
  }
 }

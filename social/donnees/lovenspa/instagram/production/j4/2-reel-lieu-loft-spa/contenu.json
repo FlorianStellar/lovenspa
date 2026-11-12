@@ -13,7 +13,7 @@
     "handle": "loft-spa-st-etienne",
     "nom": "Loft Spa - St Etienne",
     "type": "Appartement",
-    "ville": "Saint Etienne",
+    "ville": "Saint-Étienne",
     "ville_reference": null,
     "region": "Auvergne-Rhône-Alpes",
     "equipements": [
@@ -64,7 +64,7 @@
   },
   {
    "photo": 6,
-   "texte": null,
+   "texte": "Dès 143 € la nuit",
    "duree": 1.5,
    "cadrage": "auto"
   },
@@ -76,15 +76,15 @@
   },
   {
    "photo": 7,
-   "texte": "Dès 143 € la nuit",
+   "texte": null,
    "duree": 1.5,
    "cadrage": "auto"
   },
   {
-   "photo": 10,
-   "texte": null,
+   "photo": 12,
+   "texte": "Une cuisine équipée",
    "duree": 1.5,
-   "cadrage": "auto"
+   "cadrage": "entier"
   },
   {
    "photo": 9,
@@ -105,12 +105,12 @@
    "cadrage": "auto"
   }
  ],
- "legende": "Un jacuzzi, une cheminée et 80 m² rien qu'à vous : Loft Spa, à Saint-Étienne, dès 143 € la nuit.\n\nAu dernier étage d'un immeuble de standing, briques apparentes, poutres et béton brut. Le jacuzzi vous attend face au lit, la cheminée réchauffe le salon, et la douche XL se partage.\n\nSauna et hammam complètent la soirée, sans personne d'autre que vous deux.\n\nÀ offrir avant Noël : réservez ou offrez la carte cadeau, lien en bio.\n\n#lovenspa #loveroom #saintetienne #jacuzziprivatif #carteCadeau",
+ "legende": "Un jacuzzi, une cheminée et 80 m² rien qu'à vous : Loft Spa, à Saint-Étienne, dès 143 € la nuit.\n\nAu dernier étage d'un immeuble de standing, briques apparentes, poutres et béton brut. Le jacuzzi vous attend face au lit, la cheminée réchauffe le salon, et la douche XL se partage.\n\nUne cuisine équipée pour ne pas avoir à ressortir, et personne d'autre que vous deux.\n\nÀ offrir avant Noël : réservez ou offrez la carte cadeau, lien en bio.\n\n#lovenspa #loveroom #saintetienne #jacuzziprivatif #carteCadeau",
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "8e2b1aa1710bd42f",
+  "empreinte": "4ee3941f93309d6e",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "10 plans regardés : textes cohérents avec les photos ; photo d'une personne en sous-vêtements et meuble ambigu écartés ; 80 m² dans la description."
+  "remarques": "10 plans regardés : plan arcade (main) retiré, prix sur le salon (plan 4), cuisine en photo entière (plan 7), légende sans sauna ni hammam non montrés, Saint-Étienne."
  }
 }

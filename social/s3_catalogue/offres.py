@@ -74,7 +74,7 @@ def offre(node, marque):
         "handle": node["handle"],
         "nom": node["title"],
         "type": node.get("productType") or None,
-        "ville": vals.get("ville"),
+        "ville": (cat.get("orthographe_villes") or {}).get(vals.get("ville"), vals.get("ville")),
         "ville_reference": vals.get("ville_reference"),
         "region": vals.get("region"),
         "equipements": [e for e in equip if e.lower() not in exclus and e.lower() not in sans_interet],

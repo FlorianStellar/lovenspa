@@ -5,12 +5,34 @@
   "statut_actif": "status:active",
   "tag_equipements": "Equipements",
   "champs": {
-    "ville": {"metafield": "accentuate.ville"},
-    "region": {"metafield": "accentuate.region", "repli_tag": "region"},
-    "ville_reference": {"tag": "ville"},
-    "on_aime": {"metafield": "accentuate.on_aime"},
-    "ambiance": {"metafield": "custom.spicy_level", "type": "int"}
+    "ville": {
+      "metafield": "accentuate.ville"
+    },
+    "region": {
+      "metafield": "accentuate.region",
+      "repli_tag": "region"
+    },
+    "ville_reference": {
+      "tag": "ville"
+    },
+    "on_aime": {
+      "metafield": "accentuate.on_aime"
+    },
+    "ambiance": {
+      "metafield": "custom.spicy_level",
+      "type": "int"
+    }
   },
-  "ambiances": {"1": "Romantique", "2": "Sensuel", "3": "Coquin", "4": "Pimenté", "5": "Averti"},
-  "ambiances_source": "Libellés lus sur les pages produit pour chaque valeur de custom.spicy_level (11/11/2026)"
+  "ambiances": {
+    "1": "Romantique",
+    "2": "Sensuel",
+    "3": "Coquin",
+    "4": "Pimenté",
+    "5": "Averti"
+  },
+  "ambiances_source": "Libellés lus sur les pages produit pour chaque valeur de custom.spicy_level (11/11/2026)",
+  "orthographe_villes": {
+    "Saint Etienne": "Saint-Étienne"
+  },
+  "orthographe_villes_note": "Graphie officielle des communes quand la boutique en diffère (vérifié le 12/11/2026 : champ ville « Saint Etienne » du Loft Spa). À corriger aussi dans Shopify."
 }
