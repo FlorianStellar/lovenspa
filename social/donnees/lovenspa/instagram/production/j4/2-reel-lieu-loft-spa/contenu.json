@@ -1,0 +1,116 @@
+{
+ "case": {
+  "date": "2026-11-19",
+  "heure": "18:30",
+  "plateforme": "instagram",
+  "moteur": "lieu",
+  "format": "REELS",
+  "statut": "A_PRODUIRE",
+  "temps_fort": "Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir",
+  "region": "Auvergne-Rhône-Alpes",
+  "offres": [
+   {
+    "handle": "loft-spa-st-etienne",
+    "nom": "Loft Spa - St Etienne",
+    "type": "Appartement",
+    "ville": "Saint Etienne",
+    "ville_reference": null,
+    "region": "Auvergne-Rhône-Alpes",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Climatisation",
+     "Cuisine équipée",
+     "Day Use",
+     "Douche XL",
+     "Hammam",
+     "Lit King Size",
+     "Sauna",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 143.0,
+    "unite_prix": "la nuit",
+    "devise": "EUR",
+    "on_aime": null,
+    "ambiance": 2,
+    "ambiance_libelle": "Sensuel",
+    "url": "https://lovenspa.fr/products/loft-spa-st-etienne",
+    "actif": true,
+    "medias": 13,
+    "description": "Bienvenue au Loft Spa : Votre Love Room d’Exception à Saint-Étienne ️ Découvrez une expérience unique dans notre Loft Spa, une Love Room au cœur de Saint-Étienne, conçue pour des escapades romantiques inoubliables. Situé au dernier étage d’un immeuble de standing, ce cocon de 80 m² est un véritable havre de détente et de plaisir, où tout a été pensé pour vous offrir un séjour d’exception. Un Cadre Chic et Authentique Avec ses briquettes apparentes, ses finitions en béton brut, ses poutres majestueuses et son éclairage soigné, le Loft Spa vous plonge dans une ambiance loft industrielle et chaleureuse. C’est l’adresse idéale pour les couples en quête d’un logement insolite avec un spa au cœur de Saint-Étienne. Des Équipements Haut de Gamme pour un Bien-Être Total Espace Spa : Une estrade élégante abrite une immense douche à l’italienne et un jacuzzi privatif accessible jour et nuit, parfait pour des moments complices à deux. Sauna sur mesure : Conçu pour deux personnes, il offre une expérience bien-être exclusive. Coin salon chic : Un canapé Chesterfield face à une cheminée pour des apéritifs romantiques ou des soirées cosy. Literie modulable haut de gamme : Confort absolu pour des nuits parfaites. Cuisine entièrement équipée : Tout le nécessaire pour préparer un dîner à votre rythme. Télévision Smart : Pour des soirées cinéma au coin du feu. Une Love Room Pleine de Surprises Le Loft Spa va bien au-delà du luxe : Baby-foot spécialement conçu pour les couples : Parfait pour des moments de fun et de complicité. Borne d’arcade rétro : Pour les nostalgiques ou les amateurs de challenges en amoureux. Ces petites attentions ajoutent une touche ludique et originale à votre séjour romantique. Une Expérience Unique à Partager Dans ce véritable cocon de charme, chaque détail a été pensé pour que vous viviez des retrouvailles inoubliables : spa, détente, jeux et moments complices. Vous ne verrez pas le temps passer ! Que ce soit pour un week-end romantique, une surprise ou une célébration, le Loft Spa de Saint-Étienne est la promesse d’un séjour unique, alliant luxe, confort et créativité. Ne tardez pas à réserver et laissez la magie opérer !"
+   }
+  ],
+  "lien": "https://lovenspa.fr/products/loft-spa-st-etienne?utm_source=instagram&utm_medium=social&utm_campaign=lieu&utm_content=2026-11-19"
+ },
+ "musique": "find-your-peace",
+ "reel_plans": [
+  {
+   "photo": 4,
+   "texte": "Un jacuzzi rien qu'à vous",
+   "duree": 1.5,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 13,
+   "texte": null,
+   "duree": 1.5,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 2,
+   "texte": "Le lit face au spa",
+   "duree": 1.5,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 6,
+   "texte": null,
+   "duree": 1.5,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 11,
+   "texte": "Un loft de 80 m²",
+   "duree": 1.5,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 7,
+   "texte": "Dès 143 € la nuit",
+   "duree": 1.5,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 10,
+   "texte": null,
+   "duree": 1.5,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 9,
+   "texte": "Une douche XL pour deux",
+   "duree": 1.5,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 5,
+   "texte": null,
+   "duree": 1.5,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 1,
+   "texte": "À offrir avant Noël",
+   "duree": 1.5,
+   "cadrage": "auto"
+  }
+ ],
+ "legende": "Un jacuzzi, une cheminée et 80 m² rien qu'à vous : Loft Spa, à Saint-Étienne, dès 143 € la nuit.\n\nAu dernier étage d'un immeuble de standing, briques apparentes, poutres et béton brut. Le jacuzzi vous attend face au lit, la cheminée réchauffe le salon, et la douche XL se partage.\n\nSauna et hammam complètent la soirée, sans personne d'autre que vous deux.\n\nÀ offrir avant Noël : réservez ou offrez la carte cadeau, lien en bio.\n\n#lovenspa #loveroom #saintetienne #jacuzziprivatif #carteCadeau",
+ "revue_visuelle": {
+  "statut": "OK",
+  "empreinte": "8e2b1aa1710bd42f",
+  "par": "agent (Claude)",
+  "date": "2026-11-12",
+  "remarques": "10 plans regardés : textes cohérents avec les photos ; photo d'une personne en sous-vêtements et meuble ambigu écartés ; 80 m² dans la description."
+ }
+}

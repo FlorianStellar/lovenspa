@@ -130,7 +130,7 @@ def order_equipements(equipements, phares):
     return first + [e for e in equipements if e not in first]
 
 
-def slide_lodging(photo, nom, lieu, prix, equipements, counter, badge=None):
+def slide_lodging(photo, nom, lieu, prix, equipements, counter, badge=None, mention=None):
     im = Image.new("RGB", CAROUSEL, CREME)
     im.paste(cover(photo, (1080, 900)), (0, 0))
     d = ImageDraw.Draw(im)
@@ -143,6 +143,8 @@ def slide_lodging(photo, nom, lieu, prix, equipements, counter, badge=None):
     d.text((80, y), lieu, font=font("Regular", 32), fill=INK)
     d.text((80, y + 50), f"dès {prix:g} € " + KIT["unite_prix"].replace(" ", "\u00a0"), font=font("SemiBold", 34), fill=ROSE)
     d.text((80, y + 100), " · ".join(equipements[:3]), font=font("Regular", 32), fill=GRIS)
+    if mention:  # ex. « À offrir : la carte cadeau, lien en bio »
+        d.text((80, y + 155), mention, font=font("SemiBold", 34), fill=ROSE)
     d.text((1000, 1290), counter, font=font("SemiBold", 32), fill=INK, anchor="ra")
     return im
 
@@ -168,7 +170,7 @@ def slide_grand_texte(title, body="", counter=None, cta=None):
     """Diapositive de texte lisible au premier regard (revue J4, F07) : grand corps, bloc centré verticalement."""
     im = Image.new("RGB", CAROUSEL, CREME)
     d = ImageDraw.Draw(im)
-    ft, fb = font("Bold", 84), font("Regular", 50)
+    ft, fb = font("Bold", 88), font("Regular", 66)
     lt = wrap(d, title, ft, 920)
     lb = wrap(d, body, fb, 920) if body else []
     h = len(lt) * (ft.size + 16) + (40 + len(lb) * (fb.size + 16) if lb else 0)
@@ -283,7 +285,7 @@ def render_reel_plans(plans, out, musique=None, fps=30):
             src = plan_image(p["image"], p.get("cadrage", "auto"))
             sp, cp = os.path.join(d, f"s{i}.png"), os.path.join(d, f"t{i}.png")
             src.save(sp)
-            carton(p.get("texte"), haut=p.get("haut", False)).save(cp)
+            carton(p.get("texte"), haut=p.get("haut", False) or p.get("position") == "haut").save(cp)
             portrait = src.width - REEL[0] < src.height - REEL[1]
             sens = ("bas" if i % 2 else "haut") if portrait else ("gauche" if i % 2 else "droite")
             n = round(p["duree"] * fps)
@@ -301,7 +303,7 @@ def render_reel_plans(plans, out, musique=None, fps=30):
         af = f"atrim=0:{total:.2f},afade=t=out:st={max(total - 1, 0):.2f}:d=1" if musique else f"atrim=0:{total:.2f}"
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst, *audio,
                         "-filter_complex", f"[1:a]{af}[a]", "-map", "0:v", "-map", "[a]", "-c:v", "copy",
-                        "-c:a", "aac", "-b:a", "128k", "-ar", "44100", "-shortest", "-movflags", "+faststart", out],
+                        "-c:a", "aac", "-b:a", "128k", "-ar", "48000", "-shortest", "-movflags", "+faststart", out],  # 48 kHz : IG-R13
                        check=True)
     return out
 
@@ -350,7 +352,7 @@ def render_reel(frames, out, seconds=2.5, fps=30):
 
 
 def probe(path):
-    r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,width,height:format=duration",
+    r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,width,height,sample_rate:format=duration",
                         "-of", "json", path], capture_output=True, text=True, check=True)
     return json.loads(r.stdout)
 

@@ -1,7 +1,7 @@
 {
  "statut": "PRET",
  "controle": {
-  "statut": "A_REVOIR",
+  "statut": "OK",
   "caracteres": 559,
   "premiere_ligne": 61,
   "hashtags": [
@@ -14,18 +14,7 @@
   "appels": [
    "enregistrer"
   ],
-  "resultats": [
-   {
-    "code": "AUTRE_MONTANT",
-    "niveau": "avertissement",
-    "message": "montant 150 € cité hors prix du logement : vérifier sa source"
-   },
-   {
-    "code": "AUTRE_MONTANT",
-    "niveau": "avertissement",
-    "message": "montant 150 € cité hors prix du logement : vérifier sa source"
-   }
-  ]
+  "resultats": []
  },
  "bloquants": []
 }

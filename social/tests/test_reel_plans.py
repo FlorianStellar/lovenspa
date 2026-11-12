@@ -90,6 +90,8 @@ class TestRendu(unittest.TestCase):
         self.assertAlmostEqual(float(info["format"]["duration"]), 1.8, delta=0.15)
         moyenne = float(vol.split("mean_volume:")[1].split("dB")[0])
         self.assertGreater(moyenne, -40)  # son audible, pas une piste muette
+        a = next(s for s in info["streams"] if s["codec_type"] == "audio")
+        self.assertEqual(a.get("sample_rate"), "48000")  # IG-R13
 
 
 if __name__ == "__main__":

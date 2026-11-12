@@ -46,7 +46,7 @@
   ],
   "lien": "https://www.lovenspa.fr/?utm_source=instagram&utm_medium=social&utm_campaign=couple&utm_content=2026-11-20"
  },
- "legende": "Le désir ne s'éteint pas d'un coup : il s'endort quand on cesse d'y faire attention.\n\nPas besoin de grands gestes pour le réveiller. Un message au milieu de la journée, un regard qui dure une seconde de trop, une soirée où les téléphones restent dans l'entrée.\n\nEt pour la surprise annoncée, une nuit à la Romantic Room Alexis, jacuzzi et dîner compris : à offrir pour Noël.\n\nDites-nous en commentaire laquelle vous fait le plus d'effet.\n\n#lovenspa #couple #desir #amour #soireeadeux",
+ "legende": "Le désir ne s'éteint pas d'un coup : il s'endort quand on cesse d'y faire attention.\n\nPas besoin de grands gestes pour le réveiller. Un message au milieu de la journée, un regard qui dure une seconde de trop, une soirée où les téléphones restent dans l'entrée.\n\nEt pour la surprise annoncée, une nuit à la Romantic Room Alexis, jacuzzi et dîner compris : à offrir pour Noël.\n\nEnvoyez ce post à la personne qui vous fait encore cet effet.\n\n#lovenspa #couple #desir #amour #soireeadeux",
  "couple": {
   "titre": "Le désir ne s'éteint pas.",
   "sous_titre": "Il s'endort. Voici 5 façons de le réveiller.",
@@ -73,15 +73,16 @@
    }
   ],
   "cta": "Laquelle vous fait le plus d'effet ?",
-  "question": "Répondez en commentaire.",
+  "question": "Envoyez ce post à qui vous fait cet effet.",
   "photo_logement": 13,
-  "badge_logement": "Pour la surprise"
+  "badge_logement": "Pour la surprise",
+  "mention_logement": "À offrir : la carte cadeau, lien en bio"
  },
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "3ec21f0bfd428dd3",
+  "empreinte": "9a33aae1bae49a09",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "8 diapositives : texte lisible, question finale, logement en dernière diapositive avec photo cohérente."
+  "remarques": "8 diapositives : grand texte lisible, appel au partage cohérent avec la légende, logement et carte cadeau en dernière diapositive."
  }
 }

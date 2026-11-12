@@ -135,7 +135,8 @@ def fabriquer(c, folder, catalogue, strat, session=None, marque=None):
         m, chemin = choisir_musique(c, marque)
         out = visuels.render_reel_plans(
             [{"image": cache[p["photo"]], "texte": p.get("texte"), "duree": p["duree"],
-              "cadrage": p.get("cadrage", "auto"), "haut": i == 0} for i, p in enumerate(plans)],
+              "cadrage": p.get("cadrage", "auto"), "haut": i == 0 or p.get("position") == "haut"}
+             for i, p in enumerate(plans)],
             os.path.join(folder, "reel.mp4"), musique=chemin)
         info = visuels.probe(out)
         v = next(s for s in info["streams"] if s["codec_type"] == "video")
@@ -187,7 +188,8 @@ def fabriquer(c, folder, catalogue, strat, session=None, marque=None):
         for i, f in enumerate(offres, 2):
             rang = (c.get("photos_logements") or {}).get(f["handle"], 1)
             photo = visuels.fetch(catalogue.images(f["handle"], rang)[rang - 1], session)
-            slides.append(visuels.slide_lodging(photo, nom_court(f), lieu_txt(f), f["prix_a_partir_de"],
+            slides.append(visuels.slide_lodging(photo, (c.get("noms_courts") or {}).get(f["handle"], nom_court(f)),
+                                                lieu_txt(f), f["prix_a_partir_de"],
                                                 visuels.order_equipements(f["equipements"], phares), f"{i}/{n + 2}",
                                                 badge="Notre favori" if f["handle"] == c.get("favori") else None))
         if extra:
@@ -195,7 +197,9 @@ def fabriquer(c, folder, catalogue, strat, session=None, marque=None):
             for j, e in enumerate(extra, len(offres) + 2):
                 slides.append(visuels.slide_photo(visuels.fetch(urls[e["photo"] - 1], session), e.get("texte"),
                                                   f"{j}/{n + 2}"))
-        slides.append(visuels.slide_text(c["fin"]["titre"], c["fin"]["texte"], f"{n + 2}/{n + 2}", cta=True))
+        fin = c["fin"]
+        slides.append(visuels.slide_grand_texte(fin["titre"], fin["texte"], f"{n + 2}/{n + 2}", cta=fin["bouton"])
+                      if fin.get("bouton") else visuels.slide_text(fin["titre"], fin["texte"], f"{n + 2}/{n + 2}", cta=True))
         return visuels.save_slides(slides, folder, "diapo"), notes
     if case["moteur"] == "story":
         imgs = c["story"]["images"]
@@ -206,6 +210,16 @@ def fabriquer(c, folder, catalogue, strat, session=None, marque=None):
                 raise RuntimeError(f"story image {i} : {len(im['texte'].split())} mots ({MOTS_STORY_MAX} au plus)")
         rendus = []
         for i, im in enumerate(imgs):
+            if im.get("repartage"):
+                # contenu d'un client ou d'un hébergeur : accord écrit obligatoire (doc de stratégie, S9), crédit affiché
+                rp = im["repartage"]
+                if not rp.get("accord_le") or not rp.get("auteur"):
+                    raise RuntimeError(f"story image {i + 1} : repartage sans accord daté de l'auteur")
+                photo = visuels.fetch(rp["url"], session)
+                texte = ((im.get("texte") or "") + f" · Merci {rp['auteur']}").strip(" ·")
+                rendus.append(visuels.story_image(photo, texte, haut=i == 0, cadrage=im.get("cadrage", "auto")))
+                notes.append(f"repartage de {rp['auteur']} (accord du {rp['accord_le']}) : identifier le compte à la publication")
+                continue
             h = im.get("handle") or offres[0]["handle"]
             url = catalogue.images(h, im["photo"])[im["photo"] - 1]
             rendus.append(visuels.story_image(visuels.fetch(url, session), im.get("texte"), haut=i == 0,
@@ -234,7 +248,8 @@ def fabriquer(c, folder, catalogue, strat, session=None, marque=None):
             photo = visuels.fetch(catalogue.images(fin["handle"], rang)[rang - 1], session)
             slides.append(visuels.slide_lodging(photo, nom_court(fin), lieu_txt(fin), fin["prix_a_partir_de"],
                                                 visuels.order_equipements(fin["equipements"], phares),
-                                                f"{total}/{total}", badge=cp.get("badge_logement")))
+                                                f"{total}/{total}", badge=cp.get("badge_logement"),
+                                                mention=cp.get("mention_logement")))
         return visuels.save_slides(slides, folder, "diapo"), notes
     raise ValueError(f"moteur inconnu : {case['moteur']}")
 
@@ -250,6 +265,7 @@ def reverdict(folder, marque=None, history=None):
     if paquet.get("empreinte_contenu") != controle.empreinte(c):
         raise RuntimeError("le contenu a changé depuis le rendu : relancer la production")
     paquet["revue_visuelle"] = c.get("revue_visuelle")
+    paquet["sources_montants"] = c.get("sources_montants") or {}
     strat = marque.strategie(paquet["case"].get("plateforme", "instagram"))
     verdict = valider(controle.verdict(paquet, marque.regles, history or [], strat["ambiances_autorisees"]), "verdict")
     for nom, obj in (("paquet.json", paquet), ("verdict.json", verdict)):
@@ -277,6 +293,8 @@ def produce(folder, marque=None, catalogue=None, session=None, history=None):
         legende += "\n\n" + attribution  # licence CC BY : crédit dans la publication
     paquet = {"case": case, "legende": typo_fr(legende), "medias": medias, "notes": notes,
               "textes_ecran": textes_ecran(c), "empreinte_contenu": controle.empreinte(c),
+              # montant cité hors prix de logement, avec sa source publique (ex. {"30": "<url de la page>"})
+              "sources_montants": c.get("sources_montants") or {},
               # revue visuelle (texte cohérent avec chaque photo, aucun logo tiers, aucun équipement exclu visible) :
               # faite après le rendu, inscrite dans contenu.json avec l'empreinte du contenu revu
               "revue_visuelle": c.get("revue_visuelle")}

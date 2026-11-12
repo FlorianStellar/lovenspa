@@ -207,15 +207,18 @@
  "textes_ecran": [
   "6 nuits avec spa jusqu'à 150 €, à offrir avant Noël",
   "Classées par prix · notre favori en 4",
-  "Enregistrez-le pour plus tard",
-  "Toutes les adresses sont sur lovenspa.fr"
+  "loft-spa-st-etienne",
+  "Enregistrez-le, ou offrez-le",
+  "La carte cadeau est sur lovenspa.fr",
+  "Lien en bio"
  ],
- "empreinte_contenu": "f534acadbc85ddc0",
+ "empreinte_contenu": "855d12ed98ba1753",
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "f534acadbc85ddc0",
+  "empreinte": "855d12ed98ba1753",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "8 diapositives : couverture avec spa (Calypso), badge favori, prix croissants, textes lisibles, € non coupé."
- }
+  "remarques": "8 diapositives : couverture jacuzzi (Loft Spa), Calypso favori avec sa baignoire, titres courts identiques à la légende, prix croissants."
+ },
+ "sources_montants": {}
 }

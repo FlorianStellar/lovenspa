@@ -194,21 +194,31 @@
  "couverture": {
   "titre": "6 nuits avec spa jusqu'à 150 €, à offrir avant Noël",
   "sous_titre": "Classées par prix · notre favori en 4",
-  "photo": 9
+  "photo": 4,
+  "handle": "loft-spa-st-etienne"
  },
  "fin": {
-  "titre": "Enregistrez-le pour plus tard",
-  "texte": "Toutes les adresses sont sur lovenspa.fr"
+  "titre": "Enregistrez-le, ou offrez-le",
+  "texte": "La carte cadeau est sur lovenspa.fr",
+  "bouton": "Lien en bio"
  },
  "favori": "le-calypso-love-room-balneo-de-luxe-2025",
  "photos_logements": {
-  "le-calypso-love-room-balneo-de-luxe-2025": 7
+  "le-calypso-love-room-balneo-de-luxe-2025": 9
+ },
+ "noms_courts": {
+  "jacuzzi-xxl-charme-et-caracteres-de-campagne": "Gîte jacuzzi XXL",
+  "gite-ecolodge-avec-jacuzzi": "Gîte écolodge",
+  "le-calypso-love-room-balneo-de-luxe-2025": "Le Calypso",
+  "loft-spa-st-etienne": "Loft Spa",
+  "les-suites-b-spa-suite-wood-1": "Les Suites B Spa",
+  "dolce-gabbane": "Designer Hotel"
  },
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "f534acadbc85ddc0",
+  "empreinte": "855d12ed98ba1753",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "8 diapositives : couverture avec spa (Calypso), badge favori, prix croissants, textes lisibles, € non coupé."
+  "remarques": "8 diapositives : couverture jacuzzi (Loft Spa), Calypso favori avec sa baignoire, titres courts identiques à la légende, prix croissants."
  }
 }

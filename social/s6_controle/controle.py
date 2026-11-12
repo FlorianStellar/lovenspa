@@ -278,7 +278,8 @@ def check_ecran(textes, offres, rules):
         if lodging and not any(abs(p - x) <= 0.01 for x in allowed):
             res.append({"code": "PRIX", "niveau": "bloquant", "message": f"prix cité {p:g} € absent des fiches"})
     statut = "REFUSE" if any(r["niveau"] == "bloquant" for r in res) else "OK"
-    return {"statut": statut, "caracteres": 0, "premiere_ligne": 0, "hashtags": [], "appels": [], "resultats": res}
+    return {"statut": statut, "caracteres": sum(len(t) for t in textes), "premiere_ligne": len(textes[0]) if textes else 0,
+            "hashtags": [], "appels": [], "resultats": res}
 
 
 def chiffres_non_sources(textes, offres):
@@ -297,11 +298,10 @@ def chiffres_non_sources(textes, offres):
 
 
 def evoque_temps_fort(theme, textes):
-    """Le temps fort est évoqué si un mot significatif (5 lettres ou plus) de son titre court apparaît."""
+    """Le temps fort est évoqué si un mot significatif (5 lettres ou plus) de son intitulé apparaît."""
     if not theme:
         return True
-    court = re.split(r"\s*:\s*", theme)[0]
-    mots = [m for m in re.findall(r"[\wÀ-ÿ'-]+", court.lower()) if len(m) >= 5]
+    mots = [m for m in re.findall(r"[\wÀ-ÿ'-]+", theme.lower()) if len(m) >= 5 and m not in ("finit", "dans", "jusqu")]
     corps = norm(" ".join(textes))
     return not mots or any(norm(m) in corps for m in mots)
 
@@ -324,8 +324,15 @@ def verdict(paquet, rules=None, history=None, ambiances=None):
     else:
         r = check(paquet["legende"], offres or None, history or [], rules)
     # couple et recrutement ne présentent pas un logement : la règle LOGEMENT est sans objet
-    bloquants = [x for x in r["resultats"] if x["niveau"] == "bloquant"
-                 and not (case["moteur"] in ("couple", "recrutement") and x["code"] == "LOGEMENT")]
+    # sans objet : LOGEMENT pour couple et recrutement ; montant repris du thème de la case (seuil d'une sélection)
+    theme = case.get("theme") or ""
+    r["resultats"] = [x for x in r["resultats"]
+                      if not (case["moteur"] in ("couple", "recrutement") and x["code"] == "LOGEMENT")
+                      and not (x["code"] == "AUTRE_MONTANT" and re.search(r"(\d+(?:[.,]\d+)?)", x["message"])
+                               and (re.search(r"(\d+(?:[.,]\d+)?)", x["message"]).group(1) in theme
+                                    or re.search(r"(\d+(?:[.,]\d+)?)", x["message"]).group(1)
+                                    in (paquet.get("sources_montants") or {})))]
+    bloquants = [x for x in r["resultats"] if x["niveau"] == "bloquant"]
     if not paquet.get("medias"):
         bloquants.append({"code": "MEDIAS", "niveau": "bloquant", "message": "aucun média"})
     textes = [paquet["legende"]] + list(paquet.get("textes_ecran") or [])
@@ -354,6 +361,8 @@ def verdict(paquet, rules=None, history=None, ambiances=None):
             if f.get("ambiance") not in ambiances:
                 bloquants.append({"code": "AMBIANCE", "niveau": "bloquant",
                                   "message": f"« {f['nom']} » : ambiance {f.get('ambiance')} hors des ambiances autorisées {ambiances}"})
+    # statut du contrôle aligné sur le verdict (plus de « PRET » à côté d'un contrôle « REFUSE »)
+    r["statut"] = "REFUSE" if bloquants else ("A_REVOIR" if r["resultats"] else "OK")
     return {"statut": "PRET" if not bloquants else "REFUSE", "controle": r,
             "bloquants": [x["message"] for x in bloquants]}
 

@@ -256,6 +256,14 @@ class TestProduire(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             self.run_case({**base, "story": {"images": [{"photo": 1, "texte": " ".join(["mot"] * 13)}]}})
 
+    def test_story_repost_needs_consent(self):
+        base = {"case": {**BASE, "moteur": "story", "format": "STORY", "offres": [FICHE]}, "legende": "story"}
+        with self.assertRaises(RuntimeError):
+            self.run_case({**base, "story": {"images": [{"repartage": {"url": "u", "auteur": "@a"}, "texte": "Vu chez vous"}]}})
+        p = self.run_case({**base, "story": {"images": [{"repartage": {"url": "u", "auteur": "@a", "accord_le": "2026-11-12"},
+                                                         "texte": "Vu chez vous"}]}})
+        self.assertTrue(any("@a" in n for n in p["notes"]))
+
     def test_story_image_size(self):
         self.assertEqual(visuels.story_image(PHOTO, "Une question ?", haut=True).size, (1080, 1920))
 

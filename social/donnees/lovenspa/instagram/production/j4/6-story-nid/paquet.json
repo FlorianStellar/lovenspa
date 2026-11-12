@@ -46,21 +46,24 @@
   "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-01.jpg",
   "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-02.jpg",
   "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-03.jpg",
-  "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-04.jpg"
+  "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-04.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-05.jpg"
  ],
  "notes": [],
  "textes_ecran": [
   "Le soleil se couche sur l'Erdre",
   "Piscine à 32 °C et sauna, rien qu'à vous",
-  "Plutôt piscine ou coucher de soleil ? Répondez en message",
-  "À offrir avant Noël : la carte cadeau, lien en bio"
+  "Piscine ou coucher de soleil ? Répondez 1 ou 2 en message",
+  "À offrir avant Noël : la carte cadeau, lien en bio",
+  "Nouveau Reel : Le Nid de l'Erdre, sur notre profil"
  ],
- "empreinte_contenu": "2da80132e2cdfa0b",
+ "empreinte_contenu": "37ebbbfb1753c0fd",
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "2da80132e2cdfa0b",
+  "empreinte": "37ebbbfb1753c0fd",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "4 images regardées : chaque texte correspond à sa photo, aucun logo, photo du vin écartée, texte dans la zone sûre."
- }
+  "remarques": "5 images : textes cohérents, question avec réponse 1 ou 2 en message, renvoi au Reel ; pas de repartage (aucun accord d'auteur enregistré)."
+ },
+ "sources_montants": {}
 }

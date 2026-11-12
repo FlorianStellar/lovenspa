@@ -42,7 +42,7 @@
   "theme": "Vous avez un logement avec spa privatif ?",
   "lien": "https://lovenspa.fr/pages/devenir-partenaire?utm_source=instagram&utm_medium=social&utm_campaign=recrutement&utm_content=2026-12-02"
  },
- "legende": "Vous avez un logement avec spa privatif ? Faites-le découvrir aux couples qui nous suivent.\n\nLove'nSpa met en avant des love rooms, gîtes et cabanes avec spa privatif en France et en Belgique. Sur Instagram, vos vraies photos deviennent un Reel ou une sélection, avec votre compte identifié. Et si vous offrez une nuit, nous organisons le concours pour vous.\n\nNotre offre visibilité démarre à 30 € par mois ; tout est détaillé dans notre média kit.\n\nPour en parler, le formulaire est sur notre site, lien en bio.\n\n#lovenspa #hebergeur #loveroom #spaprivatif #gite",
+ "legende": "Vous avez un logement avec spa privatif ? Faites-le découvrir aux couples qui nous suivent.\n\nLove'nSpa vend des nuits en love rooms et logements avec spa privatif, en France et en Belgique. Notre offre visibilité démarre à 30 € par mois ; tout est détaillé dans notre média kit.\n\nPhoto : Le Calypso, Perpignan, déjà sur Love'nSpa.\n\nPour en parler, le formulaire est sur notre site, lien en bio.\n\n#lovenspa #hebergeur #loveroom #spaprivatif #gite",
  "recrutement": {
   "couverture": {
    "titre": "Vous avez un logement avec spa privatif ?",
@@ -51,16 +51,16 @@
   },
   "diapos": [
    {
-    "titre": "Une vitrine pour vos vraies photos",
-    "texte": "Un Reel ou une sélection autour de votre logement, avec votre compte identifié."
+    "titre": "Près de 8 000 abonnés",
+    "texte": "Des couples qui cherchent une nuit avec spa privatif."
    },
    {
-    "titre": "Un concours avec votre nuit offerte",
-    "texte": "Vous offrez une nuit, nous organisons le concours : des abonnés et de la visibilité pour vous."
+    "titre": "Votre logement sur lovenspa.fr",
+    "texte": "Tout est détaillé dans notre média kit."
    },
    {
     "titre": "Dès 30 € par mois",
-    "texte": "Notre offre visibilité est détaillée dans notre média kit."
+    "texte": "Notre offre visibilité pour mettre votre logement en avant."
    }
   ],
   "cta": "Parlons de votre logement",
@@ -69,9 +69,12 @@
  },
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "75131561de43d976",
+  "empreinte": "f1dca73cf617e246",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "5 diapositives : couverture avec bassin (Calypso), textes lisibles, seuls faits cités : page devenir-partenaire (30 €/mois, média kit) et doc de stratégie."
+  "remarques": "5 diapositives : seuls faits publiés (page devenir-partenaire, abonnés de l'instantané), couverture Calypso nommée en légende."
+ },
+ "sources_montants": {
+  "30": "https://lovenspa.fr/pages/devenir-partenaire (« Mettez votre logement en avant à partir de 30€/mois », lu le 12/11/2026)"
  }
 }

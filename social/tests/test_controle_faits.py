@@ -17,6 +17,20 @@ class TestFaits(unittest.TestCase):
         self.assertTrue(controle.evoque_temps_fort(theme, ["Une nuit à offrir avant Noël"]))
         self.assertFalse(controle.evoque_temps_fort(theme, ["Une piscine rien qu'à vous"]))
         self.assertTrue(controle.evoque_temps_fort(None, ["x"]))
+        self.assertTrue(controle.evoque_temps_fort(theme, ["La carte cadeau est sur notre site"]))
+
+    def test_verdict_status_coherent_and_theme_amount(self):
+        o = dict(OFFRE, prix_a_partir_de=225.0, nom="Le Nid")
+        case = {"moteur": "selection", "offres": [o], "theme": "6 nuits avec spa à moins de 150 €"}
+        leg = ("6 nuits jusqu'à 150 €.\n\nLe Nid, dès 225 € la nuit. Un gîte au bord de l'eau, piscine et sauna. "
+               "Une adresse pour deux, au calme, à deux pas de la ville et du fleuve.\n\nEnregistrez ce post.\n\n#lovenspa")
+        v = controle.verdict({"case": case, "legende": leg, "medias": ["a"]})
+        self.assertFalse(any(r["code"] == "AUTRE_MONTANT" for r in v["controle"]["resultats"]))
+        leg2 = leg.replace("6 nuits jusqu'à 150 €.", "Dès 30 € par mois.")
+        v = controle.verdict({"case": dict(case, theme=""), "legende": leg2, "medias": ["a"], "sources_montants": {"30": "https://x"}})
+        self.assertFalse(any(r["code"] == "AUTRE_MONTANT" for r in v["controle"]["resultats"]))
+        v = controle.verdict({"case": {"moteur": "recrutement", "offres": [o]}, "legende": "x", "medias": ["a"]})
+        self.assertEqual(v["statut"] == "PRET", v["controle"]["statut"] != "REFUSE")
 
     def test_empreinte_ignores_review(self):
         c = {"legende": "a"}

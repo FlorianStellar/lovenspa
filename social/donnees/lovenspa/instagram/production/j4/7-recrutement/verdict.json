@@ -1,8 +1,8 @@
 {
  "statut": "PRET",
  "controle": {
-  "statut": "REFUSE",
-  "caracteres": 512,
+  "statut": "OK",
+  "caracteres": 394,
   "premiere_ligne": 91,
   "hashtags": [
    "#lovenspa",
@@ -14,18 +14,7 @@
   "appels": [
    "lien"
   ],
-  "resultats": [
-   {
-    "code": "LOGEMENT",
-    "niveau": "bloquant",
-    "message": "logement(s) non nommé(s) : « Le Calypso : Love Room Balnéo de luxe »"
-   },
-   {
-    "code": "AUTRE_MONTANT",
-    "niveau": "avertissement",
-    "message": "montant 30 € cité hors prix du logement : vérifier sa source"
-   }
-  ]
+  "resultats": []
  },
  "bloquants": []
 }
