@@ -1,0 +1,66 @@
+{
+ "case": {
+  "date": "2026-11-22",
+  "heure": "12:30",
+  "plateforme": "instagram",
+  "moteur": "story",
+  "format": "STORY",
+  "statut": "A_PRODUIRE",
+  "temps_fort": "Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir",
+  "offres": [
+   {
+    "handle": "le-nid-de-lerdre",
+    "nom": "Le Nid de l'Erdre",
+    "type": "Gîte",
+    "ville": "Nantes",
+    "ville_reference": "Nantes",
+    "region": "Pays de la Loire",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Climatisation",
+     "Day Use",
+     "Douche XL",
+     "Jardin",
+     "Parking privé",
+     "Piscine intérieure",
+     "Sauna",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 225.0,
+    "unite_prix": "la nuit",
+    "devise": "EUR",
+    "on_aime": "Le calme des lieux, la vue sur la rivière, la location avec enfant possible",
+    "ambiance": 2,
+    "ambiance_libelle": "Sensuel",
+    "url": "https://lovenspa.fr/products/le-nid-de-lerdre",
+    "actif": true,
+    "medias": 16,
+    "description": "Le Nid de l’Erdre – Escapade romantique avec piscine intérieure et sauna privatif Un écrin de douceur au bord de l’eau, niché sur les rives paisibles de l’Erdre, à deux pas de Nantes.Le Nid de l’Erdre est un lieu intime, raffiné et apaisant, imaginé pour deux — une parenthèse hors du temps, où l’on vient se retrouver, se détendre et se ressourcer. Entre bois clair, matières naturelles et lumière tamisée, ce cocon mêle élégance et sérénité.La grande baie vitrée ouvre sur un jardin verdoyant qui descend doucement vers la rivière, invitant à la contemplation et à la déconnexion. Un espace bien-être rien que pour vous Au rez-de-chaussée, un véritable espace bien-être privatif vous attend : Piscine intérieure chauffée à 32 °C, idéale pour flotter en toute saison Sauna pour une relaxation profonde Vue directe sur la nature, pour un instant suspendu entre calme et volupté L’accès à l’espace bien-être est entièrement privé, pour que vous puissiez savourer chaque moment en toute intimité. Un cadre idyllique au fil de l’eau Pour les amoureux de nature et de silence, un ponton en bois s’avance au bord de l’Erdre.C’est l’endroit parfait pour un apéritif au coucher du soleil, un moment de lecture, ou simplement pour admirer la beauté tranquille du paysage. Et pour prolonger cette expérience sensorielle, laissez-vous tenter par un massage en duo (en supplément) — un instant de détente absolue, orchestré par des mains expertes. Inclus dans votre séjour Accès libre et privatif à la piscine intérieure et au sauna (la piscine est recouverte de 23h à 9h) Petit-déjeuner gourmand servi lors de la première nuitée Arrivée à partir de 17h, départ à 11h Une parenthèse rare et précieuse, où le temps ralentit au rythme de l’eau, et où chaque détail invite à la sérénité.Le Nid de l’Erdre, c’est plus qu’un hébergement : c’est une une parenthèse rare et précieuse, où le temps ralentit au rythme de l'eau. 🌿"
+   }
+  ],
+  "lien": null
+ },
+ "legende": "Story du 22/11 : Le Nid de l'Erdre (pas de légende publiée)",
+ "medias": [
+  "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-01.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-02.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-03.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/6-story-nid/story-04.jpg"
+ ],
+ "notes": [],
+ "textes_ecran": [
+  "Le soleil se couche sur l'Erdre",
+  "Piscine à 32 °C et sauna, rien qu'à vous",
+  "Plutôt piscine ou coucher de soleil ? Répondez en message",
+  "À offrir avant Noël : la carte cadeau, lien en bio"
+ ],
+ "empreinte_contenu": "2da80132e2cdfa0b",
+ "revue_visuelle": {
+  "statut": "OK",
+  "empreinte": "2da80132e2cdfa0b",
+  "par": "agent (Claude)",
+  "date": "2026-11-12",
+  "remarques": "4 images regardées : chaque texte correspond à sa photo, aucun logo, photo du vin écartée, texte dans la zone sûre."
+ }
+}

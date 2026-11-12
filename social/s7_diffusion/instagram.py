@@ -74,7 +74,9 @@ def verifier(pret, publies, now, strat):
         raisons.append(f"déjà publié ({cle})")
     # une publication à plusieurs offres compte pour une seule (clé unique par case)
     plafond = strat["plafond_publications_jour"]
-    if len({p.get("cle") for p in publies if p.get("publie_le", "")[:10] == now.date().isoformat()}) >= plafond:
+    # le plafond vaut pour le fil : les stories du jour n'y comptent pas
+    if case["format"] != "STORY" and len({p.get("cle") for p in publies if p.get("publie_le", "")[:10] == now.date().isoformat()
+                                          and not p.get("cle", "").endswith("-story")}) >= plafond:
         raisons.append(f"plafond de {plafond} publications par jour atteint")
     if case["moteur"] not in strat.get("moteurs_valides", []):
         raisons.append(f"rendus du moteur « {case['moteur']} » non validés par un humain (jalon J4)")
@@ -138,6 +140,14 @@ def publier_instagram(ig, fmt, urls, caption, ia=False):
     """ia : média photoréaliste généré ou modifié par IA -> is_ai_generated (IG-R31 ; carrousel : parent seul)."""
     uid = ig.ensure_user()
     label = {"is_ai_generated": "true"} if ia else {}
+    if fmt == "STORY":
+        # une story par image (IG-R17) ; on renvoie la dernière publiée
+        mid = None
+        for u in urls:
+            cid = ig.post(f"{uid}/media", {"media_type": "STORIES", "image_url": u, **label})["id"]
+            attendre_conteneur(ig, cid)
+            mid = ig.post(f"{uid}/media_publish", {"creation_id": cid})["id"]
+        return mid, None
     if fmt == "REELS":
         cid = ig.post(f"{uid}/media", {"media_type": "REELS", "video_url": urls[0], "caption": caption,
                                        "share_to_feed": "true", **label})["id"]

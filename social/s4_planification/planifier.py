@@ -184,8 +184,38 @@ def plan_week(start, catalogue, history, strat, partenaires=None, site=""):
             slot.update(theme=strat["couple"][wk % len(strat["couple"])], offres=[],
                         lien=utm(strat, site + strat["liens"]["couple"], "couple", d))
         slots.append(slot)
+    slots += cases_soutien(start, slots, pool, strat, site)
+    slots.sort(key=lambda c: (c["date"], c["heure"]))
     return {"semaine": start.isoformat(), "plateforme": strat["plateforme"], "genere_le": datetime.now().isoformat(timespec="seconds"),
             "catalogue_eligible": len(pool), "cases": slots, "alertes": alerts}
+
+
+def cases_soutien(start, slots, pool, strat, site=""):
+    """Stories quotidiennes et post mensuel de recrutement des hébergeurs (doc de stratégie validé le 11/11/2026).
+    Story du jour : logement du post du jour s'il y en a un, sinon le premier logement de la semaine."""
+    out = []
+    st = strat.get("stories")
+    logements = [o for c in slots for o in (c.get("offres") or []) if o]
+    if st:
+        for j in range(7):
+            d = start + timedelta(days=j)
+            du_jour = [o for c in slots if c["date"] == d.isoformat() for o in (c.get("offres") or []) if o]
+            o = (du_jour or logements or [None])[0]
+            tf = temps_fort(d, strat)
+            out.append({"date": d.isoformat(), "heure": st["heure"], "plateforme": strat["plateforme"], "moteur": "story",
+                        "format": "STORY", "temps_fort": tf["theme"] if tf else None,
+                        "statut": "A_PRODUIRE" if o else "BLOQUE", "offres": [o] if o else [], "lien": None})
+    rc = strat.get("recrutement")
+    if rc and (start + timedelta(days=rc["jour"])).day <= 7 * rc["semaine_du_mois"] \
+            and (start + timedelta(days=rc["jour"])).day > 7 * (rc["semaine_du_mois"] - 1):
+        d = start + timedelta(days=rc["jour"])
+        pris = {o["handle"] for o in logements}
+        vitrine = sorted([f for f in pool if f["handle"] not in pris], key=lambda f: -(f.get("medias") or 0))[:1]
+        out.append({"date": d.isoformat(), "heure": strat["heure_publication"], "plateforme": strat["plateforme"],
+                    "moteur": "recrutement", "format": rc["format"], "temps_fort": None, "statut": "A_PRODUIRE",
+                    "offres": vitrine, "theme": "Vous avez un logement avec spa privatif ?",
+                    "lien": utm(strat, site + strat["liens"]["recrutement"], "recrutement", d)})
+    return out
 
 
 def to_markdown(plan):

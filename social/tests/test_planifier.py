@@ -73,8 +73,21 @@ class TestPlanWeek(unittest.TestCase):
         p = planifier.plan_week(date(2026, 11, 18), catalogue(), [], STRAT)
         self.assertEqual(p["semaine"], "2026-11-16")
         self.assertEqual([s["format"] for s in p["cases"]].count("REELS"), 3)
-        handles = [f["handle"] for s in p["cases"] for f in s.get("offres") or []]
+        handles = [f["handle"] for s in p["cases"] if s["format"] != "STORY" for f in s.get("offres") or []]
         self.assertEqual(len(handles), len(set(handles)))
+
+    def test_support_cases_stories_and_monthly_recruitment(self):
+        p = planifier.plan_week(date(2026, 11, 30), catalogue(), [], STRAT)  # semaine du 30/11 : mercredi 2 décembre
+        stories = [c for c in p["cases"] if c["moteur"] == "story"]
+        self.assertEqual(len(stories), 7)
+        self.assertTrue(all(c["format"] == "STORY" and c["offres"] for c in stories))
+        rec = [c for c in p["cases"] if c["moteur"] == "recrutement"]
+        self.assertEqual([c["date"] for c in rec], ["2026-12-02"])
+        self.assertIn("/pages/devenir-partenaire", rec[0]["lien"])
+        feed = {o["handle"] for c in p["cases"] if c["moteur"] not in ("story", "recrutement") for o in c.get("offres") or []}
+        self.assertNotIn(rec[0]["offres"][0]["handle"], feed)
+        p = planifier.plan_week(date(2026, 11, 16), catalogue(), [], STRAT)
+        self.assertFalse([c for c in p["cases"] if c["moteur"] == "recrutement"])  # pas en milieu de mois
         regions = [s["region"] for s in p["cases"] if s["moteur"] == "lieu"]
         self.assertEqual(len(set(regions)), 3)
 

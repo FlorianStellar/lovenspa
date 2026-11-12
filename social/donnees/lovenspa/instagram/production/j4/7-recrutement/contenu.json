@@ -1,0 +1,77 @@
+{
+ "case": {
+  "date": "2026-12-02",
+  "heure": "18:30",
+  "plateforme": "instagram",
+  "moteur": "recrutement",
+  "format": "CAROUSEL",
+  "statut": "A_PRODUIRE",
+  "temps_fort": null,
+  "offres": [
+   {
+    "handle": "le-calypso-love-room-balneo-de-luxe-2025",
+    "nom": "Le Calypso : Love Room Balnéo de luxe",
+    "type": "Appartement",
+    "ville": "Perpignan",
+    "ville_reference": "Perpignan",
+    "region": "Occitanie",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Animaux",
+     "Champagne",
+     "Cinéma privatif",
+     "Climatisation",
+     "Cuisine équipée",
+     "Douche XL",
+     "Piscine intérieure",
+     "Spa"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 140.0,
+    "unite_prix": "la nuit",
+    "devise": "EUR",
+    "on_aime": null,
+    "ambiance": 2,
+    "ambiance_libelle": "Sensuel",
+    "url": "https://lovenspa.fr/products/le-calypso-love-room-balneo-de-luxe-2025",
+    "actif": true,
+    "medias": 13,
+    "description": "Le Calypso – Love Room avec Balnéo & Spa semi-troglodyte Plongez dans une expérience sensorielle unique, à deux pas de la plage, dans une Love Room d’exception entièrement rénovée en 2025. Bienvenue dans Le Calypso, un cocon de luxe et de nature à Collioure, inspiré par les éléments : pierre, eau, lumière et végétal. Un univers troglodyte et romantique Sous les voûtes naturelles de la roche, la salle de bain balnéo est une véritable invitation à la détente : Jacuzzi maçonné en pierre naturelle, adossé à la roche Douche sensorielle multi : cascade, brumisateur, pluie tropicale, et pommeau Womanizer... Ambiance immersive grâce à une fresque marine peinte à la main, des leds doux, un mur végétal et un système Bluetooth audio intégré ️ Une suite intimiste et élégante Profitez d’un lit King Size avec literie haut de gamme (percale et plumes), niché dans une chambre mêlant design contemporain et touches troglodytes : Coin lecture creusé dans la roche ️ Ambiance tamisée et chaleureuse ️ Climatisation, parfait confort toute l’année dans le salon Verrière qui illumine la pièce + permet de voir l'écran du vidéoprojecteur. Un espace de vie moderne & connecté Le salon spacieux vous accueille avec : Vidéoprojecteur pour vos soirées cinéma ️ Mobilier artisanal, verrières et matériaux nobles ️ Cuisine tout équipée : plaque, four, frigo, machine à café, vaisselle Ambiances lumineuses personnalisables Une expérience locale et authentique Chaque détail a été pensé et façonné par une famille d’artisans locaux, pour mêler raffinement et caractère : Décoration unique, pierre apparente & mobilier sur mesure Sélection de vins locaux en option Mini-escape game “Le Secret de Calypso” inclus dans votre séjour pour pimenter votre nuit romantique À quelques pas de la plage pour une balade en amoureux Informations pratiques Infos & réservation directe : 06 17 44 26 63Ouverture officielle : Été 2025Le Calypso est la petite sœur du Ginkgo (logement troglodyte 6 pers. avec patio) situé au cœur du vieux village. ️ Pourquoi choisir Le Calypso ? Pour une nuit insolite et luxueuse en couple Pour son spa semi-troglodyte unique en France Pour un séjour 100 % design, local & sensoriel Pour une déconnexion totale dans un lieu magique et confidentiel Offrez (ou offrez-vous) une escapade inoubliable, entre pierre, lumière et volupté. Le Calypso vous attend…"
+   }
+  ],
+  "theme": "Vous avez un logement avec spa privatif ?",
+  "lien": "https://lovenspa.fr/pages/devenir-partenaire?utm_source=instagram&utm_medium=social&utm_campaign=recrutement&utm_content=2026-12-02"
+ },
+ "legende": "Vous avez un logement avec spa privatif ? Faites-le découvrir aux couples qui nous suivent.\n\nLove'nSpa met en avant des love rooms, gîtes et cabanes avec spa privatif en France et en Belgique. Sur Instagram, vos vraies photos deviennent un Reel ou une sélection, avec votre compte identifié. Et si vous offrez une nuit, nous organisons le concours pour vous.\n\nNotre offre visibilité démarre à 30 € par mois ; tout est détaillé dans notre média kit.\n\nPour en parler, le formulaire est sur notre site, lien en bio.\n\n#lovenspa #hebergeur #loveroom #spaprivatif #gite",
+ "recrutement": {
+  "couverture": {
+   "titre": "Vous avez un logement avec spa privatif ?",
+   "sous_titre": "Faites-le découvrir aux couples qui nous suivent",
+   "photo": 9
+  },
+  "diapos": [
+   {
+    "titre": "Une vitrine pour vos vraies photos",
+    "texte": "Un Reel ou une sélection autour de votre logement, avec votre compte identifié."
+   },
+   {
+    "titre": "Un concours avec votre nuit offerte",
+    "texte": "Vous offrez une nuit, nous organisons le concours : des abonnés et de la visibilité pour vous."
+   },
+   {
+    "titre": "Dès 30 € par mois",
+    "texte": "Notre offre visibilité est détaillée dans notre média kit."
+   }
+  ],
+  "cta": "Parlons de votre logement",
+  "texte_cta": "Le formulaire est sur lovenspa.fr, page Devenir partenaire.",
+  "bouton": "Lien en bio"
+ },
+ "revue_visuelle": {
+  "statut": "OK",
+  "empreinte": "75131561de43d976",
+  "par": "agent (Claude)",
+  "date": "2026-11-12",
+  "remarques": "5 diapositives : couverture avec bassin (Calypso), textes lisibles, seuls faits cités : page devenir-partenaire (30 €/mois, média kit) et doc de stratégie."
+ }
+}

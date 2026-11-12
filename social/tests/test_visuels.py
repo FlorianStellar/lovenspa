@@ -244,6 +244,30 @@ class TestProduire(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 produire.reverdict(d, MARQUE)
 
+    def test_story_engine(self):
+        base = {"case": {**BASE, "moteur": "story", "format": "STORY", "offres": [FICHE]}, "legende": "story",
+                "story": {"images": [{"photo": 1, "texte": "Ce soir, vous partiriez où ?"},
+                                     {"photo": 2, "texte": "Le Nid, dès 150 € la nuit"}, {"photo": 3, "texte": "Lien en bio"}]}}
+        p = self.run_case(base)
+        self.assertEqual((p["statut"], len(p["medias"])), ("PRET", 3), p["bloquants"])
+        self.assertTrue(all(m.endswith(".jpg") for m in p["medias"]))
+        p = self.run_case({**base, "story": {"images": [{"photo": 1, "texte": "Le Nid, dès 99 € la nuit"}]}})
+        self.assertTrue(any("99" in b for b in p["bloquants"]))  # prix contrôlé aussi en story
+        with self.assertRaises(RuntimeError):
+            self.run_case({**base, "story": {"images": [{"photo": 1, "texte": " ".join(["mot"] * 13)}]}})
+
+    def test_story_image_size(self):
+        self.assertEqual(visuels.story_image(PHOTO, "Une question ?", haut=True).size, (1080, 1920))
+
+    def test_recrutement_engine(self):
+        p = self.run_case({"case": {**BASE, "moteur": "recrutement", "format": "CAROUSEL", "offres": [FICHE]},
+                           "legende": "Vous avez un logement avec spa privatif ?\n\nÉcrivez-nous en message.\n\n#lovenspa",
+                           "recrutement": {"couverture": {"titre": "T", "sous_titre": "S"},
+                                           "diapos": [{"titre": "a", "texte": "b"}, {"titre": "c", "texte": "d"}],
+                                           "cta": "Écrivez-nous"}})
+        self.assertEqual(len(p["medias"]), 4)
+        self.assertFalse(any("logement(s) non nommé" in b for b in p["bloquants"]))  # LOGEMENT sans objet
+
     def test_too_many_slides(self):
         with self.assertRaises(RuntimeError):
             self.run_case({"case": {**BASE, "moteur": "couple", "format": "CAROUSEL", "offres": []}, "legende": CAPTION,

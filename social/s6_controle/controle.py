@@ -263,6 +263,24 @@ def _nombres(texte):
     return {x.replace(",", ".").lstrip("0") or "0" for x in re.findall(r"\d+(?:[.,]\d+)?", texte or "")}
 
 
+def check_ecran(textes, offres, rules):
+    """Contrôle d'une story (pas de légende publiée) : lexique explicite, équipements exclus, prix des logements."""
+    res = []
+    corps = norm(" ".join(textes))
+    for terme in rules.get("lexique_explicite", []):
+        if word_in(norm(terme), corps):
+            res.append({"code": "EXPLICITE", "niveau": "bloquant", "message": f"terme explicite : « {terme} »"})
+    for e in rules["equipements_exclus_instagram"] + [x for o in offres for x in o.get("equipements_non_citables", [])]:
+        if word_in(norm(e), corps):
+            res.append({"code": "EXCLUS", "niveau": "bloquant", "message": f"équipement non citable sur Instagram : {e}"})
+    allowed = [o["prix_a_partir_de"] for o in offres if o.get("prix_a_partir_de") is not None]
+    for p, lodging in prices_in(" ".join(textes), rules):
+        if lodging and not any(abs(p - x) <= 0.01 for x in allowed):
+            res.append({"code": "PRIX", "niveau": "bloquant", "message": f"prix cité {p:g} € absent des fiches"})
+    statut = "REFUSE" if any(r["niveau"] == "bloquant" for r in res) else "OK"
+    return {"statut": statut, "caracteres": 0, "premiere_ligne": 0, "hashtags": [], "appels": [], "resultats": res}
+
+
 def chiffres_non_sources(textes, offres):
     """Chiffres avec unité cités (légende et écran) qui ne figurent dans aucune source de l'offre
     (nom, description publique, équipements, ville). Les prix sont contrôlés à part (PRIX)."""
@@ -301,9 +319,13 @@ def verdict(paquet, rules=None, history=None, ambiances=None):
     Le moteur « couple » ne porte aucune offre par construction : le critère LOGEMENT ne s'y applique pas."""
     case = paquet["case"]
     offres = [f for f in case.get("offres") or [] if f]
-    r = check(paquet["legende"], offres or None, history or [], rules)
+    if case.get("format") == "STORY":
+        r = check_ecran(paquet.get("textes_ecran") or [], offres, rules or load_rules())
+    else:
+        r = check(paquet["legende"], offres or None, history or [], rules)
+    # couple et recrutement ne présentent pas un logement : la règle LOGEMENT est sans objet
     bloquants = [x for x in r["resultats"] if x["niveau"] == "bloquant"
-                 and not (case["moteur"] == "couple" and x["code"] == "LOGEMENT")]
+                 and not (case["moteur"] in ("couple", "recrutement") and x["code"] == "LOGEMENT")]
     if not paquet.get("medias"):
         bloquants.append({"code": "MEDIAS", "niveau": "bloquant", "message": "aucun média"})
     textes = [paquet["legende"]] + list(paquet.get("textes_ecran") or [])

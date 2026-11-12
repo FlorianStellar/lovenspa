@@ -35,6 +35,14 @@ class TestGuards(unittest.TestCase):
         pubs = [{"cle": f"k{i}", "publie_le": "2026-11-16T10:00:00"} for i in range(2)]
         self.assertTrue(any("plafond" in x for x in publier.verifier(PRET, pubs, NOW, STRAT)))
 
+    def test_stories_outside_feed_cap(self):
+        pubs = [{"cle": f"2026-11-16-k{i}", "publie_le": "2026-11-16T10:00:00"} for i in range(2)]
+        story = dict(PRET, case=dict(PRET["case"], moteur="story", format="STORY"))
+        self.assertFalse(any("plafond" in x for x in publier.verifier(story, pubs, NOW, dict(STRAT, moteurs_valides=["story"]))))
+        pubs = [{"cle": "2026-11-16-story", "publie_le": "2026-11-16T12:30:00"},
+                {"cle": "2026-11-16-x", "publie_le": "2026-11-16T10:00:00"}]
+        self.assertEqual(publier.verifier(PRET, pubs, NOW, STRAT), [])  # la story ne consomme pas le plafond du fil
+
     def test_cap_counts_publications_not_offers(self):
         pubs = [{"cle": "k1", "publie_le": "2026-11-16T10:00:00"} for _ in range(6)]
         self.assertEqual(publier.verifier(PRET, pubs, NOW, STRAT), [])
@@ -129,6 +137,12 @@ class TestInstagram(unittest.TestCase):
         s = FakeIGSession()
         publier.publier_instagram(IGClient("1", session=s, version=""), "REELS", ["u"], "cap")
         self.assertNotIn("is_ai_generated", s.posts[0][1])
+
+    def test_story_one_publication_per_image(self):
+        s = FakeIGSession()
+        publier.publier_instagram(IGClient("1", session=s, version=""), "STORY", ["a", "b"], "")
+        types = [p[1].get("media_type") or p[0] for p in s.posts]
+        self.assertEqual(types, ["STORIES", "media_publish", "STORIES", "media_publish"])
 
     def test_carousel(self):
         s = FakeIGSession()

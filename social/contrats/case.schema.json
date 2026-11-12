@@ -34,7 +34,9 @@
         "lieu",
         "selection",
         "concours",
-        "couple"
+        "couple",
+        "story",
+        "recrutement"
       ]
     },
     "format": {

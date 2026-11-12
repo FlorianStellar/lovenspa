@@ -46,7 +46,8 @@ class TestSchemas(unittest.TestCase):
     def test_plan_and_cases(self):
         p = planifier.plan_week(date(2026, 11, 16), catalogue(), [], M.strategie("instagram"), site=M.site)
         self.assertEqual(erreurs(p, "plan"), [])
-        self.assertTrue(all(c["lien"].startswith(M.site) for c in p["cases"]))
+        self.assertTrue(all(c["lien"].startswith(M.site) for c in p["cases"] if c["format"] != "STORY"))
+        self.assertTrue(all(c["lien"] is None for c in p["cases"] if c["format"] == "STORY"))  # pas de lien en story (API)
 
     def test_case_rejects_unknown_engine(self):
         p = planifier.plan_week(date(2026, 11, 16), catalogue(), [], M.strategie("instagram"), site=M.site)

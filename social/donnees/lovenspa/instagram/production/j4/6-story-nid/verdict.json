@@ -1,0 +1,12 @@
+{
+ "statut": "PRET",
+ "controle": {
+  "statut": "OK",
+  "caracteres": 0,
+  "premiere_ligne": 0,
+  "hashtags": [],
+  "appels": [],
+  "resultats": []
+ },
+ "bloquants": []
+}

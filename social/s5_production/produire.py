@@ -60,6 +60,10 @@ def textes_ecran(c):
     out += [cp.get("titre"), cp.get("sous_titre"), cp.get("cta"), cp.get("question")]
     out += [x for d in cp.get("diapos") or [] for x in (d.get("titre"), d.get("texte"))]
     out += [e.get("texte") for e in c.get("photos_supplementaires") or []]
+    out += [im.get("texte") for im in (c.get("story") or {}).get("images") or []]
+    rc = c.get("recrutement") or {}
+    out += [(rc.get("couverture") or {}).get(k) for k in ("titre", "sous_titre")] + [rc.get("cta"), rc.get("texte_cta")]
+    out += [x for d in rc.get("diapos") or [] for x in (d.get("titre"), d.get("texte"))]
     return [x for x in out if isinstance(x, str) and x.strip()]
 
 
@@ -68,6 +72,7 @@ def nom_court(f):
 
 
 DUREE_REEL_MIN = 15  # s (S5-19, skill social-production)
+MOTS_STORY_MAX = 12  # une idée par image (S5-31), lisible en 2 s : règle maison, à mesurer (S8)
 
 
 def musiques(marque):
@@ -192,6 +197,31 @@ def fabriquer(c, folder, catalogue, strat, session=None, marque=None):
                                                   f"{j}/{n + 2}"))
         slides.append(visuels.slide_text(c["fin"]["titre"], c["fin"]["texte"], f"{n + 2}/{n + 2}", cta=True))
         return visuels.save_slides(slides, folder, "diapo"), notes
+    if case["moteur"] == "story":
+        imgs = c["story"]["images"]
+        if not 1 <= len(imgs) <= 7:
+            raise RuntimeError("story : 1 à 7 images (S5-30)")
+        for i, im in enumerate(imgs, 1):
+            if im.get("texte") and len(im["texte"].split()) > MOTS_STORY_MAX:
+                raise RuntimeError(f"story image {i} : {len(im['texte'].split())} mots ({MOTS_STORY_MAX} au plus)")
+        rendus = []
+        for i, im in enumerate(imgs):
+            h = im.get("handle") or offres[0]["handle"]
+            url = catalogue.images(h, im["photo"])[im["photo"] - 1]
+            rendus.append(visuels.story_image(visuels.fetch(url, session), im.get("texte"), haut=i == 0,
+                                              cadrage=im.get("cadrage", "auto")))
+        return visuels.save_stories(rendus, folder), notes
+    if case["moteur"] == "recrutement":
+        rc = c["recrutement"]
+        total = len(rc["diapos"]) + 2
+        couv = rc["couverture"]
+        h = couv.get("handle") or offres[0]["handle"]
+        photo = visuels.fetch(catalogue.images(h, couv.get("photo", 1))[couv.get("photo", 1) - 1], session)
+        slides = [visuels.slide_cover(photo, couv["titre"], couv["sous_titre"], f"1/{total}")]
+        slides += [visuels.slide_grand_texte(d["titre"], d["texte"], f"{i}/{total}") for i, d in enumerate(rc["diapos"], 2)]
+        slides.append(visuels.slide_grand_texte(rc["cta"], rc.get("texte_cta", ""), f"{total}/{total}",
+                                                cta=rc.get("bouton", "Lien en bio")))
+        return visuels.save_slides(slides, folder, "diapo"), notes
     if case["moteur"] == "couple":
         cp = c["couple"]
         fin = offres[0] if offres else None  # logement en dernière diapositive (revue J4) : piste de réservation
@@ -238,7 +268,8 @@ def produce(folder, marque=None, catalogue=None, session=None, history=None):
     medias, notes = fabriquer(c, folder, catalogue or Catalogue(marque), strat, session, marque)
     if len(medias) > MAX_DIAPOS:
         raise RuntimeError(f"{len(medias)} diapositives : {MAX_DIAPOS} au maximum")
-    if case.get("lien") and case["lien"].split("?")[0] not in c["legende"] and case["moteur"] != "lieu":
+    if case["format"] != "STORY" and case.get("lien") and case["lien"].split("?")[0] not in c["legende"] \
+            and case["moteur"] != "lieu":
         notes.append("lien UTM à mettre en bio ou en message (non présent dans la légende)")
     legende = c["legende"]
     attribution = next((n.split(" : ", 1)[1] for n in notes if n.startswith("attribution musicale")), None)

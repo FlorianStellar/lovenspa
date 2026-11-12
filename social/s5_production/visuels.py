@@ -306,6 +306,25 @@ def render_reel_plans(plans, out, musique=None, fps=30):
     return out
 
 
+def story_image(photo, texte, haut=False, cadrage="auto"):
+    """Image de story 1080x1920 : photo plein cadre, texte dans la zone sûre (IG-R15 ; S5-31 : une idée par image)."""
+    src = plan_image(photo, cadrage)
+    left, top = (src.width - REEL[0]) // 2, (src.height - REEL[1]) // 2
+    im = src.crop((left, top, left + REEL[0], top + REEL[1])).convert("RGBA")
+    im.alpha_composite(carton(texte, haut=haut))
+    return im.convert("RGB")
+
+
+def save_stories(images, outdir, prefix="story"):
+    os.makedirs(outdir, exist_ok=True)
+    paths = []
+    for i, s in enumerate(images, 1):
+        p = os.path.join(outdir, f"{prefix}-{i:02d}.jpg")
+        s.save(p, "JPEG", quality=90)
+        paths.append(p)
+    return paths
+
+
 def render_reel(frames, out, seconds=2.5, fps=30):
     """Assemble les images en MP4 H.264 1080x1920 avec un zoom lent (ffmpeg)."""
     n = int(seconds * fps)
