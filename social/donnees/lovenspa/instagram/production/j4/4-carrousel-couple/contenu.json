@@ -78,11 +78,14 @@
   "badge_logement": "Pour la surprise",
   "mention_logement": "À offrir : la carte cadeau, lien en bio"
  },
+ "noms_courts": {
+  "suite-baobab-by-le-clos-des-thermes": "Suite Baobab"
+ },
  "revue_visuelle": {
   "statut": "OK",
-  "empreinte": "da465967855fab07",
+  "empreinte": "e8bbe03aff079da5",
   "par": "agent (Claude)",
   "date": "2026-11-12",
-  "remarques": "8 diapositives : logement final Suite Baobab (Liège), absent des autres posts de la semaine, photo du jacuzzi."
+  "remarques": "8 diapositives : nom court « Suite Baobab » identique à la légende, jacuzzi visible, logement inédit dans la semaine."
  }
 }

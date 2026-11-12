@@ -246,7 +246,8 @@ def fabriquer(c, folder, catalogue, strat, session=None, marque=None):
         if fin:
             rang = cp.get("photo_logement", 1)
             photo = visuels.fetch(catalogue.images(fin["handle"], rang)[rang - 1], session)
-            slides.append(visuels.slide_lodging(photo, nom_court(fin), lieu_txt(fin), fin["prix_a_partir_de"],
+            slides.append(visuels.slide_lodging(photo, (c.get("noms_courts") or {}).get(fin["handle"], nom_court(fin)),
+                                                lieu_txt(fin), fin["prix_a_partir_de"],
                                                 visuels.order_equipements(fin["equipements"], phares),
                                                 f"{total}/{total}", badge=cp.get("badge_logement"),
                                                 mention=cp.get("mention_logement")))

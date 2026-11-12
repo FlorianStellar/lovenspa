@@ -62,3 +62,12 @@ Stratégie déduite de la marque et du benchmark, non des posts passés : doc «
 - Résultat : 5 rendus PRET ; avertissements restants : montant 150 € (seuil de la sélection, source = stratégie) ; temps fort non évoqué par le mot « offrir » dans le concours.
 - À faire par un humain : écouter les musiques (voix non vérifiées) ; corriger la ville de La Villa Yucatan ; deux produits carte cadeau actifs (carte-cadeaux-love-room et carte-cadeau-lovenspa).
 - Galerie v2 : https://claude.ai/artifact/FkGZpdPZXhGHmNyYa4rJgL
+
+## 2026-11-12 — J4 v5 : 7 moteurs à 9/10
+- Consigne de Florian : ajuster jusqu'à 9/10 par moteur et vérifier qu'aucun moteur ne manque.
+- Moteurs manquants par rapport au doc de stratégie validé : stories quotidiennes et post mensuel de recrutement des hébergeurs ; ajoutés (contrats, stratégie, planificateur, rendu, contrôle, publication). Limites API : ni sticker (sondage, lien) ni repartage ; repartage possible seulement avec accord daté de l'auteur.
+- 5 passages de l'expert social media : v1 3 à 6/10 ; v2 6 à 8 ; v3 6 à 9 ; v4 8 à 9 ; v5 9/10 sur les 7 moteurs (Reel Nid, Reel Loft Spa, sélection, couple, concours, story, recrutement).
+- Corrections système issues des revues : verdict cohérent, audio 48 kHz, contrôle des chiffres à l'écran et en légende contre la description, montants sourcés, temps fort, revue visuelle obligatoire (photos sous droits, textes incrustés, personnes, alcool, doublons de la semaine), logement inédit pour le couple, stories après le post du jour (19:30), graphie des communes.
+- Photos écartées : Alexis (soupçon de retouche ou génération, non vérifiable), personne en sous-vêtements (Loft Spa), écran projetant un film d'animation (Suites B Spa), texte d'horaires incrusté (Gîte jacuzzi XXL).
+- À faire par un humain : écouter les musiques ; publier un règlement de concours ; mettre en ligne /pages/instagram à J7 ; corriger dans Shopify la ville de La Villa Yucatan et « Saint Etienne » (Loft Spa) ; demander à l'hébergeur d'Alexis si ses photos sont retouchées ou générées.
+- Galerie v3 : https://claude.ai/artifact/FkGZpdPZXhGHmNyYa4rJgL
