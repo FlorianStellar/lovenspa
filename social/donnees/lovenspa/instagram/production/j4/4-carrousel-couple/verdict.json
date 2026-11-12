@@ -1,8 +1,8 @@
 {
  "statut": "PRET",
  "controle": {
-  "statut": "REFUSE",
-  "caracteres": 403,
+  "statut": "OK",
+  "caracteres": 437,
   "premiere_ligne": 84,
   "hashtags": [
    "#lovenspa",
@@ -12,15 +12,9 @@
    "#soireeadeux"
   ],
   "appels": [
-   "partager"
+   "commentaire"
   ],
-  "resultats": [
-   {
-    "code": "LOGEMENT",
-    "niveau": "bloquant",
-    "message": "aucune fiche logement fournie : impossible de vérifier un logement réel"
-   }
-  ]
+  "resultats": []
  },
  "bloquants": []
 }

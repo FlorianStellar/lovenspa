@@ -12,18 +12,41 @@
     "api_version": "2025-10"
   },
   "comptes": {
-    "instagram": {"username": "lovenspa.fr", "jeton_env": ["META_INSIGHT_API_KEY", "IG_ACCESS_TOKEN"]}
+    "instagram": {
+      "username": "lovenspa.fr",
+      "jeton_env": [
+        "META_INSIGHT_API_KEY",
+        "IG_ACCESS_TOKEN"
+      ]
+    }
   },
   "kit": {
     "source": "skill brand-lovenspa (charte graphique Love'nSpa)",
-    "couleurs": {"accent": "#E83F4E", "encre": "#222222", "fond": "#FBF6F2", "blanc": "#FFFFFF", "secondaire": "#6C6C6C"},
-    "polices": {"titre": "Poppins-Bold.ttf", "texte": "Poppins-Regular.ttf", "accent": "Poppins-SemiBold.ttf"},
+    "couleurs": {
+      "accent": "#E83F4E",
+      "encre": "#222222",
+      "fond": "#FBF6F2",
+      "blanc": "#FFFFFF",
+      "secondaire": "#6C6C6C"
+    },
+    "polices": {
+      "titre": "Poppins-Bold.ttf",
+      "texte": "Poppins-Regular.ttf",
+      "accent": "Poppins-SemiBold.ttf"
+    },
     "dossier_polices": "polices",
     "regle_accent": "L'accent ne dépasse pas 7 à 10 % de la surface : filets, boutons, prix ; jamais en aplat."
   },
   "ton": {
     "registre": "vouvoiement",
     "style": "romantique et sensuel, jamais explicite",
-    "skills": ["copy-machine", "brand-lovenspa"]
+    "skills": [
+      "copy-machine",
+      "brand-lovenspa"
+    ]
+  },
+  "page_bio": {
+    "handle": "instagram",
+    "titre": "Nos logements sur Instagram"
   }
 }

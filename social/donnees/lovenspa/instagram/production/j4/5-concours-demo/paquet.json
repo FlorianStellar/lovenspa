@@ -35,19 +35,38 @@
     "ambiance_libelle": "Sensuel",
     "url": "https://lovenspa.fr/products/le-nid-de-lerdre",
     "actif": true,
-    "medias": 16
+    "medias": 16,
+    "description": "Le Nid de l’Erdre – Escapade romantique avec piscine intérieure et sauna privatif Un écrin de douceur au bord de l’eau, niché sur les rives paisibles de l’Erdre, à deux pas de Nantes.Le Nid de l’Erdre est un lieu intime, raffiné et apaisant, imaginé pour deux — une parenthèse hors du temps, où l’on vient se retrouver, se détendre et se ressourcer. Entre bois clair, matières naturelles et lumière tamisée, ce cocon mêle élégance et sérénité.La grande baie vitrée ouvre sur un jardin verdoyant qui descend doucement vers la rivière, invitant à la contemplation et à la déconnexion. Un espace bien-être rien que pour vous Au rez-de-chaussée, un véritable espace bien-être privatif vous attend : Piscine intérieure chauffée à 32 °C, idéale pour flotter en toute saison Sauna pour une relaxation profonde Vue directe sur la nature, pour un instant suspendu entre calme et volupté L’accès à l’espace bien-être est entièrement privé, pour que vous puissiez savourer chaque moment en toute intimité. Un cadre idyllique au fil de l’eau Pour les amoureux de nature et de silence, un ponton en bois s’avance au bord de l’Erdre.C’est l’endroit parfait pour un apéritif au coucher du soleil, un moment de lecture, ou simplement pour admirer la beauté tranquille du paysage. Et pour prolonger cette expérience sensorielle, laissez-vous tenter par un massage en duo (en supplément) — un instant de détente absolue, orchestré par des mains expertes. Inclus dans votre séjour Accès libre et privatif à la piscine intérieure et au sauna (la piscine est recouverte de 23h à 9h) Petit-déjeuner gourmand servi lors de la première nuitée Arrivée à partir de 17h, départ à 11h Une parenthèse rare et précieuse, où le temps ralentit au rythme de l’eau, et où chaque détail invite à la sérénité.Le Nid de l’Erdre, c’est plus qu’un hébergement : c’est une une parenthèse rare et précieuse, où le temps ralentit au rythme de l'eau. 🌿"
    }
   ],
   "region": "Pays de la Loire",
   "lien": "https://lovenspa.fr/products/le-nid-de-lerdre?utm_source=instagram&utm_medium=social&utm_campaign=concours&utm_content=2026-12-01"
  },
- "legende": "Concours : une nuit pour deux à gagner dans Le Nid de l'Erdre, piscine et sauna privatifs.\n\nPour participer : abonnez-vous à @lovenspa.fr, aimez ce post et identifiez en commentaire la personne avec qui vous partiriez. Tirage au sort le 15 décembre, résultat annoncé en story.\n\nRèglement complet : lien en bio. Concours gratuit, sans obligation d'achat, réservé aux personnes majeures résidant en France. Chaque participant dégage Instagram de toute responsabilité. Ce concours n'est ni parrainé, ni approuvé, ni administré par Instagram.\n\n#lovenspa #concours #nantes #spaprivatif #nuitadeux",
+ "legende": "CONCOURS : une nuit pour deux à gagner dans Le Nid de l'Erdre, à deux pas de Nantes, piscine et sauna privatifs.\n\nPour participer : abonnez-vous à @lovenspa.fr, aimez ce post et identifiez en commentaire la personne avec qui vous partiriez. Tirage au sort le 15 décembre, juste à temps pour Noël ; résultat annoncé en story.\n\nRèglement complet : lien en bio. Concours gratuit, sans obligation d'achat, réservé aux personnes majeures résidant en France. Chaque participant dégage Instagram de toute responsabilité. Ce concours n'est ni parrainé, ni approuvé, ni administré par Instagram.\n\n#lovenspa #concours #nantes #spaprivatif #nuitadeux",
  "medias": [
   "social/donnees/lovenspa/instagram/production/j4/5-concours-demo/diapo-01.jpg",
   "social/donnees/lovenspa/instagram/production/j4/5-concours-demo/diapo-02.jpg",
-  "social/donnees/lovenspa/instagram/production/j4/5-concours-demo/diapo-03.jpg"
+  "social/donnees/lovenspa/instagram/production/j4/5-concours-demo/diapo-03.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/5-concours-demo/diapo-04.jpg",
+  "social/donnees/lovenspa/instagram/production/j4/5-concours-demo/diapo-05.jpg"
  ],
  "notes": [
   "lien UTM à mettre en bio ou en message (non présent dans la légende)"
- ]
+ ],
+ "textes_ecran": [
+  "CONCOURS : 1 nuit pour deux à gagner",
+  "Le Nid de l'Erdre · piscine et sauna privatifs",
+  "Comment participer",
+  "Abonnez-vous, aimez ce post et identifiez la personne avec qui vous partiriez. Tirage le 15 décembre. Règlement : lien en bio.",
+  "Le sauna, vue sur le jardin",
+  "Le coucher de soleil sur l'Erdre"
+ ],
+ "empreinte_contenu": "ce808ecb7ebacd97",
+ "revue_visuelle": {
+  "statut": "OK",
+  "empreinte": "ce808ecb7ebacd97",
+  "par": "agent (Claude)",
+  "date": "2026-11-12",
+  "remarques": "5 diapositives : couverture différente de la diapositive 2, photos sauna et rivière cohérentes, mentions concours en légende."
+ }
 }

@@ -166,3 +166,10 @@ Données entrantes :
 - Concours Instagram : les trois mentions d'IG-R28 (règlement, exonération d'Instagram, non-parrainage) sont bloquantes (`mentions_concours_manquantes`, décision du 12/11/2026). Droit français des jeux-concours et mention de partenariat commercial : aucune source compilée (`references/conformite-fr.md`, section 8).
 - Articles du Code de la consommation cités par copy-machine : non vérifiés sur Légifrance.
 - Le contrôle visuel (S6-19 à S6-21) n’a pas d’outil : la tolérance de couleur et de traitement n’est écrite dans aucune charte.
+
+## Contrôles ajoutés (revue J4, 12/11/2026)
+
+- **FAIT_CHIFFRE** (bloquant) : tout chiffre avec unité (°C, cm, m, m², h, min, personnes) cité dans la légende ou à l'écran doit figurer dans la fiche du logement (nom, description publique, équipements). Moteur couple : légende seule.
+- **REVUE** (bloquant) : revue visuelle absente, négative ou faite sur une autre version du contenu (`empreinte`).
+- **TEMPS_FORT** (avertissement) : le temps fort de la case n'est évoqué ni dans la légende ni à l'écran.
+- Textes à l'écran (`textes_ecran` du paquet) contrôlés comme la légende pour les faits.

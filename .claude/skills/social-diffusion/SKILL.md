@@ -103,3 +103,7 @@ Nouvel essai automatique du client Instagram sur les erreurs temporaires (codes 
 - Les médias hébergés dans Shopify Files ne sont pas supprimés après publication ni après échec.
 - Le chemin est propre à Instagram : `--dues` ne lit que `donnees/<marque>/instagram/production/`.
 - Règles de plateforme : référence unique dans la skill `social-veille` (`references/regles-plateformes.md`, S2) ; le fichier local de cette skill ne sert que d’extrait pour la publication.
+
+## Page lien en bio (décision du 12/11/2026)
+
+`python3 -m social.s7_diffusion.page_bio --marque <id> <dossiers des derniers paquets> [--en-tete "texte|url"] --ecrire` : met à jour la page `marque.json > page_bio` (Love'nSpa : /pages/instagram) avec les logements des dernières publications, chacun avec le lien tracé de sa case (S8 attribue la visite par `utm_content`). Création **non publiée** ; la mise en ligne et la pose du lien en bio sont des décisions humaines (J7).

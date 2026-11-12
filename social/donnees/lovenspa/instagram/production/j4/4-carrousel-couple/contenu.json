@@ -8,34 +8,80 @@
   "temps_fort": "Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir",
   "statut": "A_PRODUIRE",
   "theme": "Les petites attentions qui rallument le désir",
-  "offres": [],
+  "offres": [
+   {
+    "handle": "romantic-room-alexis",
+    "nom": "Romantic Room Alexis",
+    "type": "Chambre d'hôte",
+    "ville": "Sablettes",
+    "ville_reference": "Toulon",
+    "region": "Provence-Alpes-Côte d'Azur",
+    "equipements": [
+     "Ambiance Lumineuse",
+     "Champagne",
+     "Cheminée",
+     "Climatisation",
+     "Day Use",
+     "Douche XL",
+     "Hammam",
+     "Jardin",
+     "Lit Rond",
+     "Parking privé",
+     "Piscine extérieure",
+     "Spa",
+     "Table de massage"
+    ],
+    "equipements_non_citables": [],
+    "prix_a_partir_de": 395.0,
+    "unite_prix": "la nuit",
+    "devise": "EUR",
+    "on_aime": null,
+    "ambiance": 1,
+    "ambiance_libelle": "Romantique",
+    "url": "https://lovenspa.fr/products/romantic-room-alexis",
+    "actif": true,
+    "medias": 27,
+    "description": "Suite Étoilée – Expérience romantique & sensorielle d’exceptionDécouvrez un lieu hors du commun, pensé pour les amoureux en quête d’une escapade inoubliable dans une discrétion et une intimité garanties. Votre arrivée se fait en toute discrétion grâce à une entrée indépendante et une place de parking privée qui vous est réservée.La Suite Étoilée allie luxe, technologie et romantisme dans une atmosphère unique, où chaque détail a été imaginé pour éveiller vos sens.Une expérience d'exception, tout inclusUn bar privé entièrement équipé est à votre disposition, boissons incluses à discrétion.Votre séjour est une expérience tout inclus. De l'apéritif au caviar et champagne, au dîner de petite gastronomie et au petit-déjeuner, tout est orchestré pour que vous n'ayez à penser à rien, sauf à vous.Un cocon haut de gamme, entre douceur et designDès votre entrée, le ton est donné : élégance, confort et volupté.Un jacuzzi privatif vous attend, idéal pour un moment de détente sous les étoiles.À proximité, un espace cinéma de 3x2 mètres avec enceinte BOSE vous offre une immersion totale : installez-vous, fermez les volets à distance, et laissez-vous emporter.Le salon de détente, baigné de lumière, abrite une cheminée à commande connectée pour des soirées cocooning à deux.Le lit rond XXL (220 cm) promet des nuits d’exception, tandis que le dressing room orné de miroirs ajoute une touche glamour digne d’un palace.Bien-être & sensationsLe salon de bien-être, baigné de lumières bleues, rouges et violettes, diffuse une atmosphère apaisante et sensuelle.La salle de bain en marbre noir, véritable sanctuaire, combine hammam, douche à pluie tropicale pour un lâcher-prise absolu à deux, pulvérisation revitalisante et double cascade.Chromothérapie, diffuseur de parfum et miroir musical antibuée complètent cette expérience sensorielle.Détendez-vous ensuite sur la chaise de massage apesanteur, laissez votre corps flotter, puis savourez un rafraîchissement dans la kitchenette design équipée d’un distributeur de boissons et d’un chargeur à induction.Un espace dédié à la complicité et à l'éveil des sens complète l'expérience.Expérience immersive & sensations fortesDans un coin secret, laissez-vous surprendre par un univers lumineux et ludique, inspiré des machines à sous de Las Vegas.Là, l’adrénaline rencontre le plaisir : chaque instant devient un jeu, chaque victoire, une récompense.Un lot de luxe est offert à ceux qui décrochent le jackpot — car ici, chaque expérience se vit comme un frisson.Évasion & détente extérieureTerminez la soirée dans votre solarium privatif, un écrin paisible pour savourer le silence et la douceur de la nuit.Et sur demande, en fonction de la saison, plongez dans la piscine extérieure chauffée (11 m x 4,75 m) pour un bain de minuit inoubliable.Prestations inclusesTout est prévu pour votre confort : linge haut de gamme, peignoirs moelleux, produits de soin, et même des brosses à dents Gucci.Ici, rien à penser, rien à prévoir – il ne vous reste qu’à vivre et ressentir."
+   }
+  ],
   "lien": "https://www.lovenspa.fr/?utm_source=instagram&utm_medium=social&utm_campaign=couple&utm_content=2026-11-20"
  },
- "legende": "Le désir ne s'éteint pas d'un coup : il s'endort quand on cesse d'y faire attention.\n\nPas besoin de grands gestes pour le réveiller. Un message au milieu de la journée, un regard qui dure une seconde de trop, une soirée où les téléphones restent dans l'entrée.\n\nFaites défiler : cinq petites attentions qui changent l'ambiance d'une soirée.\n\nEnvoyez ce post à la personne qui vous fait encore cet effet.\n\n#lovenspa #couple #desir #amour #soireeadeux",
+ "legende": "Le désir ne s'éteint pas d'un coup : il s'endort quand on cesse d'y faire attention.\n\nPas besoin de grands gestes pour le réveiller. Un message au milieu de la journée, un regard qui dure une seconde de trop, une soirée où les téléphones restent dans l'entrée.\n\nEt pour la surprise annoncée, une nuit à la Romantic Room Alexis, jacuzzi et dîner compris : à offrir pour Noël.\n\nDites-nous en commentaire laquelle vous fait le plus d'effet.\n\n#lovenspa #couple #desir #amour #soireeadeux",
  "couple": {
-  "titre": "5 petites attentions qui rallument le désir",
+  "titre": "Le désir ne s'éteint pas.",
+  "sous_titre": "Il s'endort. Voici 5 façons de le réveiller.",
   "diapos": [
    {
     "titre": "Un message à 15 h",
-    "texte": "Pas « tu rentres à quelle heure ». Plutôt : « j'ai pensé à toi ce matin, et pas qu'un peu. »"
+    "texte": "« J'ai pensé à toi ce matin. Et pas qu'un peu. »"
    },
    {
     "titre": "Le compliment précis",
-    "texte": "« Tu es belle » s'oublie. « J'adore ta façon de rire quand tu es gênée » reste."
+    "texte": "« J'adore ta façon de rire quand tu es gênée. »"
    },
    {
-    "titre": "Les téléphones dans l'entrée",
-    "texte": "Une soirée par semaine, sans écran. Juste vous deux et le temps qui ralentit."
+    "titre": "Une soirée sans écran",
+    "texte": "Les téléphones restent dans l'entrée. Juste vous deux."
    },
    {
     "titre": "Le geste sans raison",
-    "texte": "Une main dans le dos en passant. Un baiser dans le cou pendant qu'il ou elle cuisine."
+    "texte": "Une main dans le dos en passant. Un baiser dans le cou."
    },
    {
     "titre": "La surprise annoncée",
-    "texte": "« Garde ton samedi soir. » Rien d'autre. L'attente fait la moitié du travail."
+    "texte": "« Garde ton samedi soir. » Rien d'autre."
    }
   ],
-  "cta": "Envoyez-le à qui vous fait cet effet"
+  "cta": "Laquelle vous fait le plus d'effet ?",
+  "question": "Répondez en commentaire.",
+  "photo_logement": 13,
+  "badge_logement": "Pour la surprise"
+ },
+ "revue_visuelle": {
+  "statut": "OK",
+  "empreinte": "3ec21f0bfd428dd3",
+  "par": "agent (Claude)",
+  "date": "2026-11-12",
+  "remarques": "8 diapositives : texte lisible, question finale, logement en dernière diapositive avec photo cohérente."
  }
 }

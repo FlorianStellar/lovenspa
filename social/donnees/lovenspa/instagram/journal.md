@@ -54,3 +54,11 @@ Stratégie déduite de la marque et du benchmark, non des posts passés : doc «
 - Photos écartées : sofa tantrique (équipement exclu), vin (loi Evin).
 - Anomalie catalogue à corriger (S3) : La Villa Yucatan a pour ville « Paris » alors que la page dit « au cœur de l'Île-de-France », spa accessible de 21 h 30 à 23 h 30 seulement ; l'ancienne légende « en plein Paris » était fausse.
 - Galerie : https://claude.ai/artifact/FkGZpdPZXhGHmNyYa4rJgL
+
+## 2026-11-12 — J4 v2 après revue d'un expert social media
+- Revue : aucun des 5 rendus v1 publiable (notes 3 à 6/10) ; défauts : Reels muets en diaporama lent sur fond flouté, cartons trop longs, temps fort absent, lien en bio non mesurable, contrôle sans lien texte/photo. Deux affirmations de la revue infirmées : les chiffres d'Alexis et du Nid figurent dans les descriptions Shopify ; le couple « REFUSE » ne l'est que par la règle LOGEMENT, sans objet pour ce moteur.
+- Décisions de Florian : musique libre de droits ; page lovenspa.fr/instagram comme lien en bio.
+- Réalisé : moteur Reel plein cadre (plans 1,25 s, panoramique dès t=0, musique CC0 intégrée, -13 dB), gabarits refaits, S6 (FAIT_CHIFFRE, REVUE, TEMPS_FORT), revue visuelle obligatoire liée à l'empreinte du contenu, bibliothèque de 15 musiques (6 CC0, 9 CC BY, licences archivées), page Shopify « instagram » créée NON publiée (gid://shopify/Page/162447688016).
+- Résultat : 5 rendus PRET ; avertissements restants : montant 150 € (seuil de la sélection, source = stratégie) ; temps fort non évoqué par le mot « offrir » dans le concours.
+- À faire par un humain : écouter les musiques (voix non vérifiées) ; corriger la ville de La Villa Yucatan ; deux produits carte cadeau actifs (carte-cadeaux-love-room et carte-cadeau-lovenspa).
+- Galerie v2 : https://claude.ai/artifact/FkGZpdPZXhGHmNyYa4rJgL

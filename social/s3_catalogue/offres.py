@@ -28,7 +28,7 @@ def _champ_gql(alias, spec):
 
 def champs_gql(marque):
     base = ("handle title status productType onlineStoreUrl tags "
-            "priceRangeV2 { minVariantPrice { amount currencyCode } } mediaCount { count }")
+            "priceRangeV2 { minVariantPrice { amount currencyCode } } mediaCount { count } description")
     extra = [_champ_gql(k, v) for k, v in marque.catalogue["champs"].items()]
     return base + "\n  " + "\n  ".join(x for x in extra if x)
 
@@ -88,11 +88,13 @@ def offre(node, marque):
         "url": node.get("onlineStoreUrl") or f"{marque.site}/products/{node['handle']}",
         "actif": node.get("status") == "ACTIVE",
         "medias": (node.get("mediaCount") or {}).get("count", 0),
+        # texte public de la fiche : source des faits chiffrés (S6, FAIT_CHIFFRE), jamais un champ deviné (S3-06)
+        "description": node.get("description") or None,
     }
 
 
 Q_IMAGES = """query($q: String!) { products(first: 1, query: $q) { nodes { handle
-  media(first: 12) { nodes { ... on MediaImage { image { url altText } } } } } } }"""
+  media(first: 30) { nodes { ... on MediaImage { image { url altText } } } } } } }"""
 
 
 class Catalogue:

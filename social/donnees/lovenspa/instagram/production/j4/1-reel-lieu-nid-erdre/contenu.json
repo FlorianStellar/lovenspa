@@ -35,27 +35,94 @@
     "ambiance_libelle": "Sensuel",
     "url": "https://lovenspa.fr/products/le-nid-de-lerdre",
     "actif": true,
-    "medias": 16
+    "medias": 16,
+    "description": "Le Nid de l’Erdre – Escapade romantique avec piscine intérieure et sauna privatif Un écrin de douceur au bord de l’eau, niché sur les rives paisibles de l’Erdre, à deux pas de Nantes.Le Nid de l’Erdre est un lieu intime, raffiné et apaisant, imaginé pour deux — une parenthèse hors du temps, où l’on vient se retrouver, se détendre et se ressourcer. Entre bois clair, matières naturelles et lumière tamisée, ce cocon mêle élégance et sérénité.La grande baie vitrée ouvre sur un jardin verdoyant qui descend doucement vers la rivière, invitant à la contemplation et à la déconnexion. Un espace bien-être rien que pour vous Au rez-de-chaussée, un véritable espace bien-être privatif vous attend : Piscine intérieure chauffée à 32 °C, idéale pour flotter en toute saison Sauna pour une relaxation profonde Vue directe sur la nature, pour un instant suspendu entre calme et volupté L’accès à l’espace bien-être est entièrement privé, pour que vous puissiez savourer chaque moment en toute intimité. Un cadre idyllique au fil de l’eau Pour les amoureux de nature et de silence, un ponton en bois s’avance au bord de l’Erdre.C’est l’endroit parfait pour un apéritif au coucher du soleil, un moment de lecture, ou simplement pour admirer la beauté tranquille du paysage. Et pour prolonger cette expérience sensorielle, laissez-vous tenter par un massage en duo (en supplément) — un instant de détente absolue, orchestré par des mains expertes. Inclus dans votre séjour Accès libre et privatif à la piscine intérieure et au sauna (la piscine est recouverte de 23h à 9h) Petit-déjeuner gourmand servi lors de la première nuitée Arrivée à partir de 17h, départ à 11h Une parenthèse rare et précieuse, où le temps ralentit au rythme de l’eau, et où chaque détail invite à la sérénité.Le Nid de l’Erdre, c’est plus qu’un hébergement : c’est une une parenthèse rare et précieuse, où le temps ralentit au rythme de l'eau. 🌿"
    }
   ],
   "region": "Pays de la Loire",
   "lien": "https://lovenspa.fr/products/le-nid-de-lerdre?utm_source=instagram&utm_medium=social&utm_campaign=lieu&utm_content=2026-11-22"
  },
- "legende": "Une piscine chauffée à 32 °C, un sauna et la rivière au bout du jardin : Le Nid de l'Erdre, dès 225 € la nuit.\n\nSur les rives de l'Erdre, à deux pas de Nantes, la baie vitrée s'ouvre sur un jardin qui descend jusqu'à l'eau. L'espace bien-être est entièrement privé : vous flottez, vous vous réchauffez au sauna, et personne ne vient troubler le silence.\n\nLe soir, le ponton en bois vous attend pour regarder le soleil se coucher sur la rivière.\n\nLes disponibilités sont sur notre site, lien en bio.\n\n#lovenspa #spaprivatif #nantes #piscineprivee #weekendamoureux",
- "reel_lignes": [
-  "Une piscine à 32 °C rien qu'à vous deux",
-  "Un sauna privatif, vue sur le jardin",
-  "La baie vitrée ouvre sur la nature",
-  "Le soleil se couche sur l'Erdre",
-  "Le soir, la piscine change de couleur",
-  "Le Nid de l'Erdre · près de Nantes · dès 225 €"
+ "legende": "La rivière au bout du jardin, une piscine à 32 °C rien qu'à vous : Le Nid de l'Erdre, près de Nantes, dès 225 € la nuit.\n\nLa baie vitrée ouvre sur un jardin qui descend jusqu'à l'Erdre. L'espace bien-être est entièrement privé : la piscine, le sauna, et personne pour troubler le silence.\n\nLe soir, le ponton en bois vous attend pour le coucher de soleil.\n\nÀ offrir avant Noël : la carte cadeau se glisse sous le sapin. Réservez ou offrez, lien en bio.\n\n#lovenspa #spaprivatif #nantes #carteCadeau #weekendamoureux",
+ "reel_plans": [
+  {
+   "photo": 12,
+   "texte": "La rivière au bout du jardin",
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 11,
+   "texte": null,
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 1,
+   "texte": "Piscine chauffée à 32 °C",
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 8,
+   "texte": null,
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 4,
+   "texte": "Sauna privatif, vue jardin",
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 7,
+   "texte": null,
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 3,
+   "texte": "Le soir, tout change",
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 5,
+   "texte": null,
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 6,
+   "texte": "Une chambre face aux arbres",
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 9,
+   "texte": null,
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 12,
+   "texte": "Dès 225 € la nuit",
+   "duree": 1.25,
+   "cadrage": "auto"
+  },
+  {
+   "photo": 1,
+   "texte": "À offrir avant Noël",
+   "duree": 1.25,
+   "cadrage": "auto"
+  }
  ],
- "reel_photos": [
-  1,
-  4,
-  11,
-  12,
-  3,
-  6
- ]
+ "musique": "panama-lounge",
+ "revue_visuelle": {
+  "statut": "OK",
+  "empreinte": "f694452883cc5495",
+  "par": "agent (Claude)",
+  "date": "2026-11-12",
+  "remarques": "12 plans regardés : chaque carton correspond à sa photo ; aucun logo ; photo du vin écartée ; son présent (-13 dB)."
+ }
 }

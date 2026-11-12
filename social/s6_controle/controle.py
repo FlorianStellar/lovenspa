@@ -13,6 +13,9 @@ Bloquants (statut REFUSE) :
   A_COMPLETER   un {{trou}} reste dans le texte
   EXPLICITE     un terme du lexique explicite de la marque (regles.json : lexique_explicite)
   AMBIANCE      une offre de la case hors des ambiances autorisées par la stratégie (verdict)
+  FAIT_CHIFFRE  un chiffre avec unité (°C, cm, m, m², h, personnes…) absent de la fiche du logement (verdict)
+  REVUE         revue visuelle absente ou faite sur une autre version du contenu (verdict)
+  CONCOURS      mention obligatoire de concours absente (IG-R28, verdict)
   MEDIAS        aucun média (verdict)
 Avertissements (statut A_REVOIR) :
   LONGUEUR      hors de la plage cible de caractères
@@ -23,6 +26,7 @@ Avertissements (statut A_REVOIR) :
   TYPO          espace avant : ; ! ? (insécable), « » sans insécables, guillemets droits
   AUTRE_MONTANT un montant en euros qui n'est pas le prix du logement
   EMOJI         plus d'emojis que la limite de la marque (regles.json : max_emojis_legende)
+  TEMPS_FORT    le temps fort de la case n'est évoqué ni dans la légende ni à l'écran (verdict)
 
 Usage :
   python3 -m social.s6_controle.controle legende.txt --offre <handle> [--marque <id>] [--historique snapshot.json]
@@ -252,6 +256,45 @@ def mentions_concours_manquantes(legende):
     return [m for code, (rx, m) in MENTIONS_CONCOURS.items() if not re.search(rx, legende, re.I)]
 
 
+UNITES = r"(?:°\s?C|degrés|cm|m²|m2|mètres?|m|km|minutes?|min|heures?|h|personnes?|places?)"
+
+
+def _nombres(texte):
+    return {x.replace(",", ".").lstrip("0") or "0" for x in re.findall(r"\d+(?:[.,]\d+)?", texte or "")}
+
+
+def chiffres_non_sources(textes, offres):
+    """Chiffres avec unité cités (légende et écran) qui ne figurent dans aucune source de l'offre
+    (nom, description publique, équipements, ville). Les prix sont contrôlés à part (PRIX)."""
+    source = " ".join(" ".join([o.get("nom") or "", o.get("description") or "", " ".join(o.get("equipements") or []),
+                                o.get("ville") or ""]) for o in offres)
+    connus = _nombres(source)
+    out = []
+    for t in textes:
+        for m in re.finditer(rf"(\d+(?:[.,]\d+)?)\s?{UNITES}\b", t or "", re.I):
+            n = m.group(1).replace(",", ".").lstrip("0") or "0"
+            if n not in connus and m.group(0) not in out:
+                out.append(m.group(0))
+    return out
+
+
+def evoque_temps_fort(theme, textes):
+    """Le temps fort est évoqué si un mot significatif (5 lettres ou plus) de son titre court apparaît."""
+    if not theme:
+        return True
+    court = re.split(r"\s*:\s*", theme)[0]
+    mots = [m for m in re.findall(r"[\wÀ-ÿ'-]+", court.lower()) if len(m) >= 5]
+    corps = norm(" ".join(textes))
+    return not mots or any(norm(m) in corps for m in mots)
+
+
+def empreinte(contenu):
+    """Empreinte du contenu revu (textes, photos, cadrages), hors revue elle-même."""
+    import hashlib
+    c = {k: v for k, v in contenu.items() if k != "revue_visuelle"}
+    return hashlib.sha256(json.dumps(c, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+
+
 def verdict(paquet, rules=None, history=None, ambiances=None):
     """Verdict d'un Paquet : texte contrôlé contre les Offres de sa case.
 
@@ -263,6 +306,24 @@ def verdict(paquet, rules=None, history=None, ambiances=None):
                  and not (case["moteur"] == "couple" and x["code"] == "LOGEMENT")]
     if not paquet.get("medias"):
         bloquants.append({"code": "MEDIAS", "niveau": "bloquant", "message": "aucun média"})
+    textes = [paquet["legende"]] + list(paquet.get("textes_ecran") or [])
+    if offres:
+        # moteur couple : les diapositives sont des conseils, pas des faits sur le logement ; seule la légende est vérifiée
+        for x in chiffres_non_sources(textes[:1] if case["moteur"] == "couple" else textes, offres):
+            bloquants.append({"code": "FAIT_CHIFFRE", "niveau": "bloquant",
+                              "message": f"« {x} » absent de la fiche du logement (nom, description, équipements)"})
+    if "revue_visuelle" in paquet:
+        rv = paquet["revue_visuelle"] or {}
+        if rv.get("empreinte") != paquet.get("empreinte_contenu"):
+            bloquants.append({"code": "REVUE", "niveau": "bloquant",
+                              "message": "revue visuelle absente ou faite sur une autre version du contenu"})
+        elif rv.get("statut") != "OK":
+            bloquants.append({"code": "REVUE", "niveau": "bloquant", "message": "revue visuelle : " + rv.get("remarques", "")})
+    if not evoque_temps_fort(case.get("temps_fort"), textes):
+        r["resultats"].append({"code": "TEMPS_FORT", "niveau": "avertissement",
+                               "message": f"temps fort non évoqué : « {case['temps_fort']} »"})
+        if r["statut"] == "OK":
+            r["statut"] = "A_REVOIR"
     if case["moteur"] == "concours":
         for m in mentions_concours_manquantes(paquet["legende"]):
             bloquants.append({"code": "CONCOURS", "niveau": "bloquant", "message": f"concours sans {m} (IG-R28)"})

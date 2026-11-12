@@ -51,6 +51,20 @@ class TestImaging(unittest.TestCase):
         l = visuels.slide_lodging(PHOTO, "Nom du logement", "Ville", 150.0, ["Spa"], "2/3")
         self.assertGreater(sombres(l, (80, 945, 1000, 1000)), 500)
 
+    def test_grand_texte_readable_and_centered(self):
+        s = visuels.slide_grand_texte("Le désir ne s'éteint pas.", "Il s'endort.", "1/7")
+        sombres = [y for y in range(0, 1350, 10) if any(sum(s.getpixel((x, y))) < 200 for x in range(80, 1000, 20))]
+        self.assertTrue(sombres)
+        self.assertGreater(sombres[0], 300)  # bloc centré, pas collé en haut
+        self.assertEqual(s.size, visuels.CAROUSEL)
+
+    def test_wrap_keeps_number_with_unit(self):
+        d = ImageDraw.Draw(Image.new("RGB", (10, 10)))
+        f = visuels.font("Bold", 64)
+        for w in range(300, 900, 7):
+            for ln in visuels.wrap(d, "6 nuits avec spa jusqu'à 150 €, à offrir : vite", f, w):
+                self.assertFalse(ln.startswith("€") or ln.startswith(":"), ln)
+
     def test_cta_slide_is_not_pink_flat(self):
         s = visuels.slide_text("T", "", cta=True)
         self.assertEqual(s.getpixel((1000, 100)), visuels.CREME)
@@ -109,7 +123,10 @@ CAPTION = ("Spa et sauna à Vannes : Le Nid, dès 150 € la nuit.\n\nUn gîte
 
 
 class TestProduire(unittest.TestCase):
-    def run_case(self, contenu, fetch=True):
+    def run_case(self, contenu, fetch=True, revue=True):
+        from social.s6_controle import controle
+        if revue:
+            contenu = {**contenu, "revue_visuelle": {"statut": "OK", "empreinte": controle.empreinte(contenu)}}
         with tempfile.TemporaryDirectory() as d:
             with open(os.path.join(d, "contenu.json"), "w", encoding="utf-8") as f:
                 json.dump(contenu, f)
@@ -166,6 +183,66 @@ class TestProduire(unittest.TestCase):
         p = self.run_case({"case": {**BASE, "moteur": "couple", "format": "CAROUSEL", "offres": []},
                            "legende": CAPTION, "couple": {"titre": "T", "diapos": [{"titre": "a", "texte": "b"}], "cta": "c"}})
         self.assertEqual(p["statut"], "PRET", p["bloquants"])
+
+    def test_selection_sorted_with_favori(self):
+        cher, bon = dict(FICHE, handle="cher", nom="Cher", prix_a_partir_de=300.0), dict(FICHE, handle="bon", nom="Bon")
+        appels = []
+        orig = visuels.slide_lodging
+        with mock.patch.object(visuels, "slide_lodging", side_effect=lambda *a, **k: appels.append((a[1], k.get("badge")))
+                               or orig(*a, **k)):
+            p = self.run_case({"case": {**BASE, "moteur": "selection", "format": "CAROUSEL", "offres": [cher, bon]},
+                               "legende": CAPTION, "couverture": {"titre": "T", "sous_titre": "S"}, "favori": "cher",
+                               "fin": {"titre": "F", "texte": "x"}})
+        self.assertEqual(appels, [("Bon", None), ("Cher", "Notre favori")])
+        cat = mock.Mock(images=mock.Mock(return_value=["u1", "u2", "u3", "u4"]))
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(visuels, "fetch", return_value=PHOTO):
+            produire.fabriquer({"case": {**BASE, "moteur": "selection", "offres": [cher, bon]}, "favori": "cher",
+                                "couverture": {"titre": "T", "sous_titre": "S"}, "fin": {"titre": "F", "texte": "x"}},
+                               d, cat, MARQUE.strategie("instagram"))
+        self.assertEqual(cat.images.call_args_list[0][0][0], "cher")  # couverture prise dans le favori
+        self.assertEqual(len(p["medias"]), 4)
+
+    def test_couple_final_lodging_and_concours_extra(self):
+        p = self.run_case({"case": {**BASE, "moteur": "couple", "format": "CAROUSEL", "offres": [FICHE]}, "legende": CAPTION,
+                           "couple": {"titre": "T", "diapos": [{"titre": "a", "texte": "b"}], "cta": "c", "question": "q ?"}})
+        self.assertEqual(len(p["medias"]), 4)  # titre, 1 diapo, fin, logement
+        p = self.run_case({"case": {**BASE, "moteur": "concours", "format": "CAROUSEL", "offres": [FICHE]}, "legende": CAPTION,
+                           "couverture": {"titre": "T", "sous_titre": "S"}, "fin": {"titre": "F", "texte": "x"},
+                           "photos_supplementaires": [{"photo": 2, "texte": "Le sauna"}, {"photo": 3}]})
+        self.assertEqual(len(p["medias"]), 5)
+
+    def test_review_required_and_tied_to_content(self):
+        base = {"case": {**BASE, "moteur": "lieu", "format": "REELS", "offres": [FICHE]}, "legende": CAPTION,
+                "reel_lignes": ["a", "b", "c"]}
+        p = self.run_case(base, revue=False)
+        self.assertTrue(any("revue visuelle" in b for b in p["bloquants"]))
+        from social.s6_controle import controle
+        perime = {**base, "revue_visuelle": {"statut": "OK", "empreinte": controle.empreinte({**base, "legende": "x"})}}
+        p = self.run_case(perime, revue=False)
+        self.assertTrue(any("autre version" in b for b in p["bloquants"]))
+
+    def test_reverdict_after_review(self):
+        from social.s6_controle import controle
+        base = {"case": {**BASE, "moteur": "lieu", "format": "REELS", "offres": [FICHE]}, "legende": CAPTION,
+                "reel_lignes": ["a", "b", "c"]}
+        with tempfile.TemporaryDirectory() as d:
+            with open(os.path.join(d, "contenu.json"), "w", encoding="utf-8") as f:
+                json.dump(base, f)
+            cat = mock.Mock(images=mock.Mock(return_value=["u1", "u2", "u3"]))
+            with mock.patch.object(visuels, "fetch", return_value=PHOTO), \
+                    mock.patch.object(visuels, "render_reel", side_effect=lambda fr, out, **k: out), \
+                    mock.patch.object(visuels, "probe", return_value={"streams": [{"codec_type": "video", "width": 1080,
+                                                                                      "height": 1920}],
+                                                                         "format": {"duration": "15.0"}}):
+                self.assertEqual(produire.produce(d, marque=MARQUE, catalogue=cat)[1]["statut"], "REFUSE")
+            revu = {**base, "revue_visuelle": {"statut": "OK", "empreinte": controle.empreinte(base)}}
+            with open(os.path.join(d, "contenu.json"), "w", encoding="utf-8") as f:
+                json.dump(revu, f)
+            self.assertEqual(produire.reverdict(d, MARQUE)[1]["statut"], "PRET")
+            with open(os.path.join(d, "contenu.json"), "w", encoding="utf-8") as f:
+                json.dump({**revu, "legende": "autre"}, f)
+            with self.assertRaises(RuntimeError):
+                produire.reverdict(d, MARQUE)
 
     def test_too_many_slides(self):
         with self.assertRaises(RuntimeError):

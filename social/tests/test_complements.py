@@ -203,6 +203,14 @@ class TestBoutEnBoutSimulation(unittest.TestCase):
                                                                                       "height": 1920}],
                                                                          "format": {"duration": "7.5"}}):
                 paquet, verdict = produire.produce(d, marque=M, catalogue=catm)
+                # sans revue visuelle : refusé ; revue inscrite sur cette version du contenu : prêt
+                self.assertEqual(verdict["statut"], "REFUSE")
+                with open(os.path.join(d, "contenu.json"), encoding="utf-8") as f:
+                    contenu = json.load(f)
+                contenu["revue_visuelle"] = {"statut": "OK", "empreinte": controle.empreinte(contenu)}
+                with open(os.path.join(d, "contenu.json"), "w", encoding="utf-8") as f:
+                    json.dump(contenu, f)
+                paquet, verdict = produire.produce(d, marque=M, catalogue=catm)
             self.assertEqual(verdict["statut"], "PRET", verdict["bloquants"])
             marque = mock.Mock(donnees=mock.Mock(return_value=d), strategie=mock.Mock(return_value=strat))
             now = datetime(2026, 11, 16, 19, tzinfo=diffusion.PARIS)

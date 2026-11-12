@@ -1,9 +1,9 @@
 {
  "statut": "PRET",
  "controle": {
-  "statut": "OK",
-  "caracteres": 538,
-  "premiere_ligne": 90,
+  "statut": "A_REVOIR",
+  "caracteres": 586,
+  "premiere_ligne": 112,
   "hashtags": [
    "#lovenspa",
    "#concours",
@@ -14,7 +14,13 @@
   "appels": [
    "lien"
   ],
-  "resultats": []
+  "resultats": [
+   {
+    "code": "TEMPS_FORT",
+    "niveau": "avertissement",
+    "message": "temps fort non évoqué : « Offrir une nuit : la carte cadeau qui ne finit pas dans un tiroir »"
+   }
+  ]
  },
  "bloquants": []
 }

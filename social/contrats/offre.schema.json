@@ -103,6 +103,13 @@
     "medias": {
       "type": "integer",
       "minimum": 0
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Texte public de la fiche produit (source des faits chiffrés cités)."
     }
   },
   "additionalProperties": true,
