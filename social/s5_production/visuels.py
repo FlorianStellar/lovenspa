@@ -34,6 +34,9 @@ TAILLE_TEXTE_MIN = 32  # px, lisibilité mobile (compilation S5)
 # Reels (fiche F01, preuve B, benchmark du 12/11/2026) : plans de 0,5 à 1,5 s, 6 mots au plus par carton.
 PLAN_MIN, PLAN_MAX, MOTS_CARTON_MAX = 0.5, 1.5, 6
 SURDIMENSION = 1.18  # marge de l'image au-delà du cadre, parcourue par le panoramique
+# Vitesse maximale du panoramique (px de l'image 1080x1920 par seconde). Retour de Florian du 12/11/2026 : sur des
+# photos très larges, parcourir toute la largeur en 1,5 s allait trop vite. Le trajet est centré et plafonné.
+VITESSE_PAN = 90
 
 # Kit courant : défini par appliquer_kit(marque) avant tout rendu.
 KIT = {}
@@ -265,14 +268,17 @@ def pan_filtre(src_w, src_h, duree, sens):
     """Recadrage 1080x1920 qui glisse à vitesse constante dès t=0 (mouvement à la première image)."""
     w, h = REEL
     dx, dy = src_w - w, src_h - h
+    course = VITESSE_PAN * duree
+    tx, ty = min(dx, course), min(dy, course)  # trajet plafonné
+    x0, y0 = (dx - tx) / 2, (dy - ty) / 2      # centré dans la photo
     if sens == "gauche":
-        x, y = f"{dx}*(1-t/{duree})", f"{dy}/2"
+        x, y = f"{x0:.1f}+{tx:.1f}*(1-t/{duree})", f"{dy / 2:.1f}"
     elif sens == "haut":
-        x, y = f"{dx}/2", f"{dy}*(1-t/{duree})"
+        x, y = f"{dx / 2:.1f}", f"{y0:.1f}+{ty:.1f}*(1-t/{duree})"
     elif sens == "bas":
-        x, y = f"{dx}/2", f"{dy}*t/{duree}"
+        x, y = f"{dx / 2:.1f}", f"{y0:.1f}+{ty:.1f}*t/{duree}"
     else:
-        x, y = f"{dx}*t/{duree}", f"{dy}/2"
+        x, y = f"{x0:.1f}+{tx:.1f}*t/{duree}", f"{dy / 2:.1f}"
     return f"crop={w}:{h}:x='{x}':y='{y}'"
 
 

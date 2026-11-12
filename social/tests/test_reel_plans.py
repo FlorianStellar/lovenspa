@@ -59,8 +59,16 @@ class TestMusique(unittest.TestCase):
 class TestRendu(unittest.TestCase):
     def test_pan_moves_from_first_frame(self):
         f = visuels.pan_filtre(1300, 2300, 1.2, "droite")
-        self.assertIn("x='220*t/1.2'", f)
+        self.assertIn("x='56.0+108.0*t/1.2'", f)  # trajet plafonné à 90 px/s, centré, mouvement dès t=0
         self.assertIn("crop=1080:1920", f)
+
+    def test_pan_speed_capped_on_wide_photos(self):
+        import re
+        for largeur in (1300, 2500, 3400):
+            f = visuels.pan_filtre(largeur, 2266, 1.5, "droite")
+            x0, tx = map(float, re.search(r"x='([\d.]+)\+([\d.]+)\*t", f).groups())
+            self.assertLessEqual(tx / 1.5, visuels.VITESSE_PAN + 0.01)
+            self.assertAlmostEqual(x0 + tx / 2, (largeur - 1080) / 2, delta=0.1)  # trajet centré
 
     def test_plan_image_covers_frame(self):
         im = visuels.plan_image(PHOTO)

@@ -71,3 +71,7 @@ Stratégie déduite de la marque et du benchmark, non des posts passés : doc «
 - Photos écartées : Alexis (soupçon de retouche ou génération, non vérifiable), personne en sous-vêtements (Loft Spa), écran projetant un film d'animation (Suites B Spa), texte d'horaires incrusté (Gîte jacuzzi XXL).
 - À faire par un humain : écouter les musiques ; publier un règlement de concours ; mettre en ligne /pages/instagram à J7 ; corriger dans Shopify la ville de La Villa Yucatan et « Saint Etienne » (Loft Spa) ; demander à l'hébergeur d'Alexis si ses photos sont retouchées ou générées.
 - Galerie v3 : https://claude.ai/artifact/FkGZpdPZXhGHmNyYa4rJgL
+
+## 2026-11-12 — Retour de Florian sur la galerie v3
+- Musiques : écoutées et validées (champ `ecoute_validee` dans licences.json).
+- Reel Loft Spa : panoramiques trop rapides. Cause : trajet = toute la largeur de la photo en 1,5 s, donc ~1 400 px/s sur des photos larges. Correction système : vitesse plafonnée à 90 px/s, trajet centré (VITESSE_PAN, visuels.py) ; mesuré sur le rendu : 128 px en 1,4 s. Les deux Reels sont refaits.
