@@ -3,7 +3,7 @@ import json, sys, unicodedata, unittest
 
 SUFFIXE = " | Love’nSpa"  # ajouté par le thème au <title>
 
-PATH = sys.argv.pop(1) if len(sys.argv) > 1 and sys.argv[1].endswith(".json") else "claude/lots/L8_valeurs.json"
+PATH = sys.argv.pop(1) if len(sys.argv) > 1 and sys.argv[1].endswith(".json") else str(__import__("pathlib").Path(__file__).resolve().parents[1] / "lots" / "L8_valeurs.json")
 
 STOP = {"le", "la", "les", "l", "de", "des", "du", "un", "une"}
 
