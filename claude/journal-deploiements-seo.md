@@ -353,3 +353,9 @@ QA en lecture seule sur 10 affirmations : 6 VRAIES (veille 588/0 erreur ; L8 v2 
 - Blocage : dès 10:15:51 UTC le proxy réseau de la session refuse bigquery.googleapis.com et oauth2.googleapis.com (« no rule allows host »). Cause non établie (réglage réseau de l'environnement). Risque : la veille de demain (GSC via oauth2) échouera si le blocage persiste.
 - À relancer dans Cloud Shell (contrôle et QA) :
   bq --location=EU query --use_legacy_sql=false 'SELECT "site" t, COUNT(*) n, MIN(data_date) mn, MAX(data_date) mx FROM `deep-rainfall-514310-j9.searchconsole.searchdata_site_impression` UNION ALL SELECT "url", COUNT(*), MIN(data_date), MAX(data_date) FROM `deep-rainfall-514310-j9.searchconsole.searchdata_url_impression`'
+
+## Veille du 14/11 (vérifiée par QA)
+- Indexation : 589 URL inspectées, 0 erreur, 0 nouvelle anomalie, 0 écart de canonical. Amélioration : /products/le-jardin-secret-de-bastille-duplex-romantique-avec-terrasses-a-paris passe de « URL is unknown to Google » à « Submitted and indexed ». Restent connues : 11 fiches en 404, 3 noindex, 2 « Crawled - not indexed », 2 inconnues de Google.
+- Alerte de chute : 0 alerte, mais fenêtre figée au 04-10/11 depuis le 12/11 (fichiers des 12, 13 et 14 identiques) : GSC n'a publié aucun jour final après le 10/11. Données « all » disponibles jusqu'au 13/11 (11/11 : 4 735 clics ; 12/11 : 4 339). Les 11-13/11 ne sont pas encore jugés.
+- Surveillance : 0 alerte. Sitemaps : 2 882 URL web soumises (2 878 le 12).
+- Limite veille.py relevée par QA : seules les dégradations sont listées nommément (améliorations dans le compteur « suivi ») ; pas de cas « Page with redirect » testé. À corriger au cycle du 16/11.
