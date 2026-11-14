@@ -1,0 +1,26 @@
+{
+ "fenetre": [
+  "2026-11-04",
+  "2026-11-10"
+ ],
+ "base": [
+  "2026-10-07",
+  "2026-11-03"
+ ],
+ "pages_cles": 40,
+ "site": {
+  "clics": 32535,
+  "clics_base": 31700.5,
+  "var_clics": 2.6,
+  "impr": 689392,
+  "impr_base": 635018.5,
+  "var_impr": 8.6,
+  "pos": 8.8,
+  "pos_base": 9.3,
+  "motifs": []
+ },
+ "alertes": [],
+ "alerte_site": false,
+ "statut": "complet",
+ "lignes_gsc": 89277
+}
